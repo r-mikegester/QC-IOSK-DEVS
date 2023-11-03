@@ -1,0 +1,7 @@
+{
+  "name": "qcu-iosk",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
