@@ -36,6 +36,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Search from './pages/tabs/Search';
 
 setupIonicReact();
 
@@ -50,6 +51,9 @@ const App: React.FC = () => (
           <Route exact path="/Map">
             <Map />
           </Route>
+          <Route exact path="/Search">
+            <Search />
+          </Route>
           <Route path="/Categories">
             <Categories />
           </Route>
@@ -59,17 +63,17 @@ const App: React.FC = () => (
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom" className=" text-emerald-500  m-5 p-2 w-64 mx-auto rounded-2xl">
-          <IonTabButton tab="SelectCampus" href="/SelectCampus" className="m-2">
-          <Icon icon="icon-park-outline:building-four" aria-hidden="true" className="w-10 h-10"/>
+          <IonTabButton tab="Search" href="/Search" className="m-2">
+          <Icon icon="uil:search-alt" aria-hidden="true" className="w-10 h-10"/>
      
-            <IonLabel>CAMPUS</IonLabel>
+            <IonLabel>Search</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="Map" href="/Map">
-          <Icon icon="majesticons:map-simple-marker-line" aria-hidden="true" className="w-10 h-10"/>
-            <IonLabel>MAP</IonLabel>
+          <IonTabButton tab="SelectCampus" href="/SelectCampus">
+          <Icon icon="ph:buildings-bold"  aria-hidden="true" className="w-10 h-10"/>
+            <IonLabel>Campus</IonLabel>
           </IonTabButton>
           <IonTabButton tab="Categories" href="/Categories">
-          <Icon icon="lucide:lasso-select"  aria-hidden="true" className="w-10 h-10"/>
+          <Icon icon="mingcute:grid-2-line"  aria-hidden="true" className="w-10 h-10"/>
             <IonLabel>Categories</IonLabel>
           </IonTabButton>
         </IonTabBar>

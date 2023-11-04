@@ -1,16 +1,40 @@
-import './ExploreContainer.css';
+import { Canvas, useThree } from "@react-three/fiber";
+import React, { useRef } from 'react';
+import { PresentationControls, OrbitControls, useGLTF, Stage } from "@react-three/drei";
+//import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-interface ContainerProps {
-  name: string;
+
+interface ModelProps {
+  scale: number;
 }
 
-const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
+function Model(props: ModelProps) {
+  const { scene } = useGLTF("/og.glb");
+  
+  return <primitive object={scene} {...props} />
+}
+
+const Controls: React.FC = () => {
+ const controls = useRef<typeof OrbitControls>();
+  const { camera, gl } = useThree();
+
   return (
-    <div className="container mx-auto text-emerald-500 ">
-      <strong>{name}</strong>
-      <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">more campus later</a></p>
-    </div>
+    <PresentationControls speed={1.5} global zoom={0.2} polar={[-0.10, Math.PI / 4]}>
+      <OrbitControls autoRotate args={[camera, gl.domElement]} />
+    </PresentationControls>
   );
 };
 
-export default SanBartolome;
+const App: React.FC = () => {
+  return (
+    <Canvas dpr={[1, 2]} shadows camera={{ fov: 75 }} style={{"position": "absolute"}}>
+      <color attach="background"  args={["#64abbf"]} />
+      <Controls /> 
+      <Stage environment={"warehouse"}>
+        <Model scale={0.01} />
+      </Stage>
+    </Canvas>
+  );
+}
+
+export default App;

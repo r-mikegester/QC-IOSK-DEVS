@@ -1,3 +1,5 @@
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/react';
+import ExploreContainer from './ExploreContainer';
 import './ExploreContainer.css';
 
 interface ContainerProps {
@@ -6,10 +8,21 @@ interface ContainerProps {
 
 const CampusSelect: React.FC<ContainerProps> = ({ name }) => {
   return (
-    <div className="container mx-auto ">
-      <strong>{name}</strong>
-      <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">more campus later</a></p>
-    </div>
+    <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>CAMPUS INA</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent fullscreen>
+        <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle size="large">SELECT CAMPUS</IonTitle>
+          </IonToolbar> 
+        </IonHeader>
+        <ExploreContainer name="SELECT CAMPUS" />
+      </IonContent>
+    </IonPage>
   );
 };
 
