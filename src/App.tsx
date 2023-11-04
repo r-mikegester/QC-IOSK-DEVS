@@ -1,7 +1,9 @@
 import { Redirect, Route } from 'react-router-dom';
+import { Icon } from '@iconify/react';
+import './index.css';
 import {
   IonApp,
-  IonIcon,
+ // IonIcon,
   IonLabel,
   IonRouterOutlet,
   IonTabBar,
@@ -10,10 +12,11 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+//import { ellipse, square, triangle } from 'ionicons/icons';
+import SelectCampus from './pages/tabs/SelectCampus';
+import Map from './pages/tabs/Map';
+import Categories from './pages/tabs/Categories';
+import CampusSelect from './pages/components/CampusSelect';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -39,33 +42,35 @@ setupIonicReact();
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonTabs>
+      <IonTabs className="bg-transparent">
         <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
+          <Route exact path="/SelectCampus">
+            <SelectCampus />
           </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
+          <Route exact path="/Map">
+            <Map />
           </Route>
-          <Route path="/tab3">
-            <Tab3 />
+          <Route path="/Categories">
+            <Categories />
           </Route>
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/CampusSelect" />
+            
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+        <IonTabBar slot="bottom" className=" text-emerald-500  m-5 p-2 w-64 mx-auto rounded-2xl">
+          <IonTabButton tab="SelectCampus" href="/SelectCampus" className="m-2">
+          <Icon icon="icon-park-outline:building-four" aria-hidden="true" className="w-10 h-10"/>
+     
+            <IonLabel>CAMPUS</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+          <IonTabButton tab="Map" href="/Map">
+          <Icon icon="majesticons:map-simple-marker-line" aria-hidden="true" className="w-10 h-10"/>
+            <IonLabel>MAP</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+          <IonTabButton tab="Categories" href="/Categories">
+          <Icon icon="lucide:lasso-select"  aria-hidden="true" className="w-10 h-10"/>
+            <IonLabel>Categories</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

@@ -197,7 +197,7 @@ http://ionicframework.com/docs/theming/ */
    */
 
   .md body {
-    --ion-background-color: #121212;
+    --ion-background-color: #ffffff; /*BACKGROUND*/
     --ion-background-color-rgb: 18,18,18;
 
     --ion-text-color: #ffffff;
@@ -229,7 +229,7 @@ http://ionicframework.com/docs/theming/ */
 
     --ion-toolbar-background: #1f1f1f;
 
-    --ion-tab-bar-background: #1f1f1f;
+    --ion-tab-bar-background: #09223a; /*Background of Navigation Dock*/
 
     --ion-card-background: #1e1e1e;
   }
