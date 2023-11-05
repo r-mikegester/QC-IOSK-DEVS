@@ -17,6 +17,7 @@ import SelectCampus from './pages/tabs/SelectCampus';
 import Map from './pages/tabs/Map';
 import Categories from './pages/tabs/Categories';
 import CampusSelect from './pages/components/CampusSelect';
+import Start from './pages/components/Start';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -58,8 +59,8 @@ const App: React.FC = () => (
             <Categories />
           </Route>
           <Route exact path="/">
-            <Redirect to="/CampusSelect" />
-            
+            <Redirect to="/Start" />
+            <Start name={'start'} />
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom" className=" text-emerald-500  m-5 p-2 w-64 mx-auto rounded-2xl">
