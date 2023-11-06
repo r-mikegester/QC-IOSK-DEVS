@@ -16,8 +16,8 @@ import { IonReactRouter } from '@ionic/react-router';
 import SelectCampus from './pages/tabs/SelectCampus';
 import Map from './pages/tabs/Map';
 import Categories from './pages/tabs/Categories';
-import CampusSelect from './pages/components/CampusSelect';
-import Start from './pages/components/Start';
+import Welcome from './pages/components/Welcome';
+import Error from './pages/components/Error';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -46,10 +46,13 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs className="bg-transparent">
         <IonRouterOutlet>
+        <Route path="/Welcome">
+            <Welcome name={'Welcome'} />
+          </Route>
           <Route exact path="/SelectCampus">
             <SelectCampus />
           </Route>
-          <Route exact path="/Map">
+          <Route exact  path="/Map">
             <Map />
           </Route>
           <Route exact path="/Search">
@@ -59,8 +62,8 @@ const App: React.FC = () => (
             <Categories />
           </Route>
           <Route exact path="/">
-            <Redirect to="/Start" />
-            <Start name={'start'} />
+            <Redirect to="/Error" />
+            <Error name={'Error'} />
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom" className=" text-emerald-500  m-5 p-2 w-64 mx-auto rounded-2xl">
