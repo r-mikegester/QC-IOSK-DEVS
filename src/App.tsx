@@ -62,8 +62,7 @@ const App: React.FC = () => (
             <Categories />
           </Route>
           <Route exact path="/">
-            <Redirect to="/Error" />
-            <Error name={'Error'} />
+            <Redirect to="/Welcome" />
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom" className=" text-emerald-500  m-5 p-2 w-64 mx-auto rounded-2xl">
