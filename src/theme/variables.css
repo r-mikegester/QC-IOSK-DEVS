@@ -229,7 +229,7 @@ http://ionicframework.com/docs/theming/ */
 
     --ion-toolbar-background: #1f1f1f;
 
-    --ion-tab-bar-background-color-rgba: 9, 34, 58, 30%; /*Background of Navigation Dock*/
+    --ion-tab-bar-background: #1f1f1f; /*Background of Navigation Dock*/
 
     --ion-card-background: #1e1e1e;
   }
