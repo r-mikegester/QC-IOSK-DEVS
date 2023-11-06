@@ -27,8 +27,8 @@ const Controls: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <Canvas dpr={[1, 2]} shadows camera={{ fov: 75 }} style={{"position": "absolute"}}>
-      <color attach="background"  args={["#64abbf"]} />
+    <Canvas dpr={[1, 2]} shadows camera={{ fov: 75 }} className="bg-gradient-to-tr from-blue-600 to-purple-400" style={{"position": "absolute"}}>
+      {/* <color attach="background"  args={["#64abbf"]} /> */}
       <Controls /> 
       <Stage environment={"warehouse"}>
         <Model scale={0.01} />
