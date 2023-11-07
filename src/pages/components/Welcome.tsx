@@ -11,8 +11,8 @@ const CampusSelect: React.FC<ContainerProps> = ({ name }) => {
     <IonPage>
       <IonContent fullscreen>
 
-        <section className=" w-full h-full">
-          <video src={Sample} autoPlay muted loop className="w-screen h-screen"></video>
+        <section className=" w-screen h-full">
+          <video src={Sample} autoPlay muted loop className="h-auto"></video>
           <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
             <div className="max-w-md text-center">
 
