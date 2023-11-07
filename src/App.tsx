@@ -65,7 +65,7 @@ const App: React.FC = () => (
             <Redirect to="/Welcome" />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom" className=" text-emerald-500  m-5 p-2 w-64 mx-auto rounded-2xl">
+        <IonTabBar slot="bottom" mode="ios" translucent className=" text-emerald-500 backdrop-blur-sm m-5 p-2 w-64 mx-auto rounded-2xl">
           <IonTabButton tab="Search" href="/Search" className="m-2">
           <Icon icon="uil:search-alt" aria-hidden="true" className="w-10 h-10"/>
      
