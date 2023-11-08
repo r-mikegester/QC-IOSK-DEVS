@@ -22,39 +22,39 @@ const SelectCampus: React.FC = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-6">
             <a className="group rounded-2xl overflow-hidden hidden md:block" href="/Map">
               <div className="relative pt-[50%] sm:pt-[70%] rounded-2xl overflow-hidden  border-4 border-gray-800">
-                <img className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-2xl" src={SBCampus} alt="Image Description"/>
+                <img className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-150 transition-transform duration-500 ease-in-out rounded-xl" src={SBCampus} alt="Image Description"/>
                
               </div>
 
               <div className="mt-7">
-                <h3 className="text-xl font-semibold text-center text-gray-600 group-hover:text-emerald-600 ">
+                <h3 className="text-xl font-semibold text-center text-gray-600 group-hover:bg-clip-text group-hover:bg-gradient-to-tr from-blue-600 to-purple-400 group-hover:text-transparent group-hover:scale-150 transition-transform duration-500 ease-in-out ">
                  SAN BARTOLOME
                 </h3>
               </div>
             </a>
             <a className="group rounded-2xl overflow-hidden hidden md:block" href="/Map">
               <div className="relative pt-[50%] sm:pt-[70%] rounded-2xl overflow-hidden  border-4 border-gray-800">
-                <img className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-2xl" src={BatasanCampus} alt="Image Description"/>
+                <img className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-150 transition-transform duration-500 ease-in-out rounded-xl" src={BatasanCampus} alt="Image Description"/>
                
               </div>
 
               <div className="mt-7">
-                <h3 className="text-xl font-semibold text-center text-gray-600 group-hover:text-emerald-600 ">
+                <h3 className="text-xl font-semibold text-center text-gray-600 group-hover:bg-clip-text group-hover:bg-gradient-to-tr from-blue-600 to-purple-400 group-hover:text-transparent group-hover:scale-150 transition-transform duration-500 ease-in-out ">
                  BATASAN
                 </h3>
               </div>
             </a>
 
-            <a className="group rounded-2xl overflow-hidden hidden md:block" href="#">
+            <a className="group rounded-2xl overflow-hidden hidden md:block " href="#">
               <div className="relative pt-[50%] sm:pt-[70%] rounded-2xl overflow-hidden  border-4 border-gray-800">
-                <img className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-2xl" src={SFCampus} alt="Image Description" />
-                <span className="absolute top-0 right-0 rounded-tr-xl rounded-bl-xl text-xs font-medium bg-gray-800 text-white py-1.5 px-3 dark:bg-gray-900">
+                <img className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-150 transition-transform duration-500 ease-in-out rounded-xl" src={SFCampus} alt="Image Description" />
+                <span className="absolute top-0 right-0 group-hover:scale-150 transition-transform duration-500 ease-in-out rounded-bl-xl text-xs font-medium bg-gray-800 text-white py-1.5 px-3 dark:bg-gray-900">
                   Soon
                 </span>
               </div>
 
               <div className="mt-7">
-                <h3 className="text-xl font-semibold text-center text-gray-600 group-hover:text-emerald-600 ">
+                <h3 className="text-xl font-semibold text-center text-gray-600  group-hover:bg-clip-text group-hover:bg-gradient-to-tr from-blue-600 to-purple-400 group-hover:text-transparent group-hover:scale-150 transition-transform duration-500 ease-in-out">
                  SAN FRANSISCO
                 </h3>
               </div>
