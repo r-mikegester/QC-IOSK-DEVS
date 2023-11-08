@@ -2,6 +2,7 @@ import { IonPage, IonContent } from '@ionic/react';
 import './ExploreContainer.css';
 import QCULogo from '../../imgs/Logo/cropped-qculogopng-1-copy-300x300.png';
 import Sample from '../../vids/sample2.mp4';
+import Samplecp from '../../vids/samplecp.mp4';
 interface ContainerProps {
   name: string;
 }
@@ -12,7 +13,8 @@ const CampusSelect: React.FC<ContainerProps> = ({ name }) => {
       <IonContent fullscreen>
 
         <section className=" w-screen h-full">
-          <video src={Sample} autoPlay muted loop className="h-fit"></video>
+          <video src={Sample} autoPlay muted loop className="h-fit hidden md:block"></video>
+          <video src={Samplecp} autoPlay muted loop className="h-screen md:hidden"></video>
           <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
             <div className="max-w-md text-center">
 
