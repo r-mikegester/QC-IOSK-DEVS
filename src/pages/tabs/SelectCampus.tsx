@@ -62,23 +62,23 @@ const SelectCampus: React.FC = () => {
 
 
 
-<div class="max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8 lg:py-14 mx-auto md:hidden">
+<div className="max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8 lg:py-14 mx-auto md:hidden">
 
-  <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+  <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
    
-    <a class="group flex flex-col border-4 shadow-sm rounded-2xl hover:shadow-md transition border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/Map">
-      <div class="p-3 md:p-5">
-        <div class="flex justify-between items-center">
-          <div class="flex items-center">
-            <img class="h-20 w-20 rounded-2xl" src={SBCampus} alt="Image Description"/>
-            <div class="ms-3">
-              <h3 class="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-400">
+    <a className="group flex flex-col border-4 shadow-sm rounded-2xl hover:shadow-md transition border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/Map">
+      <div className="p-3 md:p-5">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center">
+            <img className="h-20 w-20 rounded-2xl" src={SBCampus} alt="Image Description"/>
+            <div className="ms-3">
+              <h3 className="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-400">
                 San Bartolome
               </h3>
             </div>
           </div>
-          <div class="ps-3">
-            <svg class="flex-shrink-0 w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          <div className="ps-3">
+            <svg className="flex-shrink-0 w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
           </div>
         </div>
       </div>
@@ -86,19 +86,19 @@ const SelectCampus: React.FC = () => {
   
 
    
-    <a class="group flex flex-col border-4 shadow-sm rounded-2xl hover:shadow-md transition border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
-      <div class="p-3 md:p-5">
-        <div class="flex justify-between items-center">
-          <div class="flex items-center">
-            <img class="h-20 w-20 rounded-2xl" src={BatasanCampus} alt="Image Description"/>
-            <div class="ms-3">
-              <h3 class="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-400">
+    <a className="group flex flex-col border-4 shadow-sm rounded-2xl hover:shadow-md transition border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
+      <div className="p-3 md:p-5">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center">
+            <img className="h-20 w-20 rounded-2xl" src={BatasanCampus} alt="Image Description"/>
+            <div className="ms-3">
+              <h3 className="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-400">
                 Batasan
               </h3>
             </div>
           </div>
-          <div class="ps-3">
-            <svg class="flex-shrink-0 w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          <div className="ps-3">
+            <svg className="flex-shrink-0 w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
           </div>
         </div>
       </div>
@@ -106,19 +106,19 @@ const SelectCampus: React.FC = () => {
   
 
    
-    <a class="group flex flex-col border-4 shadow-sm rounded-2xl hover:shadow-md transition border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
-      <div class="p-3 md:p-5">
-        <div class="flex justify-between items-center">
-          <div class="flex items-center">
-            <img class="h-20 w-20 rounded-2xl" src={SFCampus} alt="Image Description"/>
-            <div class="ms-3">
-              <h3 class="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-400">
+    <a className="group flex flex-col border-4 shadow-sm rounded-2xl hover:shadow-md transition border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
+      <div className="p-3 md:p-5">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center">
+            <img className="h-20 w-20 rounded-2xl" src={SFCampus} alt="Image Description"/>
+            <div className="ms-3">
+              <h3 className="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-400">
                 San Fransisco
               </h3>
             </div>
           </div>
-          <div class="ps-3">
-            <svg class="flex-shrink-0 w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          <div className="ps-3">
+            <svg className="flex-shrink-0 w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
           </div>
         </div>
       </div>
