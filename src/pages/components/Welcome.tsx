@@ -23,7 +23,7 @@ const CampusSelect: React.FC<ContainerProps> = ({ name }) => {
                 <span className="bg-clip-text bg-gradient-to-tr text-5xl from-blue-600 to-purple-400 text-transparent">QCU-IOSK</span>
               </h2>
 
-              <a rel="noopener noreferrer" href="/SelectCampus" className="px-8 py-3 font-semibold border-2 mt-20  border-sky-700 rounded-2xl">Continue</a>
+              <a rel="noopener noreferrer" href="/Map" className="px-8 py-3 font-semibold border-2 mt-20  border-sky-700 rounded-2xl">Continue</a>
             </div>
           </div>
         </section>
