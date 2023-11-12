@@ -1,5 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 //import ExploreContainer from '../components/ExploreContainer';
+import Keyboard from '../components/kb';
 import './Search.css';
 
 const Search: React.FC = () => {
@@ -99,7 +100,7 @@ const Search: React.FC = () => {
             </div>
           </div>
         </div>
-
+        <Keyboard name={''}/>
       </IonContent>
     </IonPage>
   );
