@@ -1,6 +1,5 @@
 import { IonContent, IonPage} from '@ionic/react';
 //import ExploreContainer from '../components/ExploreContainer';
-import './SelectCampus.css';
 import SBCampus from '../../imgs/SelectCampus/SanBartolome.webp';
 import BatasanCampus from '../../imgs/SelectCampus/Batasan.webp';
 import SFCampus from '../../imgs/SelectCampus/SanFransisco.webp';
