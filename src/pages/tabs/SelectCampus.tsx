@@ -7,7 +7,10 @@ import SFCampus from '../../imgs/SelectCampus/SanFransisco.webp';
 //import SanBartolome from '../campus/SanBartolome';
 import SanFransisco from './../campus/SanFransisco';
 import Batasan from './../campus/Batasan';
-const SelectCampus: React.FC = () => {
+interface ContainerProps {
+  name: string;
+}
+const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
   return (
     <IonPage>
       <IonContent fullscreen className="">

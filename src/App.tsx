@@ -42,8 +42,10 @@ import {
   setupIonicReact
 } from '@ionic/react';
 setupIonicReact();
-
-const App: React.FC = () => (
+interface ContainerProps {
+  name: string;
+}
+const App: React.FC<ContainerProps> = ({ name }) => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>

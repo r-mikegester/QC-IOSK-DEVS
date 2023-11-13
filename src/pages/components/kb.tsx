@@ -1,8 +1,10 @@
 import { Icon } from '@iconify/react';
 import React, { useState } from 'react';
+interface ContainerProps {
+    name: string;
+  }
 
-
-const Keyboard: React.FC = () => {
+const Keyboard: React.FC<ContainerProps> = ({ name }) =>{
 
     return (
         <div>

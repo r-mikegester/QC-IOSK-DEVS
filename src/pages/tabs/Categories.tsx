@@ -1,7 +1,9 @@
 import { IonContent, IonPage } from '@ionic/react';
-import './Categories.css';
 import Dock from '../components/dock';
-const Categories: React.FC = () => {
+interface ContainerProps {
+  name: string;
+}
+const Categories:React.FC<ContainerProps> = ({ name }) =>{
   return (
     <IonPage>
       <IonContent fullscreen>

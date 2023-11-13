@@ -28,7 +28,7 @@ function Model(props: ModelProps) {
 }
 
 
-const App: React.FC = () => {
+const App: React.FC<ContainerProps> = ({ name }) => {
   return (
     
     <Canvas orthographic dpr={[1, 2]} shadows camera={{ fov: 75, position: [10,10,10], zoom: 10 }} className="bg-gradient-to-tr from-blue-600 to-purple-400" style={{ "position": "absolute" }}>

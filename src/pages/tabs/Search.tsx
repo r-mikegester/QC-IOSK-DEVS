@@ -4,8 +4,10 @@ import Keyboard from '../components/kb';
 import './Search.css';
 import React, { useState } from 'react';
 import Dock from '../components/dock';
-
-const Search: React.FC = () => {
+interface ContainerProps {
+  name: string;
+}
+const Search: React.FC<ContainerProps> = ({ name }) => {
 
   return (
     <IonPage>
