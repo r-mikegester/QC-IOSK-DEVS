@@ -53,16 +53,16 @@ const App: React.FC<ContainerProps> = ({ name }) => (
           <Welcome name={'Welcome'} />
         </Route>
         <Route exact path="/SelectCampus">
-          <SelectCampus />
+          <SelectCampus name={'SelectCampus'}/>
         </Route>
         <Route exact path="/Map">
-          <Map />
+          <Map name={'Map'}/>
         </Route>
         <Route exact path="/Search">
-          <Search />
+          <Search name={'Search'} />
         </Route>
         <Route path="/Categories">
-          <Categories />
+          <Categories name={'Categories'} />
         </Route>
         <Route exact path="/">
           <Redirect to="/Welcome" />
