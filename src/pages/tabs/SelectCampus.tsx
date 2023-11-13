@@ -6,6 +6,7 @@ import SFCampus from '../../imgs/SelectCampus/SanFransisco.webp';
 //import SanBartolome from '../campus/SanBartolome';
 import SanFransisco from './../campus/SanFransisco';
 import Batasan from './../campus/Batasan';
+import Dock from './../components/dock';
 interface ContainerProps {
   name: string;
 }
@@ -135,7 +136,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
           </div>
 
         </div>
-
+          <Dock name={'Dock'} />
       </IonContent>
     </IonPage>
   );
