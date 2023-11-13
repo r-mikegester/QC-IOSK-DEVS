@@ -14,7 +14,7 @@ const Search: React.FC<ContainerProps> = ({ name }) => {
       <IonContent fullscreen>
 
         <div className="relative overflow-hidden">
-          <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 xl-mt-16 sm:py-24">
+          <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 -mt-36 sm:py-24">
             <div className="text-center">
               <h1 className="text-4xl sm:text-6xl font-bold bg-clip-text  text-transparent">
                 Search
@@ -105,7 +105,7 @@ const Search: React.FC<ContainerProps> = ({ name }) => {
             </div>
           </div>
         </div>
-        <div className="xl:block hidden">
+        <div className="xl:block hidden -mt-40">
            <Keyboard name={'Keyboard'}/>
         </div>
        
