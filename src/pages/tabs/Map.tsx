@@ -10,7 +10,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
     <IonPage>
       <IonContent fullscreen>
         <SanBartolome />
-        <Dock/>
+        <Dock name={}/>
       </IonContent>
     </IonPage>
   );
