@@ -1,15 +1,9 @@
 import { Icon } from '@iconify/react';
 import React, { useState } from 'react';
-interface ContainerProps {
-    name: string;
-}
 
-const Keyboard: React.FC<ContainerProps> = ({ name }) => {
-    const handleInputChange = (event) => {
-        const inputValue = event.target.value;
-        onChange(inputValue);
-        handleButtonClick;
-      };
+
+const Keyboard: React.FC = () => {
+
     return (
         <div>
             <div className="mx-auto w-96">
@@ -21,19 +15,19 @@ const Keyboard: React.FC<ContainerProps> = ({ name }) => {
                     <div className=" justify-center w-auto ">
                         <div className="row-1  w-full h-16">
                             <button className="w-14 h-14 bg-gray-500 focus:outline-red-500 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90">`</button>
-                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" onClick={() => handleButtonClick('1')}>1</button>
-                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" onClick={() => handleButtonClick('2')}>2</button>
-                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" onClick={() => handleButtonClick('3')}>3</button>
-                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" onClick={() => handleButtonClick('4')}>4</button>
-                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" onClick={() => handleButtonClick('5')}>5</button>
-                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" onClick={() => handleButtonClick('6')}>6</button>
-                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" onClick={() => handleButtonClick('7')}>7</button>
-                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" onClick={() => handleButtonClick('8')}>8</button>
-                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" onClick={() => handleButtonClick('9')}>9</button>
-                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" onClick={() => handleButtonClick('0')}>0</button>
-                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" onClick={() => handleButtonClick('-')}>-</button>
-                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" onClick={() => handleButtonClick('=')}>=</button>
-                            <button className="back w-32 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" onClick={() => handleButtonClick('Ctrl')}>Backspace</button>
+                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90">1</button>
+                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" >2</button>
+                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" >3</button>
+                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" >4</button>
+                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" >5</button>
+                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" >6</button>
+                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" >7</button>
+                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" >8</button>
+                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" >9</button>
+                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" >0</button>
+                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" >-</button>
+                            <button className="w-14 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90" >=</button>
+                            <button className="back w-32 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90">Backspace</button>
                         </div>
                         <div className="row-2  w-full h-16">
                             <button className="w-32 h-14 bg-gray-500 focus:outline-1 mx-1 rounded-2xl hover:drop-shadow-xl hover:scale-105 duration-300 ease-in-out active:scale-90">Tab</button>
