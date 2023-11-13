@@ -3,6 +3,12 @@ import { Redirect, Route } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { IonReactRouter } from '@ionic/react-router';
 
+/* Campuses*/
+import SanBartolome from './pages/campus/SanBartolome';
+import SanFransisco from './pages/campus/SanFransisco';
+import Batasan from './pages/campus/Batasan';
+
+
 /* Imported Components */
 import SelectCampus from './pages/tabs/SelectCampus';
 import Map from './pages/tabs/Map';
@@ -57,6 +63,15 @@ const App: React.FC<ContainerProps> = ({ name }) => (
         </Route>
         <Route exact path="/Map">
           <Map name={'Map'}/>
+        </Route>
+        <Route exact path="/SanBartolome">
+          <SanBartolome name={'SanBartolome'}/>
+        </Route>
+        <Route exact path="/SanFransisco">
+          <SanFransisco name={'SanFransisco'}/>
+        </Route>
+        <Route exact path="/Batasan">
+          <Batasan name={'Batasan'}/>
         </Route>
         <Route exact path="/Search">
           <Search name={'Search'} />
