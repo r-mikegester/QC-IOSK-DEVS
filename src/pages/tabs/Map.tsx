@@ -2,8 +2,10 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 import SanBartolome from '../campus/SanBartolome';
 import Dock from '../components/dock';
 import './Map.css';
-
-const Map: React.FC = () => {
+interface ContainerProps {
+  name: string;
+}
+const Map: React.FC<ContainerProps> = ({ name }) => {
   return (
     <IonPage>
       <IonContent fullscreen>
