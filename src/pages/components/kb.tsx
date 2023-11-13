@@ -8,6 +8,7 @@ const Keyboard: React.FC<ContainerProps> = ({ name }) => {
     const handleInputChange = (event) => {
         const inputValue = event.target.value;
         onChange(inputValue);
+        handleButtonClick;
       };
     return (
         <div>
