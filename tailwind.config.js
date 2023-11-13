@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [
+  plugins: [ require("daisyui")
     // plugins(({ theme, addUtilities}) => {
     //   const neonUtilities = {};
     //   const colors = theme('colors');
