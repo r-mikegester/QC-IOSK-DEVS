@@ -1,7 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 //import ExploreContainer from '../components/ExploreContainer';
 import Keyboard from '../components/kb';
-import './Search.css';
+
 import React, { useState } from 'react';
 import Dock from '../components/dock';
 interface ContainerProps {

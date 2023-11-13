@@ -1,6 +1,5 @@
 import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
-import './ExploreContainer.css';
 import QCULogo from '../../imgs/Logo/cropped-qculogopng-1-copy-300x300.png';
 import Sample from '../../vids/sample4.mp4';
 import Samplecp from '../../vids/samplecp.mp4';
