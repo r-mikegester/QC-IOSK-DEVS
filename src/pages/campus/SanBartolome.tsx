@@ -26,7 +26,9 @@ function Model(props: ModelProps) {
 
   
 }
-
+interface ContainerProps {
+  name: string;
+}
 
 const App: React.FC<ContainerProps> = ({ name }) => {
   return (
