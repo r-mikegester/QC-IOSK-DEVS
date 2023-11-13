@@ -1,6 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 //import ExploreContainer from '../components/ExploreContainer';
 import Keyboard from '../components/kb';
+//import Keyboard2 from '../components/keyboard';
 
 import React, { useState } from 'react';
 import Dock from '../components/dock';
@@ -8,7 +9,12 @@ interface ContainerProps {
   name: string;
 }
 const Search: React.FC<ContainerProps> = ({ name }) => {
+  // const [searchValue, setSearchValue] = useState<string>("");
 
+  // const handleKeyboardInput = (value: string) => {
+  //   setSearchValue(value);
+  //   console.log('Search Value:', value);
+  // };
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -19,7 +25,7 @@ const Search: React.FC<ContainerProps> = ({ name }) => {
               <h1 className="text-4xl sm:text-6xl font-bold bg-clip-text  text-transparent">
                 Search
               </h1>
-
+              <input type='textarea' className='use-keyboard-input' />
               {/* <p className="mt-3 text-gray-600 dark:text-gray-400">
                 Search for Rooms, Floors, Faculties, etc.
               </p> */}
@@ -29,8 +35,17 @@ const Search: React.FC<ContainerProps> = ({ name }) => {
                 <form>
                   <div className="relative z-10 flex space-x-3 p-3 border rounded-2xl shadow-lg shadow-gray-100 dark:bg-slate-300 dark:border-gray-400 dark:shadow-gray-900/[.2]">
                     <div className="flex-[1_0_0%]">
-                      <label htmlFor="hs-search-article-1" className="block text-sm text-gray-700 font-medium dark:text-white"><span className="sr-only">Search...</span></label>
-                      <input type="text" name="hs-search-article-1" id="hs-search-article-1" className="py-2.5 px-4 block w-full border-transparent rounded-2xl focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-200 dark:border-transparent dark:text-gray-400 dark:focus:ring-emerald-200" placeholder="Search" />
+                      <label htmlFor="hs-search-article-1" className=" use-keyboard-input block text-sm text-gray-700 font-medium dark:text-white"><span className="sr-only">Search...</span></label>
+                      <input
+                        type="text"
+                        name="hs-search-article-1"
+                        id="hs-search-article-1"
+                        className="py-2.5 px-4 block w-full border-transparent rounded-2xl focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-200 dark:border-transparent dark:text-gray-400 dark:focus:ring-emerald-200 use-keyboard-input"
+                        placeholder="Search"
+                        // value={searchValue}
+                        // onChange={(e) => setSearchValue(e.target.value)}
+                      />
+
                     </div>
                     <div className="flex-[0_0_auto]">
                       <a className="w-[46px] h-[46px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-2xl border border-transparent  text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
@@ -106,10 +121,11 @@ const Search: React.FC<ContainerProps> = ({ name }) => {
           </div>
         </div>
         <div className="xl:block hidden -mt-40">
-           <Keyboard name={'Keyboard'}/>
+          {/* <Keyboard2 onInput={(value: string) => setSearchValue(value)} onClose={() => console.log('Keyboard closed')} /> */}
+          <Keyboard name={'Keyboard'} />
         </div>
-       
-        <Dock name={'Dock'}/>
+
+        <Dock name={'Dock'} />
       </IonContent>
     </IonPage>
   );
