@@ -182,7 +182,7 @@ const Categories:React.FC<ContainerProps> = ({ name }) =>{
           </div>
 
         </div>
-          <Dock/>
+          <Dock name={'Dock'}/>
       </IonContent>
     </IonPage>
   );

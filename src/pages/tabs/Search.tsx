@@ -106,10 +106,10 @@ const Search: React.FC<ContainerProps> = ({ name }) => {
           </div>
         </div>
         <div className="xl:block hidden">
-           <Keyboard/>
+           <Keyboard name={'Keyboard'}/>
         </div>
        
-        <Dock/>
+        <Dock name={'Dock'}/>
       </IonContent>
     </IonPage>
   );
