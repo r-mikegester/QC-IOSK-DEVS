@@ -18,7 +18,7 @@ interface ModelProps {
 
 function Model(props: ModelProps) {
   const ref = useRef()
-  const { scene } = useGLTF("/og_v3.glb");
+  const { scene } = useGLTF("/og_v4.glb");
   const [hovered, hover] = useState(null)
   console.log(hovered)
   // useFrame((state: any, delta: any) => (ref.current.rotation.x = ref.current.rotation.y += delta))
@@ -43,7 +43,7 @@ const App: React.FC = () => {
         enablePan={true}
         zoomSpeed={0.3}
       />
-       <gridHelper args={[1000, 200, '#151515', '#020202']} position={[0, -1, 0]} />
+       {/* <gridHelper args={[1000, 200, '#151515', '#020202']} position={[0, -1, 0]} /> */}
       <Suspense fallback={null}>
   {/* <Selection> */}
   <mesh onClick={(e) => console.log('click')} raycast={meshBounds} >
