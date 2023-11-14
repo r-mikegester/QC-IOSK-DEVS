@@ -6,7 +6,7 @@ interface ContainerProps {
 }
 const Controls: React.FC<ContainerProps> = ({ name }) => {
   return (
-    <div className="">
+    <div className="bg-gray-900 w-10 z-50">
       <IonFab>
       <IonFabList side="top">
         <IonFabButton>
