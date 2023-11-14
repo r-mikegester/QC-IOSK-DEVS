@@ -17,7 +17,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
         <div className="max-w-[85rem] bg-white px-4 h-full py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
           <div className="max-w-2xl mx-auto text-center mb-10">
           <h2 className="mt-1 sm:mt-3 text-4xl font-bold text-white sm:text-6xl">
-              <span className="bg-clip-text bg-gradient-to-tr from-blue-600 to-purple-400 text-transparent">Select Campus </span>
+              <span className="bg-clip-text bg-gradient-to-tr from-blue-600 to-purple-400 text-transparent">Change Campus </span>
             </h2>
             
           </div>
