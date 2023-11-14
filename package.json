@@ -30,6 +30,7 @@
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4",
     "react-scripts": "^3.0.1",
+    "react-sound": "^1.2.0",
     "three": "^0.158.0",
     "zustand": "^4.4.6"
   },
