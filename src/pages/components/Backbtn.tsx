@@ -2,14 +2,14 @@ import { Icon } from '@iconify/react';
 import React, { useState } from 'react';
 interface ContainerProps {
     name: string;
-  }
-const Backbtn: React.FC<ContainerProps> = ({ name }) =>{
+}
+const Backbtn: React.FC<ContainerProps> = ({ name }) => {
     return (
         <div>
-            <div className="mx-auto w-96">
-                
-            </div>
-            
+            <a href="/Welcome" className="btn btn-square hover:scale-110">
+            <Icon icon="typcn:arrow-back-outline" className="w-8 h-8"/>
+            </a>
+
         </div>
 
     );

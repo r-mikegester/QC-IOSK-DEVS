@@ -2,7 +2,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 //import ExploreContainer from '../components/ExploreContainer';
 import Keyboard from '../components/kb';
 //import Keyboard2 from '../components/keyboard';
-
+import Back from '../components/Backbtn';
 import React, { useState } from 'react';
 import Dock from '../components/dock';
 interface ContainerProps {
@@ -19,7 +19,8 @@ const Search: React.FC<ContainerProps> = ({ name }) => {
     <IonPage>
       <IonContent fullscreen>
 
-        <div className="relative overflow-hidden">
+        <div className="bg-gradient-to-r from-[#0d3458] via-[#0b2b49] to-[#09223a] overflow-hidden ">
+        <div className="relative overflow-hidden ">
           <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 -mt-36 sm:py-24">
             <div className="text-center">
               <h1 className="text-4xl sm:text-6xl font-bold bg-clip-text  text-transparent">
@@ -124,8 +125,11 @@ const Search: React.FC<ContainerProps> = ({ name }) => {
           {/* <Keyboard2 onInput={(value: string) => setSearchValue(value)} onClose={() => console.log('Keyboard closed')} /> */}
           <Keyboard name={'Keyboard'} />
         </div>
-
-        <Dock name={'Dock'} />
+              <div className="absolute top-0 m-10">
+              <Back name={'Back'}/>
+              </div>
+        <Dock name={'Dock'} /> 
+        </div>
       </IonContent>
     </IonPage>
   );
