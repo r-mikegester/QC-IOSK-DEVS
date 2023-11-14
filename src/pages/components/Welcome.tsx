@@ -14,23 +14,23 @@ const CampusSelect: React.FC<ContainerProps> = ({ name }) => {
 
   const handleClick = () => {
     // Redirect to the "/Map" route
-    history.push('/SelectCampus');
+    history.push('/Map');
   };
 
   return (
     <IonPage>
       <IonContent fullscreen>
-        <section onClick={handleClick} className="w-screen cursor-pointer  overflow-hidden h-full">
-          <video src={Sample} autoPlay muted loop className="h-fit hidden brightness-50 md:block"></video>
+        <section onClick={handleClick} className="w-screen text-center cursor-pointer place-items-stretch overflow-hidden min-h-screen  bg-black h-full">
+          <video src={Sample} autoPlay muted loop className="h-fit hidden brightness-50 bg-cover md:block"></video>
           <video src={Samplecp} autoPlay muted loop className="h-screen md:hidden"></video>
           <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
             <div className="max-w-md text-center">
-              <img src={QCULogo} className="mx-auto absolute inset-x-0 top-96 w-40 -mt-80" alt="QCU Logo" />
+              <img src={QCULogo} className="mx-auto absolute inset-x-0 top-96 w-72 -mt-80" alt="QCU Logo" />
               <h2 className="mb- font-extrabold text-7xl dark:text-gray-600">
-                <span className="absolute inset-x-0 top-64 bg-clip-text bg-gradient-to-tr drop-shadow-md text-5xl from-blue-600 to-purple-400 text-transparent">QCU-IOSK</span>
+                <span className="absolute inset-x-0 top-96 bg-clip-text bg-gradient-to-tr drop-shadow-md text-5xl from-blue-600 to-purple-400 text-transparent">QCU-IOSK</span>
               </h2>
               {/* Use onClick to handle the redirection */}
-              <div  className=" animate-bounce absolute inset-x-0 top-80 py-3  drop-shadow-md ">
+              <div  className=" animate-bounce absolute inset-x-0 bottom-96 py-3  drop-shadow-md ">
                 Touch to<span className="font-extrabold text-lg"> Start</span>
               </div>
             </div>
