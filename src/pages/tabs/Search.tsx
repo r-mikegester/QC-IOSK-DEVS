@@ -2,9 +2,9 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 //import ExploreContainer from '../components/ExploreContainer';
 import Keyboard from '../components/kb';
 //import Keyboard2 from '../components/keyboard';
-import Back from '../components/Backbtn';
 import React, { useState } from 'react';
 import Dock from '../components/dock';
+import { Icon } from '@iconify/react';
 interface ContainerProps {
   name: string;
 }
@@ -19,29 +19,29 @@ const Search: React.FC<ContainerProps> = ({ name }) => {
     <IonPage>
       <IonContent fullscreen>
 
-        <div className="bg-gradient-to-r from-[#0d3458] via-[#0b2b49] to-[#09223a] overflow-hidden ">
+        <div className="overflow-hidden ">
         <div className="relative overflow-hidden ">
           <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 -mt-36 sm:py-24">
             <div className="text-center">
               <h1 className="text-4xl sm:text-6xl font-bold bg-clip-text  text-transparent">
                 Search
               </h1>
-              <input type='textarea' className='use-keyboard-input' />
+              
               {/* <p className="mt-3 text-gray-600 dark:text-gray-400">
                 Search for Rooms, Floors, Faculties, etc.
               </p> */}
 
-              <div className="mt-7 sm:mt-12 mx-auto max-w-xl relative">
+              <div className="mt-96 sm:mt-12 mx-auto max-w-xl relative">
 
                 <form>
-                  <div className="relative z-10 flex space-x-3 p-3 border rounded-2xl shadow-lg shadow-gray-100 dark:bg-slate-300 dark:border-gray-400 dark:shadow-gray-900/[.2]">
+                  <div className="relative z-10 flex space-x-3 p-3 border rounded-2xl shadow-lg shadow-gray-100 bg-gradient-to-r from-[#0d3458] via-[#0b2b49] to-[#09223a] dark:bg-slate-300 dark:border-gray-400 dark:shadow-gray-900/[.2]">
                     <div className="flex-[1_0_0%]">
                       <label htmlFor="hs-search-article-1" className=" use-keyboard-input block text-sm text-gray-700 font-medium dark:text-white"><span className="sr-only">Search...</span></label>
                       <input
                         type="text"
                         name="hs-search-article-1"
                         id="hs-search-article-1"
-                        className="py-2.5 px-4 block w-full border-transparent rounded-2xl focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-200 dark:border-transparent dark:text-gray-400 dark:focus:ring-emerald-200 use-keyboard-input"
+                        className="py-2.5 px-4 block w-full border-transparent rounded-2xl focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-600 dark:border-transparent dark:text-gray-400 dark:focus:ring-emerald-200 use-keyboard-input"
                         placeholder="Search"
                         // value={searchValue}
                         // onChange={(e) => setSearchValue(e.target.value)}
@@ -49,10 +49,8 @@ const Search: React.FC<ContainerProps> = ({ name }) => {
 
                     </div>
                     <div className="flex-[0_0_auto]">
-                      <a className="w-[46px] h-[46px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-2xl border border-transparent  text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                        </svg>
+                      <a className="w-[46px] h-[46px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-2xl border border-transparent p-2 text-white hover:bg-sky-900 ease-in-out duration-200 hover:scale-75 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
+                      <Icon icon="wpf:search" className="w-7 h-7" />
                       </a>
                     </div>
                   </div>
@@ -125,9 +123,7 @@ const Search: React.FC<ContainerProps> = ({ name }) => {
           {/* <Keyboard2 onInput={(value: string) => setSearchValue(value)} onClose={() => console.log('Keyboard closed')} /> */}
           <Keyboard name={'Keyboard'} />
         </div>
-              <div className="absolute top-0 m-10">
-              <Back name={'Back'}/>
-              </div>
+           
         <Dock name={'Dock'} /> 
         </div>
       </IonContent>
