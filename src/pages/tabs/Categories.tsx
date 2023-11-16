@@ -11,12 +11,12 @@ const Categories:React.FC<ContainerProps> = ({ name }) =>{
 
         <div className="max-w-7xl max-h-max px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
 
-        <div class="grid grid-rows-12 grid-cols-12  w-full h-full gap-4">
-  <div class="row-span-5 col-span-3 bg-gray-900 rounded-2xl">01</div>
-  <div class="col-span-6 row-span-3 bg-gray-900 rounded-2xl">02</div>
-  <div class="col-span-6 row-span-3 bg-gray-900 rounded-2xl">02</div>
-  <div class="row-span-6 col-span-2 bg-gray-900 rounded-2xl">03</div>
-  <div class="row-span-6 col-span-2 bg-gray-900 rounded-2xl">03</div>
+        <div className="grid grid-rows-12 grid-cols-12  w-full h-full gap-4">
+  <div className="row-span-5 col-span-3 bg-gray-900 rounded-2xl">01</div>
+  <div className="col-span-6 row-span-3 bg-gray-900 rounded-2xl">02</div>
+  <div className="col-span-6 row-span-3 bg-gray-900 rounded-2xl">02</div>
+  <div className="row-span-6 col-span-2 bg-gray-900 rounded-2xl">03</div>
+  <div className="row-span-6 col-span-2 bg-gray-900 rounded-2xl">03</div>
 </div>
 
         </div>
