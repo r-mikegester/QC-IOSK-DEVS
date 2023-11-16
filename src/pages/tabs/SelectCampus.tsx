@@ -7,10 +7,25 @@ import SFCampus from '../../imgs/SelectCampus/SanFransisco.webp';
 import SanFransisco from './../campus/SanFransisco';
 import Batasan from './../campus/Batasan';
 import Dock from './../components/dock';
+import { useHistory } from 'react-router-dom';
 interface ContainerProps {
   name: string;
 }
 const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
+  const history = useHistory();
+
+  const ClickSB = () => {
+    // Redirect to the "/San Bartolome" route
+    history.push('/SanBartolome');
+  };
+  const ClickBatasan = () => {
+    // Redirect to the "/Batasan" route
+    history.push('/Batasan');
+  };
+  const ClickSF = () => {
+    // Redirect to the "/San Fransisco" route
+    history.push('/SanFransisco');
+  };
   return (
     <IonPage>
       <IonContent fullscreen className="">
@@ -23,7 +38,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-6">
-            <a className="group rounded-2xl overflow-hidden hidden md:block" href="/Map">
+            <a className="group rounded-2xl overflow-hidden hidden md:block" onClick={ClickSB}>
               <div className="relative pt-[50%] sm:pt-[70%] rounded-2xl overflow-hidden  border-4 border-gray-800">
                 <img className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-150 transition-transform duration-500 ease-in-out rounded-xl" src={SBCampus} alt="Image Description"/>
                
@@ -35,7 +50,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
                 </h3>
               </div>
             </a>
-            <a className="group rounded-2xl overflow-hidden hidden md:block" href="/Map">
+            <a className="group rounded-2xl overflow-hidden hidden md:block" onClick={ClickBatasan}>
               <div className="relative pt-[50%] sm:pt-[70%] rounded-2xl overflow-hidden  border-4 border-gray-800">
                 <img className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-150 transition-transform duration-500 ease-in-out rounded-xl" src={BatasanCampus} alt="Image Description"/>
                
@@ -48,7 +63,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
               </div>
             </a>
 
-            <a className="group rounded-2xl overflow-hidden hidden md:block " href="#">
+            <a className="group rounded-2xl overflow-hidden hidden md:block " onClick={ClickSF}>
               <div className="relative pt-[50%] sm:pt-[70%] rounded-2xl overflow-hidden  border-4 border-gray-800">
                 <img className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-150 transition-transform duration-500 ease-in-out rounded-xl" src={SFCampus} alt="Image Description" />
                 <span className="absolute top-0 right-0 group-hover:scale-150 transition-transform duration-500 ease-in-out rounded-bl-xl text-xs font-medium bg-gray-800 text-white py-1.5 px-3 dark:bg-gray-900">
@@ -69,7 +84,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
 
   <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
    
-    <a className="group flex flex-col border-4 shadow-sm rounded-2xl hover:shadow-md transition border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/Map">
+    <a className="group flex flex-col border-4 shadow-sm rounded-2xl hover:shadow-md transition border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" onClick={ClickSB}>
       <div className="p-3 md:p-5">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
@@ -89,7 +104,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
   
 
    
-    <a className="group flex flex-col border-4 shadow-sm rounded-2xl hover:shadow-md transition border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
+    <a className="group flex flex-col border-4 shadow-sm rounded-2xl hover:shadow-md transition border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" onClick={ClickBatasan}>
       <div className="p-3 md:p-5">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
@@ -109,7 +124,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
   
 
    
-    <a className="group flex flex-col border-4 shadow-sm rounded-2xl hover:shadow-md transition border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
+    <a className="group flex flex-col border-4 shadow-sm rounded-2xl hover:shadow-md transition border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" onClick={ClickSF}>
       <div className="p-3 md:p-5">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
