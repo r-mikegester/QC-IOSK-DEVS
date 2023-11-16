@@ -61,11 +61,8 @@ const App: React.FC<ContainerProps> = ({ name }) => (
         <Route exact path="/SelectCampus">
           <SelectCampus name={'SelectCampus'}/>
         </Route>
-        <Route exact path="/Map">
-          <Map name={'Map'}/>
-        </Route>
         <Route exact path="/SanBartolome">
-          <SanBartolome name={'SanBartolome'}/>
+          <Map name={'Map'}/>
         </Route>
         <Route exact path="/SanFransisco">
           <SanFransisco name={'SanFransisco'}/>
