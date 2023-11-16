@@ -2,12 +2,12 @@ import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
 import QCULogo from '../../imgs/Logo/qculogo.png';
 import Sample from '../../vids/sample4.mp4';
-import Samplecp from '../../vids/samplecp3.mp4';
+//import Samplecp from '../../vids/samplecp3.mp4';
 import { useHistory } from 'react-router-dom';
 
 interface ContainerProps {
   name: string;
-}
+};
 
 const CampusSelect: React.FC<ContainerProps> = ({ name }) => {
   const history = useHistory();
