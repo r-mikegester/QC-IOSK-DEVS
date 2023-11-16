@@ -1,5 +1,5 @@
 import { Canvas, useLoader, extend, useFrame } from "@react-three/fiber";
-import React, { Suspense, useRef, useState } from 'react';
+import React, { Suspense, useRef, useState, ReactNode } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls, Stage, Sky, Gltf, Bounds, useBounds, Cloud } from "@react-three/drei";
 import { Selection, EffectComposer, Outline, Select } from "@react-three/postprocessing";
@@ -10,6 +10,10 @@ interface ModelProps {
 }
 interface ContainerProps {
   name: string;
+}
+
+interface SelectToZoomProps {
+  children: ReactNode;
 }
 
 function Model(props: ModelProps) {
@@ -124,7 +128,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
     </Canvas>
 
   );
-  function SelectToZoom({ children }) {
+  function SelectToZoom({ children }: SelectToZoomProps) {
     const api = useBounds();
     return (
       <group
