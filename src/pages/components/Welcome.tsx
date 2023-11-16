@@ -2,7 +2,10 @@ import React from 'react';
 import { IonPage, IonContent } from '@ionic/react';
 import QCULogo from '../../imgs/Logo/qculogo.png';
 import Sample from '../../vids/sample4.mp4';
-import Samplecp from '../../vids/samplecp2.mp4';
+import Samplecp from '<div styleName="" />
+<div styleName="" />
+<vids />
+<samplecp3></samplecp3>.mp4';
 import { useHistory } from 'react-router-dom';
 
 interface ContainerProps {
