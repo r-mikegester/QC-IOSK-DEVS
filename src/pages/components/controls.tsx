@@ -8,36 +8,29 @@ interface ContainerProps {
 
 const Controls: React.FC<ContainerProps> = ({ name }) => {
     const [isPlaying, setIsPlaying] = useState(false);
-    const audioRef = useRef(null);
+    const audioRef = useRef<HTMLAudioElement>(null);
 
     const handlePlayPause = () => {
         const audio = audioRef.current;
-        if (!isPlaying) {
-            audio.play();
-            setIsPlaying(true);
-        } else {
-            audio.pause();
-            setIsPlaying(false);
+        if (audio) {
+            if (!isPlaying) {
+                audio.play()?.then(() => {
+                    setIsPlaying(true);
+                }).catch((error) => {
+                    console.error('Error playing audio:', error);
+                });
+            } else {
+                audio.pause();
+                setIsPlaying(false);
+            }
         }
     };
 
-    return (
-        // <div classNameNameName="mx-auto w-96 h-20 rounded-2xl  absolute inset-x-0 bottom-5 bg-gray-700 ">
-        //   <div classNameNameName="tabs absolute inset-0 mx-auto items-center gap-1 ">
-        //     <a classNameNameName="btn tab rounded-2xl  justify-center  hover:bg-gray-600 bg-gray-700 border-none h-full w-full hover:scale-75 active:scale-75 flex-col " href="/Search"><Icon icon="uil:search-alt" aria-hidden="true" classNameNameName="w-8 h-8" />Search</a>
-        //     <a classNameNameName="btn tab rounded-2xl  justify-center hover:bg-gray-600 bg-gray-700 border-none h-full w-full hover:scale-75 active:scale-75 flex-col  tab-active" href="/SelectCampus"> <Icon icon="tabler:replace"aria-hidden="true" classNameNameName="w-5 h-5" />Switch</a>
-        //     <a classNameNameName="btn tab rounded-2xl  justify-center hover:bg-gray-600 bg-gray-700 border-none h-full w-full hover:scale-75 active:scale-75 flex-col gap-1" href="/Categories"><Icon icon="mingcute:grid-2-line" aria-hidden="true" classNameNameName="w-5 h-5" />Menu</a>
-        //   </div>
-        // </div>
 
+
+    return (
+     
         <div className=" w-10 z-50">
-            {/* <IonFab>
-      <IonFabList side="top">
-        <IonFabButton>
-        <Icon icon="material-symbols:restart-alt-rounded" classNameName="w-5 h-5"/>
-        </IonFabButton>
-      </IonFabList>
-      </IonFab> */}
             <div
                 className="relative w-screen h-screen"
             >
