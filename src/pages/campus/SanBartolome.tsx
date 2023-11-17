@@ -1,7 +1,7 @@
-import { Canvas, useLoader, extend, useFrame } from "@react-three/fiber";
+import { Canvas, useLoader } from "@react-three/fiber";
 import React, { Suspense, useRef, useState, ReactNode } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls, Stage, Sky, Gltf, Bounds, useBounds, Cloud } from "@react-three/drei";
+import { OrbitControls, Stage, Bounds, useBounds, Cloud } from "@react-three/drei";
 import { Selection, EffectComposer, Outline, Select } from "@react-three/postprocessing";
 interface ModelProps {
   url: string;
@@ -50,11 +50,11 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
       <OrbitControls/>
       <Suspense fallback={null}>
-        <Cloud position={[-10, 30, 0]} args={[3, 2]} />
-        <Cloud position={[-30, 20, 50]} args={[3, 2]} />
-        <Cloud position={[-30, 20, -20]} args={[3, 2]} />
-        <Cloud position={[40, 30, 0]} args={[3, 2]} />
-        <Cloud position={[10, 30, -50]} args={[3, 2]} />
+        <Cloud position={[-10, 30, 0]} />
+        <Cloud position={[-30, 20, 50]} />
+        <Cloud position={[-30, 20, -20]} />
+        <Cloud position={[40, 30, 0]} />
+        <Cloud position={[10, 30, -50]} />
         <Bounds fit clip observe margin={1.2}>
           <Stage environment={"warehouse"} adjustCamera>
             <ambientLight intensity={0.5} />
