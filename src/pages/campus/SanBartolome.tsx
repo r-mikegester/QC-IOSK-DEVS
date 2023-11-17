@@ -50,8 +50,8 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
       <OrbitControls
         makeDefault
-        minAzimuthAngle={0}
-        maxAzimuthAngle={Math.PI / 0}
+        minAzimuthAngle={undefined}
+        maxAzimuthAngle={Math.PI}
         minPolarAngle={Math.PI / 3}
         maxPolarAngle={Math.PI / 6}
         enableZoom={true}
@@ -135,20 +135,13 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
     const api = useBounds();
     return (
       <group
-      onClick={(e) => {
-        if (api?.refresh && api?.fit) {
-          e.stopPropagation();
-          e.delta && e.delta <= 2 && api.refresh(e.object)?.fit();
-        }
-      }}
-      onPointerMissed={(e) => {
-        if (api?.refresh && api?.fit && e.button === 0) {
-          api.refresh()?.fit();
-        }
-      }}
+      onClick={(e) => (
+        e.stopPropagation(), e.delta <= 2 && api.refresh(e.object).fit()
+      )}
+      onPointerMissed={(e) => e.button === 0 && api.refresh().fit()}
     >
       {children}
-      </group>
+    </group>
     );
   }
 
