@@ -1,5 +1,6 @@
 import { Icon } from '@iconify/react';
 import React, { useState, useRef } from 'react';
+import Minecraft from '../../audio/Minecraft.mp3';
 //import { IonFab, IonFabButton, IonFabList} from '@ionic/react';
 
 interface ContainerProps {
@@ -66,7 +67,7 @@ const Controls: React.FC<ContainerProps> = ({ name }) => {
 
                         <div>
                             <audio ref={audioRef} loop autoPlay>
-                                <source src="/src/audio/Minecraft.mp3" type="audio/mpeg" />
+                                <source src={Minecraft} type="audio/mpeg" />
                             </audio>
 
                             <label className="swap" onClick={handlePlayPause}>
