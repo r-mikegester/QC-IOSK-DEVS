@@ -49,7 +49,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
     <Canvas frameloop="demand" orthographic dpr={[1, 2]} camera={{ fov: 75, position: [10, 10, 10], zoom: 10 }} className="bg-gradient-to-tr from-sky-400 to-sky-900" style={{ "position": "absolute" }}>
 
       <OrbitControls
-        minAzimuthAngle={undefined} // Set as undefined
+        minAzimuthAngle={0} // Set as undefined
         maxAzimuthAngle={Math.PI / 0} // Assign numeric value
         minPolarAngle={Math.PI / 3} // Assign numeric value
         maxPolarAngle={Math.PI / 6} // Assign numeric value
