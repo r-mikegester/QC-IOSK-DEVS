@@ -22,7 +22,7 @@ const CampusSelect: React.FC<ContainerProps> = ({ name }) => {
       <IonContent fullscreen>
         <section onClick={handleClick} className="w-screen text-center cursor-pointer place-items-stretch overflow-hidden min-h-screen  bg-black h-full">
           <video src={Sample} autoPlay muted loop className="h-fit hidden brightness-50 bg-cover md:block"></video>
-          <video src={Samplecp} autoPlay muted loop className="h-screen md:hidden"></video>
+          {/* <video src={Samplecp} autoPlay muted loop className="h-screen md:hidden"></video> */}
           <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
             <div className="max-w-md text-center">
               <img src={QCULogo} className="mx-auto absolute inset-x-0 top-96 w-40 sm:w-32 md:w-48 lg:w-64 xl:w-72 -mt-56 xl:-mt-80" alt="QCU Logo" />
