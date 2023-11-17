@@ -50,7 +50,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
       <OrbitControls
         minAzimuthAngle={undefined} // Set as undefined
-        maxAzimuthAngle={Math.PI} // Assign numeric value
+        maxAzimuthAngle={Math.PI / 0} // Assign numeric value
         minPolarAngle={Math.PI / 3} // Assign numeric value
         maxPolarAngle={Math.PI / 6} // Assign numeric value
         enableZoom={true}
