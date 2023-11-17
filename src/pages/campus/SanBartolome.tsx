@@ -18,13 +18,16 @@ interface SelectToZoomProps {
 
 function Model(props: ModelProps) {
   const ref = useRef();
-  const [hovered, hover] = useState(null);
+  const [hovered, hover] = useState(false);
   console.log(hovered);
 
   const gltf = useLoader(GLTFLoader, props.url);
   const handleClick = () => {
     console.log("Building clicked!");
-    document.getElementById('SelectBuilding').showModal()
+    const dialogElement = document.getElementById('SelectBuilding') as HTMLDialogElement | null;
+    if (dialogElement) {
+      dialogElement.showModal(); // Ensure 'SelectBuilding' is an HTMLDialogElement or an element that supports showModal
+    }
   };
   return (<Select enabled={hovered}>
     <primitive
@@ -132,12 +135,19 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
     const api = useBounds();
     return (
       <group
-        onClick={(e) => (
-          e.stopPropagation(), e.delta <= 2 && api.refresh(e.object).fit()
-        )}
-        onPointerMissed={(e) => e.button === 0 && api.refresh().fit()}
-      >
-        {children}
+      onClick={(e) => {
+        if (api?.refresh && api?.fit) {
+          e.stopPropagation();
+          e.delta && e.delta <= 2 && api.refresh(e.object)?.fit();
+        }
+      }}
+      onPointerMissed={(e) => {
+        if (api?.refresh && api?.fit && e.button === 0) {
+          api.refresh()?.fit();
+        }
+      }}
+    >
+      {children}
       </group>
     );
   }
