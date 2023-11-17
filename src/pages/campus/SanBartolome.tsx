@@ -48,19 +48,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
   return (
     <Canvas frameloop="demand" orthographic dpr={[1, 2]} camera={{ fov: 75, position: [10, 10, 10], zoom: 10 }} className="bg-gradient-to-tr from-sky-400 to-sky-900" style={{ "position": "absolute" }}>
 
-      <OrbitControls
-        minAzimuthAngle={undefined} // Set as undefined
-        maxAzimuthAngle={Math.PI} // Assign numeric value
-        minPolarAngle={Math.PI / 3} // Assign numeric value
-        maxPolarAngle={Math.PI / 6} // Assign numeric value
-        enableZoom={true}
-        enablePan={true}
-        zoomSpeed={3} // Set the zoom speed (numeric value)
-        autoRotate={true} // Enable auto rotation
-        autoRotateSpeed={0.4} // Set the auto rotation speed (numeric value)
-        minZoom={8} // Set the minimum allowed zoom (numeric value)
-        maxZoom={60} // Set the maximum allowed zoom (numeric value)
-      />
+      <OrbitControls/>
       <Suspense fallback={null}>
         <Cloud position={[-10, 30, 0]} args={[3, 2]} />
         <Cloud position={[-30, 20, 50]} args={[3, 2]} />
