@@ -49,20 +49,17 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
     <Canvas frameloop="demand" orthographic dpr={[1, 2]} camera={{ fov: 75, position: [10, 10, 10], zoom: 10 }} className="bg-gradient-to-tr from-sky-400 to-sky-900" style={{ "position": "absolute" }}>
 
       <OrbitControls
-        makeDefault
-        minAzimuthAngle={undefined}
-        maxAzimuthAngle={Math.PI}
-        minPolarAngle={Math.PI / 3}
-        maxPolarAngle={Math.PI / 6}
+        minAzimuthAngle={undefined} // Set as undefined
+        maxAzimuthAngle={Math.PI} // Assign numeric value
+        minPolarAngle={Math.PI / 3} // Assign numeric value
+        maxPolarAngle={Math.PI / 6} // Assign numeric value
         enableZoom={true}
         enablePan={true}
-        zoomSpeed={3} // Set the zoom speed of zooming around the open grounds (adjust as needed)
-        autoRotate // for auto rotation of the open grounds
-        autoRotateSpeed={0.4} // Set the auto rotation speed  (adjust as needed)
-        minZoom={8}  // Set the minimum distance allowed for zoom (adjust as needed)
-        maxZoom={60} // Set the maximum distance allowed for zoom (adjust as needed)
-
-
+        zoomSpeed={3} // Set the zoom speed (numeric value)
+        autoRotate={true} // Enable auto rotation
+        autoRotateSpeed={0.4} // Set the auto rotation speed (numeric value)
+        minZoom={8} // Set the minimum allowed zoom (numeric value)
+        maxZoom={60} // Set the maximum allowed zoom (numeric value)
       />
       <Suspense fallback={null}>
         <Cloud position={[-10, 30, 0]} args={[3, 2]} />
@@ -105,7 +102,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                 <mesh position={[11, 0.49, -108]} rotation={[0, -1.57, 0]} scale={2.3}>
                   <Model url="/og_academic.glb" scale={1.9} name={"Academic Building"} />
                 </mesh>
-                <mesh position={[18, 1, -103]}  rotation={[0, 1.57, 0]} scale={2.3}>
+                <mesh position={[18, 1, -103]} rotation={[0, 1.57, 0]} scale={2.3}>
                   <Model url="/og_belmonte.glb" scale={1.9} name={"Belmonte Building"} />
                 </mesh>
                 <mesh position={[-19.5, 1.24, -109]} rotation={[0, 0, 0]} scale={2.3}>
@@ -135,13 +132,13 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
     const api = useBounds();
     return (
       <group
-      onClick={(e) => (
-        e.stopPropagation(), e.delta <= 2 && api.refresh(e.object).fit()
-      )}
-      onPointerMissed={(e) => e.button === 0 && api.refresh().fit()}
-    >
-      {children}
-    </group>
+        onClick={(e) => (
+          e.stopPropagation(), e.delta <= 2 && api.refresh(e.object).fit()
+        )}
+        onPointerMissed={(e) => e.button === 0 && api.refresh().fit()}
+      >
+        {children}
+      </group>
     );
   }
 
