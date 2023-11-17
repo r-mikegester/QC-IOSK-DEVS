@@ -16,12 +16,14 @@ const Controls: React.FC<ContainerProps> = ({ name }) => {
             if (!isPlaying) {
                 audio.play()?.then(() => {
                     setIsPlaying(true);
+                    console.log('audio is now playing');
                 }).catch((error) => {
                     console.error('Error playing audio:', error);
                 });
             } else {
                 audio.pause();
                 setIsPlaying(false);
+                console.log('audio is now paused');
             }
         }
     };
