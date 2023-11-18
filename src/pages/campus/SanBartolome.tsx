@@ -73,12 +73,12 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
             <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
             <pointLight position={[-10, -10, -10]} />
             <Selection>
-              <EffectComposer multisampling={10} autoClear={false}>
+              <EffectComposer multisampling={8} autoClear={false}>
                 <Outline
                   blur
-                  visibleEdgeColor={0xffffff}
-                  edgeStrength={500}
-                  width={1500}
+                  visibleEdgeColor="green"
+                  edgeStrength={100}
+                  width={1000}
                 />
               </EffectComposer>
               {/* <mesh position={[-39.5, 4.2, -37.5]} rotation={[0, -1.6, 0]} scale={1.5}>
@@ -86,6 +86,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
             </mesh> */}<SelectToZoom>
                 <mesh position={[-42.8, 3, -49.9]} rotation={[0, 0.01, 0]} scale={1.7}>
                   <Model url="/og_metalcasting.glb" scale={1.9} name={"MetalCasting Building"} />
+                  
                 </mesh>
                 <mesh position={[17, 5.9, -38.5]} rotation={[0, 1.57, 0]} scale={2}>
                   <Model url="/og_chineseb.glb" scale={1.9} name={"ChineseB Building"} />
