@@ -32,7 +32,7 @@ const Controls: React.FC<ContainerProps> = ({ name }) => {
 
 
     return (
-     
+
         <div className=" w-10 z-50">
             <div
                 className="relative w-screen h-screen"
@@ -96,24 +96,36 @@ const Controls: React.FC<ContainerProps> = ({ name }) => {
 
                     <a
 
-                        className="flex aspect-square min-h-[32px] w-10 flex-col items-center gap-1 justify-center rounded-lg hover:bg-sky-700 hover:text-white  text-indigo-600  hover:scale-125 duration-200 ease-in-out dark:text-sky-300"
+                        className="flex aspect-square min-h-[32px] w-10 flex-col items-center gap-1 justify-center rounded-lg hover:bg-sky-700 hover:text-white  text-indigo-600 duration-200 ease-in-out dark:text-sky-300"
                     >
 
-                        <Icon icon="pajamas:preferences" className="w-5 h-5" />
-
-
+                        <div class="dropdown dropdown-right dropdown-end">
+                            <label tabindex="0" class=" m-1"><Icon icon="akar-icons:language" className="w-5 h-5" /></label>
+                            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 ml-7 shadow bg-base-100 rounded-2xl w-40">
+                                <li><a>English</a></li>
+                                <li><a>Tagalog</a></li>
+                            </ul>
+                        </div>
                     </a>
                     <a
 
-                        className="flex aspect-square min-h-[32px] w-10 flex-col items-center gap-1 justify-center rounded-lg  text-gray-700 hover:bg-sky-700 hover:scale-125 duration-200 ease-in-out dark:text-sky-300"
+                        className="flex aspect-square min-h-[32px] w-10 flex-col items-center gap-1 justify-center rounded-lg  text-gray-700 hover:bg-sky-700  duration-200 ease-in-out dark:text-sky-300"
                     >
 
-                        <Icon icon="typcn:info-large-outline" className="w-5 h-5" />
 
+                        <div class="dropdown dropdown-right dropdown-end">
+                            <label tabindex="0" class=" m-1"><Icon icon="typcn:info-large-outline" className="w-5 h-5" /></label>
+                            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 ml-7 shadow bg-base-100 rounded-2xl w-40">
+                                <li><a>English</a></li>
+                                <li><a>Tagalog</a></li>
+                            </ul>
+                        </div>
 
                     </a>
 
+
                 </nav>
+
             </div>
         </div >
 
