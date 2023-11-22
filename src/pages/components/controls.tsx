@@ -99,9 +99,9 @@ const Controls: React.FC<ContainerProps> = ({ name }) => {
                         className="flex aspect-square min-h-[32px] w-10 flex-col items-center gap-1 justify-center rounded-lg hover:bg-sky-700 hover:text-white  text-indigo-600 duration-200 ease-in-out dark:text-sky-300"
                     >
 
-                        <div class="dropdown dropdown-right dropdown-end">
-                            <label tabindex="0" class=" m-1"><Icon icon="akar-icons:language" className="w-5 h-5" /></label>
-                            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 ml-7 shadow bg-base-100 rounded-2xl w-40">
+                        <div className="dropdown dropdown-right dropdown-end">
+                            <label tabindex="0" className=" m-1"><Icon icon="akar-icons:language" className="w-5 h-5" /></label>
+                            <ul tabindex="0" className="dropdown-content border-t border-gray-200 dark:bg-slate-800/50 dark:border-slate-600/60 backdrop-blur-lg z-[1] menu p-2 ml-7 shadow bg-base-100 rounded-2xl w-40">
                                 <li><a>English</a></li>
                                 <li><a>Tagalog</a></li>
                             </ul>
@@ -113,11 +113,10 @@ const Controls: React.FC<ContainerProps> = ({ name }) => {
                     >
 
 
-                        <div class="dropdown dropdown-right dropdown-end">
-                            <label tabindex="0" class=" m-1"><Icon icon="typcn:info-large-outline" className="w-5 h-5" /></label>
-                            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 ml-7 shadow bg-base-100 rounded-2xl w-40">
-                                <li><a>English</a></li>
-                                <li><a>Tagalog</a></li>
+                        <div className="dropdown dropdown-right dropdown-end">
+                            <label tabIndex="0" className=" m-1"><Icon icon="typcn:info-large-outline" className="w-5 h-5" /></label>
+                            <ul tabIndex="0" className="dropdown-content border-t border-gray-200 dark:border-slate-600/60 dark:bg-slate-800/50 backdrop-blur-lg z-[1] menu p-2 ml-7 shadow bg-base-100 rounded-2xl w-40">
+                                <div className="w-40 h-40" ></div>
                             </ul>
                         </div>
 
