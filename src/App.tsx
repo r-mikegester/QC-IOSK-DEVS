@@ -1,13 +1,13 @@
 /*Imported Dependencies */
 import { Redirect, Route } from 'react-router-dom';
-import { Icon } from '@iconify/react';
 import { IonReactRouter } from '@ionic/react-router';
 
 /* Campuses*/
-import SanBartolome from './pages/campus/SanBartolome';
-import SanFransisco from './pages/campus/SanFransisco';
-import Batasan from './pages/campus/Batasan';
+import SanBartolome from './pages/components/campus/SanBartolome';
+import SanFransisco from './pages/components/campus/SanFransisco';
+import Batasan from './pages/components/campus/Batasan';
 
+/** Error Catching */
 
 /* Imported Components */
 import SelectCampus from './pages/tabs/SelectCampus';
@@ -40,11 +40,7 @@ import './theme/variables.css';
 /*Ionic Components*/
 import {
   IonApp,
-  IonLabel,
   IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
   setupIonicReact
 } from '@ionic/react';
 setupIonicReact();
@@ -55,49 +51,46 @@ const App: React.FC<ContainerProps> = ({ name }) => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route path="/Welcome">
-          <Welcome name={'Welcome'} />
-        </Route>
-        <Route exact path="/SelectCampus">
-          <SelectCampus name={'SelectCampus'}/>
-        </Route>
-        <Route exact path="/SanBartolome">
-          <Map name={'Map'}/>
-        </Route>
-        <Route exact path="/SanFransisco">
-          <SanFransisco name={'SanFransisco'}/>
-        </Route>
-        <Route exact path="/Batasan">
-          <Batasan name={'Batasan'}/>
-        </Route>
-        <Route exact path="/Search">
-          <Search name={'Search'} />
-        </Route>
-        <Route path="/Categories">
-          <Categories name={'Categories'} />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/Welcome" />
-        </Route>
+       
+          <Route path="/Welcome">
+            <Welcome name={'Welcome'} />
+          </Route>
+          <Route exact path="/SelectCampus">
+            <SelectCampus name={'SelectCampus'} />
+          </Route>
+       
+       
+          <Route exact path="/SanBartolome">
+            <Map name={'Map'} />
+          </Route>
+       
+       
+          <Route exact path="/SanFransisco">
+            <SanFransisco name={'SanFransisco'} />
+          </Route>
+       
+       
+          <Route exact path="/Batasan">
+            <Batasan name={'Batasan'} />
+          </Route>
+       
+       
+          <Route exact path="/Search">
+            <Search name={'Search'} />
+          </Route>
+       
+       
+
+          <Route path="/Categories">
+            <Categories name={'Categories'} />
+          </Route>
+       
+       
+          <Route exact path="/">
+            <Redirect to="/Welcome" />
+          </Route>
+       
       </IonRouterOutlet>
-      {/* <IonTabs className="bg-transparent">
-
-        <IonTabBar slot="bottom" mode="ios" translucent className=" text-emerald-500 backdrop-blur-sm m-5 p-2 w-64 mx-auto rounded-2xl">
-          <IonTabButton tab="Search" href="/Search" className="m-2">
-            <Icon icon="uil:search-alt" aria-hidden="true" className="w-10 h-10" />
-
-            <IonLabel>Search</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="SelectCampus" href="/SelectCampus">
-            <Icon icon="ph:buildings-bold" aria-hidden="true" className="w-10 h-10" />
-            <IonLabel>Campus</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="Categories" href="/Categories">
-            <Icon icon="mingcute:grid-2-line" aria-hidden="true" className="w-10 h-10" />
-            <IonLabel>Categories</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs> */}
     </IonReactRouter>
   </IonApp>
 );
