@@ -111,7 +111,7 @@ const Controls: React.FC<ContainerProps> = ({ name }) => {
                                 <label tabIndex={0} className=" m-1"><Icon icon="akar-icons:language" className="w-5 h-5" /></label>
                                 <ul tabIndex={0} className="dropdown-content border-t border-gray-200 dark:bg-slate-800/50 dark:border-slate-600/60 backdrop-blur-lg z-[1] menu p-2 ml-7 shadow bg-base-100 rounded-2xl w-40">
                                     <li><a>English (Default)</a></li>
-                                    <li><a>Tagalog <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium border border-teal-500 text-teal-500">Soon</span></a></li>
+                                    <li><a>Tagalog <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium border border-teal-500 text-teal-500">Soon</span></a></li>
                                 </ul>
                             </div>
                         </div>
