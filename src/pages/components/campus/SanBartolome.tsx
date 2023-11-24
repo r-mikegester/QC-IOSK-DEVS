@@ -152,7 +152,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               </SelectToZoom>
             </Selection>
             <mesh position={[0, 0, 0]}>
-              <Model url="/sb_floor.glb" scale={2} name={"OpenGrounds Flooring"} />
+              <Model url="/sb_floor2.glb" scale={2} name={"OpenGrounds Flooring"} />
             </mesh>
           </Stage>
         </Bounds>
