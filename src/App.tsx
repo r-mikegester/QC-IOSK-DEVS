@@ -47,6 +47,20 @@ setupIonicReact();
 interface ContainerProps {
   name: string;
 }
+
+declare global {
+  interface Window {
+    my_modal_2: {
+      showModal: () => void;
+    };
+    select_room: {
+      showModal: () => void;
+    };
+    select_floor: {
+      showModal: () => void;
+    };
+  }
+}
 const App: React.FC<ContainerProps> = ({ name }) => (
   <IonApp>
     <IonReactRouter>
