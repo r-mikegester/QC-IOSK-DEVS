@@ -93,7 +93,7 @@ const Controls: React.FC<ContainerProps> = ({ name }) => {
                         </a>
                     </div>
 
-                    <hr className=" bg-gray-700 my-2" />
+                    <hr className=" bg-sky-400 my-2" />
                     <div className="tooltip tooltip-right" data-tip="Refresh">
                         <a
                             onClick={reloadPage}
