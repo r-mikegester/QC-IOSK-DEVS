@@ -5,8 +5,8 @@ interface ContainerProps {
 }
 const Backbtn: React.FC<ContainerProps> = ({ name }) => {
     return (
-        <div>
-            <a href="/Welcome" className="btn btn-square hover:scale-110">
+        <div className="absolute top-5 left-5">
+            <a href="/SanBartolome" className="btn btn-square hover:scale-110">
             <Icon icon="typcn:arrow-back-outline" className="w-8 h-8"/>
             </a>
 
