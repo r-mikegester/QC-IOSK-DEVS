@@ -23,7 +23,6 @@
     "@react-three/fiber": "^8.15.9",
     "@react-three/postprocessing": "^2.15.11",
     "@tweenjs/tween.js": "^21.0.0",
-    "@types/react-i18next": "^8.1.0",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
     "i18next": "^23.7.6",
