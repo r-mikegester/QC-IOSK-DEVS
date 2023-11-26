@@ -26,7 +26,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
       <IonContent fullscreen>
         <div className="absolute top-0 right-20 z-50 ">
           <Controls name={'Controls'} />
-          <Directions isOpen={showModal} onClose={closeModal} name={'directions'} />
+          {/* <Directions isOpen={showModal} onClose={closeModal} name={'directions'} /> */}
         </div>
         <div className="z-10">
           <SanBartolome name={'SanBartolome'} />
