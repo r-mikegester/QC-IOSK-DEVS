@@ -7,6 +7,7 @@ import { Object3D, Object3DEventMap, Box3 } from "three";
 import * as TWEEN from "@tweenjs/tween.js";
 import * as THREE from "three";
 import { useSpring, a } from "@react-spring/three";
+import Loading from '../loading';
 interface ModelProps {
   url: string;
   scale: number;
@@ -77,7 +78,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
       orthographic
       dpr={[1, 2]}
       camera={{ fov: 75, position: [10, 10, 10], zoom: 20 }}
-      className="bg-gradient-to-tr from-sky-400 to-sky-900"
+      className="bg-gradient-to-tr from-sky-900 to-sky-400"
       style={{ "position": "absolute" }}>
 
       <OrbitControls
@@ -97,13 +98,16 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
       <Suspense fallback={null}>
         <mesh position={[12.8, -40, -69.9]} rotation={[0, 4.1, 0]} scale={1.7}>
-          <Model url="/clouds.glb" scale={1.9} name={"clouds"} />
+          <Model url="/src/models/clouds/cloud.glb" scale={1.9} name={"clouds"} />
         </mesh>
         <mesh position={[12.8, -20, 9.9]} rotation={[0, 9, 20]} scale={1.7}>
-          <Model url="/clouds2.glb" scale={1.9} name={"clouds2"} />
+          <Model url="/src/models/clouds/cloud2.glb" scale={1.9} name={"clouds2"} />
         </mesh>
         <mesh position={[-35.8, -10, 9.9]} rotation={[0, 6.5, 0]} scale={1.7}>
-          <Model url="/clouds3.glb" scale={1.9} name={"clouds3"} />
+          <Model url="/src/models/clouds/cloud3.glb" scale={1.9} name={"clouds3"} />
+        </mesh>
+        <mesh position={[-35.8, -10, 10.9]} rotation={[0, 6.5, 0]} scale={1.7}>
+          <Model url="/src/models/clouds/cloudies.glb" scale={1.9} name={"clouds3"} />
         </mesh>
         <Bounds fit clip observe margin={1.2}>
           <Stage environment={"city"} adjustCamera shadows contactShadow>
@@ -115,7 +119,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                 <Outline
                   blur
                   edgeStrength={100}
-                  width={1000}
+                  width={1500}
                 />
               </EffectComposer>
               {/* <mesh position={[-39.5, 4.2, -37.5]} rotation={[0, -1.6, 0]} scale={1.5}>
@@ -123,36 +127,42 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
             </mesh> */}<SelectToZoom>
 
                 <mesh position={[-43, 3, -49.9]} rotation={[0, 0.01, 0]} scale={1.5}>
-                  <Model url="/og_metalcasting.glb" scale={1.9} name={"MetalCasting Building"} />
+                  <Model url="/src/models/sb_buildings/og_metalcasting.glb" scale={1.9} name={"MetalCasting Building"} />
                 </mesh>
                 <mesh position={[17, 5.9, -38.5]} rotation={[0, 1.57, 0]} scale={2}>
-                  <Model url="/og_chineseb.glb" scale={1.9} name={"ChineseB Building"} />
+                  <Model url="/src/models/sb_buildings/og_chineseb.glb" scale={1.9} name={"ChineseB Building"} />
                 </mesh>
                 <mesh position={[-19, 3, -19]} rotation={[0, -0, 0]} scale={0.185}>
-                  <Model url="/og_techvoc.glb" scale={1.9} name={"TechVoc Building"} />
+                  <Model url="/src/models/sb_buildings/og_techvoc.glb" scale={1.9} name={"TechVoc Building"} />
                 </mesh>
-                <mesh position={[-23, 1.2, -38]} rotation={[0, -1.59, 0]} scale={1.7}>
-                  <Model url="/og_admin.glb" scale={1.9} name={"Admin Building"} />
+                <mesh position={[-2.6, 0.1, -3.4]} rotation={[0, -6.30, 0]} scale={1.7}>
+                  <Model url="/src/models/sb_buildings/og_newadmin.glb" scale={1.12} name={"Admin Building"} />
                 </mesh>
-                <mesh position={[-0.2, 0.27, -2.9]} rotation={[0, 6.28, 0]} scale={1}>
-                  <Model url="/newyellow.glb" scale={1.9} name={"Yellow Building"} />
+                <mesh position={[-0.3, 0.27, 2.5]} rotation={[0, 6.28, 0]} scale={1.1}>
+                  <Model url="/src/models/sb_buildings/og_yellow.glb" scale={1.9} name={"Yellow Building"} />
                 </mesh>
                 <mesh position={[11, 0.49, -108]} rotation={[0, -1.57, 0]} scale={2.3}>
-                  <Model url="/og_academic.glb" scale={1.9} name={"Academic Building"} />
+                  <Model url="/src/models/sb_buildings/og_academic.glb" scale={1.9} name={"Academic Building"} />
                 </mesh>
                 <mesh position={[18, 1, -103]} rotation={[0, 1.57, 0]} scale={2.3}>
-                  <Model url="/og_belmonte.glb" scale={1.9} name={"Belmonte Building"} />
+                  <Model url="/src/models/sb_buildings/og_belmonte.glb" scale={1.9} name={"Belmonte Building"} />
                 </mesh>
                 <mesh position={[-19.5, 1.24, -109]} rotation={[0, 0, 0]} scale={2.3}>
-                  <Model url="/og_bautista.glb" scale={2} name={"Bautista Building"} />
+                  <Model url="/src/models/sb_buildings/og_bautista.glb" scale={2} name={"Bautista Building"} />
                 </mesh>
                 <mesh position={[17.5, 3.7, -26]} rotation={[0, 3.14, 0]}>
-                  <Model url="/og_multipurpose.glb" scale={1.9} name={"Multipurpose Building"} />
+                  <Model url="/src/models/sb_buildings/og_multipurpose.glb" scale={1.9} name={"Multipurpose Building"} />
                 </mesh>
               </SelectToZoom>
             </Selection>
+            <mesh position={[0.5, 0, -4.7]} rotation={[0, 0.01, 0]} scale={1}>
+              <Model url="/src/models/others/utility2.glb" scale={1.9} name={"Utility 2 Building"} />
+            </mesh>
+            <mesh position={[-30, 0, -180]} rotation={[3.170, 0, -3.3]} scale={1}>
+              <Model url="/src/models/others/utility.glb" scale={1.9} name={"Utility 1 Building"} />
+            </mesh>
             <mesh position={[0, 0, 0]}>
-              <Model url="/sb_floor2.glb" scale={2} name={"OpenGrounds Flooring"} />
+              <Model url="/src/models/others/sb_floor2.glb" scale={2} name={"OpenGrounds Flooring"} />
             </mesh>
           </Stage>
         </Bounds>
