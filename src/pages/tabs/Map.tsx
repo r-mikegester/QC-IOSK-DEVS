@@ -56,7 +56,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                             <div className="grid h-20 card bg-white hover:scale-75 ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl h-96 p-5">
-                                <IonButton onClick={openModal}>Open Menu Modal</IonButton>
+                                <IonButton onClick={openModal}>Open</IonButton>
                                 </div>
                                 <form method="dialog" className="modal-backdrop">
                                   <button>close</button>

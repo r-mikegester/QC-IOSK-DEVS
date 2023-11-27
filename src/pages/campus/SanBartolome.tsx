@@ -76,7 +76,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               <EffectComposer multisampling={8} autoClear={false}>
                 <Outline
                   blur
-                  visibleEdgeColor="green"
+                  // visibleEdgeColor="ffffff"
                   edgeStrength={100}
                   width={1000}
                 />

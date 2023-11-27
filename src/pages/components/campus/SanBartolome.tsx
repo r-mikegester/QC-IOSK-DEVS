@@ -1,13 +1,14 @@
 import { Canvas, useLoader, useThree } from "@react-three/fiber";
 import React, { Suspense, useRef, useState, ReactNode } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls, Stage, Bounds, useBounds, Cloud } from "@react-three/drei";
+import { OrbitControls, Stage, Bounds, useBounds, Cloud, Html, Text, Billboard } from "@react-three/drei";
 import { Selection, EffectComposer, Outline, Select } from "@react-three/postprocessing";
 import { Object3D, Object3DEventMap, Box3 } from "three";
 import * as TWEEN from "@tweenjs/tween.js";
 import * as THREE from "three";
 import { useSpring, a } from "@react-spring/three";
 import Loading from '../loading';
+import './style.css';
 interface ModelProps {
   url: string;
   scale: number;
@@ -52,14 +53,17 @@ function Model(props: ModelProps) {
     <group>
       {isClickableMesh(props.name) && ( // Render the clickable meshes
         <Select enabled={hovered}>
-          <primitive
-            object={gltf.scene}
-            ref={ref}
-            {...props}
-            onClick={handleClick}
-            onPointerOver={() => hover(true)}
-            onPointerOut={() => hover(false)}
-          />
+          <group>
+            <primitive
+              object={gltf.scene}
+              ref={ref}
+              {...props}
+              onClick={handleClick}
+              onPointerOver={() => hover(true)}
+              onPointerOut={() => hover(false)}
+            />
+
+          </group>
         </Select>
       )}
       {!isClickableMesh(props.name) && ( // Exclude the flooring from being clickable
@@ -80,7 +84,20 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
       camera={{ fov: 75, position: [10, 10, 10], zoom: 20 }}
       className="bg-gradient-to-tr from-sky-900 to-sky-400"
       style={{ "position": "absolute" }}>
-
+      {/* <Text 
+        position={[10, 4, 10]}
+        fontSize={2}
+        color="white"
+        anchorX='center'
+        anchorY='bottom'
+        maxWidth={200}
+        lineHeight={1}
+        letterSpacing={0.02}
+        textAlign="justify"
+        font="https://fonts.gstatic.com/s/sawarabimincho/v3/6ae64e8e54fd2ee4bc10d49ad54ac18c.ttf" // You can replace this with your own font URL
+      >
+        Yellow Building
+      </Text> */}
       <OrbitControls
         makeDefault
         minAzimuthAngle={0}
@@ -110,9 +127,9 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
           <Model url="/src/models/clouds/cloudies.glb" scale={1.9} name={"clouds3"} />
         </mesh>
         <Bounds fit clip observe margin={1.2}>
-          <Stage environment={"city"} adjustCamera shadows contactShadow>
+          <Stage environment={"city"} adjustCamera shadows>
             {/* <ambientLight intensity={0.5} /> */}
-            <spotLight position={[10, 10, 100]} angle={0.15} penumbra={1} intensity={0} />
+            {/* <spotLight position={[10, 10, 100]} angle={0.15} penumbra={1} intensity={0} /> */}
             {/* <pointLight position={[-10, -10, -10]} /> */}
             <Selection>
               <EffectComposer multisampling={10} autoClear={false}>
@@ -123,55 +140,94 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                 />
               </EffectComposer>
               {/* <mesh position={[-39.5, 4.2, -37.5]} rotation={[0, -1.6, 0]} scale={1.5}>
-              <Model url="/og_ballroom.glb" scale={1.9} name={"Ballroom Building"} />
+              <Model url="/og_ballroom.glb" scale={1.9} name={"Ballroom"} />
             </mesh> */}<SelectToZoom>
 
                 <mesh position={[-43, 3, -49.9]} rotation={[0, 0.01, 0]} scale={1.5}>
-                  <Model url="/src/models/sb_buildings/og_metalcasting.glb" scale={1.9} name={"MetalCasting Building"} />
+                  <Model url="/src/models/sb_buildings/og_metalcasting.glb" scale={1.9} name={"MetalCasting"} />
+                  <Billboard  className="bgb bg-blue-500 rounded-md p-2" follow position={[0, 3, 0]}>
+                    <Text   fontSize={1} rotation={[0.5, 12.3, 0]} outlineColor="#000000" outlineOpacity={1} outlineWidth="20%">
+                      CHED
+                    </Text>
+                  </Billboard>
                 </mesh>
                 <mesh position={[17, 5.9, -38.5]} rotation={[0, 1.57, 0]} scale={2}>
-                  <Model url="/src/models/sb_buildings/og_chineseb.glb" scale={1.9} name={"ChineseB Building"} />
+                  <Model url="/src/models/sb_buildings/og_chineseb.glb" scale={1.9} name={"ChineseB"} />
+                  <Billboard  className="bg-blue-500 rounded-md p-2" follow position={[0, 1.5, 0]}>
+                    <Text  fontSize={1} rotation={[0.5, -8, 0]} outlineColor="#000000" outlineOpacity={1} outlineWidth="20%">
+                      Chinese B
+                    </Text>
+                  </Billboard>
                 </mesh>
                 <mesh position={[-19, 3, -19]} rotation={[0, -0, 0]} scale={0.185}>
-                  <Model url="/src/models/sb_buildings/og_techvoc.glb" scale={1.9} name={"TechVoc Building"} />
+                  <Model url="/src/models/sb_buildings/og_techvoc.glb" scale={1.9} name={"TechVoc"} />
+                  <Billboard  className="bg-blue-500 rounded-md p-2" follow position={[60, 40, -60]}>
+                    <Text  fontSize={10} rotation={[0, -12, 0]} outlineColor="#000000" outlineOpacity={1} outlineWidth="20%">
+                      Thecvoc Building
+                    </Text>
+                  </Billboard>
                 </mesh>
                 <mesh position={[-2.6, 0.1, -3.4]} rotation={[0, -6.30, 0]} scale={1.7}>
-                  <Model url="/src/models/sb_buildings/og_newadmin.glb" scale={1.12} name={"Admin Building"} />
+                  <Model url="/src/models/sb_buildings/og_newadmin.glb" scale={1.12} name={"Admin"} />
+                  <Billboard  className="bg-blue-500 rounded-md p-2" follow position={[-9.5, 10, -45]}  >
+                    <Text style={{ backgroundColor: 'rgba(0, 0, 255, 0.5)', padding: '0.3em', borderRadius: '0.3em' }} fontSize={1} outlineColor="#000000" outlineOpacity={1} outlineWidth="20%">
+                      Admin Building
+                    </Text>
+                  </Billboard>
                 </mesh>
                 <mesh position={[-0.3, 0.27, 2.5]} rotation={[0, 6.28, 0]} scale={1.1}>
-                  <Model url="/src/models/sb_buildings/og_yellow.glb" scale={1.9} name={"Yellow Building"} />
+                  <Model url="/src/models/sb_buildings/og_yellow.glb" scale={1.9} name={"Yellow"} />
+                  <Billboard  className="bg-blue-500 rounded-md p-2" follow position={[0, 11.5, -55]}>
+                    <Text  fontSize={1.5} outlineColor="#000000" outlineOpacity={1} outlineWidth="20%">
+                      Yellow Building
+                    </Text>
+                  </Billboard>
                 </mesh>
                 <mesh position={[11, 0.49, -108]} rotation={[0, -1.57, 0]} scale={2.3}>
-                  <Model url="/src/models/sb_buildings/og_academic.glb" scale={1.9} name={"Academic Building"} />
+                  <Model url="/src/models/sb_buildings/og_academic.glb" scale={1.9} name={"Academic"} />
+                  <Billboard  className="bg-blue-500 rounded-md p-2" follow position={[0, 8, 0]}>
+                    <Text  rotation={[0.5, 8, 0]} fontSize={1} outlineColor="#000000" outlineOpacity={1} outlineWidth="20%" > 
+                      Academic Building
+                    </Text>
+                  </Billboard>
                 </mesh>
                 <mesh position={[18, 1, -103]} rotation={[0, 1.57, 0]} scale={2.3}>
-                  <Model url="/src/models/sb_buildings/og_belmonte.glb" scale={1.9} name={"Belmonte Building"} />
+                  <Model url="/src/models/sb_buildings/og_belmonte.glb" scale={1.9} name={"Belmonte"} />
+                  <Billboard  className="bg-blue-500 rounded-md p-2" follow position={[-10, 6, -1]}>
+                    <Text  rotation={[0.5, -8, 0]} fontSize={0.8} outlineColor="#000000" outlineOpacity={1} outlineWidth="20%" >
+                      Belmonte Building
+                    </Text>
+                  </Billboard>
                 </mesh>
                 <mesh position={[-19.5, 1.24, -109]} rotation={[0, 0, 0]} scale={2.3}>
-                  <Model url="/src/models/sb_buildings/og_bautista.glb" scale={2} name={"Bautista Building"} />
+                  <Model url="/src/models/sb_buildings/og_bautista.glb" scale={2} name={"Bautista"} />
+                  <Billboard  className="bg-blue-500 rounded-md p-2" follow position={[-1, 7, 0]} >
+                    <Text  fontSize={.8} outlineColor="#000000" outlineOpacity={1} outlineWidth="20%" >
+                      Bautista Building
+                    </Text>
+                  </Billboard>
                 </mesh>
                 <mesh position={[17.5, 3.7, -26]} rotation={[0, 3.14, 0]}>
-                  <Model url="/src/models/sb_buildings/og_multipurpose.glb" scale={1.9} name={"Multipurpose Building"} />
+                  <Model url="/src/models/sb_buildings/og_multipurpose.glb" scale={1.9} name={"Multipurpose"} />
+                  <Billboard  className="bg-blue-500 rounded-md p-2" follow position={[-1, 6, -1]}>
+                    <Text  fontSize={1.5} rotation={[1, 28, 0]} outlineColor="#000000" outlineOpacity={1} outlineWidth="20%">
+                      Multipurpose Building
+                    </Text>
+                  </Billboard>
                 </mesh>
               </SelectToZoom>
             </Selection>
             <mesh position={[0.5, 0, -4.7]} rotation={[0, 0.01, 0]} scale={1}>
-              <Model url="/src/models/others/utility2.glb" scale={1.9} name={"Utility 2 Building"} />
+              <Model url="/src/models/others/utility2.glb" scale={1.9} name={"Utility 2"} />
             </mesh>
             <mesh position={[-30, 0, -180]} rotation={[3.170, 0, -3.3]} scale={1}>
-              <Model url="/src/models/others/utility.glb" scale={1.9} name={"Utility 1 Building"} />
+              <Model url="/src/models/others/utility.glb" scale={1.9} name={"Utility 1"} />
             </mesh>
             <mesh position={[0, 0, 0]}>
               <Model url="/src/models/others/sb_floor2.glb" scale={2} name={"OpenGrounds Flooring"} />
             </mesh>
           </Stage>
         </Bounds>
-        {/* <Sky
-          distance={450000}
-          sunPosition={[0, 20, 0]}
-          inclination={1}
-          azimuth={1}
-        /> */}
       </Suspense>
     </Canvas>
 
