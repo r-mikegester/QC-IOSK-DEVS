@@ -163,7 +163,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                   <Model url="/src/models/sb_buildings/og_techvoc.glb" scale={1.9} name={"TechVoc"} />
                   <Billboard  className="bg-blue-500 rounded-md p-2" follow position={[60, 40, -60]}>
                     <Text  fontSize={10} rotation={[0, -12, 0]} outlineColor="#000000" outlineOpacity={1} outlineWidth="20%">
-                      Thecvoc Building
+                      Techvoc Building
                     </Text>
                   </Billboard>
                 </mesh>
