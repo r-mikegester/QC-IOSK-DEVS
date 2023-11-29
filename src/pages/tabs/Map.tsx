@@ -7,6 +7,7 @@ import {Floor, floors} from '../../database/belmonteBuilding';
 //import Directions from './../components/directions';
 import React, { useState, useRef } from 'react';
 import Backbtn from '../components/Backbtn';
+import { useHistory } from 'react-router-dom';
 interface ContainerProps {
   name: string;
 }
@@ -22,6 +23,13 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
 
   const closeModal = () => {
     setShowModal(false);
+  };
+
+  const history = useHistory();
+
+  const handleClick = () => {
+    // Redirect to the "/Map" route
+    history.push('/SampleD');
   };
   const contentRef = useRef<HTMLIonContentElement>(null);
   return (
@@ -189,7 +197,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                                     </div>
 
                                     <div className="absolute bottom-5 inset-x-0 mx-6">                                      
-                                      <button className="btn w-full bg-sky-800 rounded-xl">
+                                      <button onClick={handleClick} className="btn w-full bg-sky-800 rounded-xl">
                                       <Icon icon="material-symbols:moved-location-rounded" className="w-8 h-8" />
                                         Start Navigation
                                       </button>

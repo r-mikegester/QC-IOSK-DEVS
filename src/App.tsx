@@ -36,7 +36,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-
+import SampleD from './pages/components/SampleD';
 /*Ionic Components*/
 import {
   IonApp,
@@ -69,6 +69,11 @@ const App: React.FC<ContainerProps> = ({ name }) => (
           <Route path="/Welcome">
             <Welcome name={'Welcome'} />
           </Route>
+
+          <Route path="/SampleD">
+            <SampleD name={'SampleD'} />
+          </Route>
+
           <Route exact path="/SelectCampus">
             <SelectCampus name={'SelectCampus'} />
           </Route>
