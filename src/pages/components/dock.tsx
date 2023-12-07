@@ -1,5 +1,6 @@
 import { Icon } from '@iconify/react';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 interface ContainerProps {
   name: string;
 }
@@ -19,6 +20,8 @@ const Dock: React.FC<ContainerProps> = ({ name }) => {
     // Redirect to the "/Search" route
     history.push('/Search');
   };
+
+  const { t } = useTranslation();
   return (
     // <div classNameName="mx-auto w-96 h-20 rounded-2xl  absolute inset-x-0 bottom-5 bg-gray-700 ">
     //   <div classNameName="tabs absolute inset-0 mx-auto items-center ">
@@ -35,7 +38,7 @@ const Dock: React.FC<ContainerProps> = ({ name }) => {
         
       >
         <Icon icon="icon-park-outline:back" className="w-10 h-10" />
-        <small className="text-center text-xs font-medium"> Home</small>
+        <small className="text-center text-xs font-medium">{t("home")}</small>
         <span className="sr-only">Home</span>
       </a>
 
@@ -50,7 +53,7 @@ const Dock: React.FC<ContainerProps> = ({ name }) => {
        
       >
         <Icon icon="wpf:search" className="w-10 h-10" />
-        <small className="text-center text-xs font-medium"> Search</small>    
+        <small className="text-center text-xs font-medium">{t("search")}</small>    
          <span className="sr-only">Search</span>
       </a>
  
