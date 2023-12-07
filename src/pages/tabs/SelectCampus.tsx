@@ -4,18 +4,21 @@ import SBCampus from '../../imgs/SelectCampus/SanBartolome.webp';
 import BatasanCampus from '../../imgs/SelectCampus/Batasan.webp';
 import SFCampus from '../../imgs/SelectCampus/SanFransisco.webp';
 //import SanBartolome from '../campus/SanBartolome';
-import SanFransisco from '../components/campus/SanFransisco';
-import Batasan from '../components/campus/Batasan';
+import SanFransisco from '../campus/SanFransisco';
+import Batasan from '../campus/Batasan';
 import Dock from './../components/dock';
 import QCULogo from '../../imgs/Logo/qculogo.png';
 import { Icon } from '@iconify/react';
 import { useHistory } from 'react-router-dom';
 import './style.css';
+
+import { useTranslation } from "react-i18next";
 interface ContainerProps {
   name: string;
 }
 const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
   const history = useHistory();
+  const { t } = useTranslation();
 
   const ClickSB = () => {
     // Redirect to the "/San Bartolome" route
@@ -34,9 +37,9 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
       <IonContent fullscreen className="bg-sc">
       <div className="max-w-[85rem] px-4 h-full py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
           <div className="max-w-2xl mx-auto text-center mb-10">
-            <img src={QCULogo} className="mx-auto absolute inset-x-0 top-80 w-28 sm:w-32 md:w-48 lg:w-56 xl:w-36 xl:h-36 -mt-56 xl:-mt-80" alt="QCU Logo" />
+            <img src={QCULogo} className="mx-auto absolute inset-x-0 top-80 w-28 sm:w-32 md:w-48 lg:w-56 xl:w-36 xl:h-36 -mt-56 xl:-mt-60" alt="QCU Logo" />
             <h2 className="mt-44 sm:mt-3 xl:mt-48 text-4xl font-light text-gray-100  sm:text-6xl">
-              <span className="">Select Campus </span>
+              <span className="">{t("selectCampus")}</span>
             </h2>
 
           </div>
@@ -50,7 +53,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
 
               <div className="mt-7">
                 <h3 className="text-xl font-semibold text-center text-gray-100  group-hover:bg-clip-text group-hover:bg-gradient-to-tr from-blue-600 to-purple-400 group-hover:text-transparent group-hover:scale-150 transition-transform duration-500 ease-in-out">
-                  SAN FRANSISCO
+                {t("SanFrancisco")}
                 </h3>
               </div>
             </a>
@@ -63,7 +66,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
 
               <div className="mt-7">
                 <h3 className="text-xl font-semibold text-center text-gray-100 group-hover:bg-clip-text group-hover:bg-gradient-to-tr from-blue-600 to-purple-400 group-hover:text-transparent group-hover:scale-150 transition-transform duration-500 ease-in-out ">
-                  SAN BARTOLOME
+                {t("SanBartolome")}
                 </h3>
               </div>
             </a>
@@ -75,7 +78,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
 
               <div className="mt-7">
                 <h3 className="text-xl font-semibold text-center text-gray-100 group-hover:bg-clip-text group-hover:bg-gradient-to-tr from-blue-600 to-purple-400 group-hover:text-transparent group-hover:scale-150 transition-transform duration-500 ease-in-out ">
-                  BATASAN
+                {t("Batasan")}
                 </h3>
               </div>
             </a>
