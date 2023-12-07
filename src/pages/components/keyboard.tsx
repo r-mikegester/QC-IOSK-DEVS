@@ -11,7 +11,7 @@ const Keyboard: React.FC<KeyboardProps> = ({ onInput, onClose }) => {
   const [capsLock, setCapsLock] = useState<boolean>(false);
 
   useEffect(() => {
-    const handleKeyPress = (event: KeyboardEvent) => {
+    const handleKeyPress = (event: React.KeyboardEvent) => {
       if (event.key === 'Enter') {
         onInput(value + '\n');
       } else if (event.key === 'Backspace') {
