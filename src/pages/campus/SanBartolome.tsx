@@ -9,7 +9,6 @@ import * as THREE from "three";
 import { useSpring, a } from "@react-spring/three";
 import Loading from '../components/loading';
 import { useTranslation } from "react-i18next";
-import './style.css';
 interface ModelProps {
   url: string;
   scale: number;
