@@ -1,6 +1,6 @@
 import React, { Component, ChangeEvent } from "react";
 import { IonContent, IonPage } from '@ionic/react';
-import Keyboard from "react-simple-keyboard/dist/components/Keyboard";
+import Keyboard from "react-simple-keyboard";
 import { Icon } from '@iconify/react';
 import { useHistory } from 'react-router-dom';
 import "react-simple-keyboard/build/css/index.css";
