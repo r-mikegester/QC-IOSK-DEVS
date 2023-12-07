@@ -3,9 +3,9 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonReactRouter } from '@ionic/react-router';
 
 /* Campuses*/
-import SanBartolome from './pages/components/campus/SanBartolome';
-import SanFransisco from './pages/components/campus/SanFransisco';
-import Batasan from './pages/components/campus/Batasan';
+import SanBartolome from './pages/campus/SanBartolome';
+import SanFransisco from './pages/campus/SanFransisco';
+import Batasan from './pages/campus/Batasan';
 
 /** Error Catching */
 
@@ -61,6 +61,8 @@ declare global {
     };
   }
 }
+
+
 const App: React.FC<ContainerProps> = ({ name }) => (
   <IonApp>
     <IonReactRouter>
@@ -80,7 +82,7 @@ const App: React.FC<ContainerProps> = ({ name }) => (
        
        
           <Route exact path="/SanBartolome">
-            <Map name={'Map'} />
+            <Map name={'Map'} buildingName={''} />
           </Route>
        
        
