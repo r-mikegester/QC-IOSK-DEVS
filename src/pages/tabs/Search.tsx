@@ -57,6 +57,12 @@ const Search: React.FC<SearchProps> = ({ name }) => {
     history.push('/Map');
   };
 
+  const handleSearch = () => {
+    // Redirect to the "/Map" route
+    history.push('/SanBartolome');
+  };
+
+
   return (
     <IonPage>
       <IonContent fullscreen className="bg-sc">
@@ -84,7 +90,7 @@ const Search: React.FC<SearchProps> = ({ name }) => {
                     <option className="py-5">FACILITIES</option>
                   </select> */}
                   <div className="indicator">
-                    <button className="btn h-16 w-20 bg-white hover:bg-gray-300 rounded-2xl text-gray-700 join-item"><Icon icon="wpf:search" className="w-7 h-7" /></button>
+                    <button onClick={handleSearch} className="btn h-16 w-20 bg-white hover:bg-gray-300 rounded-2xl text-gray-700 join-item"><Icon icon="wpf:search" className="w-7 h-7" /></button>
                   </div>
                 </div>
                 
