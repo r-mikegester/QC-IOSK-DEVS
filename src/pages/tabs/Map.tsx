@@ -1,17 +1,18 @@
 import { IonContent, IonPage } from '@ionic/react';
-import SanBartolome from '../components/campus/SanBartolome';
+import SanBartolome from '../campus/SanBartolome';
 import Dock from '../components/dock';
 import { Icon } from '@iconify/react';
 import Controls from '../components/controls';
-import {Floor, floors} from '../../database/belmonteBuilding';
-//import Directions from './../components/directions';
+import Location from '../components/Location';
+import { BuildingData } from '../../database/BuildingData';
 import React, { useState, useRef } from 'react';
 import Backbtn from '../components/Backbtn';
 import { useHistory } from 'react-router-dom';
+import Widgets from '../components/Widgets';
 interface ContainerProps {
   name: string;
+  buildingName: string;
 }
-
 
 const Map: React.FC<ContainerProps> = ({ name }) => {
   const [showModal, setShowModal] = useState(false);
@@ -39,6 +40,14 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
           <Controls name={'Controls'} />
           {/* <Directions isOpen={showModal} onClose={closeModal} name={'directions'} /> */}
         </div>
+        <div className="absolute top-0 left-20 z-50 ">
+          <Location name={'Location'} />
+          {/* <Directions isOpen={showModal} onClose={closeModal} name={'directions'} /> */}
+        </div>
+        <div className="absolute top-0 left-20 z-50 ">
+          <Widgets name={'Widgets'} />
+          {/* <Directions isOpen={showModal} onClose={closeModal} name={'directions'} /> */}
+        </div>
         <div className="z-10">
           <SanBartolome name={'SanBartolome'} />
         </div>
@@ -46,7 +55,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
           <dialog id="SelectBuilding" className="modal">
             <div className="modal-box max-w-3xl ">
 
-              <h3 className="font-bold text-center text-5xl">{name} Building</h3>
+              <h3 className="font-bold text-center text-5xl">building name</h3>
               <div className="grid grid-cols-6 gap-1">
               </div>
               <h3 className="font-bold text-center text-3xl">Select Floor</h3>
