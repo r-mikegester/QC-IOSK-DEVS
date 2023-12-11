@@ -9,6 +9,8 @@ import React, { useState, useRef } from 'react';
 import Backbtn from '../components/Backbtn';
 import { useHistory } from 'react-router-dom';
 import Widgets from '../components/Widgets';
+import Modal from '../Components/Modals/CreditsModal';
+import { credits } from './../../Database/CreditsData.ts';
 interface ContainerProps {
   name: string;
   buildingName: string;
@@ -25,6 +27,8 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
   const closeModal = () => {
     setShowModal(false);
   };
+
+
 
   const history = useHistory();
 
@@ -63,13 +67,13 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                 {/* <div className="bg-sky-900 w-20 h-60 m-2 rounded-2xl text-center justify-center py-16 px-auto text-xl backdrop-blur-lg ">1</div> */}
                 <div className="flex flex-col w-full">
                   <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('select_floor').showModal()}>
-                  <h3 className="text-gray-900 font-extrabold text-4xl">Ground</h3>
+                    <h3 className="text-gray-900 font-extrabold text-4xl">Ground</h3>
 
                     <dialog id="select_floor" className="modal">
                       <div className="modal-box  max-w-3xl">
                         <form method="dialog">
                           {/* if there is a button in form, it will close the modal */}
-                          <button className="btn btn-square hover:scale-110 absolute left-5 top-10"><Icon icon="typcn:arrow-back-outline" className="w-8 h-8"/></button>
+                          <button className="btn btn-square hover:scale-110 absolute left-5 top-10"><Icon icon="typcn:arrow-back-outline" className="w-8 h-8" /></button>
                         </form>
                         <span><h3 className="font-bold text-center text-5xl">Select Room</h3></span>
                         <h3 className="font-bold text-center text-3xl">Ground Floor</h3>
@@ -205,9 +209,9 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
 
                                     </div>
 
-                                    <div className="absolute bottom-5 inset-x-0 mx-6">                                      
+                                    <div className="absolute bottom-5 inset-x-0 mx-6">
                                       <button onClick={handleClick} className="btn w-full bg-sky-800 rounded-xl">
-                                      <Icon icon="material-symbols:moved-location-rounded" className="w-8 h-8" />
+                                        <Icon icon="material-symbols:moved-location-rounded" className="w-8 h-8" />
                                         Start Navigation
                                       </button>
                                     </div>
@@ -222,7 +226,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                           </div>
                           <div className="flex flex-col w-full">
                             <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
-                            <h3 className="text-gray-900 font-extrabold text-4xl">IC102</h3>
+                              <h3 className="text-gray-900 font-extrabold text-4xl">IC102</h3>
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
                                   <h3 className="font-bold text-lg">Hello!</h3>
@@ -236,7 +240,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                           </div>
                           <div className="flex flex-col w-full">
                             <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
-                            <h3 className="text-gray-900 font-extrabold text-4xl">IC103</h3>
+                              <h3 className="text-gray-900 font-extrabold text-4xl">IC103</h3>
 
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
@@ -251,7 +255,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                           </div>
                           <div className="flex flex-col w-full">
                             <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
-                            <h3 className="text-gray-900 font-extrabold text-4xl">IC104</h3>
+                              <h3 className="text-gray-900 font-extrabold text-4xl">IC104</h3>
 
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
@@ -272,7 +276,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                           </div>
                           <div className="flex flex-col w-full">
                             <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
-                            <h3 className="text-gray-900 font-extrabold text-4xl">IC105</h3>
+                              <h3 className="text-gray-900 font-extrabold text-4xl">IC105</h3>
 
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
@@ -289,7 +293,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                           </div>
                           <div className="flex flex-col w-full">
                             <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
-                            <h3 className="text-gray-900 font-extrabold text-4xl">IC106</h3>
+                              <h3 className="text-gray-900 font-extrabold text-4xl">IC106</h3>
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
                                   <h3 className="font-bold text-lg">Hello!</h3>
@@ -305,7 +309,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                           </div>
                           <div className="flex flex-col w-full">
                             <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
-                            <h3 className="text-gray-900 font-extrabold text-4xl">IC107</h3>
+                              <h3 className="text-gray-900 font-extrabold text-4xl">IC107</h3>
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
                                   <h3 className="font-bold text-center text-5xl">Select Room</h3>
@@ -325,7 +329,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                           </div>
                           <div className="flex flex-col w-full">
                             <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
-                            <h3 className="text-gray-900 font-extrabold text-4xl">IC108</h3>
+                              <h3 className="text-gray-900 font-extrabold text-4xl">IC108</h3>
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
                                   <h3 className="font-bold text-lg">Hello!</h3>
@@ -349,7 +353,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                 </div>
                 <div className="flex flex-col w-full">
                   <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
-                  <h3 className="text-gray-900 font-extrabold text-4xl">2nd</h3>
+                    <h3 className="text-gray-900 font-extrabold text-4xl">2nd</h3>
                     <dialog id="my_modal_2" className="modal">
                       <div className="modal-box max-w-3xl">
                         <h3 className="font-bold text-center text-5xl">Select Room</h3>
@@ -369,7 +373,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                 </div>
                 <div className="flex flex-col w-full">
                   <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
-                  <h3 className="text-gray-900 font-extrabold text-4xl">3rd</h3>
+                    <h3 className="text-gray-900 font-extrabold text-4xl">3rd</h3>
                     <dialog id="my_modal_2" className="modal">
                       <div className="modal-box max-w-3xl">
                         <h3 className="font-bold text-lg">Hello!</h3>
@@ -385,7 +389,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                 </div>
                 <div className="flex flex-col w-full">
                   <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
-                  <h3 className="text-gray-900 font-extrabold text-4xl">4th</h3>
+                    <h3 className="text-gray-900 font-extrabold text-4xl">4th</h3>
                     <dialog id="my_modal_2" className="modal">
                       <div className="modal-box max-w-3xl">
                         <h3 className="font-bold text-lg">Hello!</h3>
@@ -409,8 +413,52 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
           </dialog>
 
         </div>
-
         <Dock name={'Dock'} />
+        <dialog id="Credits" className="modal">
+          <div className="modal-box w-11/12 max-w-5xl">
+            <div className="container mx-auto py-8">
+              <h1 className="text-3xl font-bold mb-4">Credits</h1>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                {credits.map((person, index) => (
+                  <div key={index} className="bg-white rounded-lg shadow-md p-4">
+                    <img
+                      src={person.picture}
+                      alt={person.name}
+                      className="w-40 h-40 rounded-3xl mb-2"
+                    />
+                    <h2 className="text-xl text-gray-900 font-bold">{person.name}</h2>
+                    <p className="text-gray-600">{person.position}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="modal-action">
+              <form method="dialog">
+                {/* if there is a button, it will close the modal */}
+                <button className="btn">Close</button>
+              </form>
+            </div>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog>
+
+        <dialog id="KioskManual" className="modal">
+                <div className="modal-box w-11/12 max-w-5xl">
+                    <h3 className="font-bold text-lg">HOW TO USE KIOSK!</h3>
+                    <p className="py-4">PINCH TO ZOOM IN AND ZOOM OUT</p>
+                    <div className="modal-action">
+                        <form method="dialog">
+                            {/* if there is a button, it will close the modal */}
+                            <button className="btn">Close</button>
+                        </form>
+                    </div>
+                </div>
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
+            </dialog>
       </IonContent>
     </IonPage>
   );

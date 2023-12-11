@@ -6,7 +6,8 @@ import ChangeLanguage from './MultiControls/ChangeLanguage';
 import KioskManual from './MultiControls/KioskManual';
 import Reload from './MultiControls/Reload';
 import Credits from './MultiControls/Credits';
-
+import Modal from './Modals/CreditsModal';
+import SelectFloorModal from './Modals/SelectFloorModal';
 interface ContainerProps {
     name: string;
 }
@@ -34,7 +35,7 @@ const Controls: React.FC<ContainerProps> = ({ name }) => {
                     <ChangeLanguage name={'ChangeLanguage'} />
                   
                     <Credits />
-                   
+                   <SelectFloorModal />
                 </nav>
 
             </div>
