@@ -1,4 +1,4 @@
-import { Canvas, useLoader, useThree } from "@react-three/fiber";
+import { Canvas, useLoader, useThree, useFrame } from "@react-three/fiber";
 import React, { Suspense, useRef, useState, ReactNode } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls, Stage, Bounds, useBounds, Cloud, Html, Text, Billboard } from "@react-three/drei";
@@ -75,6 +75,40 @@ function Model(props: ModelProps) {
 
 }
 
+const RotatingMesh = () => {
+  const meshRef =
+    useRef<
+      Mesh<
+        BufferGeometry<NormalBufferAttributes>,
+        Material | Material[],
+        Object3DEventMap
+      >
+    >(null);
+
+  // Use useFrame to update rotation and position in every frame
+  useFrame((state, delta) => {
+    if (meshRef.current) {
+      // Rotate around the y-axis
+      meshRef.current.rotation.y += 0.05;
+
+      // Float up and down along the y-axis
+      meshRef.current.position.y = Math.sin(state.clock.elapsedTime) * 0.8 + 5; // Adjust amplitude and starting position as needed
+    }
+  });
+
+  return (
+    <mesh ref={meshRef} position={[4, 3, 3]}>
+      {/* Assuming Model is a custom component that accepts a mesh prop */}
+      <Model
+        url="/src/Models/others/location.glb"
+        scale={1.5}
+        name="location"
+        mesh={meshRef.current} // Pass the mesh reference to your Model component if needed
+      />
+    </mesh>
+  );
+};
+
 const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
   const { t } = useTranslation();
   return (
@@ -115,18 +149,48 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
       />
 
       <Suspense fallback={null}>
-        {/* <mesh position={[12.8, -40, -69.9]} rotation={[0, 4.1, 0]} scale={1.7}>
-          <Model url="/src/models/clouds/cloud.glb" scale={1.9} name={"clouds"} />
+      <mesh position={[10, 20, -60]}>
+          <Model // BACK
+            url="/src/Models/clouds/cloud.glb"
+            scale={1.5}
+            name={"cloud"}
+          />
         </mesh>
-        <mesh position={[12.8, -20, 9.9]} rotation={[0, 9, 20]} scale={1.7}>
-          <Model url="/src/models/clouds/cloud2.glb" scale={1.9} name={"clouds2"} />
+        <mesh position={[0, 20, 20]}>
+          <Model // LEFT
+            url="/src/Models/clouds/cloud1.glb"
+            scale={1.2}
+            name={"cloud1"}
+          />
         </mesh>
-        <mesh position={[-35.8, -10, 9.9]} rotation={[0, 6.5, 0]} scale={1.7}>
-          <Model url="/src/models/clouds/cloud3.glb" scale={1.9} name={"clouds3"} />
+        <mesh position={[40, 20, -30]}>
+          <Model // RIGHT
+            url="/src/Models/clouds/cloud2.glb"
+            scale={1.3}
+            name={"cloud2"}
+          />
         </mesh>
-        <mesh position={[-35.8, -10, 10.9]} rotation={[0, 6.5, 0]} scale={1.7}>
-          <Model url="/src/models/clouds/cloudies.glb" scale={1.9} name={"clouds3"} />
-        </mesh> */}
+        <mesh position={[-20, 20, 70]}>
+          <Model // FRONT
+            url="/src/Models/clouds/cloud3.glb"
+            scale={1.2}
+            name={"cloud3"}
+          />
+        </mesh>
+        <mesh position={[30, 20, 50]}>
+          <Model // FRONT RIGHT
+            url="/src/Models/clouds/cloud4.glb"
+            scale={1.4}
+            name={"cloud4"}
+          />
+        </mesh>
+        <mesh position={[-30, 20, -40]}>
+          <Model // BACK LEFT
+            url="/src/Models/clouds/cloud5.glb"
+            scale={1}
+            name={"cloud5"}
+          />
+        </mesh>
         <Bounds fit clip observe margin={1.2}>
           <Stage environment={"city"} adjustCamera shadows>
             {/* <ambientLight intensity={0.5} /> */}
@@ -140,18 +204,12 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                   width={1500}
                 />
               </EffectComposer>
+              
               <SelectToZoom>
                 {/* <mesh position={[-39.5, 4.2, -37.5]} rotation={[0, -1.6, 0]} scale={1.5}>
                   <Model url="/src/models/sb_buildings/og_ballroom.glb" scale={1.9} name={"Ballroom"} />
                 </mesh> */}
-                <mesh position={[0, 0, 0]} rotation={[0, 0.01, 0]} scale={2}>
-                  <Model url="/src/models/others/bikerack.glb" scale={1} name={"BikeRack"} />
-                  <Billboard follow position={[2, 1., -52]}>
-                    <Text fontSize={0.3} rotation={[0, 12.3, 0]} outlineColor="#000000" outlineOpacity={1} outlineWidth="20%">
-                      Bike Parking
-                    </Text>
-                  </Billboard>
-                </mesh>
+              
                 <mesh position={[-43, 3, -49.9]} rotation={[0, 0.01, 0]} scale={1.5}>
                   <Model url="/src/models/sb_buildings/og_metalcasting.glb" scale={1.9} name={"MetalCasting"} />
                   <Billboard follow position={[0, 3, 0]}>
@@ -226,15 +284,42 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                 </mesh>
               </SelectToZoom>
             </Selection>
-            <mesh position={[0.5, 0, -4.7]} rotation={[0, 0.01, 0]} scale={1}>
-              <Model url="/src/models/others/utility2.glb" scale={1.9} name={"Utility 2"} />
-            </mesh>
-            <mesh position={[-30, 0, -180]} rotation={[3.170, 0, -3.3]} scale={1}>
-              <Model url="/src/models/others/utility.glb" scale={1.9} name={"Utility 1"} />
-            </mesh>
+            <RotatingMesh />
+            <Html position={[4, 21, 3]}>
+              <div className="drop-shadow-2xl outline-4 rounded-2xl"
+                // className="floating"
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  textAlign: "center",
+                  pointerEvents: "none",
+                  transition: "background-color 0.3s ease",
+                  fontSize: `30px`, // Adjust the multiplier as needed
+                  whiteSpace: "nowrap", 
+                  // Ensure one line text
+                }}
+              >
+                You are here
+              </div>
+            </Html>
             <mesh position={[0, 0, 0]}>
-              <Model url="/src/models/others/sb_floor2.glb" scale={2} name={"OpenGrounds Flooring"} />
+              <Model
+                url="/src/Models/others/sb_floor3.glb"
+                scale={2}
+                name={"OpenGrounds Flooring"}
+              />
             </mesh>
+            <mesh position={[0, 0, 0]} rotation={[0, 0.01, 0]} scale={2}>
+                  <Model url="/src/models/others/bikerack.glb" scale={1} name={"BikeRack"} />
+                  <Billboard follow position={[2, 1., -52]}>
+                    <Text fontSize={0.3} rotation={[0, 12.3, 0]} outlineColor="#000000" outlineOpacity={1} outlineWidth="20%">
+                      Bike Parking
+                    </Text>
+                  </Billboard>
+                </mesh>
+            
           </Stage>
         </Bounds>
       </Suspense>
