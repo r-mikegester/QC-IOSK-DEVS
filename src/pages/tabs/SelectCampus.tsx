@@ -6,6 +6,7 @@ import { useState } from "react";
 import SanBartolome from './../Campus/SanBartolome';
 import SanFransisco from './../Campus/SanFransisco';
 import { Icon } from '@iconify/react';
+import Dock from "../components/dock";
 interface ContainerProps {
   name: string;
 }
@@ -51,7 +52,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
           <ul className="slider" ref={(ref) => setSlider(ref)}>
             {/* BATASAN */}
             <li
-              className="item brightness-50"
+              className="item "
               style={{
                 backgroundImage:
                   "url('/src/Imgs/SelectCampus/Batasan.webp')",
@@ -75,7 +76,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
 
             {/* SAN BARTOLOME */}
             <li
-              className="item brightness-50"
+              className="item "
               style={{
                 backgroundImage: `url('/src/Imgs/SelectCampus/SanBartolome.webp')`,
               }}
@@ -99,7 +100,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
 
             {/* SAN FRANCISCO */}
             <li
-              className="item brightness-50"
+              className="item "
               style={{
                 backgroundImage: `url('/src/Imgs/SelectCampus/SanFransisco.webp')`,
               }}
@@ -122,7 +123,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
 
             {/* BATASAN */}
             <li
-              className="item brightness-50"
+              className="item "
               style={{
                 backgroundImage: `url('/src/Imgs/SelectCampus/Batasan.webp')`,
               }}
@@ -145,7 +146,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
 
             {/* SAN BARTOLOME */}
             <li
-              className="item brightness-50"
+              className="item "
               style={{
                 backgroundImage: `url('/src/Imgs/SelectCampus/SanBartolome.webp')`,
               }}
@@ -169,7 +170,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
 
             {/* SAN FRANCISCO */}
             <li
-              className="item brightness-50"
+              className="item "
               style={{
                 backgroundImage: `url('/src/Imgs/SelectCampus/SanFransisco.webp')`,
               }}
@@ -189,16 +190,16 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
                 </a>
               </div>
             </li>
-          </ul>
+          </ul><Dock name={""} />
           <nav className="nav">
             <div className="btn prev" onClick={(e) => activate(e, "prev")}>
             <Icon icon="iconamoon:arrow-left-2" />
             </div>
             <div className="btn next" onClick={(e) => activate(e, "next")}>
-            <Icon icon="iconamoon:arrow-right-2" />
-            </div>
-          </nav>
+            <Icon icon="iconamoon:arrow-right-2" />            </div>
+          </nav> 
         </main>
+       
       </IonContent>
     </IonPage>
   );
