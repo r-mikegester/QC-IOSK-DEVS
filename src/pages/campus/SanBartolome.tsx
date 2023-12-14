@@ -1,18 +1,22 @@
 import { Canvas, useLoader, useThree, useFrame } from "@react-three/fiber";
 import React, { Suspense, useRef, useState, ReactNode } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls, Stage, Bounds, useBounds, Cloud, Html, Text, Billboard } from "@react-three/drei";
+import { OrbitControls, Stage, Bounds, useBounds, Html, Text, Billboard, Sparkles, Stars } from "@react-three/drei";
 import { Selection, EffectComposer, Outline, Select } from "@react-three/postprocessing";
-import { Object3D, Object3DEventMap, Box3 } from "three";
+import { Object3D, Object3DEventMap, Box3, Material, NormalBufferAttributes, BufferGeometry, Mesh } from "three";
 import * as TWEEN from "@tweenjs/tween.js";
 import * as THREE from "three";
-import { useSpring, a } from "@react-spring/three";
-import Loading from '../components/loading';
 import { useTranslation } from "react-i18next";
+import { Icon } from '@iconify/react';
 interface ModelProps {
   url: string;
   scale: number;
   name: string;
+  mesh?: Mesh<
+  BufferGeometry<NormalBufferAttributes>,
+  Material | Material[],
+  Object3DEventMap
+  > | null;
 }
 
 interface SelectToZoomProps {
@@ -111,13 +115,28 @@ const RotatingMesh = () => {
 
 const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
   const { t } = useTranslation();
+  const [isColor1, setIsColor1] = useState(true);
+  const [isEnvironment, setIsEnvironment] = useState(true);
+
+  const handleToggleSwitch = () => {
+    setIsColor1((prev) => !prev);
+    setIsEnvironment((prev) => !prev);
+  };
   return (
+    <>
+     <button onClick={handleToggleSwitch} className="absolute dark:border-slate-600/60 bottom-8 backdrop-blur-lg bg-slate-800/30 left-8 z-50 flex aspect-square min-h-[32px] w-12 flex-col items-center scale-125 gap-1 justify-center rounded-2xl border border-gray-800  text-gray-700 hover:bg-sky-700 hover:scale-105 duration-200 ease-in-out dark:text-sky-300">
+       <Icon icon="icon-park-outline:dark-mode" className="w-5 h-5" />
+      </button> 
     <Canvas
       frameloop="demand"
       orthographic
       dpr={[1, 2]}
       camera={{ fov: 75, position: [10, 10, 10], zoom: 20 }}
-      className="bg-gradient-to-tr from-sky-900 to-sky-400"
+      className={
+        isColor1
+          ? "bg-gradient-to-tr from-sky-900 to-sky-400"
+          : "bg-gradient-to-tr from-stone-950 to-cyan-950"
+      }
       style={{ "position": "absolute" }}>
       {/* <Text 
         position={[10, 4, 10]}
@@ -133,6 +152,15 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
       >
         Yellow Building
       </Text> */}
+       {/* <Sparkles
+          color="orange"
+          count={500}
+          noise={1}
+          opacity={1}
+          speed={20}
+          size={10}
+          scale={[50, 50, 50]}
+        /> */}
       <OrbitControls
         makeDefault
         minAzimuthAngle={0}
@@ -192,10 +220,134 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
           />
         </mesh>
         <Bounds fit clip observe margin={1.2}>
-          <Stage environment={"city"} adjustCamera shadows>
+          {isEnvironment ? null : (
+                <>
+                  {/* <directionalLight position={[0, 0, 10]} intensity={20} /> */}
+                  {/* <hemisphereLight position={[0, 0, 10]} intensity={10} /> */}
+
+                  {/* <spotLight
+                    position={[0, 10, -20]}
+                    angle={Math.PI / 4}
+                    penumbra={0.1}
+                    intensity={500}
+                  />
+                  <pointLight position={[10, 10, -60]} intensity={100} /> */}
+                  <Stars
+                    radius={100} // Adjust the radius based on your scene size
+                    depth={50} // Adjust the depth based on your scene size
+                    count={1000} // Adjust the count based on the number of sparkles you want
+                    factor={5} // Adjust the factor to control the distribution of sparkles
+                    saturation={0} // Adjust the saturation to control the color of sparkles
+                  />
+                  {/* <Sparkles
+                    color="orange"
+                    count={500}
+                    noise={1}
+                    opacity={1}
+                    size={10}
+                    speed={3}
+                    scale={[500, 250, 500]}
+                  /> */}
+                </>
+              )}
+          <Stage environment={isEnvironment ? "city" : "night"} adjustCamera shadows>
             {/* <ambientLight intensity={0.5} /> */}
             {/* <spotLight position={[10, 10, 100]} angle={0.15} penumbra={1} intensity={0} /> */}
             {/* <pointLight position={[-10, -10, -10]} /> */}
+            {isEnvironment ? null : (
+               <>
+               {/* BELMONTE */}
+               <rectAreaLight
+                 position={[10, 4, -80]}
+                 intensity={3}
+                 width={20}
+                 height={15}
+                 rotation={[0, 1.57, 0]}
+               />
+               <rectAreaLight
+                 position={[17.5, 4, -80]}
+                 intensity={3}
+                 width={20}
+                 height={15}
+                 rotation={[0, 4.72, 0]}
+               />
+
+               {/* ACADEMIC */}
+               <rectAreaLight
+                 position={[9, 5, -108]}
+                 intensity={3}
+                 width={25}
+                 height={20}
+                 rotation={[0, 1.57, 0]}
+               />
+               <rectAreaLight
+                 position={[15, 5, -108]}
+                 intensity={3}
+                 width={25}
+                 height={20}
+                 rotation={[0, 4.72, 0]}
+               />
+
+               {/* BAUTISTA */}
+               <rectAreaLight
+                 position={[-20, 5, -108]}
+                 intensity={3}
+                 width={25}
+                 height={20}
+                 rotation={[0, 1.24, 0]}
+               />
+
+               {/* ADMIN */}
+               <rectAreaLight
+                 position={[-21, 6, -80]}
+                 intensity={3}
+                 width={15}
+                 height={15}
+                 rotation={[0, 1.24, 0]}
+               />
+
+               {/* YELLOW */}
+               <rectAreaLight
+                 position={[0, 6, -53.57]}
+                 intensity={3}
+                 width={40}
+                 height={15}
+                 rotation={[0, 6.28, 0]}
+               />
+
+               {/* TECHVOC */}
+               <rectAreaLight
+                 position={[-8, 3, -19]}
+                 intensity={3}
+                 width={20}
+                 height={8}
+                 rotation={[0, 3.15, 0]}
+               />
+               <rectAreaLight
+                 position={[-8, 3, -41]}
+                 intensity={3}
+                 width={20}
+                 height={8}
+                 rotation={[0, 6.28, 0]}
+               />
+               <rectAreaLight
+                 position={[-19, 3, -30]}
+                 intensity={3}
+                 width={20}
+                 height={6}
+                 rotation={[0, 1.56, 0]}
+               />
+               <rectAreaLight
+                 position={[3, 3, -30]}
+                 intensity={3}
+                 width={20}
+                 height={6}
+                 rotation={[0, 4.72, 0]}
+               />
+
+               {/* <pointLight position={[10, 12, -110]} intensity={300} /> */}
+             </>
+              )}
             <Selection>
               <EffectComposer multisampling={10} autoClear={false}>
                 <Outline
@@ -258,16 +410,16 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     </Text>
                   </Billboard>
                 </mesh>
-                <mesh position={[18, 1, -103]} rotation={[0, 1.57, 0]} scale={2.3}>
-                  <Model url="/src/models/sb_buildings/og_belmonte.glb" scale={1.9} name={"Belmonte"} />
-                  <Billboard follow position={[-10, 6, -1]}>
+                <mesh position={[18, 1, -71]} rotation={[0, 1.57, 0]} scale={2.3}>
+                  <Model url="/src/models/sb_buildings/og_belmonte2.glb" scale={1.9} name={"Belmonte"} />
+                  <Billboard follow position={[4, 6, -1]}>
                     <Text rotation={[0.5, -8, 0]} fontSize={0.8} outlineColor="#000000" outlineOpacity={1} outlineWidth="20%" >
                       Belmonte Building
                     </Text>
                   </Billboard>
                 </mesh>
-                <mesh position={[-19.5, 1.24, -109]} rotation={[0, 0, 0]} scale={2.3}>
-                  <Model url="/src/models/sb_buildings/og_bautista.glb" scale={2} name={"Bautista"} />
+                <mesh position={[-19.5, 7.24, -112]} rotation={[0, 0, 0]} scale={2.3}>
+                  <Model url="/src/models/sb_buildings/og_bautista2.glb" scale={2} name={"Bautista"} />
                   <Billboard follow position={[-1, 7, 0]} >
                     <Text fontSize={.8} outlineColor="#000000" outlineOpacity={1} outlineWidth="20%" >
                       Bautista Building
@@ -286,7 +438,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
             </Selection>
             <RotatingMesh />
             <Html position={[4, 21, 3]}>
-              <div className="drop-shadow-2xl outline-4 rounded-2xl"
+              <div className="backdrop-blur-lg -z-50 bg-slate-900/40 text-lg py-2 px-4 rounded-2xl"
                 // className="floating"
                 style={{
                   position: "absolute",
@@ -306,7 +458,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
             </Html>
             <mesh position={[0, 0, 0]}>
               <Model
-                url="/src/Models/others/sb_floor3.glb"
+                url="/src/Models/others/sb_final.glb"
                 scale={2}
                 name={"OpenGrounds Flooring"}
               />
@@ -324,6 +476,8 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
         </Bounds>
       </Suspense>
     </Canvas>
+    </>
+   
 
   );
 }
