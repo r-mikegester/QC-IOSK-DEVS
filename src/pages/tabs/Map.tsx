@@ -229,7 +229,7 @@ const [showModal, setShowModal] = useState(false);
                             </div>
                           </div>
                           <div className="flex flex-col w-full">
-                            <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
+                            <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
                               <h3 className="text-gray-900 font-extrabold text-4xl">IC102</h3>
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
@@ -243,7 +243,7 @@ const [showModal, setShowModal] = useState(false);
                             </div>
                           </div>
                           <div className="flex flex-col w-full">
-                            <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
+                            <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
                               <h3 className="text-gray-900 font-extrabold text-4xl">IC103</h3>
 
                               <dialog id="my_modal_2" className="modal">
@@ -258,7 +258,7 @@ const [showModal, setShowModal] = useState(false);
                             </div>
                           </div>
                           <div className="flex flex-col w-full">
-                            <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
+                            <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
                               <h3 className="text-gray-900 font-extrabold text-4xl">IC104</h3>
 
                               <dialog id="my_modal_2" className="modal">
@@ -279,7 +279,7 @@ const [showModal, setShowModal] = useState(false);
 
                           </div>
                           <div className="flex flex-col w-full">
-                            <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
+                            <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
                               <h3 className="text-gray-900 font-extrabold text-4xl">IC105</h3>
 
                               <dialog id="my_modal_2" className="modal">
@@ -296,7 +296,7 @@ const [showModal, setShowModal] = useState(false);
 
                           </div>
                           <div className="flex flex-col w-full">
-                            <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
+                            <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
                               <h3 className="text-gray-900 font-extrabold text-4xl">IC106</h3>
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
@@ -312,7 +312,7 @@ const [showModal, setShowModal] = useState(false);
 
                           </div>
                           <div className="flex flex-col w-full">
-                            <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
+                            <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
                               <h3 className="text-gray-900 font-extrabold text-4xl">IC107</h3>
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
@@ -332,7 +332,7 @@ const [showModal, setShowModal] = useState(false);
 
                           </div>
                           <div className="flex flex-col w-full">
-                            <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
+                            <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
                               <h3 className="text-gray-900 font-extrabold text-4xl">IC108</h3>
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
@@ -356,7 +356,7 @@ const [showModal, setShowModal] = useState(false);
                   </div>
                 </div>
                 <div className="flex flex-col w-full">
-                  <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
+                  <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
                     <h3 className="text-gray-900 font-extrabold text-4xl">2nd</h3>
                     <dialog id="my_modal_2" className="modal">
                       <div className="modal-box max-w-3xl">
@@ -376,7 +376,7 @@ const [showModal, setShowModal] = useState(false);
 
                 </div>
                 <div className="flex flex-col w-full">
-                  <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
+                  <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
                     <h3 className="text-gray-900 font-extrabold text-4xl">3rd</h3>
                     <dialog id="my_modal_2" className="modal">
                       <div className="modal-box max-w-3xl">
@@ -392,7 +392,7 @@ const [showModal, setShowModal] = useState(false);
 
                 </div>
                 <div className="flex flex-col w-full">
-                  <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('my_modal_2').showModal()}>
+                  <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
                     <h3 className="text-gray-900 font-extrabold text-4xl">4th</h3>
                     <dialog id="my_modal_2" className="modal">
                       <div className="modal-box max-w-3xl">
