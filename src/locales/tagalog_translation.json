@@ -1,8 +1,9 @@
 {
-    "home": "Tahanan",
-    "search": "Mag-hanap",
+    "home": "Simula",
+    "search": "Hanapin",
+    "campus": "Kampus",
 
-    "selectCampus": "Pumili ng Campus",
+    "selectCampus": "Pumili ng Kampus",
     "SanFrancisco": "San Francisco",
     "SanBartolome": "San Bartolome",
     "Batasan": "Batasan",
