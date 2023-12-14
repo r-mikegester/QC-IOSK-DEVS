@@ -23,5 +23,9 @@ export default {
     //   addUtilities(neonUtilities)
     // })
   ],
+  'postcss-import': {},
+  'tailwindcss/nesting': 'postcss-nesting',
+  tailwindcss: {},
+  autoprefixer: {},
 }
 
