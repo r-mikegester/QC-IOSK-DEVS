@@ -23,42 +23,53 @@ const Dock: React.FC<ContainerProps> = ({ name }) => {
 
   const { t } = useTranslation();
   return (
-    // <div classNameName="mx-auto w-96 h-20 rounded-2xl  absolute inset-x-0 bottom-5 bg-gray-700 ">
-    //   <div classNameName="tabs absolute inset-0 mx-auto items-center ">
-    //     <a classNameName="btn tab rounded-2xl  justify-center  hover:bg-gray-600 bg-gray-700 border-none h-full w-full hover:scale-75 active:scale-75 flex-col gap-1 " href="/Search"><Icon icon="uil:search-alt" aria-hidden="true" classNameName="w-8 h-8" />Search</a>
-    //     <a classNameName="btn tab rounded-2xl  justify-center hover:bg-gray-600 bg-gray-700 border-none h-full w-full hover:scale-75 active:scale-75 flex-col gap-1  tab-active" href="/SelectCampus"> <Icon icon="tabler:replace"aria-hidden="true" classNameName="w-10 h-10" />Switch</a>
-    //     <a classNameName="btn tab rounded-2xl  justify-center hover:bg-gray-600 bg-gray-700 border-none h-full w-full hover:scale-75 active:scale-75 flex-col gap-1" href="/Categories"><Icon icon="mingcute:grid-2-line" aria-hidden="true" classNameName="w-10 h-10" />Menu</a>
+    // <div className="mx-auto w-96 h-20 rounded-2xl  absolute inset-x-0 bottom-5 bg-gray-700 ">
+    //   <div className="tabs absolute inset-0 mx-auto items-center ">
+    //     <a className="btn tab rounded-2xl  justify-center  hover:bg-gray-600 bg-gray-700 border-none h-full w-full hover:scale-90 scale-100 active:scale-100 flex-col gap-1 " href="/Search"><Icon icon="uil:search-alt" aria-hidden="true" className="w-8 h-8" />Search</a>
+    //     <a className="btn tab rounded-2xl  justify-center hover:bg-gray-600 bg-gray-700 border-none h-full w-full hover:scale-90 scale-100 active:scale-100 flex-col gap-1  tab-active" href="/SelectCampus"> <Icon icon="tabler:replace"aria-hidden="true" className="w-10 h-10 p-2 bg-gradient-to-tr from-sky-900 to-sky-600 rounded-lg" />Switch</a>
+    //     <a className="btn tab rounded-2xl  justify-center hover:bg-gray-600 bg-gray-700 border-none h-full w-full hover:scale-90 scale-100 active:scale-100 flex-col gap-1" href="/Categories"><Icon icon="mingcute:grid-2-line" aria-hidden="true" className="w-10 h-10 p-2 bg-gradient-to-tr from-sky-900 to-sky-600 rounded-lg" />Menu</a>
     //   </div>
     // </div>
 
-    <div className="fixed bottom-6 left-1/2 h-20 transform -translate-x-1/2 inline-flex mx-auto justify-between border-t-2 dark:border-slate-600/60 backdrop-blur-lg dark:bg-slate-800/50 w-8/12 sm:w-5/12 md:w-4/12 lg:w-3/12 xl:w-2/12 rounded-2xl">
+    <div className="fixed bottom-6 left-1/2 h-20 items-center transform -translate-x-1/2 inline-flex dark:border-slate-600/60 backdrop-blur-lg dark:bg-slate-800/50 w-8/12 sm:w-5/12 md:w-4/12 lg:w-3/12 xl:w-auto px-2 rounded-2xl">
+      
       <a onClick={ClickWelcome}
         aria-current="page"
-        className="inline-flex flex-col hover:scale-75 ease-in-out hover:bg-sky-900 rounded-2xl  duration-200 hover:text-white active:text-white items-center text-xs font-medium py-5 px-4  text-blue-300 flex-grow"
+        className="inline-flex flex-col ease-in-out hover:scale-90 scale-100 to-sky-600 rounded-lg  duration-200 hover:text-white active:text-white items-center text-base font-medium p-2 w-20 h-20  text-blue-300 flex-grow"
         
       >
-        <Icon icon="icon-park-outline:back" className="w-10 h-10" />
-        <small className="text-center text-xs font-medium">{t("home")}</small>
+        <Icon icon="octicon:home-16" className="w-10 h-10 p-2 bg-gradient-to-tr from-sky-900 to-sky-600 rounded-lg" />
+        <small className="text-center text-base font-medium">{t("home")}</small>
         <span className="sr-only">Home</span>
       </a>
-
-      <a onClick={ClickMap} className="btn bg-transparent border-none hover:bg-transparent relative inline-flex flex-col items-center text-xs font-medium text-blue-300  py-3 px-6 flex-grow">
-        <div className=" group absolute -bottom-5 py-6 px-5 w-24  h-24 hover:bg-sky-900  duration-200 hover:text-white active:text-white  rounded-full border-4 border-blue-300 hover:border-white dark:bg-slate-800 ease-in-out animate-bounce">
-          <Icon icon="fluent-mdl2:home-group" className="w-10 h-10  focus:animate-ping group-hover:scale-75 ease-in-out duration-200" />
+      {/* <a onClick={ClickMap} className="btn bg-transparent border-none hover:bg-transparent relative inline-flex flex-col items-center text-base font-medium text-blue-300  py-3 px-6 flex-grow">
+        <div className=" group absolute -bottom-5 py-6 px-5 w-24  h-24 bg-gradient-to-tr from-sky-900 to-sky-600  duration-200 hover:text-white active:text-white  rounded-full border-4 border-blue-300 hover:border-white dark:bg-slate-800 ease-in-out animate-bounce">
+          <Icon icon="fluent-mdl2:home-group" className="w-10 h-10 p-2  focus:animate-ping group-hover:scale-90 scale-100 ease-in-out duration-200" />
         </div>
         <span className="sr-only">Map</span>
-      </a>
-      <a onClick={ClickSearch}
-        className="inline-flex flex-col hover:scale-75 hover:bg-sky-900 rounded-2xl ease-in-out duration-200 hover:text-white active:text-white items-center text-xs font-medium text-blue-300 py-5 px-4 flex-grow"
+      </a> */}
+      <a onClick={ClickMap}
+        className="inline-flex flex-col hover:scale-90 scale-100 to-sky-600 rounded-lg ease-in-out duration-200 hover:text-white active:text-white items-center text-base font-medium text-blue-300 p-2 w-20 h-20 flex-grow"
        
       >
-        <Icon icon="wpf:search" className="w-10 h-10" />
-        <small className="text-center text-xs font-medium">{t("search")}</small>    
+        <Icon icon="carbon:ibm-data-product-exchange" className="w-10 h-10 p-2 bg-gradient-to-tr from-sky-900 to-sky-600 rounded-lg" />
+        <small className="text-center text-base font-medium">{t("campus")}</small>    
+         <span className="sr-only">Campus</span>
+      </a>
+      <a onClick={ClickSearch}
+        className="inline-flex flex-col hover:scale-90 scale-100 to-sky-600 rounded-lg ease-in-out duration-200 hover:text-white active:text-white items-center text-base font-medium text-blue-300 p-2 w-20 h-20 flex-grow"
+       
+      >
+        <Icon icon="wpf:search" className="w-10 h-10 p-2 bg-gradient-to-tr from-sky-900 to-sky-600 rounded-lg" />
+        <small className="text-center text-base font-medium">{t("search")}</small>    
          <span className="sr-only">Search</span>
       </a>
  
+ 
+ 
 
     </div>
+    
 
   );
 };
