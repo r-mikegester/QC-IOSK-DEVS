@@ -30,21 +30,16 @@ const Location: React.FC<ContainerProps> = ({ name }) => {
     //   </div>
     // </div>
 
-    <div className="fixed top-10 -right-28 h transform -translate-x-1/2 inline-flex mx-auto justify-between border-t-2 dark:border-slate-600/60 backdrop-blur-lg dark:bg-slate-800/50 w-8/12 sm:w-5/12 md:w-4/12 lg:w-3/12 xl:w-2/12 rounded-2xl">
+    <div className="fixed xl:top-10 -right-52 xl:-right-28 transform -translate-x-1/2 inline-flex mx-auto justify-between xl:border-t-2 dark:border-slate-600/60 xl:backdrop-blur-lg xl:dark:bg-slate-800/50 w-8/12 sm:w-5/12 md:w-4/12 lg:w-3/12 xl:w-2/12 rounded-2xl">
       <a onClick={ClickWelcome}
         aria-current="page"
-        className="inline-flex   rounded-2xl  duration-200 hover:text-white active:text-white items-center text-xs font-medium py-5 px-4  text-blue-300 flex-grow"
+        className="inline-flex rounded-2xl items-center text-xs xl:font-medium xl:py-5 px-4 text-white"
         
       >
-        <Icon icon="fluent:location-12-filled"  className="w-10 h-10 mr-5" />
-        <small className="text-center text-2xl font-bold">{t("SanBartolome")}</small>
+        <Icon icon="fluent:location-12-filled"  className="xl:w-10 xl:h-10 w-5 h-11 xl:mr-5 mr-1" />
+        <small className="text-center text-2xl xl:font-bold">{t("SanBartolome")}</small>
         <span className="sr-only">Home</span>
       </a>
-
-     
-      
- 
-
     </div>
 
   );
