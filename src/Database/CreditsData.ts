@@ -1,8 +1,8 @@
 // YourComponent.tsx
-export const credits: creditssh[] = [
+export const credits = [
   {
     name: 'Mike Gester Sabuga',
-    position: 'Developer',
+    position: 'Janitor Engineer',
     picture: '/src/Imgs/ids/sabuga.png',
   },
   {
@@ -93,7 +93,7 @@ export const credits: creditssh[] = [
   {
     name: 'Espiritu, Daniella',
     position: 'Project Manager',
-    picture: '/src/Imgs/ids/',
+    picture: '/src/Imgs/ids/Espiritu.jpg',
   },
   {
     name: 'Ariate, Jomar',
@@ -125,6 +125,12 @@ export const credits: creditssh[] = [
     position: 'Documenter',
     picture: '/src/Imgs/ids/GIGANTONE.jpg',
   },
+
+  // {
+  //   name: 'Niki',
+  //   position: 'Translation',
+  //   picture: '/src/Imgs/ids/niki.jpg',
+  // },
 
     // ... other credit entries
   ];
