@@ -7,6 +7,7 @@ import "react-simple-keyboard/build/css/index.css";
 import './style.css';
 import Dock from './../components/dock';
 import Backbtn from './../components/Backbtn';
+import SimonTour from './../Components/Modals/SimonTourModal';
 
 interface SearchProps {
   name: string;
@@ -90,32 +91,32 @@ const Search: React.FC<SearchProps> = ({ name }) => {
                     <option className="py-5">FACILITIES</option>
                   </select> */}
                   <div className="indicator">
-                    <button onClick={handleSearch} className="btn h-16 w-20 bg-white hover:bg-gray-300 rounded-2xl text-gray-700 join-item"><Icon icon="wpf:search" className="w-7 h-7" /></button>
+                    <button onClick={() => document.getElementById('select_room').showModal()} className="btn h-16 w-20 bg-white hover:bg-gray-300 rounded-2xl text-gray-700 join-item"><Icon icon="wpf:search" className="w-7 h-7" /></button>
                   </div>
                 </div>
-                
-                <div className="hidden">
-                    <ul className="menu bg-white mt-5 w-5/12 mx-auto justify-center lg:menu-horizontal rounded-box">
-                 <div>
-                  <h2 className="text-gray-900">No Results Found</h2>
-                 </div>
 
-                </ul>
+                <div className="hidden">
+                  <ul className="menu bg-white mt-5 w-5/12 mx-auto justify-center lg:menu-horizontal rounded-box">
+                    <div>
+                      <h2 className="text-gray-900">No Results Found</h2>
+                    </div>
+
+                  </ul>
                 </div>
                 <div className="grid grid-cols-1">
-                <div className="mt-5 space-x-2">
-                <div className="badge badge-lg bg-gray-200  text-gray-900 ">Faculties</div>
-                <div className="badge badge-lg bg-gray-200  text-gray-900 ">Facilities</div>
-                <div className="badge badge-lg bg-gray-200  text-gray-900 ">Gymnasium</div>
-                <div className="badge badge-lg bg-gray-200  text-gray-900 ">Departments</div>
-                <div className="badge badge-lg bg-gray-200  text-gray-900 ">SPARD</div>
-                <div className="badge badge-lg bg-gray-200  text-gray-900 ">Parking</div>
-                <div className="badge badge-lg bg-gray-200  text-gray-900 ">Admin</div>
-                
+                  <div className="mt-5 space-x-2">
+                    <div className="badge badge-lg bg-gray-200  text-gray-900 ">Faculties</div>
+                    <div className="badge badge-lg bg-gray-200  text-gray-900 ">Facilities</div>
+                    <div className="badge badge-lg bg-gray-200  text-gray-900 ">Gymnasium</div>
+                    <div className="badge badge-lg bg-gray-200  text-gray-900 ">Departments</div>
+                    <div className="badge badge-lg bg-gray-200  text-gray-900 ">SPARD</div>
+                    <div className="badge badge-lg bg-gray-200  text-gray-900 ">Parking</div>
+                    <div className="badge badge-lg bg-gray-200  text-gray-900 ">Admin</div>
+
+                  </div>
+
                 </div>
-              
-                </div>
-                
+
                 <div className="xl:block inset-x-0 mx-auto w-5/12 fixed bottom-44 justify-center items-center bg-gray-100 hidden p-5 rounded-2xl mt-36">
                   <div className="">
                     <Keyboard name={'Keyboard'}
@@ -300,7 +301,147 @@ const Search: React.FC<SearchProps> = ({ name }) => {
         </div>
         <Backbtn name={'Back'} />
         <Dock name={'Dock'} />
+        <dialog id="select_room" className="modal">
+          <div className="modal-box w-96 absolute right-0 top-0 transition-transform transform translate-x-0 ease-in-out duration-300  drawer-overlay  min-h-screen rounded-r-none p-5 ">
+            <h3 className="font-bold text-center text-3xl">Details</h3>
 
+            <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-0 lg:py-5 mx-auto">
+
+              <div className="grid md:grid-cols-1 border border-gray-200 shadow-sm rounded-xl overflow-hidden dark:border-gray-700">
+                <h3 className="font-bold text-center text-xl">IC101</h3>
+                <a className="block p-4 md:p-5  hover:bg-gray-50 before:absolute before:top-0 before:start-0 before:w-full before:h-px md:before:w-px md:before:h-full  before:first:bg-transparent  dark:hover:bg-slate-800 dark:before:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                  <div className="flex md:grid lg:flex gap-y-3 gap-x-5">
+                    <Icon icon="mdi:information-variant-circle-outline" className="w-10 h-10 text-gray-500" />
+
+                    <div className="grow">
+                      <p className="text-xs uppercase tracking-wide font-medium text-gray-800 dark:text-gray-200">
+                        Belmonte Building
+                      </p>
+                      <h3 className="mt-1 text-xl sm:text-2xl font-semibold text-gray-500">
+                        2nd Floor
+                      </h3>
+                      <div className="mt-1 flex justify-between items-center">
+                        <p className="text-sm text-gray-500">
+                          Room: <span className="font-semibold text-gray-800 dark:text-gray-200">IC101</span>
+                        </p>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </a>
+                <a className="block p-4 md:p-5  hover:bg-gray-50 before:absolute before:top-0 before:start-0 before:w-full before:h-px md:before:w-px md:before:h-full  before:first:bg-transparent  dark:hover:bg-slate-800 dark:before:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                  <div className="flex md:grid lg:flex gap-y-3 gap-x-5">
+                    <Icon icon="pepicons-pop:rewind-time" className="w-10 h-10 text-gray-500" />
+
+                    <div className="grow">
+                      <p className="text-xs uppercase tracking-wide font-medium text-gray-800 dark:text-gray-200">
+                        Estimated Time of Arrival ( ETA )
+                      </p>
+                      <h3 className="mt-1 text-xl sm:text-2xl font-semibold text-gray-500">
+                        4:26
+                      </h3>
+                      <div className="mt-1 flex justify-between items-center">
+                        <p className="text-sm text-gray-500">
+                          Average: <span className="font-semibold text-gray-800 dark:text-gray-200">4:11</span>
+                        </p>
+
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                <hr className="bg-gray-400 m-6" />
+                <h3 className="font-bold text-center text-3xl">Directions</h3>
+                <a className="block p-4 md:p-5  hover:bg-gray-50 before:absolute before:top-0 before:start-0 before:w-full before:h-px md:before:w-px md:before:h-full  before:first:bg-transparent  dark:hover:bg-slate-800 dark:before:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                  <div className="flex md:grid lg:flex gap-y-3 gap-x-5">
+                    <Icon icon="mdi:arrow-up-thick" className="w-10 h-10 text-gray-500" />
+
+                    <div className="grow">
+                      <p className="text-xs uppercase tracking-wide font-medium text-gray-800 dark:text-gray-200">
+                        Head towards Techvoc Building
+                      </p>
+
+                      <div className="mt-1 flex justify-between items-center">
+                        <p className="text-sm text-gray-500">
+                          Average: <span className="font-semibold text-gray-800 dark:text-gray-200">4:11</span>
+                        </p>
+
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                <a className="block p-4 md:p-5  hover:bg-gray-50 before:absolute before:top-0 before:start-0 before:w-full before:h-px md:before:w-px md:before:h-full  before:first:bg-transparent  dark:hover:bg-slate-800 dark:before:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                  <div className="flex md:grid lg:flex gap-y-3 gap-x-5">
+                    <Icon icon="mdi:arrow-left-top-bold" className="w-10 h-10 text-gray-500" />
+
+                    <div className="grow">
+                      <p className="text-xs uppercase tracking-wide font-medium text-gray-800 dark:text-gray-200">
+                        Head towards Techvoc Building
+                      </p>
+
+                      <div className="mt-1 flex justify-between items-center">
+                        <p className="text-sm text-gray-500">
+                          Average: <span className="font-semibold text-gray-800 dark:text-gray-200">4:11</span>
+                        </p>
+
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                <a className="block p-4 md:p-5  hover:bg-gray-50 before:absolute before:top-0 before:start-0 before:w-full before:h-px md:before:w-px md:before:h-full  before:first:bg-transparent  dark:hover:bg-slate-800 dark:before:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                  <div className="flex md:grid lg:flex gap-y-3 gap-x-5">
+                    <Icon icon="mdi:arrow-right-top-bold" className="w-10 h-10 text-gray-500" />
+
+                    <div className="grow">
+                      <p className="text-xs uppercase tracking-wide font-medium text-gray-800 dark:text-gray-200">
+                        Head towards Techvoc Building
+                      </p>
+
+                      <div className="mt-1 flex justify-between items-center">
+                        <p className="text-sm text-gray-500">
+                          Average: <span className="font-semibold text-gray-800 dark:text-gray-200">4:11</span>
+                        </p>
+
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                <a className="block p-4 md:p-5  hover:bg-gray-50 before:absolute before:top-0 before:start-0 before:w-full before:h-px md:before:w-px md:before:h-full  before:first:bg-transparent  dark:hover:bg-slate-800 dark:before:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                  <div className="flex md:grid lg:flex gap-y-3 gap-x-5">
+                    <Icon icon="mdi:arrow-up-thick" className="w-10 h-10 text-gray-500" />
+
+                    <div className="grow">
+                      <p className="text-xs uppercase tracking-wide font-medium text-gray-800 dark:text-gray-200">
+                        Head towards Techvoc Building
+                      </p>
+
+                      <div className="mt-1 flex justify-between items-center">
+                        <p className="text-sm text-gray-500">
+                          Average: <span className="font-semibold text-gray-800 dark:text-gray-200">4:11</span>
+                        </p>
+
+                      </div>
+                    </div>
+                  </div>
+                </a>
+
+
+              </div>
+
+              <div className="absolute bottom-5 inset-x-0 mx-6">
+                <button onClick={() => document.getElementById('SimonTour').showModal()} className="btn w-full bg-sky-800 rounded-xl">
+                  <Icon icon="material-symbols:moved-location-rounded" className="w-8 h-8" />
+                  Start Navigation
+                </button>
+              </div>
+            </div>
+
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog>
+        <SimonTour />
       </IonContent>
     </IonPage>
   );
