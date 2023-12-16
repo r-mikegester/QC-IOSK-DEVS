@@ -1,10 +1,10 @@
 import { Icon } from '@iconify/react';
 import React, { useState } from 'react';
-import ChangeLanguage from './MultiControls/ChangeLanguage';
-import Credits from './MultiControls/Credits';
-import KioskManual from './MultiControls/KioskManual';
-import Reload from './MultiControls/Reload';
-import AudioBG from './MultiControls/AudioBG';
+import ChangeLanguage from './ChangeLanguage';
+import Credits from './Credits';
+import KioskManual from './KioskManual';
+import Reload from './Reload';
+import AudioBG from './AudioBG';
 interface ContainerProps {
     name: string;
 }

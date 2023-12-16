@@ -2,8 +2,8 @@ import { IonContent, IonPage } from '@ionic/react';
 import SanBartolome from '../campus/SanBartolome';
 import Dock from '../components/dock';
 import { Icon } from '@iconify/react';
-import Controls from '../components/controls';
-import Location from '../components/Location';
+import Controls from '../components/MultiControls/controls';
+import Location from '../components/Widgets/location/Location';
 
 import React, { useState, useRef } from 'react';
 import Backbtn from '../components/Backbtn';
@@ -15,6 +15,7 @@ import KioskModal from '../Components/Modals/KioskModal';
 import BuildingModal from '../Components/MultiControls/buildingmodal';
 import VideoTourModal from '../Components/Modals/VideoTourModal';
 import StatusBar from './../Components/Mobile/StatusBar';
+import WeatherComponent from '../components/Widgets/weather/weather';
 interface ContainerProps {
   name: string;
   buildingName: string;
@@ -54,6 +55,7 @@ const [showModal, setShowModal] = useState(false);
         </div>
         <div className="absolute top-0 left-20 z-50 ">
           <Widgets name={'Widgets'} />
+          <WeatherComponent />
           {/* <Directions isOpen={showModal} onClose={closeModal} name={'directions'} /> */}
         </div>
         <div className="z-10">
