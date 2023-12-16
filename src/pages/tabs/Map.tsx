@@ -80,12 +80,12 @@ const [showModal, setShowModal] = useState(false);
                           <button className="btn btn-square hover:scale-110 absolute left-5 top-10"><Icon icon="typcn:arrow-back-outline" className="w-8 h-8" /></button>
                         </form>
                         <span><h3 className="font-bold text-center text-5xl">Select Room</h3></span>
-                        <h3 className="font-bold text-center text-3xl">Ground Floor</h3>
+                        <h3 className="font-bold text-center text-3xl">2nd Floor</h3>
                         <div className="grid grid-cols-4 mt-10 gap-1">
                           <div className="flex flex-col w-full">
 
                             <div className="grid h-20 shadow-lg bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center" onClick={() => document.getElementById('select_room').showModal()}>
-                              <h3 className="text-gray-900 font-extrabold text-4xl">IC101</h3>
+                              <h3 className="text-gray-900 font-extrabold text-4xl">IC201</h3>
                               <dialog id="select_room" className="modal">
                                 <div className="modal-box w-96 absolute right-0 top-0 transition-transform transform translate-x-0 ease-in-out duration-300  drawer-overlay  min-h-screen rounded-r-none p-5 ">
                                   <h3 className="font-bold text-center text-3xl">Details</h3>
@@ -93,7 +93,7 @@ const [showModal, setShowModal] = useState(false);
                                   <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-0 lg:py-5 mx-auto">
 
                                     <div className="grid md:grid-cols-1 border border-gray-200 shadow-sm rounded-xl overflow-hidden dark:border-gray-700">
-                                      <h3 className="font-bold text-center text-xl">IC101</h3>
+                                      <h3 className="font-bold text-center text-xl">IC201</h3>
                                       <a className="block p-4 md:p-5  hover:bg-gray-50 before:absolute before:top-0 before:start-0 before:w-full before:h-px md:before:w-px md:before:h-full  before:first:bg-transparent  dark:hover:bg-slate-800 dark:before:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                                         <div className="flex md:grid lg:flex gap-y-3 gap-x-5">
                                           <Icon icon="mdi:information-variant-circle-outline" className="w-10 h-10 text-gray-500" />
@@ -107,7 +107,7 @@ const [showModal, setShowModal] = useState(false);
                                             </h3>
                                             <div className="mt-1 flex justify-between items-center">
                                               <p className="text-sm text-gray-500">
-                                                Room: <span className="font-semibold text-gray-800 dark:text-gray-200">IC101</span>
+                                                Room: <span className="font-semibold text-gray-800 dark:text-gray-200">IC201</span>
                                               </p>
 
                                             </div>
@@ -230,7 +230,7 @@ const [showModal, setShowModal] = useState(false);
                           </div>
                           <div className="flex flex-col w-full">
                             <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
-                              <h3 className="text-gray-900 font-extrabold text-4xl">IC102</h3>
+                              <h3 className="text-gray-900 font-extrabold text-4xl">IC202</h3>
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
                                   <h3 className="font-bold text-lg">Hello!</h3>
@@ -244,7 +244,7 @@ const [showModal, setShowModal] = useState(false);
                           </div>
                           <div className="flex flex-col w-full">
                             <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
-                              <h3 className="text-gray-900 font-extrabold text-4xl">IC103</h3>
+                              <h3 className="text-gray-900 font-extrabold text-4xl">IC203</h3>
 
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
@@ -259,7 +259,7 @@ const [showModal, setShowModal] = useState(false);
                           </div>
                           <div className="flex flex-col w-full">
                             <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
-                              <h3 className="text-gray-900 font-extrabold text-4xl">IC104</h3>
+                              <h3 className="text-gray-900 font-extrabold text-4xl">IC204</h3>
 
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
@@ -280,7 +280,7 @@ const [showModal, setShowModal] = useState(false);
                           </div>
                           <div className="flex flex-col w-full">
                             <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
-                              <h3 className="text-gray-900 font-extrabold text-4xl">IC105</h3>
+                              <h3 className="text-gray-900 font-extrabold text-4xl">IC205</h3>
 
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
@@ -297,7 +297,7 @@ const [showModal, setShowModal] = useState(false);
                           </div>
                           <div className="flex flex-col w-full">
                             <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
-                              <h3 className="text-gray-900 font-extrabold text-4xl">IC106</h3>
+                              <h3 className="text-gray-900 font-extrabold text-4xl">IC206</h3>
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
                                   <h3 className="font-bold text-lg">Hello!</h3>
@@ -313,7 +313,7 @@ const [showModal, setShowModal] = useState(false);
                           </div>
                           <div className="flex flex-col w-full">
                             <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
-                              <h3 className="text-gray-900 font-extrabold text-4xl">IC107</h3>
+                              <h3 className="text-gray-900 font-extrabold text-4xl">IC207</h3>
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
                                   <h3 className="font-bold text-center text-5xl">Select Room</h3>
@@ -333,7 +333,7 @@ const [showModal, setShowModal] = useState(false);
                           </div>
                           <div className="flex flex-col w-full">
                             <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
-                              <h3 className="text-gray-900 font-extrabold text-4xl">IC108</h3>
+                              <h3 className="text-gray-900 font-extrabold text-4xl">CR</h3>
                               <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box max-w-3xl">
                                   <h3 className="font-bold text-lg">Hello!</h3>
@@ -356,9 +356,9 @@ const [showModal, setShowModal] = useState(false);
                   </div>
                 </div>
                 <div className="flex flex-col w-full">
-                  <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center">
+                  <div className="grid h-20 card bg-white hover:scale-110  ease-in-out duration-200 rounded-box place-items-center"  onClick={() => document.getElementById('select_floor').showModal()}>
                     <h3 className="text-gray-900 font-extrabold text-4xl">2nd</h3>
-                    <dialog id="my_modal_2" className="modal">
+                    <dialog id="select_room" className="modal">
                       <div className="modal-box max-w-3xl">
                         <h3 className="font-bold text-center text-5xl">Select Room</h3>
                         <div className="grid grid-cols-6 gap-1">

@@ -1,7 +1,7 @@
 // Modal.tsx
 import React, { useRef } from 'react';
 import { Icon } from '@iconify/react';
-import Mp4 from '../../../Vids/sample4.mp4';
+import Mp4 from '../../../Vids/sb/r_belmonte.mp4';
 import QRcode from '../../../Imgs/qr.png';
 import Qrcode from './QrCode';
 const CreditsModal: React.FC = () => {

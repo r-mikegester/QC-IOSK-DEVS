@@ -90,7 +90,7 @@ const RotatingMesh = () => {
     >(null);
 
   // Use useFrame to update rotation and position in every frame
-  useFrame((state, delta) => {
+  useFrame((state: { clock: { elapsedTime: number; }; }, delta: any) => {
     if (meshRef.current) {
       // Rotate around the y-axis
       meshRef.current.rotation.y += 0.05;
@@ -453,7 +453,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                   // Ensure one line text
                 }}
               >
-                You are here
+                {t("You are here")}
               </div>
             </Html>
             <mesh position={[0, 0, 0]}>

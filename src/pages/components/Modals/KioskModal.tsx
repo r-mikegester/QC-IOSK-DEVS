@@ -35,7 +35,7 @@ const KioskModal: React.FC = () => {
                             <div className="relative flex flex-col items-center max-w-lg gap-4 p-6 my-10 rounded-md sm:py-8 sm:px-12 dark:bg-white dark:text-gray-100">
                                
                                 <Icon icon="ph:hand-swipe-left" className="w-20 h-20 text-sky-700" /> 
-                                <h2 className="text-2xl font-semibold leadi tracki text-sky-700">Swip thru this slide </h2>
+                                <h2 className="text-2xl font-semibold leadi tracki text-sky-700">Swipe thru this slide </h2>
                                 <p className="flex-1 text-center dark:text-gray-700">Use your Fingers to swipe left or right to start navigating the slides.</p>
                                
                             </div>

@@ -1,7 +1,7 @@
 // Modal.tsx
 import React, { useRef } from 'react';
 import { Icon } from '@iconify/react';
-import Mp4 from '../../../Vids/sb/r_simon.mp4';
+import Mp4 from '../../../vids/sb/r_simon1.mp4';
 import QRcode from '../../../Imgs/qr.png';
 import Qrcode from './QrCode';
 const SimonTour: React.FC = () => {
