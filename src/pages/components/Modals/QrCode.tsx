@@ -1,9 +1,9 @@
 // Modal.tsx
 import React, { useRef } from 'react';
 import { Icon } from '@iconify/react';
-import Mp4 from '../../../Vids/sb/r_simon.mp4';
-import QRcode from '../../../Imgs/qr.png';
-const Qrcode: React.FC = () => {
+import Mp4 from '../../../assets/Vids/sb/r_simon.mp4';
+import QRcode from '../../../assets/imgs/qr.png';
+const qrCode: React.FC = () => {
 
   return (
     <dialog id="qrcode" className="modal">
@@ -24,4 +24,4 @@ const Qrcode: React.FC = () => {
   );
 };
 
-export default Qrcode;
+export default qrCode;

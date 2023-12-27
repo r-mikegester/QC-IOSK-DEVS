@@ -1,9 +1,9 @@
 // Modal.tsx
 import React, { useRef } from 'react';
 import { Icon } from '@iconify/react';
-import Mp4 from '../../../vids/sb/r_simon1.mp4';
-import QRcode from '../../../Imgs/qr.png';
-import Qrcode from './QrCode';
+import Mp4 from '../../../assets/vids/sb/r_simon1.mp4';
+
+
 const SimonTour: React.FC = () => {
 
   return (
@@ -30,7 +30,7 @@ const SimonTour: React.FC = () => {
       <form method="dialog" className="modal-backdrop">
         <button>close</button>
       </form>
-      <Qrcode />
+
     </dialog>
   );
 };

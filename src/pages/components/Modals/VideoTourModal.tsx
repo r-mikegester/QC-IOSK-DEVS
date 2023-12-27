@@ -1,9 +1,8 @@
-// Modal.tsx
-import React, { useRef } from 'react';
+import Mp4 from '../../../assets/Vids/sb/r_belmonte.mp4';
+
 import { Icon } from '@iconify/react';
-import Mp4 from '../../../Vids/sb/r_belmonte.mp4';
-import QRcode from '../../../Imgs/qr.png';
-import Qrcode from './QrCode';
+import React, { useRef } from 'react';
+
 const CreditsModal: React.FC = () => {
 
   return (
@@ -30,7 +29,6 @@ const CreditsModal: React.FC = () => {
     <form method="dialog" className="modal-backdrop">
       <button>close</button>
     </form>
- <Qrcode />
   </dialog>
   );
 };

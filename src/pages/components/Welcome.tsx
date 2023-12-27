@@ -1,10 +1,10 @@
-import React from 'react';
+import QCULogo from '../../assets/imgs/logo/qculogo.png';
 import { IonPage, IonContent } from '@ionic/react';
-import QCULogo from '../../imgs/Logo/qculogo.png';
-import Sample from '../../vids/sample5.mp4';
+import Sample from '../../assets/vids/sample4.mp4';
 //import Samplecp from '../../vids/samplecp3.mp4';
 import { useHistory } from 'react-router-dom';
 import { Icon } from '@iconify/react';
+import React from 'react';
 
 interface ContainerProps {
   name: string;

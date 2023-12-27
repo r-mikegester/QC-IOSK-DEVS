@@ -1,7 +1,7 @@
-// Modal.tsx
-import React from 'react';
+import { credits } from '../../../database/creditsData';
 import { Icon } from '@iconify/react';
-import { credits } from '../../../Database/CreditsData';
+import React from 'react';
+
 const CreditsModal: React.FC = () => {
 
   return (

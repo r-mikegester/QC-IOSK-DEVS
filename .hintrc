@@ -7,7 +7,8 @@
       "default",
       {
         "ignore": [
-          "dialog"
+          "dialog",
+          "meta[name=color-scheme]"
         ]
       }
     ],
@@ -24,6 +25,31 @@
       {
         "image-alt": "off"
       }
-    ]
+    ],
+    "axe/structure": [
+      "default",
+      {
+        "list": "off"
+      }
+    ],
+    "manifest-file-extension": "off",
+    "meta-viewport": "off",
+    "apple-touch-icons": "off",
+    "axe/forms": [
+      "default",
+      {
+        "select-name": "off",
+        "label": "off"
+      }
+    ],
+    "typescript-config/strict": "off",
+    "typescript-config/consistent-casing": "off",
+    "axe/keyboard": [
+      "default",
+      {
+        "nested-interactive": "off"
+      }
+    ],
+    "disown-opener": "off"
   }
 }

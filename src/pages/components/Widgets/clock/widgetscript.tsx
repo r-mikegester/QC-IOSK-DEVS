@@ -40,7 +40,7 @@ const CountdownTimer: React.FC = () => {
             const displayStartNum = String(startNumber).padStart(2, '0');
             const displayNewNum = String(newNumber).padStart(2, '0');
 
-            if (flag) console.log('displayStartNum', displayStartNum, displayNewNum);
+            // if (flag) console.log('displayStartNum', displayStartNum, displayNewNum);
 
             const anim = (
                 el: HTMLElement,

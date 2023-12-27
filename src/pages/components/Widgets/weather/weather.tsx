@@ -11,7 +11,7 @@ interface WeatherData {
   }[];
 }
 
-const WeatherComponent: React.FC = () => {
+const WeatherPane: React.FC = () => {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const apiKey = 'ab771b0791641b4b32511c5c2fcc28f7'; // Replace 'YOUR_API_KEY' with your actual API key
 
@@ -19,7 +19,7 @@ const WeatherComponent: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=QuezonCity,PH&appid=${apiKey}&units=metric`
+          `https://api.openweathermap.org/data/2.5/weather?q=Quezon City&appid=${apiKey}&units=metric`
           // Replace 'CityName' with the name of the city for which you want to fetch weather data
         );
 
@@ -38,19 +38,19 @@ const WeatherComponent: React.FC = () => {
   }, [apiKey]);
 
   return (
-    <div>
-      <h2>Weather Information</h2>
+    <div className="w-44 h-auto bg-gray-900/50 backdrop-blur-lg rounded-2xl py-1 pb-5 text-sm justify-start px-3">
+      <h2 className="text-xs font-extrabold">Weather Information</h2>
       {weather ? (
         <div>
-          <p>Temperature: {weather.main.temp}°C</p>
-          <p>Humidity: {weather.main.humidity}%</p>
-          <p>Description: {weather.weather[0].description}</p>
+          <p>Temperature: <span className="text-yellow-500">{weather.main.temp}°C</span></p>
+          <p>Humidity: <span className="text-yellow-500">{weather.main.humidity}%</span></p>
+          <p>Description: <span className="text-yellow-500">{weather.weather[0].description}</span></p>
         </div>
       ) : (
-        <p>Loading...</p>
+        <p className="text-xs">Loading Weather Data please wait...</p>
       )}
     </div>
   );
 };
 
-export default WeatherComponent;
+export default WeatherPane;

@@ -29,7 +29,7 @@ const KioskModal: React.FC = () => {
                         spaceBetween={50}
                         slidesPerView={1}
                         onSlideChange={() => console.log('slide change')}
-                        onSwiper={(swiper) => console.log(swiper)}
+                        // onSwiper={(swiper) => console.log(swiper)}
                     >
                           <SwiperSlide className="rounded-2xl text-gray-900">
                             <div className="relative flex flex-col items-center max-w-lg gap-4 p-6 my-10 rounded-md sm:py-8 sm:px-12 dark:bg-white dark:text-gray-100">
