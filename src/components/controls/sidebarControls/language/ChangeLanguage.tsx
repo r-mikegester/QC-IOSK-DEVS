@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -29,23 +29,28 @@ const ChangeLanguage: React.FC<ContainerProps> = ({ name }) => {
   });
 
   const handleLanguageChange = (
-    e: React.ChangeEvent<HTMLAnchorElement>,
+    e: React.MouseEvent<HTMLButtonElement>,
     language: string
   ) => {
     e.preventDefault();
     setSelectedLanguage(language);
     i18n.changeLanguage(language);
+
+    
     const clearWaitingQueue = () => {
       // Easy, right 😎
       toast.clearWaitingQueue();
     }
-
+    
     // Display a toast message when the language is changed
     toast.success(`Selected language: ${language}`, {
       position: toast.POSITION.BOTTOM_RIGHT,
-      className: "foo-bar bg-base-100 text-base-content rounded-2xl",
+      className: " bg-base-100 text-base-content font-bold rounded-2xl",
       theme: "dark",
+    
     });
+
+    
     // Additional logic can be added here if needed upon language change
     // Update border styles based on the selected language
     const updatedBorderStyles: Record<string, string> = {};
@@ -59,16 +64,16 @@ const ChangeLanguage: React.FC<ContainerProps> = ({ name }) => {
   };
 
   return (
-    <div className=" py-10 bg-base-100 h-screen">
-      <div className="bg-base-100 z-50 top-0 px-3 sticky transition-all ease-in-out duration-150 py-1 pb-5">
-        <h1 className="text-left text-4xl text-base-content font-bold ">
+    <div className="h-screen py-10 bg-base-100">
+      <div className="sticky top-0 z-50 px-3 py-1 pb-5 transition-all duration-150 ease-in-out bg-base-100">
+        <h1 className="text-4xl font-bold text-left text-base-content ">
           {t("Languages")}
         </h1>
-        <p className=" text-sm text-base-content">
+        <p className="text-sm text-base-content">
           {t("ChooseYourPreferredLanguage")}
         </p>
       </div>
-      <div className="w-full h-auto space-y-2 px-4 rounded-2xl">
+      <div className="w-full h-auto px-4 space-y-2 rounded-2xl">
         <button
           className={`btn w-full h-16 text-xl hover:bg-gradient-to-tr hover:from-base-300 bg-gradient-to-tr from-base-200 to-base-300 justify-between border-2 border-transparent ${borderStyles["en"]}`}
           onClick={(e) => handleLanguageChange(e, "en")}
