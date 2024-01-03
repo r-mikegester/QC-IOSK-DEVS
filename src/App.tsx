@@ -3,22 +3,21 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 
 /* Campuses*/
-import SanBartolome from './pages/campus/SanBartolome';
-import SanFransisco from './pages/campus/SanFransisco';
-import Batasan from './pages/campus/Batasan';
+import SanBartolome from './components/campus/SanBartolome';
+import SanFransisco from './components/campus/SanFransisco';
+import Batasan from './components/campus/Batasan';
 
 /** Error Catching */
 
-/* Imported Components */
-import SelectCampus from './pages/tabs/SelectCampus';
-import Categories from './pages/tabs/Categories';
-import Welcome from './pages/components/Welcome';
-import Search from './pages/tabs/Search';
-import Map from './pages/tabs/Map';
+/* Main Routing */
+import Campuses from './pages/Campuses';
+import Home from './pages/Home';
+import Search from './pages/Search';
+import Index from './pages/Index';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
-import './index.css';
+import './assets/css/index.css';
 
 /* Basic CSS for apps built with Ionic */
 import '@ionic/react/css/typography.css';
@@ -34,7 +33,7 @@ import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 import '@ionic/react/css/padding.css';
 /* Theme variables */
-import './assets/theme/variables.css';
+import './assets/css/variables.css';
 /*Ionic Components*/
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 setupIonicReact();
@@ -61,16 +60,16 @@ const App: React.FC<ContainerProps> = ({ name }) => (
     <IonReactRouter>
       <IonRouterOutlet>
        
-          <Route path="/Welcome">
-            <Welcome name={'Welcome'} />
+          <Route path="/Home">
+            <Home name={'Home'} />
           </Route>
 
-          <Route exact path="/SelectCampus">
-            <SelectCampus name={'SelectCampus'} />
+          <Route exact path="/Campuses">
+            <Campuses name={'Campuses'} />
           </Route>
        
           <Route exact path="/SanBartolome">
-            <Map name={'Map'} buildingName={''} />
+            <Index name={'Index'} buildingName={''} />
           </Route>
        
           <Route exact path="/SanFransisco">
@@ -85,12 +84,8 @@ const App: React.FC<ContainerProps> = ({ name }) => (
             <Search name={'Search'} />
           </Route>
        
-          <Route path="/Categories">
-            <Categories name={'Categories'} />
-          </Route>
-       
           <Route exact path="/">
-            <Redirect to="/Welcome" />
+            <Redirect to="/Home" />
           </Route>
        
       </IonRouterOutlet>

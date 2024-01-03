@@ -1,0 +1,44 @@
+/* Import Normalize.css */
+@tailwind base;
+@tailwind components;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@layer components {
+  .sidebar-icon {
+    @apply relative flex items-center justify-center 
+    h-12 w-12 mt-2 mb-2 mx-auto  
+    hover:bg-gradient-to-tr hover:from-base-300 shadow-lg
+   bg-gradient-to-tr from-base-200 to-base-300
+    hover:rounded-xl rounded-3xl
+    transition-all duration-300 ease-linear
+    cursor-pointer;
+  }
+
+  .sidebar-tooltip {
+    @apply absolute w-auto p-2 m-2 min-w-max left-14 rounded-md shadow-md
+     bg-base-300 
+    text-xs font-bold 
+    transition-all duration-100 scale-0 origin-left;
+  }
+
+  .sidebar-hr {
+    @apply border border-base-300 bg-base-300 rounded-full
+    mx-auto w-2;
+  }
+}
+
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  @apply w-2 bg-base-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-base-300 rounded-full;
+}
