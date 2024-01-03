@@ -37,11 +37,14 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
   useEffect(() => {
     themeChange(false);
   });
+  
+  const customId = "custom-id-yes";
   const notify = () =>
     toast("Wow so easy!", {
       position: toast.POSITION.BOTTOM_RIGHT,
       className: "foo-bar bg-base-100 text-base-content rounded-2xl",
       theme: "dark",
+      toastId: customId
     });
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -55,6 +58,30 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
     history.push("/Home");
   };
   const contentRef = useRef<HTMLIonContentElement>(null);
+
+  // Assuming this is within an appropriate function or handler
+const handleFloorClick = () => {
+  const indexModal = document.getElementById('select_floor');
+if (indexModal instanceof HTMLDialogElement && typeof indexModal.showModal === 'function') {
+    indexModal.showModal();
+}
+}
+
+const handleRoomClick = () => {
+  const indexModal = document.getElementById('select_room');
+if (indexModal instanceof HTMLDialogElement && typeof indexModal.showModal === 'function') {
+    indexModal.showModal();
+}
+}
+
+const handleNavigationClick = () => {
+  const indexModal = document.getElementById('VideoTour');
+if (indexModal instanceof HTMLDialogElement && typeof indexModal.showModal === 'function') {
+    indexModal.showModal();
+}
+}
+
+
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -79,7 +106,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
         <div className="-z-[1000] cursor-move" style={{ zIndex: "-1000" }}>
           <SanBartolome name={"SanBartolome"} />
         </div>
-        
+      
 
         <div className="absolute bottom-10 right-10 ">
           <dialog id="SelectBuilding" className="modal">
@@ -92,9 +119,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                 <div className="flex flex-col w-full">
                   <div
                     className="grid h-20 duration-200 ease-in-out bg-white card hover:scale-110 rounded-box place-items-center"
-                    onClick={() =>
-                      document.getElementById("select_floor").showModal()
-                    }
+                    onClick={handleFloorClick}
                   >
                     <h3 className="text-4xl font-extrabold text-gray-900">
                       Ground
@@ -123,11 +148,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                           <div className="flex flex-col w-full">
                             <div
                               className="grid h-20 duration-200 ease-in-out bg-white shadow-lg hover:scale-110 rounded-box place-items-center"
-                              onClick={() =>
-                                document
-                                  .getElementById("select_room")
-                                  .showModal()
-                              }
+                              onClick={handleRoomClick}
                             >
                               <h3 className="text-4xl font-extrabold text-gray-900">
                                 IC201
@@ -293,11 +314,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
 
                                     <div className="absolute inset-x-0 mx-6 bottom-5">
                                       <button
-                                        onClick={() =>
-                                          document
-                                            .getElementById("VideoTour")
-                                            .showModal()
-                                        }
+                                        onClick={handleNavigationClick}
                                         className="w-full btn bg-sky-800 rounded-xl"
                                       >
                                         <Icon

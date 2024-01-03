@@ -65,6 +65,19 @@ const Search: React.FC<SearchProps> = ({ name }) => {
     history.push('/SanBartolome');
   };
 
+  const handleSearchButtonClick = () => {
+    const creditsModal = document.getElementById('SimonTour');
+    if (creditsModal instanceof HTMLDialogElement) {
+        creditsModal.showModal();
+    }
+};
+
+const handleSelectRoomClick = () => {
+  const creditsModal = document.getElementById('select_room');
+  if (creditsModal instanceof HTMLDialogElement) {
+      creditsModal.showModal();
+  }
+};
 
   return (
     <IonPage>
@@ -93,7 +106,7 @@ const Search: React.FC<SearchProps> = ({ name }) => {
                     <option className="py-5">FACILITIES</option>
                   </select> */}
                   <div className="indicator">
-                    <button onClick={() => document.getElementById('select_room').showModal()} className="w-20 h-16 text-gray-700 bg-white btn hover:bg-gray-300 rounded-2xl join-item"><Icon icon="wpf:search" className="w-7 h-7" /></button>
+                    <button onClick={handleSelectRoomClick} className="w-20 h-16 text-gray-700 bg-white btn hover:bg-gray-300 rounded-2xl join-item"><Icon icon="wpf:search" className="w-7 h-7" /></button>
                   </div>
                 </div>
 
@@ -256,7 +269,7 @@ const Search: React.FC<SearchProps> = ({ name }) => {
               </div>
 
               <div className="absolute inset-x-0 mx-6 bottom-5">
-                <button onClick={() => document.getElementById('SimonTour').showModal()} className="w-full btn bg-sky-800 rounded-xl">
+                <button onClick={handleSearchButtonClick} className="w-full btn bg-sky-800 rounded-xl">
                   <Icon icon="material-symbols:moved-location-rounded" className="w-8 h-8" />
                   Start Navigation
                 </button>

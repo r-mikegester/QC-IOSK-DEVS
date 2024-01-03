@@ -3,7 +3,12 @@ import { Icon } from '@iconify/react';
 import React, { useRef } from 'react';
 
 const CreditsModal: React.FC = () => {
-
+  const handleFinishedNavigatingClick = () => {
+    const creditsModal = document.getElementById('qrcode');
+    if (creditsModal instanceof HTMLDialogElement) {
+        creditsModal.showModal();
+    }
+};
   return (
     <dialog id="VideoTour" className="modal">
       <div className="modal-box mr-80 max-w-7xl">
@@ -21,8 +26,9 @@ const CreditsModal: React.FC = () => {
     Your browser does not support the video tag.
   </video>
 
-</div><div className="justify-center modal-action">
-  <a onClick={() => document.getElementById('qrcode').showModal()} className="btn ">Finish Navigating</a>
+</div>
+<div className="justify-center modal-action">
+  <a onClick={handleFinishedNavigatingClick} className="btn ">Finish Navigating</a>
 </div>
 </div>
     <form method="dialog" className="modal-backdrop">

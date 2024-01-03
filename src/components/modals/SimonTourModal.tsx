@@ -5,7 +5,12 @@ import Mp4 from '../../assets/vids/sb/r_simon1.mp4';
 
 
 const SimonTour: React.FC = () => {
-
+  const handleFinishedNavigatingClick = () => {
+    const creditsModal = document.getElementById('qrcode');
+    if (creditsModal instanceof HTMLDialogElement) {
+        creditsModal.showModal();
+    }
+};
   return (
     <dialog id="SimonTour" className="modal">
       <div className="modal-box mr-80 max-w-7xl">
@@ -24,7 +29,7 @@ const SimonTour: React.FC = () => {
           </video>
 
         </div><div className="justify-center modal-action">
-          <a onClick={() => document.getElementById('qrcode').showModal()} className="btn ">Finish Navigating</a>
+          <a onClick={handleFinishedNavigatingClick} className="btn ">Finish Navigating</a>
         </div>
       </div>
       <form method="dialog" className="modal-backdrop">
