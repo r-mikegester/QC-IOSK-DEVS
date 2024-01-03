@@ -45,9 +45,16 @@ function Model(props: ModelProps) {
   };
   const handleClick = () => {
     if (isClickableMesh(props.name)) {
-
-      console.log("Building clicked!");
-
+      setIsModalOpen(true);
+      // console.log("Building clicked!");
+      setTimeout(() => {
+        const dialogElement = document.getElementById(
+          "BuildingSelect"
+        ) as HTMLDialogElement | null;
+        if (dialogElement) {
+          dialogElement.showModal();
+        }
+      }, 2000);
     }
   };
   return (
