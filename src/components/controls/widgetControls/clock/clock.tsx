@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import React, { useState, useEffect } from "react";
-import "./widgetstyle.css";
-import CountdownTimer from "./widgetscript";
+import "../../../../assets/css/clockstyle.css";
+import CountdownTimer from "./clockscript";
 
 interface ContainerProps {
   name: string;
@@ -45,26 +45,26 @@ const ClockPane: React.FC<ContainerProps> = ({ name }) => {
                 data-hours
               >
                 {/* <!--Top--> */}
-                <span className="relative flex items-end justify-center h-10 overflow-hidden font-bold text-base-content w-20 bg-base-100/20 backdrop-blur-lg rounded-tl-2xl rounded-tr-2xl text-5xl">
+                <span className="relative flex items-end justify-center w-20 h-10 overflow-hidden text-5xl font-bold text-base-content bg-base-100 backdrop-blur-lg rounded-tl-2xl rounded-tr-2xl">
                   <div className="absolute flex items-end justify-start w-full h-full">
-                    <div className="w-[5px] h-[4px] rounded-tr-full bg-base-content/50"></div>
+                    <div className="w-[5px] h-[4px] rounded-tr-full bg-base-content"></div>
                   </div>
                   <div className="absolute flex items-end justify-end w-full h-full">
-                    <div className="w-[5px] h-[4px] rounded-tl-full bg-base-content/50"></div>
+                    <div className="w-[5px] h-[4px] rounded-tl-full bg-base-content"></div>
                   </div>
                   <span className="translate-y-5" data-card-top>
                     00
                   </span>
                   {/* <!--FlipTop--> */}
                   <span
-                    className="absolute flex items-end justify-center h-10 overflow-hidden font-bold text-base-content w-20 bg-base-100/20 backdrop-blur-lg rounded-tl-2xl rounded-tr-2xl text-5xl "
+                    className="absolute flex items-end justify-center w-20 h-10 overflow-hidden text-5xl font-bold text-base-content bg-base-100 backdrop-blur-lg rounded-tl-2xl rounded-tr-2xl "
                     data-flip-top
                   >
                     <div className="absolute flex items-end justify-start w-full h-full">
-                      <div className="w-[5px] h-[4px] rounded-tr-full bg-base-content/50"></div>
+                      <div className="w-[5px] h-[4px] rounded-tr-full bg-base-content"></div>
                     </div>
                     <div className="absolute flex items-end justify-end w-full h-full">
-                      <div className="w-[5px] h-[4px] rounded-tl-full bg-base-content/50"></div>
+                      <div className="w-[5px] h-[4px] rounded-tl-full bg-base-content"></div>
                     </div>
                     <span
                       className="translate-y-5"
@@ -76,26 +76,26 @@ const ClockPane: React.FC<ContainerProps> = ({ name }) => {
                   </span>
                 </span>
                 {/* <!--Bottom--> */}
-                <span className="relative flex items-end justify-center h-10 overflow-hidden font-bold text-base-content w-20 bg-base-100/20 backdrop-blur-lg rounded-bl-2xl rounded-br-2xl text-5xl ">
+                <span className="relative flex items-end justify-center w-20 h-10 overflow-hidden text-5xl font-bold text-base-content bg-base-100 backdrop-blur-lg rounded-bl-2xl rounded-br-2xl ">
                   <div className="absolute flex items-start justify-start w-full h-full">
-                    <div className="w-[5px] h-[4px] rounded-br-full bg-base-content/50"></div>
+                    <div className="w-[5px] h-[4px] rounded-br-full bg-base-content"></div>
                   </div>
                   <div className="absolute flex items-start justify-end w-full h-full">
-                    <div className="w-[5px] h-[4px] rounded-bl-full bg-base-content/50"></div>
+                    <div className="w-[5px] h-[4px] rounded-bl-full bg-base-content"></div>
                   </div>
                   <span className="-translate-y-5" data-card-bot>
                     00
                   </span>
                   {/* <!--FlipBottom--> */}
                   <span
-                    className="absolute flex items-end justify-center h-10 overflow-hidden font-bold text-base-content w-20 bg-base-100/20 backdrop-blur-lg rounded-bl-2xl rounded-br-2xl text-5xl "
+                    className="absolute flex items-end justify-center w-20 h-10 overflow-hidden text-5xl font-bold text-base-content bg-base-100 backdrop-blur-lg rounded-bl-2xl rounded-br-2xl "
                     data-flip-bot
                   >
                     <div className="absolute flex items-start justify-start w-full h-full">
-                      <div className="w-[5px] h-[4px] rounded-br-full bg-base-content/50"></div>
+                      <div className="w-[5px] h-[4px] rounded-br-full bg-base-content"></div>
                     </div>
                     <div className="absolute flex items-start justify-end w-full h-full">
-                      <div className="w-[5px] h-[4px] rounded-bl-full bg-base-content/50"></div>
+                      <div className="w-[5px] h-[4px] rounded-bl-full bg-base-content"></div>
                     </div>
                     <span className="-translate-y-5" data-flip-bot-num>
                       00
@@ -113,26 +113,26 @@ const ClockPane: React.FC<ContainerProps> = ({ name }) => {
                 data-minutes
               >
                 {/* <!--Top--> */}
-                <span className="relative flex items-end justify-center h-10 overflow-hidden font-bold text-base-content w-20 bg-base-100/20 backdrop-blur-lg rounded-tl-2xl rounded-tr-2xl text-5xl">
+                <span className="relative flex items-end justify-center w-20 h-10 overflow-hidden text-5xl font-bold text-base-content bg-base-100 backdrop-blur-lg rounded-tl-2xl rounded-tr-2xl">
                   <div className="absolute flex items-end justify-start w-full h-full">
-                    <div className="w-[5px] h-[4px] rounded-tr-full bg-base-content/50"></div>
+                    <div className="w-[5px] h-[4px] rounded-tr-full bg-base-content"></div>
                   </div>
                   <div className="absolute flex items-end justify-end w-full h-full">
-                    <div className="w-[5px] h-[4px] rounded-tl-full bg-base-content/50"></div>
+                    <div className="w-[5px] h-[4px] rounded-tl-full bg-base-content"></div>
                   </div>
                   <span className="translate-y-5" data-card-top>
                     00
                   </span>
                   {/* <!--FlipTop--> */}
                   <span
-                    className="absolute flex items-end justify-center h-10 overflow-hidden font-bold text-base-content w-20 bg-base-100/20 backdrop-blur-lg rounded-tl-2xl rounded-tr-2xl text-5xl "
+                    className="absolute flex items-end justify-center w-20 h-10 overflow-hidden text-5xl font-bold text-base-content bg-base-100 backdrop-blur-lg rounded-tl-2xl rounded-tr-2xl "
                     data-flip-top
                   >
                     <div className="absolute flex items-end justify-start w-full h-full">
-                      <div className="w-[5px] h-[4px] rounded-tr-full bg-base-content/50"></div>
+                      <div className="w-[5px] h-[4px] rounded-tr-full bg-base-content"></div>
                     </div>
                     <div className="absolute flex items-end justify-end w-full h-full">
-                      <div className="w-[5px] h-[4px] rounded-tl-full bg-base-content/50"></div>
+                      <div className="w-[5px] h-[4px] rounded-tl-full bg-base-content"></div>
                     </div>
                     <span
                       className="translate-y-5"
@@ -144,26 +144,26 @@ const ClockPane: React.FC<ContainerProps> = ({ name }) => {
                   </span>
                 </span>
                 {/** Bottom */}
-                <span className="relative flex items-end justify-center h-10 overflow-hidden font-bold text-base-content w-20 bg-base-100/20 backdrop-blur-lg rounded-bl-2xl rounded-br-2xl text-5xl ">
+                <span className="relative flex items-end justify-center w-20 h-10 overflow-hidden text-5xl font-bold text-base-content bg-base-100 backdrop-blur-lg rounded-bl-2xl rounded-br-2xl ">
                   <div className="absolute flex items-start justify-start w-full h-full">
-                    <div className="w-[5px] h-[4px] rounded-br-full bg-base-content/50"></div>
+                    <div className="w-[5px] h-[4px] rounded-br-full bg-base-content"></div>
                   </div>
                   <div className="absolute flex items-start justify-end w-full h-full">
-                    <div className="w-[5px] h-[4px] rounded-bl-full bg-base-content/50"></div>
+                    <div className="w-[5px] h-[4px] rounded-bl-full bg-base-content"></div>
                   </div>
                   <span className="-translate-y-5" data-card-bot>
                     00
                   </span>
 
                   <span
-                    className="absolute flex items-end justify-center h-10 overflow-hidden font-bold text-base-content w-20 bg-base-100/20 backdrop-blur-lg rounded-bl-2xl rounded-br-2xl text-5xl "
+                    className="absolute flex items-end justify-center w-20 h-10 overflow-hidden text-5xl font-bold text-base-content bg-base-100 backdrop-blur-lg rounded-bl-2xl rounded-br-2xl "
                     data-flip-bot
                   >
                     <div className="absolute flex items-start justify-start w-full h-full">
-                      <div className="w-[5px] h-[4px] rounded-br-full bg-base-content/50"></div>
+                      <div className="w-[5px] h-[4px] rounded-br-full bg-base-content"></div>
                     </div>
                     <div className="absolute flex items-start justify-end w-full h-full">
-                      <div className="w-[5px] h-[4px] rounded-bl-full bg-base-content/50"></div>
+                      <div className="w-[5px] h-[4px] rounded-bl-full bg-base-content"></div>
                     </div>
                     <span className="-translate-y-5" data-flip-bot-num>
                       00

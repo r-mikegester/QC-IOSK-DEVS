@@ -145,7 +145,7 @@ class WeatherPane extends Component<{}, AppState> {
     
     return (
       <div className="App">
-        <div tabIndex={0} className="duration-150 ease-in-out cursor-pointer text-base-content collapse cursor hover:bg-base-300 w-44 rounded-2xl bg-base-100/50 backdrop-blur-lg">
+        <div tabIndex={0} className="cursor-pointer hover:duration-150 hover:ease-in-out text-base-content collapse cursor hover:bg-base-300 w-44 rounded-2xl bg-base-100 backdrop-blur-lg">
           <div className="p-1 text-center ">
             {/* <h1 className="text-base-content">{this.state.city}</h1> */}
              <img

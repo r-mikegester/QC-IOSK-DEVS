@@ -22,7 +22,7 @@ const LocationPane: React.FC<ContainerProps> = ({ name }) => {
     history.push('/Search');
   };
   return (
-    <div className="inline-flex justify-between mx-auto w-44  bg-base-100/50 backdrop-blur-lg rounded-2xl">
+    <div className="inline-flex justify-between mx-auto w-44 bg-base-100 backdrop-blur-lg rounded-2xl">
       <a onClick={ClickWelcome}
         aria-current="page"
         className="inline-flex items-center px-3 text-xs text-base-content rounded-2xl xl:py-3"
