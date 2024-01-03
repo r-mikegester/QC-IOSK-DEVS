@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Icon } from "@iconify/react";
-import "../../sidebarControls/sidebar.css";
+import "../../../../assets/css/sidebar.css";
 import { useTranslation } from "react-i18next";
 import { withTranslation } from "react-i18next";
 

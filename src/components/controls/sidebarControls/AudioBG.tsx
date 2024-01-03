@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import React, { useState, useRef } from "react";
 import Theme from "../../../assets/audio/LittleRootTown-Theme2.mp3";
-import '../sidebarControls/sidebar.css';
+import '../../../assets/css/sidebar.css';
 import { useTranslation } from "react-i18next";
 interface ContainerProps {
   name: string;

@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 import React, { useEffect, useRef, useState } from "react";
-import "./sidebar.css";
+import "../../../assets/css/sidebar.css";
 import KioskManual from "./KioskManual";
 import AudioBG from "./AudioBG";
 import ChangeLanguage from "./language/ChangeLanguage";
@@ -71,7 +71,7 @@ const SideBar = () => {
   return (
     <div
       // ref={sidebarRef}
-      className="fixed top-0 left-0 z-50 flex w-16 h-screen p-2 bg-base-100 text-base-content shadow-lg backdrop-blur-lg"
+      className="fixed top-0 left-0 z-50 flex w-16 h-screen p-2 shadow-lg bg-base-100 text-base-content backdrop-blur-lg"
     >
       <div className="z-50 sidebar-content">
         {/* Sidebar contents */}
@@ -111,7 +111,7 @@ const SideBar = () => {
           </div>
         </div>
       </div>
-      <div className="fixed top-0 left-0 z-40 flex w-16 h-screen p-2 bg-base-100 shadow-lg  backdrop-blur-lg"></div>
+      <div className="fixed top-0 left-0 z-40 flex w-16 h-screen p-2 shadow-lg bg-base-100 backdrop-blur-lg"></div>
       <div
         className={`transition-all duration-150 ease-in-out w-96  overflow-auto h-screen -left-96 -z-50 ${
           selectedContent
@@ -122,12 +122,12 @@ const SideBar = () => {
         {/* Content for Announcements or Events */}
         <div className={`-z-50 duration-500  ${selectedContent}`}>
           {selectedContent === "Announcements" && (
-            <div className=" py-10 space-y-2 bg-base-100 ">
-              <div className="sticky top-0 z-50 py-1 pb-5 px-3 transition-all duration-150 ease-in-out bg-base-100">
+            <div className="py-10 space-y-2 bg-base-100">
+              <div className="sticky top-0 z-50 px-3 py-1 pb-5 transition-all duration-150 ease-in-out bg-base-100">
                 <h1 className="text-4xl font-bold text-left ">{t("Announcements")}</h1>
                 <p className="text-sm ">Updates from the Campus</p>
               </div>
-              <div className="space-y-2 px-3">
+              <div className="px-3 space-y-2">
                 <div role="alert" className="shadow-lg alert">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -372,14 +372,14 @@ const SideBar = () => {
             </div>
           )}
           {selectedContent === "Events" && (
-            <div className=" py-10 space-y-2 bg-base-100">
-              <div className="sticky top-0 z-50 py-1 px-3 pb-5 transition-all duration-150 ease-in-out bg-base-100">
+            <div className="py-10 space-y-2 bg-base-100">
+              <div className="sticky top-0 z-50 px-3 py-1 pb-5 transition-all duration-150 ease-in-out bg-base-100">
                 <h1 className="text-4xl font-bold text-left ">{t("Events")}</h1>
                 <p className="text-sm 0">
                   Showing Events for the month of January
                 </p>
               </div>
-             <div className="space-y-2 px-3">
+             <div className="px-3 space-y-2">
              <div className="w-full h-auto bg-base-300 rounded-2xl">
                 <div>
                   <div className="w-auto shadow-xl card bg-base-100 image-full">
@@ -520,14 +520,14 @@ const SideBar = () => {
           {selectedContent === "Language" && <ChangeLanguage name={"Lang"} />}
           {selectedContent === "Settings" && <Settings />}
           {selectedContent === "KioskManual" && (
-            <div className=" py-10 space-y-2 bg-base-100 h-screen">
-              <div className="sticky top-0 z-50 py-1 px-3 pb-5 transition-all duration-150 ease-in-out bg-base-100">
+            <div className="h-screen py-10 space-y-2 bg-base-100">
+              <div className="sticky top-0 z-50 px-3 py-1 pb-5 transition-all duration-150 ease-in-out bg-base-100">
                 <h1 className="text-4xl font-bold text-left ">{t("KioskManual")}</h1>
                 <p className="text-sm 0">
                   Guides on how to use QCIOSK
                 </p>
               </div>
-             <div className="space-y-2 px-3">
+             <div className="px-3 space-y-2">
              <div className="w-full bg-base-300 rounded-2xl">
                 <div>
                   <div className="w-auto shadow-xl card bg-base-100 image-full">
