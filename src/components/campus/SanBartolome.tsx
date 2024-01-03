@@ -45,11 +45,10 @@ function Model(props: ModelProps) {
   };
   const handleClick = () => {
     if (isClickableMesh(props.name)) {
-      setIsModalOpen(true);
       // console.log("Building clicked!");
       setTimeout(() => {
         const dialogElement = document.getElementById(
-          "BuildingSelect"
+          "SelectBuilding"
         ) as HTMLDialogElement | null;
         if (dialogElement) {
           dialogElement.showModal();
