@@ -18,7 +18,6 @@ import WidgetPanel from "../components/controls/widgetControls/widgetPanel";
 import Sidebar from "../components/controls/sidebarControls/sidebar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Modal from "../components/modals/modal";
 interface ContainerProps {
   name: string;
   buildingName: string;
@@ -80,12 +79,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
         <div className="-z-[1000] cursor-move" style={{ zIndex: "-1000" }}>
           <SanBartolome name={"SanBartolome"} />
         </div>
-        <button
-        className="absolute top-0 px-4 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600"
-        onClick={toggleModal}
-      >
-        Open Modal
-      </button>
+        
 
         <div className="absolute bottom-10 right-10 ">
           <dialog id="SelectBuilding" className="modal">
