@@ -5,7 +5,7 @@ import { themeChange } from "theme-change";
 import LightThemes from "../themes/lightThemes";
 import DarkThemes from "../themes/darkThemes";
 import { useTranslation } from "react-i18next";
-import ThemeSelection from "../themes/themesSelection";
+import ThemesSelection from "../themes/themesSelection";
 
 const Settings: React.FC = () => {
   const { t } = useTranslation();
@@ -46,7 +46,7 @@ const Settings: React.FC = () => {
           <div className="collapse-content">
             <div className="py-4 mx-auto">
               {/* <p className="ml-3">Dark Themes</p> */}
-              <ThemeSelection />
+              <ThemesSelection />
             </div>
           </div>
         </div>
@@ -69,59 +69,11 @@ const Settings: React.FC = () => {
         >
           <input type="checkbox" />
           <div className="flex text-lg font-medium collapse-title">
-            <Icon icon="tabler:map-pin-cog" className=" w-7 h-7" />
-            <p className="ml-3 text-base-content">Map</p>
+            <Icon icon="healthicons:i-certificate-paper-outline" className=" w-7 h-7" />
+            <p className="ml-3 text-base-content">Credits</p>
           </div>
-          <div className="collapse-content ">
-            <div className="py-4 mx-auto">
-              <div>
-                <div
-                  tabIndex={0}
-                  className="mt-1 rounded-none collapse collapse-arrow bg-base-200"
-                >
-                  <input type="checkbox" />
-                  <div className="flex text-lg font-medium collapse-title">
-                    <Icon icon="tabler:map-pin-cog" className=" w-7 h-7" />
-                    <p className="ml-3 text-base-content">Map</p>
-                  </div>
-                  <div className="collapse-content">
-                    <div className="py-4 mx-auto">
-                      <div></div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  tabIndex={0}
-                  className="mt-1 rounded-none collapse collapse-arrow bg-base-200"
-                >
-                  <input type="checkbox" />
-                  <div className="flex text-lg font-medium collapse-title">
-                    <Icon icon="tabler:map-pin-cog" className=" w-7 h-7" />
-                    <p className="ml-3 text-base-content">Map</p>
-                  </div>
-                  <div className="collapse-content">
-                    <div className="mx-auto ">
-                      <div></div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  tabIndex={0}
-                  className="mt-1 rounded-none collapse collapse-arrow bg-base-200"
-                >
-                  <input type="checkbox" />
-                  <div className="flex text-lg font-medium collapse-title">
-                    <Icon icon="tabler:map-pin-cog" className=" w-7 h-7" />
-                    <p className="ml-3 text-base-content">Map</p>
-                  </div>
-                  <div className="collapse-content">
-                    <div className="py-4 mx-auto">
-                      <div></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="collapse-content">
+            <div className="py-4 mx-auto"></div>
           </div>
         </div>
       </div>

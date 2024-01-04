@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import "../../../../assets/css/sidebar.css";
-import { useTranslation } from "react-i18next";
-import { withTranslation } from "react-i18next";
+import { useTranslation, WithTranslation } from "react-i18next";
+import ClockPane from "../clock/clock";
 
 interface AppState {
   temperature: string;
@@ -19,58 +19,51 @@ interface AppState {
   sunrise: Date;
   sunset: Date;
   precipitation: string;
+  feelsLikeTemp: string;
+  visibility: string;
+  pressure: string;
+  uvIndex: string;
+  airQualityIndex: string;
 }
 
-class WeatherPane extends Component<{}, AppState> {
-  private API_KEY: string = "ab771b0791641b4b32511c5c2fcc28f7";
-  private weatherUpdateInterval: NodeJS.Timeout | number | null = null; // Declare the property
+const WeatherPane: React.FC = () => {
+  const { t } = useTranslation();
+  const [weatherData, setWeatherData] = useState<AppState>({
+    temperature: "",
+    city: "",
+    description: "",
+    minTemperature: "",
+    maxTemperature: "",
+    humidity: "",
+    windSpeed: "",
+    iconUrl: "",
+    weatherCode: 0,
+    clouds: 0,
+    sunrise: new Date(),
+    sunset: new Date(),
+    precipitation: "",
+    error: "",
+    feelsLikeTemp: "",
+    visibility: "",
+    pressure: "",
+    uvIndex: "",
+    airQualityIndex: "",
+  });
 
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      temperature: "",
-      city: "",
-      description: "",
-      minTemperature: "",
-      maxTemperature: "",
-      humidity: "",
-      windSpeed: "",
-      iconUrl: "",
-      weatherCode: 0,
-      clouds: 0,
-      sunrise: new Date(),
-      sunset: new Date(),
-      precipitation: "",
-      error: "",
-    };
-  }
-  
+  const API_KEY: string = "ab771b0791641b4b32511c5c2fcc28f7";
+  let weatherUpdateInterval: NodeJS.Timeout | number | null = null;
 
-  componentDidMount() {
-    this.fetchWeather(); // Fetch weather initially
-    this.startWeatherUpdate(); // Start updating weather every minute
-  }
-
-  componentWillUnmount() {
-    if (this.weatherUpdateInterval) {
-      clearInterval(this.weatherUpdateInterval); // Clear the interval when component unmounts
-    }
-  }
-  fetchWeather = () => {
+  const fetchWeather = () => {
     const city = "Quezon City";
 
     fetch(
-      "https://api.openweathermap.org/data/2.5/weather?q=" +
-        city +
-        "&appid=" +
-        this.API_KEY
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
     )
       .then((response) => response.json())
       .then((data) => {
-        const sunriseTimestamp = data.sys.sunrise * 1000; // Convert sunrise timestamp to milliseconds
-        const sunsetTimestamp = data.sys.sunset * 1000; // Convert sunset timestamp to milliseconds
+        const sunriseTimestamp = data.sys.sunrise * 1000;
+        const sunsetTimestamp = data.sys.sunset * 1000;
 
-        // Check if precipitation data is available (rain or snow)
         let precipitation = "";
         if (data.rain && data.rain["1h"]) {
           precipitation = `Rain: ${data.rain["1h"]} mm/h`;
@@ -80,169 +73,284 @@ class WeatherPane extends Component<{}, AppState> {
           precipitation = "No precipitation";
         }
 
-        this.setState({
-          temperature: (parseFloat(data.main.temp) - 273.15).toFixed(2),
+        setWeatherData({
+          temperature: Math.round(
+            parseFloat(data.main.temp) - 273.15
+          ).toString(),
           city: data.name,
+          uvIndex: data.uvi,
+          pressure: data.main.pressure,
           description: data.weather[0].description,
+          feelsLikeTemp: Math.round(
+            parseFloat(data.main.feels_like) - 273.15
+          ).toString(),
           minTemperature: (parseFloat(data.main.temp_min) - 273.15).toFixed(2),
           maxTemperature: (parseFloat(data.main.temp_max) - 273.15).toFixed(2),
           humidity: data.main.humidity,
           windSpeed: data.wind.speed,
           iconUrl: data.weather[0].icon,
-          weatherCode: data.weather[0].id, // Weather condition code
-          clouds: data.clouds.all, // Cloud coverage percentage
-          sunrise: new Date(sunriseTimestamp), // Sunrise time
-          sunset: new Date(sunsetTimestamp), // Sunset time
-          precipitation: precipitation, // Add precipitation data
-          // Add more properties if needed, such as rain, snow, etc.
+          weatherCode: data.weather[0].id,
+          clouds: data.clouds.all,
+          sunrise: new Date(sunriseTimestamp),
+          sunset: new Date(sunsetTimestamp),
+          precipitation: precipitation,
         });
-
-        // Log the current update
-        // console.log("Weather updated:", {
-        //   temperature: this.state.temperature,
-        //   city: this.state.city,
-        //   description: this.state.description,
-        //   minTemperature: this.state.minTemperature,
-        //   maxTemperature: this.state.maxTemperature,
-        //   humidity: this.state.humidity,
-        //   windSpeed: this.state.windSpeed,
-        // });
       })
-
       .catch((error) => {
-        this.setState({
+        setWeatherData((prevData) => ({
+          ...prevData,
           error: "Failed to fetch weather data. Please try again later.",
-        });
+        }));
       });
   };
-  // Function to determine temperature color based on a range
-  getTemperatureColor = (temperature: number) => {
+
+  const getTemperatureColor = (temperature: number) => {
     if (temperature <= 10) {
-      return "text-info"; // Cold temperature
+      return "text-info";
     } else if (temperature > 10 && temperature <= 30) {
-      return "text-base-content"; // Moderate temperature
+      return "text-base-content";
     } else {
-      return "text-error"; // Hot temperature
+      return "text-error";
     }
   };
 
-  startWeatherUpdate = () => {
-    if (!this.weatherUpdateInterval) {
-      this.weatherUpdateInterval = setInterval(() => {
-        this.fetchWeather(); // Fetch updated weather data every minute
-      }, 30000); // 60000 milliseconds = 1 minute
+  const startWeatherUpdate = () => {
+    if (!weatherUpdateInterval) {
+      weatherUpdateInterval = setInterval(() => {
+        fetchWeather();
+      }, 30000);
     }
   };
 
-  
+  useEffect(() => {
+    fetchWeather();
+    startWeatherUpdate();
 
-  render() {
-    const { t } = this.props;
-    const temperatureColor = this.getTemperatureColor(
-      parseFloat(this.state.temperature)
-    );
+    return () => {
+      if (weatherUpdateInterval) {
+        clearInterval(weatherUpdateInterval);
+      }
+    };
+  }, []);
 
-    
-    return (
-      <div className="App">
-        <div tabIndex={0} className="cursor-pointer hover:duration-150 hover:ease-in-out text-base-content collapse cursor hover:bg-base-300 w-44 rounded-2xl bg-base-100 backdrop-blur-lg">
-          <div className="p-1 text-center ">
-            {/* <h1 className="text-base-content">{this.state.city}</h1> */}
-             <img
-              src={`http://openweathermap.org/img/wn/${this.state.iconUrl}@2x.png`}
-              alt="Weather Icon"
-              className="justify-center w-20 h-20 mx-auto -my-3"
-            />
-            <h1 className={`font-bold -mt-3 ${temperatureColor}`}>
-              {this.state.temperature}°C
-            </h1>
-           
-            
-          </div>
-          <div className="collapse-content ">
-            {this.state.error && <p>{this.state.error}</p>}
-            <h3 className="-mt-2 text-lg font-bold text-center capitalize text-base-content">
-              {this.state.description}
-            </h3>
-            <div className="p-1 text-left bg-base-200/70 rounded-xl">
-              <p className="flex items-center tooltip tooltip-top hover:bg-base-100 rounded-xl" data-tip={t("MinTemp")}>
-                <span className="font-bold text-base-content">
-                  <Icon
-                    icon="carbon:temperature-min"
-                    className="w-8 h-8 mx-2 my-1"
-                  />{" "}
-                </span>{" "}
-                {this.state.minTemperature}°C
-              </p>
-              <p className="flex items-center tooltip tooltip-top hover:bg-base-100 rounded-xl" data-tip={t("MaxTemp")}>
-                <span className="font-bold text-base-content">
-                  <Icon
-                    icon="carbon:temperature-max"
-                    className="w-8 h-8 mx-2 my-1"
-                  />
-                </span>{" "}
-                {this.state.maxTemperature}°C
-              </p>
+  const temperatureColor = getTemperatureColor(
+    parseFloat(weatherData.temperature)
+  );
 
-              <p className="flex items-center tooltip tooltip-top hover:bg-base-100 rounded-xl" data-tip={t("WindSpeed")}>
-                <span className="font-bold text-base-content">
-                  <Icon icon="mdi:windy" className="w-8 h-8 mx-2 my-1" />{" "}
-                </span>{" "}
-                {this.state.windSpeed}m/s
-              </p>
+  const weatherIcons: { [key: string]: string } = {
+    // Your weather icon mappings
+    "01d": "wi:day-sunny",
+    "01n": "wi:night-clear",
+    "02d": "wi:day-cloudy",
+    "02n": "wi:night-alt-cloudy",
+    "03d": "wi:cloud",
+    "03n": "wi:cloud",
+    "04d": "wi:cloudy",
+    "04n": "wi:cloudy",
+    "09d": "wi:showers",
+    "09n": "wi:showers",
+    "10d": "wi:day-rain",
+    "10n": "wi:night-alt-rain",
+    "11d": "wi:day-thunderstorm",
+    "11n": "wi:night-alt-thunderstorm",
+    "13d": "wi:snow",
+    "13n": "wi:snow",
+    "50d": "wi:fog",
+    "50n": "wi:fog",
+    // Add more mappings for other weather conditions
+    // For example, "windy", "tornado", "hail", etc.
+  };
 
-              <p className="flex items-center tooltip tooltip-top hover:bg-base-100 rounded-xl" data-tip={t("Humidity")}>
-                <span className="font-bold text-base-content">
-                  <Icon
-                    icon="carbon:humidity-alt"
-                    className="w-8 h-8 mx-2 my-1"
-                  />{" "}
-                </span>{" "}
-                {this.state.humidity}%
-              </p>
-              <p className="flex items-center tooltip tooltip-top hover:bg-base-100 rounded-xl" data-tip={t("CloudCoverage")}>
-                <span className="font-bold text-base-content">
-                  <Icon
-                    icon="solar:clouds-broken"
-                    className="w-8 h-8 mx-2 my-1"
-                  />
-                </span>{" "}
-                {this.state.clouds}%
-              </p>
-              <p className="flex items-center tooltip tooltip-top hover:bg-base-100 rounded-xl" data-tip={t("Sunrise")}>
-                <span className="font-bold text-base-content">
-                  <Icon
-                    icon="solar:sunrise-broken"
-                    className="w-8 h-8 mx-2 my-1"
-                  />{" "}
-                </span>{" "}
-                {this.state.sunrise.toLocaleTimeString()}
-              </p>
-              <p className="flex items-center tooltip tooltip-top hover:bg-base-100 rounded-xl" data-tip={t("Sunsets")}>
-                <span className="font-bold text-base-content">
-                  <Icon
-                    icon="solar:sunset-broken"
-                    className="w-8 h-8 mx-2 my-1"
-                  />{" "}
-                </span>{" "}
-                {this.state.sunset.toLocaleTimeString()}
-              </p>
-              {/* <p className="flex items-center">
-              <span className="font-bold text-base-content">Precipitation: </span>{" "}
-              {this.state.precipitation}
-            </p> */}
-              {/* Display additional weather information */}
-              {/* <p className="flex items-center">
-              <span className="font-bold text-base-content">Weather Code: </span>{" "}
-              {this.state.weatherCode}
-            </p> */}
+  const getWeatherIcon = (iconCode: string) => {
+    const defaultIcon = "eos-icons:three-dots-loading";
+    const icon = weatherIcons[iconCode] || defaultIcon;
+    return <Icon icon={icon} className="w-10 h-10" />;
+  };
+
+  const weatherIcon = getWeatherIcon(weatherData.iconUrl);
+
+  return (
+    <div className="App">
+      <div
+        tabIndex={0}
+        className=" cursor-pointer hover:duration-150 hover:ease-in-out text-base-content collapse cursor collapse-arrow w-80 shadow-lg rounded-2xl bg-base-100 backdrop-blur-lg"
+      >
+        <div className="flex flex-col  bg-base-100 rounded-t-2xl">
+          <div className="inline-flex justify-between mx-auto  bg-base-100 backdrop-blur-lg rounded-2xl">
+            <div className="grid grid-cols-2 justify-between py-2">
+              <div className="flex items-center justify-between">
+                <div className="flex-shrink-0">
+                  <div className="weather-icon">{weatherIcon}</div>
+                </div>
+
+                <div className="grow">
+                  <p className="text-sm sm:text-base font-semibold">
+                    {t("SanBartolome")}
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    <span className="text-base-content font-bold">
+                      {weatherData.temperature}°C
+                    </span>{" "}
+                    |{" "}
+                    <span className="text-base-content font-bold">
+                      {weatherData.city}
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div className="">
+                <ClockPane name={""} />
+              </div>
             </div>
           </div>
         </div>
-        
-      </div>
-    );
-  }
-}
+        <div className=" collapse-content px-2 py-0 bg-base-300 rounded-t-2xl">
+          <div className="bg-base-300 p-2 rounded-2xl space-y-2">
+          <div className=" w-full mx-auto">
+            <div className=" w-full items-center space-y-2">
+              <div className="text-xl font-bold grid grid-cols-2 items-center justify-between bg-base-100 p-2 capitalize rounded-xl mt-2 text-base-content">
+                <div className="weather-icon flex items-center text-2xl tooltip tooltip-top hover:bg-base-200 py-2 px-3 rounded-xl" data-tip={t("Current Temperature")}>
+                  <Icon icon="solar:temperature-broken" className="w-10 h-10" />
+                  {weatherData.temperature}°C
+                </div>
+                <div className="col-span-1 tooltip tooltip-top hover:bg-base-200 py-2 px-3 text-left rounded-xl" data-tip={t("Weather Description")}>
+                  <p className="text-sm sm:text-base font-semibold">
+                    {weatherData.description}
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    <span className="text-base-content font-100 ">
+                      {t("feelslike")}:{" "}
+                      {parseFloat(weatherData.feelsLikeTemp).toFixed(1)}°c{" "}
+                      {/* Display "feels like" temperature with one decimal place */}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {weatherData.error && <p>{weatherData.error}</p>}
+          <div className=" bg-base-100 rounded-xl">
+            <div className="grid grid-cols-4 gap-1 p-2 items-center justify-between mx-auto space-x-auto text-base-content">
+              <div
+                className="flex flex-col tooltip tooltip-top rounded-xl hover:bg-base-200 items-center space-y-1 px-2"
+                data-tip={t("CloudCoverage")}
+              >
+                {/* <span className="uppercase">wed</span> */}
+                <Icon
+                  icon="solar:clouds-broken"
+                  className="w-8 h-8 mx-2 my-1"
+                />
+                <span> {weatherData.clouds}%</span>
+              </div>
+              <div
+                className="flex flex-col tooltip tooltip-top rounded-xl hover:bg-base-200 items-center space-y-1 px-2"
+                data-tip={t("WindSpeed")}
+              >
+                {/* <span className="uppercase">wed</span> */}
+                <Icon icon="mdi:windy" className="w-8 h-8 mx-2 my-1" />
+                <span> {weatherData.windSpeed}m/s</span>
+              </div>
+              <div
+                className="flex flex-col tooltip tooltip-top rounded-xl hover:bg-base-200 items-center space-y-1 px-2"
+                data-tip={t("Humidity")}
+              >
+                {/* <span className="uppercase">wed</span> */}
+                <Icon
+                  icon="carbon:humidity-alt"
+                  className="w-8 h-8 mx-2 my-1"
+                />
+                <span> {weatherData.humidity}%</span>
+              </div>
+              <div
+                className="flex flex-col tooltip tooltip-top rounded-xl hover:bg-base-200 items-center space-y-1 px-2"
+                data-tip={t("Pressure")}
+              >
+                {/* <span className="uppercase">wed</span> */}
+                <Icon icon="mdi:barometer" className="w-8 h-8 mx-2 my-1" />
+                <span>
+                  {" "}
+                  {weatherData.pressure}hPa {/* Display pressure */}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 p-2 gap-1 text-left bg-base-100 rounded-xl">
+            <p
+              className="flex items-center tooltip tooltip-top hover:bg-base-200 rounded-lg"
+              data-tip={t("MinTemp")}
+            >
+              <span className="font-bold text-base-content">
+                <Icon
+                  icon="carbon:temperature-min"
+                  className="w-8 h-8 mx-2 my-1"
+                />{" "}
+              </span>{" "}
+              {weatherData.minTemperature}°C
+            </p>
+            <p
+              className="flex items-center tooltip tooltip-top hover:bg-base-200 rounded-lg"
+              data-tip={t("MaxTemp")}
+            >
+              <span className="font-bold text-base-content">
+                <Icon
+                  icon="carbon:temperature-max"
+                  className="w-8 h-8 mx-2 my-1"
+                />
+              </span>{" "}
+              {weatherData.maxTemperature}°C
+            </p>
 
-export default  withTranslation()(WeatherPane);
+            <p
+              className="flex items-center tooltip tooltip-top hover:bg-base-200 rounded-lg"
+              data-tip={t("Sunrise")}
+            >
+              <span className="font-bold text-base-content">
+                <Icon
+                  icon="solar:sunrise-broken"
+                  className="w-8 h-8 mx-2 my-1"
+                />{" "}
+              </span>{" "}
+              {weatherData.sunrise.toLocaleTimeString()}
+            </p>
+            <p
+              className="flex items-center tooltip tooltip-top hover:bg-base-200 rounded-lg"
+              data-tip={t("Sunsets")}
+            >
+              <span className="font-bold text-base-content">
+                <Icon
+                  icon="solar:sunset-broken"
+                  className="w-8 h-8 mx-2 my-1"
+                />{" "}
+              </span>{" "}
+              {weatherData.sunset.toLocaleTimeString()}
+            </p>
+            <p
+              className="flex items-center tooltip tooltip-top hover:bg-base-200 rounded-lg"
+              data-tip={t("UVIndex")}
+            >
+              <span className="font-bold text-base-content">
+                <Icon icon="carbon:uv-index" className="w-8 h-8 mx-2 my-1" />
+              </span>{" "}
+              {weatherData.uvIndex} {/* Display UV index */}
+            </p>
+            <p
+              className="flex items-center tooltip tooltip-top hover:bg-base-200 rounded-lg"
+              data-tip={t("Visibility")}
+            >
+              <span className="font-bold text-base-content">
+                <Icon
+                  icon="dashicons:visibility"
+                  className="w-8 h-8 mx-2 my-1"
+                />
+              </span>{" "}
+              {weatherData.visibility}
+            </p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default WeatherPane;
