@@ -496,9 +496,7 @@ if (indexModal instanceof HTMLDialogElement && typeof indexModal.showModal === '
                 <div className="flex flex-col w-full">
                   <div
                     className="grid h-20 duration-200 ease-in-out bg-white card hover:scale-110 rounded-box place-items-center"
-                    onClick={() =>
-                      document.getElementById("select_floor").showModal()
-                    }
+                    onClick={handleFloorClick}
                   >
                     <h3 className="text-4xl font-extrabold text-gray-900">
                       2nd
