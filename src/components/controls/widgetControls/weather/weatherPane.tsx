@@ -42,9 +42,9 @@ const WeatherPane: React.FC = () => {
     sunrise: new Date(),
     sunset: new Date(),
     precipitation: "",
-    error: "",
+    
     feelsLikeTemp: "",
-    visibility: "",
+    
     pressure: "",
     uvIndex: "",
     airQualityIndex: "",
@@ -80,6 +80,7 @@ const WeatherPane: React.FC = () => {
           city: data.name,
           uvIndex: data.uvi,
           pressure: data.main.pressure,
+          airQualityIndex: data.main.airQualityIndex,
           description: data.weather[0].description,
           feelsLikeTemp: Math.round(
             parseFloat(data.main.feels_like) - 273.15
@@ -205,127 +206,147 @@ const WeatherPane: React.FC = () => {
           </div>
         </div>
         <div className=" collapse-content px-2 py-0 bg-base-300 rounded-t-2xl">
-          <div className="bg-base-300 p-2 rounded-2xl space-y-2">
-          <div className=" w-full mx-auto">
-            <div className=" w-full items-center space-y-2">
-              <div className="text-xl font-bold grid grid-cols-2 items-center justify-between bg-base-100 p-2 capitalize rounded-xl mt-2 text-base-content">
-                <div className="weather-icon flex items-center text-2xl tooltip tooltip-top hover:bg-base-200 py-2 px-3 rounded-xl" data-tip={t("Current Temperature")}>
-                  <Icon icon="solar:temperature-broken" className="w-10 h-10" />
-                  {weatherData.temperature}°C
-                </div>
-                <div className="col-span-1 tooltip tooltip-top hover:bg-base-200 py-2 px-3 text-left rounded-xl" data-tip={t("Weather Description")}>
-                  <p className="text-sm sm:text-base font-semibold">
-                    {weatherData.description}
-                  </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
-                    <span className="text-base-content font-100 ">
-                      {t("feelslike")}:{" "}
-                      {parseFloat(weatherData.feelsLikeTemp).toFixed(1)}°c{" "}
-                      {/* Display "feels like" temperature with one decimal place */}
-                    </span>
-                  </p>
+          <div className="bg-base-300 px-2 pt-2 rounded-3xl space-y-2">
+            <div className=" w-full mx-auto">
+              <div className=" w-full items-center space-y-2">
+                <div className="text-xl font-bold grid grid-cols-2 items-center justify-between bg-base-100 p-2 capitalize rounded-xl mt-2 text-base-content">
+                  {/* <div className="weather-icon flex items-center text-2xl tooltip tooltip-top hover:bg-base-200 py-2 px-3 rounded-xl" data-tip={t("Current Temperature")}>
+                 
+                 
+                  
+                </div> */}
+                  <div
+                    className="col-span-1 tooltip tooltip-top hover:bg-base-200 py-2 px-3 text-center rounded-xl"
+                    data-tip={t("Weather Description")}
+                  >
+                    <div className="flex items-center m-2">
+                      <Icon
+                        icon="solar:temperature-broken"
+                        className="w-10 h-10"
+                      />
+                      <p className="text-2xl font-semibold">
+                        {weatherData.temperature}°C
+                      </p>
+                    </div>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      <span className="text-base-content font-100 ">
+                        {t("feelslike")}:{" "}
+                        {parseFloat(weatherData.feelsLikeTemp).toFixed(1)}°c{" "}
+                        {/* Display "feels like" temperature with one decimal place */}
+                      </span>
+                    </p>
+                  </div>
+                  <div
+                    className="col-span-1 tooltip tooltip-top hover:bg-base-200 py-2 px-3 text-left rounded-xl"
+                    data-tip={t("Weather Description")}
+                  >
+                    <div className="flex  text-sm font-semibold ">
+                      <div className="weather-icon">{weatherIcon}</div>
+                      {weatherData.description}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          {weatherData.error && <p>{weatherData.error}</p>}
-          <div className=" bg-base-100 rounded-xl">
-            <div className="grid grid-cols-4 gap-1 p-2 items-center justify-between mx-auto space-x-auto text-base-content">
-              <div
-                className="flex flex-col tooltip tooltip-top rounded-xl hover:bg-base-200 items-center space-y-1 px-2"
-                data-tip={t("CloudCoverage")}
-              >
-                {/* <span className="uppercase">wed</span> */}
-                <Icon
-                  icon="solar:clouds-broken"
-                  className="w-8 h-8 mx-2 my-1"
-                />
-                <span> {weatherData.clouds}%</span>
-              </div>
-              <div
-                className="flex flex-col tooltip tooltip-top rounded-xl hover:bg-base-200 items-center space-y-1 px-2"
-                data-tip={t("WindSpeed")}
-              >
-                {/* <span className="uppercase">wed</span> */}
-                <Icon icon="mdi:windy" className="w-8 h-8 mx-2 my-1" />
-                <span> {weatherData.windSpeed}m/s</span>
-              </div>
-              <div
-                className="flex flex-col tooltip tooltip-top rounded-xl hover:bg-base-200 items-center space-y-1 px-2"
-                data-tip={t("Humidity")}
-              >
-                {/* <span className="uppercase">wed</span> */}
-                <Icon
-                  icon="carbon:humidity-alt"
-                  className="w-8 h-8 mx-2 my-1"
-                />
-                <span> {weatherData.humidity}%</span>
-              </div>
-              <div
-                className="flex flex-col tooltip tooltip-top rounded-xl hover:bg-base-200 items-center space-y-1 px-2"
-                data-tip={t("Pressure")}
-              >
-                {/* <span className="uppercase">wed</span> */}
-                <Icon icon="mdi:barometer" className="w-8 h-8 mx-2 my-1" />
-                <span>
-                  {" "}
-                  {weatherData.pressure}hPa {/* Display pressure */}
-                </span>
+            {weatherData.error && <p>{weatherData.error}</p>}
+            <div className=" bg-base-100 rounded-xl">
+              <div className="grid grid-cols-4 gap-1 p-2 items-center justify-between mx-auto space-x-auto text-base-content">
+                <div
+                  className="flex flex-col tooltip tooltip-top rounded-xl hover:bg-base-200 items-center space-y-1 px-2"
+                  data-tip={t("CloudCoverage")}
+                >
+                  {/* <span className="uppercase">wed</span> */}
+                  <Icon
+                    icon="solar:clouds-broken"
+                    className="w-8 h-8 mx-2 my-1"
+                  />
+                  <span> {weatherData.clouds}%</span>
+                </div>
+                <div
+                  className="flex flex-col tooltip tooltip-top rounded-xl hover:bg-base-200 items-center space-y-1 px-2"
+                  data-tip={t("WindSpeed")}
+                >
+                  {/* <span className="uppercase">wed</span> */}
+                  <Icon icon="mdi:windy" className="w-8 h-8 mx-2 my-1" />
+                  <span> {weatherData.windSpeed}m/s</span>
+                </div>
+                <div
+                  className="flex flex-col tooltip tooltip-top rounded-xl hover:bg-base-200 items-center space-y-1 px-2"
+                  data-tip={t("Humidity")}
+                >
+                  {/* <span className="uppercase">wed</span> */}
+                  <Icon
+                    icon="carbon:humidity-alt"
+                    className="w-8 h-8 mx-2 my-1"
+                  />
+                  <span> {weatherData.humidity}%</span>
+                </div>
+                <div
+                  className="flex flex-col tooltip tooltip-top rounded-xl hover:bg-base-200 items-center space-y-1 px-2"
+                  data-tip={t("Pressure")}
+                >
+                  {/* <span className="uppercase">wed</span> */}
+                  <Icon icon="mdi:barometer" className="w-8 h-8 mx-2 my-1" />
+                  <span>
+                    {" "}
+                    {weatherData.pressure}
+                    <span className="text-[10px]">hPa</span>{" "}
+                    {/* Display pressure */}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="grid grid-cols-2 p-2 gap-1 text-left bg-base-100 rounded-xl">
-            <p
-              className="flex items-center tooltip tooltip-top hover:bg-base-200 rounded-lg"
-              data-tip={t("MinTemp")}
-            >
-              <span className="font-bold text-base-content">
-                <Icon
-                  icon="carbon:temperature-min"
-                  className="w-8 h-8 mx-2 my-1"
-                />{" "}
-              </span>{" "}
-              {weatherData.minTemperature}°C
-            </p>
-            <p
-              className="flex items-center tooltip tooltip-top hover:bg-base-200 rounded-lg"
-              data-tip={t("MaxTemp")}
-            >
-              <span className="font-bold text-base-content">
-                <Icon
-                  icon="carbon:temperature-max"
-                  className="w-8 h-8 mx-2 my-1"
-                />
-              </span>{" "}
-              {weatherData.maxTemperature}°C
-            </p>
+            <div className="grid grid-cols-2 p-2 gap-1 text-left bg-base-100 rounded-xl">
+              <p
+                className="flex items-center tooltip tooltip-top hover:bg-base-200 rounded-lg"
+                data-tip={t("MinTemp")}
+              >
+                <span className="font-bold text-base-content">
+                  <Icon
+                    icon="carbon:temperature-min"
+                    className="w-8 h-8 mx-2 my-1"
+                  />{" "}
+                </span>{" "}
+                {weatherData.minTemperature}°C
+              </p>
+              <p
+                className="flex items-center tooltip tooltip-top hover:bg-base-200 rounded-lg"
+                data-tip={t("MaxTemp")}
+              >
+                <span className="font-bold text-base-content">
+                  <Icon
+                    icon="carbon:temperature-max"
+                    className="w-8 h-8 mx-2 my-1"
+                  />
+                </span>{" "}
+                {weatherData.maxTemperature}°C
+              </p>
 
-            <p
-              className="flex items-center tooltip tooltip-top hover:bg-base-200 rounded-lg"
-              data-tip={t("Sunrise")}
-            >
-              <span className="font-bold text-base-content">
-                <Icon
-                  icon="solar:sunrise-broken"
-                  className="w-8 h-8 mx-2 my-1"
-                />{" "}
-              </span>{" "}
-              {weatherData.sunrise.toLocaleTimeString()}
-            </p>
-            <p
-              className="flex items-center tooltip tooltip-top hover:bg-base-200 rounded-lg"
-              data-tip={t("Sunsets")}
-            >
-              <span className="font-bold text-base-content">
-                <Icon
-                  icon="solar:sunset-broken"
-                  className="w-8 h-8 mx-2 my-1"
-                />{" "}
-              </span>{" "}
-              {weatherData.sunset.toLocaleTimeString()}
-            </p>
-           
-          </div>
+              <p
+                className="flex items-center tooltip tooltip-top hover:bg-base-200 rounded-lg"
+                data-tip={t("Sunrise")}
+              >
+                <span className="font-bold text-base-content">
+                  <Icon
+                    icon="solar:sunrise-broken"
+                    className="w-8 h-8 mx-2 my-1"
+                  />{" "}
+                </span>{" "}
+                {weatherData.sunrise.toLocaleTimeString()}
+              </p>
+              <p
+                className="flex items-center tooltip tooltip-top hover:bg-base-200 rounded-lg"
+                data-tip={t("Sunsets")}
+              >
+                <span className="font-bold text-base-content">
+                  <Icon
+                    icon="solar:sunset-broken"
+                    className="w-8 h-8 mx-2 my-1"
+                  />{" "}
+                </span>{" "}
+                {weatherData.sunset.toLocaleTimeString()}
+              </p>
+            </div>
           </div>
         </div>
       </div>
