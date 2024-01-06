@@ -20,10 +20,10 @@ interface AppState {
   sunset: Date;
   precipitation: string;
   feelsLikeTemp: string;
-  visibility: string;
+  // visibility: string;
   pressure: string;
-  uvIndex: string;
-  airQualityIndex: string;
+  // uvIndex: string;
+  // airQualityIndex: string;
 }
 
 const WeatherPane: React.FC = () => {
@@ -42,12 +42,12 @@ const WeatherPane: React.FC = () => {
     sunrise: new Date(),
     sunset: new Date(),
     precipitation: "",
-    
+    // error: "",
     feelsLikeTemp: "",
-    
+    // visibility: "",
     pressure: "",
-    uvIndex: "",
-    airQualityIndex: "",
+    // uvIndex: "",
+    // airQualityIndex: "",
   });
 
   const API_KEY: string = "ab771b0791641b4b32511c5c2fcc28f7";
@@ -78,9 +78,9 @@ const WeatherPane: React.FC = () => {
             parseFloat(data.main.temp) - 273.15
           ).toString(),
           city: data.name,
-          uvIndex: data.uvi,
+          // uvIndex: data.uvi,
           pressure: data.main.pressure,
-          airQualityIndex: data.main.airQualityIndex,
+          // airQualityIndex: data.main.airQualityIndex,
           description: data.weather[0].description,
           feelsLikeTemp: Math.round(
             parseFloat(data.main.feels_like) - 273.15
