@@ -13,7 +13,14 @@ import Batasan from './components/campus/Batasan';
 import Campuses from './pages/Campuses';
 import Home from './pages/Home';
 import Search from './pages/Search';
-import Index from './pages/Index';
+import Layout from './pages/layout';
+
+/** Admin Routing */
+import Login from "./components/admin/auth/login";
+import Signup from "./components/admin/auth/signup";
+import Dashboard from "./components/admin/layout/dashboard";
+
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -58,7 +65,11 @@ declare global {
 const App: React.FC<ContainerProps> = ({ name }) => (
   <IonApp>
     <IonReactRouter>
-      <IonRouterOutlet>
+      <IonRouterOutlet> 
+        
+        <Route exact path="/">
+            <Redirect to="/Home" />
+          </Route> 
        
           <Route path="/Home">
             <Home name={'Home'} />
@@ -69,7 +80,7 @@ const App: React.FC<ContainerProps> = ({ name }) => (
           </Route>
        
           <Route exact path="/SanBartolome">
-            <Index name={'Index'} buildingName={''} />
+            <Layout name={'Layout'} buildingName={''} />
           </Route>
        
           <Route exact path="/SanFransisco">
@@ -84,9 +95,19 @@ const App: React.FC<ContainerProps> = ({ name }) => (
             <Search name={'Search'} />
           </Route>
        
-          <Route exact path="/">
-            <Redirect to="/Home" />
-          </Route>
+         
+
+          <Route exact path="/Login">
+          <Login name={"Login"} />
+        </Route>
+
+        <Route exact path="/Signup">
+          <Signup name={"Signup"} />
+        </Route>
+
+        <Route exact path="/Dashboard">
+          <Dashboard name={"Dashboard"} />
+        </Route>
        
       </IonRouterOutlet>
     </IonReactRouter>

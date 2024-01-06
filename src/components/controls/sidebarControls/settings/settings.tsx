@@ -5,9 +5,15 @@ import { themeChange } from "theme-change";
 import LightThemes from "../themes/lightThemes";
 import DarkThemes from "../themes/darkThemes";
 import { useTranslation } from "react-i18next";
-import ThemesSelection from "../themes/themesSelection";
+import ThemeSelection from "../themes/themesSelection";
+import { useHistory } from "react-router-dom";
 
 const Settings: React.FC = () => {
+  const history = useHistory();
+  const ClickLogin = () => {
+    history.push("/Login");
+  };
+
   const { t } = useTranslation();
   useEffect(() => {
     themeChange(false);
@@ -22,11 +28,9 @@ const Settings: React.FC = () => {
               <Icon
                 icon="healthicons:i-certificate-paper-outline"
                 className="w-8 h-8 "
-                
               />
             </a>
-            <a href="" className="btn-square btn">
-              {" "}
+            <a onClick={ClickLogin} className="btn-square btn">
               <Icon icon="mdi:administrator" className="w-8 h-8 " />
             </a>
           </div>
@@ -46,7 +50,7 @@ const Settings: React.FC = () => {
           <div className="collapse-content">
             <div className="py-4 mx-auto">
               {/* <p className="ml-3">Dark Themes</p> */}
-              <ThemesSelection />
+              <ThemeSelection />
             </div>
           </div>
         </div>
@@ -69,11 +73,59 @@ const Settings: React.FC = () => {
         >
           <input type="checkbox" />
           <div className="flex text-lg font-medium collapse-title">
-            <Icon icon="healthicons:i-certificate-paper-outline" className=" w-7 h-7" />
-            <p className="ml-3 text-base-content">Credits</p>
+            <Icon icon="tabler:map-pin-cog" className=" w-7 h-7" />
+            <p className="ml-3 text-base-content">Map</p>
           </div>
-          <div className="collapse-content">
-            <div className="py-4 mx-auto"></div>
+          <div className="collapse-content ">
+            <div className="py-4 mx-auto">
+              <div>
+                <div
+                  tabIndex={0}
+                  className="mt-1 rounded-none collapse collapse-arrow bg-base-200"
+                >
+                  <input type="checkbox" />
+                  <div className="flex text-lg font-medium collapse-title">
+                    <Icon icon="tabler:map-pin-cog" className=" w-7 h-7" />
+                    <p className="ml-3 text-base-content">Map</p>
+                  </div>
+                  <div className="collapse-content">
+                    <div className="py-4 mx-auto">
+                      <div></div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  tabIndex={0}
+                  className="mt-1 rounded-none collapse collapse-arrow bg-base-200"
+                >
+                  <input type="checkbox" />
+                  <div className="flex text-lg font-medium collapse-title">
+                    <Icon icon="tabler:map-pin-cog" className=" w-7 h-7" />
+                    <p className="ml-3 text-base-content">Map</p>
+                  </div>
+                  <div className="collapse-content">
+                    <div className="mx-auto ">
+                      <div></div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  tabIndex={0}
+                  className="mt-1 rounded-none collapse collapse-arrow bg-base-200"
+                >
+                  <input type="checkbox" />
+                  <div className="flex text-lg font-medium collapse-title">
+                    <Icon icon="tabler:map-pin-cog" className=" w-7 h-7" />
+                    <p className="ml-3 text-base-content">Map</p>
+                  </div>
+                  <div className="collapse-content">
+                    <div className="py-4 mx-auto">
+                      <div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

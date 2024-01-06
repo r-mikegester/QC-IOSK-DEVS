@@ -324,27 +324,7 @@ const WeatherPane: React.FC = () => {
               </span>{" "}
               {weatherData.sunset.toLocaleTimeString()}
             </p>
-            <p
-              className="flex items-center tooltip tooltip-top hover:bg-base-200 rounded-lg"
-              data-tip={t("UVIndex")}
-            >
-              <span className="font-bold text-base-content">
-                <Icon icon="carbon:uv-index" className="w-8 h-8 mx-2 my-1" />
-              </span>{" "}
-              {weatherData.uvIndex} {/* Display UV index */}
-            </p>
-            <p
-              className="flex items-center tooltip tooltip-top hover:bg-base-200 rounded-lg"
-              data-tip={t("Visibility")}
-            >
-              <span className="font-bold text-base-content">
-                <Icon
-                  icon="dashicons:visibility"
-                  className="w-8 h-8 mx-2 my-1"
-                />
-              </span>{" "}
-              {weatherData.visibility}
-            </p>
+           
           </div>
           </div>
         </div>
