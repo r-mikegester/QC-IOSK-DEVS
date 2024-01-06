@@ -4,7 +4,7 @@ type ThemesType = {
   [key: string]: string;
 };
 
-const ThemesSelect = () => {
+const ThemeSelection = () => {
   const lightThemes: ThemesType = {
     light: 'light',
     retro: 'retro',
@@ -54,4 +54,4 @@ const ThemesSelect = () => {
   );
 };
 
-export default ThemesSelect;
+export default ThemeSelection;
