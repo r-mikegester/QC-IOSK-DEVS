@@ -42,7 +42,7 @@ const WeatherPane: React.FC = () => {
     sunrise: new Date(),
     sunset: new Date(),
     precipitation: "",
-    // error: "",
+    error: "",
     feelsLikeTemp: "",
     // visibility: "",
     pressure: "",
