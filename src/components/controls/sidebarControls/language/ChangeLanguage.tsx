@@ -73,7 +73,7 @@ const ChangeLanguage: React.FC<ContainerProps> = ({ name }) => {
           {t("ChooseYourPreferredLanguage")}
         </p>
       </div>
-      <div className="w-full h-auto px-4 space-y-2 rounded-2xl">
+      <div className="w-full h-auto p-4 space-y-2 rounded-2xl">
         <button
           className={`btn w-full h-16 text-xl hover:bg-gradient-to-tr hover:from-base-300 bg-gradient-to-tr from-base-200 to-base-300 justify-between border-2 border-transparent ${borderStyles["en"]}`}
           onClick={(e) => handleLanguageChange(e, "en")}
@@ -182,20 +182,7 @@ const ChangeLanguage: React.FC<ContainerProps> = ({ name }) => {
             </div>
           </button>
         </div>
-        {/* <div>
-          <button
-            className={`btn w-full bg-transparent from-base-200 to-base-300 hover:border-solid hover:border-base-content h-16 text-xl hover:bg-gradient-to-tr hover:from-base-300 border-dashed border-gray-700 justify-between border-2 ${borderStyles["new"]}`}
-            onClick={(e) => handleLanguageChange(e, "new")}
-          >
-            {t("AddYourLanguage")}
-            <div className="">
-              <Icon
-                icon="emojione-v1:flag-for-white-flag"
-                className="w-14 h-14"
-              />
-            </div>
-          </button>
-        </div> */}
+       
       </div>
     </div>
   );
