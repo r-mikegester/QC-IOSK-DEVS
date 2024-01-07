@@ -34,13 +34,13 @@ const onScreenKeyboard: React.FC<ContainerProps> = ({ name }) => {
     );
   };
 
-  const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
-    const newInput = event.target.value;
-    setInput(newInput);
-    if (keyboardRef.current) {
-      keyboardRef.current.setInput(newInput);
-    }
-  };
+  // const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+  //   const newInput = event.target.value;
+  //   setInput(newInput);
+  //   if (keyboardRef.current) {
+  //     keyboardRef.current.setInput(newInput);
+  //   }
+  // };
   
   const ClickWelcome = () => {
     // Redirect to the "/Home" route
