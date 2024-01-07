@@ -20,7 +20,7 @@ const WeatherPane: React.FC = () => {
     sunrise: new Date(),
     sunset: new Date(),
     precipitation: "",
-    error: "",
+    // error: "",
     feelsLikeTemp: "",
     // visibility: "",
     pressure: "",
@@ -75,12 +75,12 @@ const WeatherPane: React.FC = () => {
           precipitation: precipitation,
         });
       })
-      .catch((error) => {
-        setWeatherData((prevData: any) => ({
-          ...prevData,
-          error: "Failed to fetch weather data. Please try again later.",
-        }));
-      });
+      // .catch((error) => {
+      //   setWeatherData((prevData: any) => ({
+      //     ...prevData,
+      //     error: "Failed to fetch weather data. Please try again later.",
+      //   }));
+      // });
   };
 
   const getTemperatureColor = (temperature: number) => {
@@ -222,7 +222,7 @@ const WeatherPane: React.FC = () => {
                 </div>
               </div>
             </div>
-            {weatherData.error && <p>{weatherData.error}</p>}
+            {/* {weatherData.error && <p>{weatherData.error}</p>} */}
             <div className=" bg-base-100 rounded-xl">
               <div className="grid grid-cols-4 gap-1 p-2 items-center justify-between mx-auto space-x-auto text-base-content">
                 <div
