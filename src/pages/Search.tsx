@@ -23,9 +23,7 @@ const Search: React.FC<SearchProps> = ({ name }) => {
   const [layoutName, setLayoutName] = React.useState<string>("default");
   const [input, setInput] = React.useState<string>("");
 
-  const keyboardRef = React.useRef<Keyboard | null>(null);
   
-
   const history = useHistory();
   
   const onChange = (newInput: string) => {
@@ -47,14 +45,7 @@ const Search: React.FC<SearchProps> = ({ name }) => {
     );
   };
 
-  const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
-    const newInput = event.target.value;
-    setInput(newInput);
-    if (keyboardRef.current) {
-      keyboardRef.current.setInput(newInput);
-    }
-  };
-
+ 
   const handleClick = () => {
     // Redirect to the "/Map" route
     history.push('/Map');
@@ -94,7 +85,7 @@ const handleSelectRoomClick = () => {
                   <div>
                     <div>
                       <input className="input input-bordered bg-white w-[650px] h-16 rounded-2xl text-gray-600 join-item" placeholder="Search..." value={input}
-                        onChange={onChangeInput} />
+                         />
                     </div>
                   </div>
                   {/* <select className="h-16 text-gray-900 bg-white select select-bordered join-item dropdown-content">
