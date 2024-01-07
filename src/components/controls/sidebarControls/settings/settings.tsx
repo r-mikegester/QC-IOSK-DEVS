@@ -7,6 +7,7 @@ import ThemeSelection from "../themes/themeSelection";
 import { useHistory } from "react-router-dom";
 import { credits } from "../../../../data/creditsData";
 
+
 const Settings: React.FC = () => {
   const history = useHistory();
   const ClickLogin = () => {
@@ -23,7 +24,7 @@ const Settings: React.FC = () => {
         <div className="flex items-baseline justify-between ">
           <h1 className="text-4xl font-bold text-left ">{t("Settings")}</h1>
           <div className="flex justify-center mx-3 space-x-2">
-            <a onClick={ClickLogin} className="btn-square btn">
+            <a onClick={ClickLogin} className="btn-square btn p-2 hover:bg-base-300 tooltip tooltip-left" data-tip={t("Admin Login")}>
               <Icon icon="mdi:administrator" className="w-8 h-8 " />
             </a>
           </div>
