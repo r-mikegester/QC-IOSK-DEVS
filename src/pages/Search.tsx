@@ -82,7 +82,7 @@ const handleSelectRoomClick = () => {
   return (
     <IonPage>
       <IonContent fullscreen className="bg-sc">
-
+        <h1>Before Removing Search</h1>
         <div className="overflow-hidden ">
           <div className="relative overflow-hidden ">
             <div className="max-w-full px-4 py-10 mx-auto sm:px-6 lg:px-8 sm:py-5">
