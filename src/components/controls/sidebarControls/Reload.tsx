@@ -19,7 +19,7 @@ const Reload: React.FC<ContainerProps> = ({ name }) => {
             className="text-base-content"
         >
 
-            <Icon icon="pepicons-pop:refresh" className="w-5 h-5" />
+            <Icon icon="mi:refresh" className="w-8 h-8" />
 
         </a>
         <span className="sidebar-tooltip group-hover:scale-100">{t("Refresh")}</span>
