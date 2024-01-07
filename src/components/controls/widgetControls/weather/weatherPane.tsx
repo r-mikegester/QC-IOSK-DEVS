@@ -4,31 +4,9 @@ import "../../../../assets/css/sidebar.css";
 import { useTranslation, WithTranslation } from "react-i18next";
 import ClockPane from "../clock/clock";
 
-interface AppState {
-  temperature: string;
-  city: string;
-  description: string;
-  minTemperature: string;
-  maxTemperature: string;
-  humidity: string;
-  windSpeed: string;
-  iconUrl: string;
-  error: string;
-  weatherCode: number;
-  clouds: number;
-  sunrise: Date;
-  sunset: Date;
-  precipitation: string;
-  feelsLikeTemp: string;
-  // visibility: string;
-  pressure: string;
-  // uvIndex: string;
-  // airQualityIndex: string;
-}
-
 const WeatherPane: React.FC = () => {
   const { t } = useTranslation();
-  const [weatherData, setWeatherData] = useState<AppState>({
+  const [weatherData, setWeatherData] = useState({
     temperature: "",
     city: "",
     description: "",
@@ -98,7 +76,7 @@ const WeatherPane: React.FC = () => {
         });
       })
       .catch((error) => {
-        setWeatherData((prevData) => ({
+        setWeatherData((prevData: any) => ({
           ...prevData,
           error: "Failed to fetch weather data. Please try again later.",
         }));
@@ -174,7 +152,7 @@ const WeatherPane: React.FC = () => {
     <div className="App">
       <div
         tabIndex={0}
-        className=" cursor-pointer hover:duration-150 hover:ease-in-out text-base-content collapse cursor collapse-arrow w-80 shadow-lg rounded-2xl bg-base-100 backdrop-blur-lg"
+        className=" cursor-pointer hover:duration-150 hover:ease-in-out text-base-content collapse cursor collapse-arrow min-w-80 max-w-96 w-auto shadow-lg rounded-2xl bg-base-100 backdrop-blur-lg"
       >
         <div className="flex flex-col  bg-base-100 rounded-t-2xl">
           <div className="inline-flex justify-between mx-auto  bg-base-100 backdrop-blur-lg rounded-2xl">
@@ -209,12 +187,8 @@ const WeatherPane: React.FC = () => {
           <div className="bg-base-300 px-2 pt-2 rounded-3xl space-y-2">
             <div className=" w-full mx-auto">
               <div className=" w-full items-center space-y-2">
-                <div className="text-xl font-bold grid grid-cols-2 items-center justify-between bg-base-100 p-2 capitalize rounded-xl mt-2 text-base-content">
-                  {/* <div className="weather-icon flex items-center text-2xl tooltip tooltip-top hover:bg-base-200 py-2 px-3 rounded-xl" data-tip={t("Current Temperature")}>
-                 
-                 
-                  
-                </div> */}
+                <div className="text-xl font-bold grid grid-cols-2 items-stretch justify-between bg-base-100 p-2 capitalize rounded-xl mt-2 text-base-content">
+              
                   <div
                     className="col-span-1 tooltip tooltip-top hover:bg-base-200 py-2 px-3 text-center rounded-xl"
                     data-tip={t("Weather Description")}
@@ -237,10 +211,10 @@ const WeatherPane: React.FC = () => {
                     </p>
                   </div>
                   <div
-                    className="col-span-1 tooltip tooltip-top hover:bg-base-200 py-2 px-3 text-left rounded-xl"
+                    className="col-span-1 tooltip tooltip-top hover:bg-base-200 py-2 items-center px-3 text-left rounded-xl"
                     data-tip={t("Weather Description")}
                   >
-                    <div className="flex  text-sm font-semibold ">
+                    <div className="flex flex-col justify-center items-center text-sm font-semibold ">
                       <div className="weather-icon">{weatherIcon}</div>
                       {weatherData.description}
                     </div>
