@@ -14,8 +14,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "typeRoots": ["src/declarations", "./node_modules/@types"],
+    "types": ["glb"] // Add "glb" here to include your GLB declaration
   },
-  "include": ["src"],
+  "include": ["src", "src/declarations"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

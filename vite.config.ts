@@ -8,6 +8,7 @@ export default defineConfig({
     react(),
     legacy()
   ],
+  assetsInclude: ["**/*.glb"],
   test: {
     globals: true,
     environment: 'jsdom',

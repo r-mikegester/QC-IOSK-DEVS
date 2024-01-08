@@ -34,6 +34,25 @@ import { format } from "date-fns";
 import * as THREE from "three";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import locationGLB from '../../assets/models/others/location.glb';
+import cloudGLB from '../../assets/Models/clouds/cloud.glb';
+import cloud2GLB from '../../assets/Models/clouds/cloud2.glb';
+import cloud3GLB from '../../assets/Models/clouds/cloud3.glb';
+import cloud4GLB from '../../assets/Models/clouds/cloud4.glb';
+import cloud5GLB from '../../assets/Models/clouds/cloud5.glb';
+import cloud1GLB from '../../assets/Models/clouds/cloud1.glb';
+import metalCasting from '../../assets/models/sb_buildings/og_metalcasting.glb';
+import chineseB from '../../assets/models/sb_buildings/og_chineseb.glb';
+import techvoc from '../../assets/models/sb_buildings/og_techvoc.glb';
+import admin from '../../assets/models/sb_buildings/og_newadmin.glb';
+import yellow from '../../assets/models/sb_buildings/og_yellow.glb';
+import academic from '../../assets/models/sb_buildings/og_academic.glb';
+import belmonte from '../../assets/models/sb_buildings/og_belmonte2.glb';
+import bautista from '../../assets/models/sb_buildings/og_bautista2.glb';
+import multipurpose from '../../assets/models/sb_buildings/og_multipurpose.glb';
+import sbfloor from '../../assets/models/others/sb_final.glb';
+import bikerack from '../../assets/models/others/bikerack.glb';
+
 interface ModelProps {
   url: string;
   scale: number;
@@ -129,7 +148,7 @@ const RotatingMesh = () => {
     <mesh ref={meshRef} position={[4, 3, 3]}>
       {/* Assuming Model is a custom component that accepts a mesh prop */}
       <Model
-        url="/src/assets/Models/others/location.glb"
+        url={locationGLB}
         scale={1.5}
         name="location"
         mesh={meshRef.current} // Pass the mesh reference to your Model component if needed
@@ -261,7 +280,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
             />
           )}
         </button>
-        
+
         <button
           name="stars"
           onClick={() => setStars(!isStars)}
@@ -270,7 +289,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
         >
           {/* {autoRotate ? "Stop Rotation" : "Start Rotation"} */}
           {isStars ? (
-            <Icon icon="tabler:stars"  className="w-8 h-8" />
+            <Icon icon="tabler:stars" className="w-8 h-8" />
           ) : (
             <Icon icon="tabler:stars-off" className="w-8 h-8" />
           )}
@@ -315,50 +334,50 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
         <Suspense fallback={null}>
           {isCloudOn ? null : (
-          <>
-            <mesh position={[10, 20, -60]}>
-              <Model // BACK
-                url="/src/assets/Models/clouds/cloud.glb"
-                scale={1.5}
-                name={"cloud"}
-              />
-            </mesh>
-            <mesh position={[0, 20, 20]}>
-              <Model // LEFT
-                url="/src/assets/Models/clouds/cloud1.glb"
-                scale={1.2}
-                name={"cloud1"}
-              />
-            </mesh>
-            <mesh position={[40, 20, -30]}>
-              <Model // RIGHT
-                url="/src/assets/Models/clouds/cloud2.glb"
-                scale={1.3}
-                name={"cloud2"}
-              />
-            </mesh>
-            <mesh position={[-20, 20, 70]}>
-              <Model // FRONT
-                url="/src/assets/Models/clouds/cloud3.glb"
-                scale={1.2}
-                name={"cloud3"}
-              />
-            </mesh>
-            <mesh position={[30, 20, 50]}>
-              <Model // FRONT RIGHT
-                url="/src/assets/Models/clouds/cloud4.glb"
-                scale={1.4}
-                name={"cloud4"}
-              />
-            </mesh>
-            <mesh position={[-30, 20, -40]}>
-              <Model // BACK LEFT
-                url="/src/assets/Models/clouds/cloud5.glb"
-                scale={1}
-                name={"cloud5"}
-              />
-            </mesh>
-          </>
+            <>
+              <mesh position={[10, 20, -60]}>
+                <Model // BACK
+                  url={cloudGLB}
+                  scale={1.5}
+                  name={"cloud"}
+                />
+              </mesh>
+              <mesh position={[0, 20, 20]}>
+                <Model // LEFT
+                  url={cloud1GLB}
+                  scale={1.2}
+                  name={"cloud1"}
+                />
+              </mesh>
+              <mesh position={[40, 20, -30]}>
+                <Model // RIGHT
+                  url={cloud2GLB}
+                  scale={1.3}
+                  name={"cloud2"}
+                />
+              </mesh>
+              <mesh position={[-20, 20, 70]}>
+                <Model // FRONT
+                  url={cloud3GLB}
+                  scale={1.2}
+                  name={"cloud3"}
+                />
+              </mesh>
+              <mesh position={[30, 20, 50]}>
+                <Model // FRONT RIGHT
+                  url={cloud4GLB}
+                  scale={1.4}
+                  name={"cloud4"}
+                />
+              </mesh>
+              <mesh position={[-30, 20, -40]}>
+                <Model // BACK LEFT
+                  url={cloud5GLB}
+                  scale={1}
+                  name={"cloud5"}
+                />
+              </mesh>
+            </>
           )}
           <Bounds fit clip observe margin={1.2}>
             {isNightMode ? null : (
@@ -375,12 +394,12 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                   <pointLight position={[10, 10, -60]} intensity={100} /> */}
                 {isStars ? null : (
                   <Stars
-                  radius={40} // Adjust the radius based on your scene size
-                  depth={50} // Adjust the depth based on your scene size
-                  count={50} // Adjust the count based on the number of sparkles you want
-                  factor={0} // Adjust the factor to control the distribution of sparkles
-                  saturation={0} // Adjust the saturation to control the color of sparkles
-                />
+                    radius={40} // Adjust the radius based on your scene size
+                    depth={50} // Adjust the depth based on your scene size
+                    count={50} // Adjust the count based on the number of sparkles you want
+                    factor={0} // Adjust the factor to control the distribution of sparkles
+                    saturation={0} // Adjust the saturation to control the color of sparkles
+                  />
                 )}
                 {/* <Sparkles
                     color="orange"
@@ -511,7 +530,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     scale={1.5}
                   >
                     <Model
-                      url="/src/assets/models/sb_buildings/og_metalcasting.glb"
+                      url={metalCasting}
                       scale={1.9}
                       name={"MetalCasting"}
                     />
@@ -533,7 +552,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     scale={2}
                   >
                     <Model
-                      url="/src/assets/models/sb_buildings/og_chineseb.glb"
+                      url={chineseB}
                       scale={1.9}
                       name={"ChineseB"}
                     />
@@ -555,7 +574,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     scale={0.185}
                   >
                     <Model
-                      url="/src/assets/models/sb_buildings/og_techvoc.glb"
+                      url={techvoc}
                       scale={1.9}
                       name={"TechVoc"}
                     />
@@ -577,7 +596,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     scale={1.7}
                   >
                     <Model
-                      url="/src/assets/models/sb_buildings/og_newadmin.glb"
+                      url={admin}
                       scale={1.12}
                       name={"Admin"}
                     />
@@ -598,7 +617,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     scale={1.1}
                   >
                     <Model
-                      url="/src/assets/models/sb_buildings/og_yellow.glb"
+                      url={yellow}
                       scale={1.9}
                       name={"Yellow"}
                     />
@@ -619,7 +638,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     scale={2.3}
                   >
                     <Model
-                      url="/src/assets/models/sb_buildings/og_academic.glb"
+                      url={academic}
                       scale={1.9}
                       name={"Academic"}
                     />
@@ -641,7 +660,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     scale={2.3}
                   >
                     <Model
-                      url="/src/assets/models/sb_buildings/og_belmonte2.glb"
+                      url={belmonte}
                       scale={1.9}
                       name={"Belmonte"}
                     />
@@ -663,7 +682,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     scale={2.3}
                   >
                     <Model
-                      url="/src/assets/models/sb_buildings/og_bautista2.glb"
+                      url={bautista}
                       scale={2}
                       name={"Bautista"}
                     />
@@ -680,7 +699,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                   </mesh>
                   <mesh position={[17.5, 3.7, -26]} rotation={[0, 3.14, 0]}>
                     <Model
-                      url="/src/assets/models/sb_buildings/og_multipurpose.glb"
+                      url={multipurpose}
                       scale={1.9}
                       name={"Multipurpose"}
                     />
@@ -721,14 +740,14 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
               <mesh position={[0, 0, 0]}>
                 <Model
-                  url="/src/assets/Models/others/sb_final.glb"
+                  url={sbfloor}
                   scale={2}
                   name={"OpenGrounds Flooring"}
                 />
               </mesh>
               <mesh position={[0, 0, 0]} rotation={[0, 0.01, 0]} scale={2}>
                 <Model
-                  url="/src/assets/models/others/bikerack.glb"
+                  url={bikerack}
                   scale={1}
                   name={"BikeRack"}
                 />
