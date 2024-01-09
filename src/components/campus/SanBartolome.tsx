@@ -52,6 +52,8 @@ import bautista from '../../assets/models/sb_buildings/og_bautista2.glb';
 import multipurpose from '../../assets/models/sb_buildings/og_multipurpose.glb';
 import sbfloor from '../../assets/models/others/sb_final.glb';
 import bikerack from '../../assets/models/others/bikerack.glb';
+import ballroom from '../../assets/models/sb_buildings/og_ballroom3.glb';
+
 
 interface ModelProps {
   url: string;
@@ -163,10 +165,10 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
   const [isEnvironment, setIsEnvironment] = useState(true);
   const [isLoading, setIsLoading] = useState(false); // Loading state
   const [autoRotate, setAutoRotate] = useState(true); // Initial state set to true for autorotation
-  const [isEnvironmentTwo, setIsEnvironmentTwo] = useState(false);
+  const [isEnvironmentTwo, setIsEnvironmentTwo] = useState(true);
   const [isNightMode, setIsNightMode] = useState(true);
-  const [isCloudOn, setCloudOn] = useState(false);
-  const [isStars, setStars] = useState(false);
+  const [isCloudOn, setCloudOn] = useState(true);
+  const [isStars, setStars] = useState(true);
   const clearWaitingQueue = () => {
     // Easy, right 😎
     toast.clearWaitingQueue();
@@ -221,10 +223,10 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
   return (
     <>
-      <div className="join absolute top-5 right-96">
+      <div className="absolute join top-5 right-96">
         <button
           onClick={() => setAutoRotate(!autoRotate)}
-          className="tooltip tooltip-bottom join-item bg-base-100 text-base-content z-50 flex p-2 flex-col items-center gap-1 justify-center rounded-xl border border-gray-800 hover:bg-base-300 duration-200 ease-in-out"
+          className="z-50 flex flex-col items-center justify-center gap-1 p-2 duration-200 ease-in-out border border-gray-800 tooltip tooltip-bottom join-item bg-base-100 text-base-content rounded-xl hover:bg-base-300"
           data-tip={t(autoRotate ? "Stop Rotation" : "Start Rotation")}
         >
           {/* {autoRotate ? "Stop Rotation" : "Start Rotation"} */}
@@ -239,7 +241,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
         </button>
         <button
           onClick={() => setIsEnvironmentTwo(!isEnvironmentTwo)}
-          className="tooltip tooltip-bottom join-item bg-base-100 text-base-content z-50 flex p-2 flex-col items-center gap-1 justify-center rounded-xl border border-gray-800 hover:bg-base-300 duration-200 ease-in-out"
+          className="z-50 flex flex-col items-center justify-center gap-1 p-2 duration-200 ease-in-out border border-gray-800 tooltip tooltip-bottom join-item bg-base-100 text-base-content rounded-xl hover:bg-base-300"
           data-tip={t(isEnvironmentTwo ? "Lights On" : "Lights Off")}
         >
           {isEnvironmentTwo ? (
@@ -251,7 +253,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
         <button
           name="cloud"
           onClick={() => setCloudOn(!isCloudOn)}
-          className="tooltip tooltip-bottom join-item bg-base-100 text-base-content z-50 flex p-2 flex-col items-center gap-1 justify-center rounded-xl border border-gray-800 hover:bg-base-300 duration-200 ease-in-out"
+          className="z-50 flex flex-col items-center justify-center gap-1 p-2 duration-200 ease-in-out border border-gray-800 tooltip tooltip-bottom join-item bg-base-100 text-base-content rounded-xl hover:bg-base-300"
           data-tip={t(isCloudOn ? "Clouds On" : "Clouds Off")}
         >
           {/* {autoRotate ? "Stop Rotation" : "Start Rotation"} */}
@@ -264,7 +266,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
         <button
           name="nightmodeswitch"
           onClick={() => setIsNightMode(!isNightMode)}
-          className="tooltip tooltip-bottom join-item bg-base-100 text-base-content z-50 flex p-2 flex-col items-center gap-1 justify-center rounded-xl border border-gray-800 hover:bg-base-300 duration-200 ease-in-out"
+          className="z-50 flex flex-col items-center justify-center gap-1 p-2 duration-200 ease-in-out border border-gray-800 tooltip tooltip-bottom join-item bg-base-100 text-base-content rounded-xl hover:bg-base-300"
           data-tip={t(isNightMode ? "Night Mode" : "Day Mode")}
         >
           {/* {autoRotate ? "Stop Rotation" : "Start Rotation"} */}
@@ -284,7 +286,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
         <button
           name="stars"
           onClick={() => setStars(!isStars)}
-          className="tooltip tooltip-bottom join-item bg-base-100 text-base-content z-50 flex p-2 flex-col items-center gap-1 justify-center rounded-xl border border-gray-800 hover:bg-base-300 duration-200 ease-in-out"
+          className="z-50 flex flex-col items-center justify-center gap-1 p-2 duration-200 ease-in-out border border-gray-800 tooltip tooltip-bottom join-item bg-base-100 text-base-content rounded-xl hover:bg-base-300"
           data-tip={t(isStars ? "Stars On" : "Stars Off")}
         >
           {/* {autoRotate ? "Stop Rotation" : "Start Rotation"} */}
@@ -520,9 +522,9 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                 </EffectComposer>
 
                 <SelectToZoom>
-                  {/* <mesh position={[-39.5, 4.2, -37.5]} rotation={[0, -1.6, 0]} scale={1.5}>
-                  <Model url="/src/assets/models/sb_buildings/og_ballroom.glb" scale={1.9} name={"Ballroom"} />
-                </mesh> */}
+                  <mesh position={[-41.5, 4.2, -36.5]} rotation={[0, -1.6, 0]} scale={1.5}>
+                  <Model url={ballroom} scale={1.9} name={"Ballroom"} />
+                </mesh>
 
                   <mesh
                     position={[-43, 3, -49.9]}
