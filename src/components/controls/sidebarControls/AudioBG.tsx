@@ -10,7 +10,7 @@ interface ContainerProps {
 }
 
 const AudioBG: React.FC<ContainerProps> = ({ name }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const audioRef = useRef<HTMLAudioElement>(null);
     const { t } = useTranslation();
 
@@ -57,7 +57,7 @@ const AudioBG: React.FC<ContainerProps> = ({ name }) => {
           </label>
         </div>
       </a>
-      <span className="sidebar-tooltip group-hover:scale-100">{t("Play")}/{t("Pause")}</span>
+      <span className="sidebar-tooltip group-hover:scale-100">{t(isPlaying ? "Pause Music" : "Play Music")}</span>
     </div>
   );
 };
