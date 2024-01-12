@@ -524,6 +524,17 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                 <SelectToZoom>
                   <mesh position={[-41.5, 4.2, -36.5]} rotation={[0, -1.6, 0]} scale={1.5}>
                   <Model url={ballroom} scale={1.9} name={"Ballroom"} />
+                  <Billboard follow position={[0, 3, 0]}>
+                      <Text
+                        fontSize={1}
+                        rotation={[0.5, 12.3, 0]}
+                        outlineColor="#000000"
+                        outlineOpacity={1}
+                        outlineWidth="20%"
+                      >
+                        Ballroom
+                      </Text>
+                    </Billboard>
                 </mesh>
 
                   <mesh
@@ -580,7 +591,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                       scale={1.9}
                       name={"TechVoc"}
                     />
-                    <Billboard follow position={[60, 40, -60]}>
+                    <Billboard follow position={[60, 35, -60]}>
                       <Text
                         fontSize={10}
                         rotation={[0, -12, 0]}
@@ -602,7 +613,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                       scale={1.12}
                       name={"Admin"}
                     />
-                    <Billboard follow position={[-9.5, 10, -45]}>
+                    <Billboard follow position={[-9.5, 9, -45]}>
                       <Text
                         fontSize={1}
                         outlineColor="#000000"
@@ -646,7 +657,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     />
                     <Billboard follow position={[0, 8, 0]}>
                       <Text
-                        rotation={[0.5, 8, 0]}
+                        rotation={[0, 8, 0]}
                         fontSize={0.8}
                         outlineColor="#000000"
                         outlineOpacity={1}
