@@ -230,7 +230,7 @@ const Login: React.FC<ContainerProps> = ({ name }) => {
                 <p className="mt-2 text-sm text-gray-600 btn dark:text-gray-400">
                   
                   <NavLink
-                    to="/Signup"
+                    to="/SanBartolome"
                     className="font-medium text-blue-600 decoration-2 hover:underline dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                   >
                     Back to map
