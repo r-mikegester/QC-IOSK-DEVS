@@ -191,7 +191,7 @@ const WeatherPane: React.FC = () => {
               
                   <div
                     className="col-span-1 tooltip tooltip-top hover:bg-base-200 py-2 px-3 text-center rounded-xl"
-                    data-tip={t("Weather Description")}
+                    data-tip={t("Current Temperature")}
                   >
                     <div className="flex items-center m-2">
                       <Icon
