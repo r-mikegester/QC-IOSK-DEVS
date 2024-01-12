@@ -1,12 +1,11 @@
 // Settings.tsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Icon } from "@iconify/react";
 import { themeChange } from "theme-change";
 import { useTranslation } from "react-i18next";
 import ThemeSelection from "../themes/themeSelection";
 import { useHistory } from "react-router-dom";
 import { credits } from "../../../../data/creditsData";
-
 
 const Settings: React.FC = () => {
   const history = useHistory();
@@ -18,13 +17,19 @@ const Settings: React.FC = () => {
   useEffect(() => {
     themeChange(false);
   });
+
+ 
   return (
     <div className="h-full py-10 bg-base-100 text-base-content">
       <div className="sticky bg-base-100 top-0 z-50 px-3 py-1 pb-5 transition-all duration-150 ease-in-out ">
         <div className="flex items-baseline justify-between ">
           <h1 className="text-4xl font-bold text-left ">{t("Settings")}</h1>
           <div className="flex justify-center mx-3 space-x-2">
-            <a onClick={ClickLogin} className="btn-square btn p-2 hover:bg-base-300 tooltip tooltip-left" data-tip={t("Admin Login")}>
+            <a
+              onClick={ClickLogin}
+              className="btn-square btn p-2 hover:bg-base-300 tooltip tooltip-left"
+              data-tip={t("Admin Login")}
+            >
               <Icon icon="mdi:administrator" className="w-8 h-8 " />
             </a>
           </div>
@@ -48,19 +53,7 @@ const Settings: React.FC = () => {
             </div>
           </div>
         </div>
-        <div
-          tabIndex={0}
-          className="mt-1 collapse collapse-arrow bg-base-200 rounded-2xl"
-        >
-          <input type="checkbox" />
-          <div className="flex text-lg font-medium collapse-title">
-            <Icon icon="grommet-icons:volume-control" className=" w-7 h-7" />
-            <p className="ml-3 text-base-content">Sounds</p>
-          </div>
-          <div className="collapse-content">
-            <div className="py-4 mx-auto"></div>
-          </div>
-        </div>
+       
         <div
           tabIndex={0}
           className="mt-1 collapse collapse-arrow bg-base-200 rounded-2xl"
@@ -68,7 +61,7 @@ const Settings: React.FC = () => {
           <input type="checkbox" />
           <div className="flex text-lg font-medium collapse-title">
             <Icon icon="humbleicons:certificate" className=" w-7 h-7" />
-            <p className="ml-3 text-base-content">Credits</p>
+            <p className="ml-3 text-base-content">Acknowledgements</p>
           </div>
           <div className="collapse-content">
             <div className="py-4 mx-auto">
