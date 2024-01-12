@@ -18,7 +18,7 @@ import Layout from './pages/layout';
 /** Admin Routing */
 import Login from "./components/admin/auth/login";
 import Signup from "./components/admin/auth/signup";
-import Dashboard from "./components/admin/layout/dashboard";
+import Dashboard from "./components/admin/dashboardLayout/layout";
 
 
 
