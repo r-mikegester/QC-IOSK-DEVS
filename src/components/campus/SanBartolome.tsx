@@ -5,6 +5,18 @@ import { Bounds, OrbitControls, Stage, Stars } from "@react-three/drei";
 import SelectToZoom from "./SelectToZoom";
 import RotatingMesh from "./RotatingMesh";
 import Clouds from "./Clouds";
+import openGrounds from '../../assets/models/others/sb_final2.glb';
+import techvoc from '../../assets/models/sb_buildings/og_techvoc2.glb';
+import multipurpose from '../../assets/models/sb_buildings/og_multipurpose2.glb';
+import chineseB from '../../assets/models/sb_buildings/og_chineseb2.glb';
+import ched from '../../assets/models/sb_buildings/og_metalcasting2.glb';
+import simon from '../../assets/models/sb_buildings/og_yellow2.glb';
+import admin from '../../assets/models/sb_buildings/og_admin2.glb';
+import bautista from '../../assets/models/sb_buildings/og_bautista2.glb';
+import belmonte from '../../assets/models/sb_buildings/og_belmonte2.glb';
+import academic from '../../assets/models/sb_buildings/og_academic2.glb';
+import ballroom from '../../assets/models/sb_buildings/og_academic2.glb';
+import landscape from '../../assets/models/others/landscape.glb';
 
 interface ContainerProps {
   name: string;
@@ -66,11 +78,11 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
         ) : null}
         {/* SB FLOORING */}
         <ModelViewer
-          modelPath="/src/assets/Models/others/sb_final2.glb"
+          modelPath={openGrounds}
           position={[0, 0, 0]}
         />
         <ModelViewer
-          modelPath="/src/assets/Models/others/landscape.glb"
+          modelPath={landscape}
           position={[0, -14, 25]}
         />
         {/* BUILDINGS */}
@@ -78,7 +90,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
           <SelectToZoom>
             {/* TECHVOC */}
             <ModelViewer
-              modelPath="/src/assets/models/sb_buildings/og_techvoc2.glb"
+              modelPath={techvoc}
               position={[-1, 1, 15]}
               scale={[2.2, 2.2, 2.2]}
               name="Techvoc"
@@ -88,7 +100,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
             {/* MULTIPURPOSE */}
             <ModelViewer
-              modelPath="/src/assets/models/sb_buildings/og_multipurpose2.glb"
+              modelPath={multipurpose}
               position={[11.9, 1, 16]}
               name="Multipurpose"
               textPosition={[11.9, 3, 16]}
@@ -96,7 +108,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
             {/* CHINESE B */}
             <ModelViewer
-              modelPath="/src/assets/models/sb_buildings/og_chineseb2.glb"
+              modelPath={chineseB}
               position={[11.9, 0.65, 10]}
               scale={[1.5, 1.5, 1.5]}
               name="Chinese B"
@@ -105,7 +117,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
             {/* BALLROOM */}
             <ModelViewer
-              modelPath="/src/assets/models/sb_buildings/og_ballroom2.glb"
+              modelPath={ballroom}
               position={[-17.5, 0.1, 11]}
               scale={[1.5, 1.5, 1.5]}
               name="Ballroom"
@@ -114,7 +126,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
             {/* CHED */}
             <ModelViewer
-              modelPath="/src/assets/models/sb_buildings/og_metalcasting2.glb"
+              modelPath={ched}
               position={[-18.5, 0.1, 4]}
               scale={[1.5, 1.5, 1.5]}
               name="CHED"
@@ -123,7 +135,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
             {/* YELLOW */}
             <ModelViewer
-              modelPath="/src/assets/models/sb_buildings/og_yellow2.glb"
+              modelPath={simon}
               position={[3.1, 1.1, 0]}
               name="Yellow Building"
               textPosition={[3.1, 4.5, 0]}
@@ -131,7 +143,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
             {/* BELMONTE */}
             <ModelViewer
-              modelPath="/src/assets/models/sb_buildings/og_belmonte2.glb"
+              modelPath={belmonte}
               position={[10, 2, -11]}
               scale={[2, 2, 2]}
               name="Belmonte Building"
@@ -140,7 +152,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
             {/* ACADEMIC */}
             <ModelViewer
-              modelPath="/src/assets/models/sb_buildings/og_academic2.glb"
+              modelPath={academic}
               position={[9, 2, -25]}
               scale={[2, 2, 2]}
               name="Academic Building"
@@ -149,7 +161,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
             {/* ADMIN */}
             <ModelViewer
-              modelPath="/src/assets/models/sb_buildings/og_admin2.glb"
+              modelPath={admin}
               position={[-6, 2.1, -11.3]}
               name="Admin Building"
               textPosition={[-6, 6.5, -11.3]}
@@ -157,7 +169,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
             {/* BAUTISTA */}
             <ModelViewer
-              modelPath="/src/assets/models/sb_buildings/og_bautista2.glb"
+              modelPath={bautista}
               position={[-7, 2, -27]}
               scale={[2.5, 2.5, 2.5]}
               name="Bautista Building"
