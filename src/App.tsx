@@ -18,7 +18,7 @@ import Layout from './pages/layout';
 /** Admin Routing */
 import Login from "./components/admin/auth/login";
 import Signup from "./components/admin/auth/signup";
-import Dashboard from "./components/admin/dashboardLayout/layout";
+import Dashboard from "./components/admin/dashboardLayout/dashboard";
 
 
 
@@ -43,6 +43,12 @@ import '@ionic/react/css/padding.css';
 import './assets/css/variables.css';
 /*Ionic Components*/
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import ManageAnnouncements from './components/admin/dashboardLayout/management/manageAnnoucements';
+import RoomManagement from './components/admin/dashboardLayout/management/manageRooms';
+import BuildingManagement from './components/admin/dashboardLayout/management/manageBuilding';
+import AdminSettings from './components/admin/dashboardLayout/management/adminSettings';
+import EventManagement from './components/admin/dashboardLayout/management/manageEvents';
+import ThemesManagement from './components/admin/dashboardLayout/management/manageThemes';
 setupIonicReact();
 interface ContainerProps {
   name: string;
@@ -105,10 +111,37 @@ const App: React.FC<ContainerProps> = ({ name }) => (
           <Signup name={"Signup"} />
         </Route>
 
+
+        {/* ADMIN ROUTES */}
+
         <Route exact path="/Dashboard">
           <Dashboard name={"Dashboard"} />
         </Route>
+
+        <Route exact path="/Announcements">
+          <ManageAnnouncements name={"Annoucements"} />
+        </Route>
        
+        <Route exact path="/Rooms">
+          <RoomManagement name={"Room Management"} />
+        </Route>
+
+        <Route exact path="/Buildings">
+          <BuildingManagement name={"Building Management"} />
+        </Route>
+
+        <Route exact path="/Settings">
+          <AdminSettings name={"Settings"} />
+        </Route>
+
+        <Route exact path="/Events">
+          <EventManagement name={"Event Management"} />
+        </Route>
+
+        <Route exact path="/Themes">
+          <ThemesManagement name={"Themes Management"} />
+        </Route>
+        
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

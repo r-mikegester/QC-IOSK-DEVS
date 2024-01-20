@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react";
 import Location from "../components/controls/widgetControls/location/Location";
 
 import { themeChange } from "theme-change";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, Suspense } from "react";
 import Backbtn from "../components/controls/navigationControls/Backbtn";
 import { useHistory } from "react-router-dom";
 import Widgets from "../components/controls/widgetControls/clock/clock";
@@ -17,7 +17,9 @@ import WidgetPanel from "../components/controls/widgetControls/widgetPanel";
 import Sidebar from "../components/controls/sidebarControls/sidebar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Sample from './firebase';
+import swipe from '../assets/imgs/gifs/swipe.gif';
+import { manual } from "../data/manualData";
+import Loading from '../components/loading';
 interface ContainerProps {
   name: string;
   buildingName: string;
@@ -90,6 +92,13 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
     }
   };
 
+  function Loading2() {
+    const defaultIcon = "eos-icons:three-dots-loading";
+
+    return
+    <Loading name={""}/>
+  }
+
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -109,66 +118,83 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
           <WidgetPanel name={""} />
         </div>
 
-        
 
-        <div className="-z-[1000] cursor-move" style={{ zIndex: "-1000" }}>
-          <SanBartolome name={"SanBartolome"} />
-        </div>
+        <Suspense fallback={<Loading name={""} />}>
+          <div className="bg-transparent cursor-move">
+            <SanBartolome name={"SanBartolome"} />
+          </div>
+        </Suspense>
 
         <div className="absolute bottom-10 right-10 ">
           <dialog id="SelectBuilding" className="modal">
-            <div className="max-w-3xl modal-box flex">
-              <aside className="flex flex-col w-96 h-96 px-3 pr-6 py-3 overflow-y-auto text-base-content  border-r rtl:border-r-0 rtl:border-l dark:bg-base-100 ">
+            <div className="flex max-w-3xl modal-box">
+              <aside className="flex flex-col px-3 py-3 pr-6 overflow-y-auto border-r w-96 h-96 text-base-content rtl:border-r-0 rtl:border-l dark:bg-base-100 ">
 
                 <div className="flex flex-col justify-between flex-1">
                   <nav className="-mx-3 space-y-6 ">
                     <div className="space-y-2 ">
-                    <label className="px-3 text-lg font-bold uppercase ">
+                      <label className="px-3 text-lg font-bold uppercase ">
                         Belmonte Building
                       </label>
                       <div className="grid grid-cols-4 gap-2">
-                      <button className="btn col-span-3 w-full rounded-2xl text-xs">Overview</button>
-                      <button className="btn col-span-1 w-full rounded-2xl text-xs"><Icon icon="typcn:info-large-outline" className="w-10 h-10" /></button>
+                        <button className="w-full col-span-3 text-xs btn rounded-2xl">Overview</button>
+                        <button className="w-full col-span-1 text-xs btn rounded-2xl"><Icon icon="typcn:info-large-outline" className="w-10 h-10" /></button>
                       </div>
-                     
+
                     </div>
 
                     <div className="space-y-2 ">
                       <label className="px-3 text-lg font-bold uppercase ">
                         Floors
                       </label>
-                     <div className="grid grid-cols-2 gap-2">
-                     <button className="btn w-full rounded-2xl text-xs">1st Floor</button>
-                     <button className="btn w-full rounded-2xl text-xs">2nd Floor</button>
-                     <button className="btn w-full rounded-2xl text-xs">3rd Floor</button>
-                     <button className="btn w-full rounded-2xl text-xs">4th Floor</button>
-                     <button className="btn w-full rounded-2xl text-xs">5th Floor</button>
-                     <button className="btn w-full rounded-2xl text-xs">6th Floor</button>
-                     <button className="btn w-full rounded-2xl text-xs">7th Floor</button>
-                     <button className="btn w-full rounded-2xl text-xs">8th Floor</button>
-                     </div>
+                      <div className="grid grid-cols-2 gap-2">
+                        <button className="w-full text-xs btn rounded-2xl">1st Floor</button>
+                        <button className="w-full text-xs btn rounded-2xl">2nd Floor</button>
+                        <button className="w-full text-xs btn rounded-2xl">3rd Floor</button>
+                        <button className="w-full text-xs btn rounded-2xl">4th Floor</button>
+                        <button className="w-full text-xs btn rounded-2xl">5th Floor</button>
+                        <button className="w-full text-xs btn rounded-2xl">6th Floor</button>
+                        <button className="w-full text-xs btn rounded-2xl">7th Floor</button>
+                        <button className="w-full text-xs btn rounded-2xl">8th Floor</button>
+                      </div>
                     </div>
 
-                    
+
                   </nav>
                 </div>
               </aside>
-              <div className="bg-base-300 w-full grid grid-cols-3 overflow-y-auto grid-rows-6 gap-2 rounded-xl text-base-content h-96 p-3">
-                {/* <div className="col-span-2 bg-base-200 row-span-1 rounded-xl"></div>
-                <div className="col-span-1 bg-base-200 row-span-1 rounded-xl"></div>
-                <div className="col-span-2 bg-base-200 row-span-6 rounded-xl">
+              <dialog id="demoModal" className=" modal">
+                {manual.map((manual, index) => (
+                  <>
+                    <div key={manual.id} className="modal-box">
+                      <h1 className="text-xl font-bold text-base-content">{manual.name}</h1>
+                      <div className="py-4"><img src={manual.picture} />
+                      </div>
+                      <p>{manual.description}</p>
+                    </div>
+                    <form method="dialog" className="modal-backdrop">
+                      <button>close</button>
+                    </form>
+                  </>
+                ))}
+              </dialog>
+
+
+              <div className="grid w-full grid-cols-3 grid-rows-6 gap-2 p-3 overflow-y-auto bg-base-300 rounded-xl text-base-content h-96">
+                {/* <div className="col-span-2 row-span-1 bg-base-200 rounded-xl"></div>
+                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div>
+                <div className="col-span-2 row-span-6 bg-base-200 rounded-xl">
                   <div className="p-3"><h1 className="text-base font-bold">Contact Persons:</h1></div>
                 </div>
-                <div className="col-span-1 bg-base-200 row-span-1 rounded-xl">  <div className="flex justify-center items-center"><h1 className="text-base font-bold">Comfort Rooms</h1></div></div>
-                <div className="col-span-1 bg-base-200 row-span-1 rounded-xl"></div>
-                <div className="col-span-1 bg-base-200 row-span-1 rounded-xl"></div>
-                <div className="col-span-1 bg-base-200 row-span-1 rounded-xl"></div>
-                <div className="col-span-1 bg-base-200 row-span-1 rounded-xl"></div>
-                <div className="col-span-1 bg-base-200 row-span-1 rounded-xl"></div>
-                <div className="col-span-1 bg-base-200 row-span-1 rounded-xl"></div>
-                <div className="col-span-1 bg-base-200 row-span-1 rounded-xl"></div> */}
-               {/* SHOULD BE PLACE BELOW HERE THE CODE I WANT TO RUn */}
-              <Sample/>
+                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl">  <div className="flex items-center justify-center"><h1 className="text-base font-bold">Comfort Rooms</h1></div></div>
+                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div>
+                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div>
+                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div>
+                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div>
+                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div>
+                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div>
+                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div> */}
+                {/* SHOULD BE PLACE BELOW HERE THE CODE I WANT TO RUn */}
 
               </div>
             </div>

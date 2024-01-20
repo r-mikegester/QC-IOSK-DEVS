@@ -56,7 +56,14 @@
     "axe/aria": [
       "default",
       {
-        "aria-required-children": "off"
+        "aria-required-children": "off",
+        "aria-command-name": "off"
+      }
+    ],
+    "axe/parsing": [
+      "default",
+      {
+        "duplicate-id-active": "off"
       }
     ]
   }

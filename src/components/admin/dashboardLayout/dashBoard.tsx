@@ -1,12 +1,15 @@
 import { Icon } from "@iconify/react";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import "../../../assets/css/dock.css";
+import AdminSidebar from "./constant/adminSidebar";
+import AdminHeader from "./constant/adminHeader";
+import { IonPage, IonContent } from "@ionic/react";
+import AdminLayout from "./layout";
 interface ContainerProps {
   name: string;
 }
 
-const adminSidebar: React.FC<ContainerProps> = ({ name }) => {
+const Dashboard: React.FC<ContainerProps> = ({ name }) => {
   const history = useHistory();
 
   const ClickWelcome = () => {
@@ -24,102 +27,93 @@ const adminSidebar: React.FC<ContainerProps> = ({ name }) => {
 
   const { t } = useTranslation();
   return (
-<div
-          id="application-sidebar"
-          className="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 start-0 bottom-0 z-[60] w-64 bg-white border-e border-gray-200 pt-7 pb-10 overflow-y-auto lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-slate-700 dark:[&::-webkit-scrollbar-thumb]:bg-slate-500 dark:bg-gray-800 dark:border-gray-700"
-        >
-          <div className="px-6">
-            <a
-              className="flex-none text-xl font-semibold dark:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-              href="#"
-              aria-label="Brand"
-            >
-              QC-IOSK
-            </a>
+    <>
+    <IonPage>
+      <IonContent fullscreen>
+       {/* <AdminLayout name={""}/> */}
+       <AdminHeader/>
+       <AdminSidebar/>
+      <div className="items-center justify-center h-auto text-base-content bg-base-300 lg:ps-64 ">
+
+        <div className="grid w-full h-full grid-cols-4 grid-rows-4 gap-5 p-10 bg-base-100 rounded-tl-3xl">
+          <div className="col-span-4 lg:col-span-1 md:col-span-3 sm:col-span-3">
+            <div className="flex flex-col items-center justify-between h-full p-3 shadow-md bg-base-300 rounded-2xl">
+              <div className="flex items-center justify-between space-x-12">
+                <div className="flex flex-col items-start">
+                  <h1>562</h1>
+                  <p>no of visitors</p>
+                </div>
+                <div className="flex">
+                  <Icon icon="akar-icons:people-group" className="w-10 h-10" />
+                </div>
+              </div>
+              
+            </div>
           </div>
+          <div className="col-span-4 lg:col-span-1 md:col-span-3 sm:col-span-3">
+            <div className="flex flex-col items-center justify-between h-full p-3 shadow-md bg-base-300 rounded-2xl">
+              <div className="flex items-center justify-between space-x-12">
+                <div className="flex flex-col items-start">
+                  <h1>12</h1>
+                  <p>active buildings</p>
+                </div>
+                <div className="flex">
+                  <Icon icon="bx:buildings" className="w-10 h-10" />
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div className="col-span-4 lg:col-span-1 md:col-span-3 sm:col-span-3">
+            <div className="flex flex-col items-center justify-between h-full p-3 shadow-md bg-base-300 rounded-2xl">
+              <div className="flex items-center justify-between space-x-12">
+                <div className="flex flex-col items-start">
+                  <h1>5</h1>
+                  <p>Active Annoucements</p>
+                </div>
+                <div className="flex">
+                  <Icon icon="streamline:annoncement-megaphone" className="w-10 h-10" />
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div className="col-span-4 lg:col-span-1 md:col-span-3 sm:col-span-3">
+            <div className="flex flex-col items-center justify-between h-full p-3 shadow-md bg-base-300 rounded-2xl">
+              <div className="flex items-center justify-between space-x-12">
+                <div className="flex flex-col items-start">
+                  <h1>3</h1>
+                  <p>Active Events</p>
+                </div>
+                <div className="flex">
+                  <Icon icon="streamline:calendar-star" className="w-10 h-10" />
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div className="col-span-3 row-span-3 ">
+            <div className="flex flex-col items-center justify-between h-full p-3 shadow-md bg-base-300 rounded-2xl">
 
-          <nav
-            className="flex flex-col flex-wrap w-full p-6 hs-accordion-group"
-            data-hs-accordion-always-open
-          >
-            <ul className="space-y-1.5">
-              <li>
-                <a
-                  className="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:bg-gray-900 dark:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                  href="/Dashboard"
-                >
-                  <Icon icon="lucide:layout-dashboard" className="h-7 w-7" />
-                  Dashboard
-                </a>
-              </li>
-              
-              <li>
-                <a
-                  className="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                  href="/EventsSettings"
-                >
-                <Icon icon="material-symbols:room-preferences-outline-rounded" className="w-7 h-7" />
-                Rooms
-                </a>
-              </li>
-                        
-              <li>
-                <a
-                  className="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                  href="/EventsSettings"
-                >
-                  <Icon icon="bi:building-gear"  className="w-7 h-7" />
-                  Building
-                </a>
-              </li>
-                   
-              <li>
-                <a
-                  className="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                  href="/EventsSettings"
-                >
-                  <Icon icon="mdi:events" className="w-7 h-7" />
-                  Events
-                </a>
-              </li>
-              
-              <li>
-                <a
-                  className="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                  href="/AnnoucementSettings"
-                >
-                  <Icon icon="mingcute:announcement-line" className="w-7 h-7" />
-                  Announcement
-                </a>
-              </li>
-              
-              <li>
-                <a
-                  className="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                  href="/ThemesSettings"
-                >
-                  <Icon
-                    icon="fluent:design-ideas-16-regular"
-                    className="w-7 h-7"
-                  />
-                  Themes
-                </a>
-              </li>
 
-              <li>
-                <a
-                  className="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                  href="/Settings"
-                >
-                  <Icon icon="ci:settings" className="w-7 h-7" />
-                  Settings
-                </a>
-              </li>
-            </ul>
-          </nav>
+            </div>
+          </div>
+          <div className="col-span-1 row-span-3 ">
+            <div className="flex flex-col items-center justify-between h-full p-3 shadow-md bg-base-300 rounded-2xl">
+              <div className="flex items-center justify-between space-x-12">
+
+              </div>
+              
+            </div>
+          </div>
         </div>
-   
-  );
+      </div>
+</IonContent>
+</IonPage>
+    </>
+
+
+  )
 };
 
-export default adminSidebar;
+export default Dashboard; 

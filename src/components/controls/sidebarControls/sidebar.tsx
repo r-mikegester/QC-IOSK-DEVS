@@ -3,10 +3,12 @@ import React, { useEffect, useRef, useState } from "react";
 import "../../../assets/css/sidebar.css";
 import KioskManual from "./KioskManual";
 import AudioBG from "./AudioBG";
-import ChangeLanguage from "./language/ChangeLanguage";
+import ChangeLanguage from "./ChangeLanguage";
 import Reload from "./Reload";
 import { useTranslation } from "react-i18next";
-import Settings from "./settings/settings";
+import Settings from "./settings";
+import manualImg from "../../../assets/imgs/kiosk.png";
+import Events from "./events";
 
 interface SideBarIconProps {
   icon: string;
@@ -25,13 +27,6 @@ const SideBar = () => {
   const [selectedContent, setSelectedContent] = useState("");
   const [volume, setVolume] = useState(50); // Initial volume state
   const [selectedAudio, setSelectedAudio] = useState("Minecraft"); // Initial audio selection state
-
-  // Function to handle volume change
-  const handleVolumeChange = (newVolume: React.SetStateAction<number>) => {
-    setVolume(newVolume);
-    // Add logic to control the volume of the audio element in your AudioBG component
-    // Example: audioElement.volume = newVolume / 100; (assuming 'audioElement' is the reference to your audio element)
-  };
 
   // Function to handle audio selection change
   const handleAudioChange = (selectedAudio: React.SetStateAction<string>) => {
@@ -111,11 +106,10 @@ const SideBar = () => {
       </div>
       <div className="fixed top-0 left-0 z-40 flex w-16 h-full p-2 shadow-lg bg-base-100 backdrop-blur-lg"></div>
       <div
-        className={`transition-all duration-150 ease-in-out w-96  overflow-auto h-screen -left-96 -z-50 ${
-          selectedContent
-            ? "active fixed translate-x-10 left-6 top-0 ease-linear -z-50  bg-base-100"
-            : " -translate-x-3 fixed top-0 -left-16 -z-50 ease-in-out duration-150"
-        }`}
+        className={`transition-all duration-150 ease-in-out w-96  overflow-auto h-screen -left-96 -z-50 ${selectedContent
+          ? "active fixed translate-x-10 left-6 top-0 ease-linear -z-50  bg-base-100"
+          : " -translate-x-3 fixed top-0 -left-16 -z-50 ease-in-out duration-150"
+          }`}
       >
         {/* Content for Announcements or Events */}
         <div className={`-z-50 duration-500   ${selectedContent}`}>
@@ -148,74 +142,14 @@ const SideBar = () => {
                   </div>
                   <button className="btn bg-base-300 btn-sm">View</button>
                 </div>
-                
+
               </div>
             </div>
           )}
-          {selectedContent === "Events" && (
-            <div className="h-screen py-10 space-y-2 bg-base-100">
-              <div className="sticky top-0 z-50 px-3 py-1 pb-5 transition-all duration-150 ease-in-out bg-base-100">
-                <h1 className="text-4xl font-bold text-left ">{t("Events")}</h1>
-                <p className="text-sm 0">
-                  Showing Events for the month of January
-                </p>
-              </div>
-              <div className="px-3 space-y-2">
-                <div className="w-full h-auto bg-base-300 rounded-2xl">
-                  <div>
-                    <div className="w-auto shadow-xl card bg-base-100 image-full">
-                      <figure>
-                        <img
-                          src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-                          alt="Shoes"
-                        />
-                      </figure>
-                      <div className="card-body">
-                        <h2 className="card-title">Marahuyo</h2>
-                        <p>Most Awaited Event of QCUians</p>
-                        <div className="justify-end card-actions">
-                          <button className="btn ">Details</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-          )}
+          {selectedContent === "Events" && <Events name={""} />}
           {selectedContent === "Language" && <ChangeLanguage name={"Lang"} />}
           {selectedContent === "Settings" && <Settings />}
-          {selectedContent === "KioskManual" && (
-            <div className="h-screen py-10 space-y-2 bg-base-100">
-              <div className="sticky top-0 z-50 px-3 py-1 pb-5 transition-all duration-150 ease-in-out bg-base-100">
-                <h1 className="text-4xl font-bold text-left ">
-                  {t("KioskManual")}
-                </h1>
-                <p className="text-sm 0">Guides on how to use QCIOSK</p>
-              </div>
-              <div className="px-3 space-y-2">
-                <div className="w-full bg-base-300 rounded-2xl">
-                  <div>
-                    <div className="w-auto shadow-xl card bg-base-100 image-full">
-                      <figure>
-                        <img
-                          src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-                          alt="Shoes"
-                        />
-                      </figure>
-                      <div className="card-body">
-                        <h2 className="card-title">BASIC GESTURES</h2>
-                        <p>Simple Gestures to Navigate thru our Kiosk</p>
-                        <div className="justify-end card-actions"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-               
-              </div>
-            </div>
-          )}
+          {selectedContent === "KioskManual" && <KioskManual name={""} />}
         </div>
       </div>
     </div>
