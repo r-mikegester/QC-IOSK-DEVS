@@ -6,11 +6,15 @@ interface ContainerProps {
 const Loading: React.FC<ContainerProps> = ({ name }) => {
 
   return (
-    
-    <div className="z-50 bg-transparent">
-      <div className="flex items-center justify-center ">
-        <div className="items-center justify-center text-center ">
-          <h1 className="text-center w-96 h-96  text-base-content"><span className="loading loading-infinity w-96 h-96"></span></h1>
+
+    <div className="z-50 bg-base-100 h-screen w-screen">
+      <div className="grid grid-cols-3 grid-rows-3 items-center">
+        <div className="flex content-center col-span-3 row-span-3 justify-center h-screen w-screen ">
+          <div className="content-center">
+            <div className="text-center text-base-content h-screen py-52">
+              <span className="loading loading-infinity w-96 h-96 "></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
