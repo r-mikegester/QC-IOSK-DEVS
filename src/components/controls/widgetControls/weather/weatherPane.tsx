@@ -192,13 +192,20 @@ const WeatherPane: React.FC = () => {
               <div className="items-center w-full space-y-2 ">
                 <div className="grid grid-cols-2">
                   <div
-                    className="col-span-2 px-3 py-2 text-center tooltip tooltip-top hover:bg-base-200 rounded-xl"
+                    className="col-span-2 px-3 py-2 text-center tooltip tooltip-top bg-base-100 hover:bg-base-200  mb-2 rounded-xl"
                     data-tip={t("Current Date")}
                   >
                     <div>
                       <p className="text-xl font-bold">{formattedDate}</p>
                     </div>
-                    <div className="grid items-stretch justify-between grid-cols-2 p-2 mt-2 text-xl font-bold capitalize bg-base-100 rounded-xl text-base-content">
+
+                  </div>
+                  <div
+                    className="col-span-2 text-center tooltip tooltip-top bg-base-100 rounded-xl"
+
+                  >
+
+                    <div className="grid items-stretch justify-between grid-cols-2 p-2 mt-2 text-xl  capitalize bg-base-100 rounded-xl text-base-content">
 
 
                       <div
