@@ -96,7 +96,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
     const defaultIcon = "eos-icons:three-dots-loading";
 
     return
-    <Loading name={""}/>
+    <Loading name={""} />
   }
 
   return (
@@ -178,25 +178,6 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                   </>
                 ))}
               </dialog>
-
-
-              <div className="grid w-full grid-cols-3 grid-rows-6 gap-2 p-3 overflow-y-auto bg-base-300 rounded-xl text-base-content h-96">
-                {/* <div className="col-span-2 row-span-1 bg-base-200 rounded-xl"></div>
-                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div>
-                <div className="col-span-2 row-span-6 bg-base-200 rounded-xl">
-                  <div className="p-3"><h1 className="text-base font-bold">Contact Persons:</h1></div>
-                </div>
-                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl">  <div className="flex items-center justify-center"><h1 className="text-base font-bold">Comfort Rooms</h1></div></div>
-                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div>
-                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div>
-                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div>
-                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div>
-                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div>
-                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div>
-                <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div> */}
-                {/* SHOULD BE PLACE BELOW HERE THE CODE I WANT TO RUn */}
-
-              </div>
             </div>
 
             <form method="dialog" className="modal-backdrop">
