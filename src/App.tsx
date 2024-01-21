@@ -2,7 +2,7 @@
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 
-/* Campuses*/
+/* Map*/
 import SanBartolome from './components/campus/SanBartolome';
 import SanFransisco from './components/campus/SanFransisco';
 import Batasan from './components/campus/Batasan';
@@ -10,9 +10,9 @@ import Batasan from './components/campus/Batasan';
 /** Error Catching */
 
 /* Main Routing */
-import Campuses from './pages/Campuses';
-import Home from './pages/Home';
-import Search from './pages/Search';
+import Map from './pages/maps';
+import Home from './pages/home';
+import Search from './pages/search';
 import Layout from './pages/layout';
 
 /** Admin Routing */
@@ -81,8 +81,8 @@ const App: React.FC<ContainerProps> = ({ name }) => (
             <Home name={'Home'} />
           </Route>
 
-          <Route exact path="/Campuses">
-            <Campuses name={'Campuses'} />
+          <Route exact path="/Map">
+            <Map name={'Map'} />
           </Route>
        
           <Route exact path="/SanBartolome">
