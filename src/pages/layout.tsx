@@ -17,9 +17,10 @@ import WidgetPanel from "../components/controls/widgetControls/widgetPanel";
 import Sidebar from "../components/controls/sidebarControls/sidebar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import swipe from '../assets/imgs/gifs/swipe.gif';
+import swipe from "../assets/imgs/gifs/swipe.gif";
 import { manual } from "../data/manualData";
-import Loading from '../components/loading';
+import Loading from "../components/loading";
+
 interface ContainerProps {
   name: string;
   buildingName: string;
@@ -95,8 +96,8 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
   function Loading2() {
     const defaultIcon = "eos-icons:three-dots-loading";
 
-    return
-    <Loading name={""}/>
+    return;
+    <Loading name={""} />;
   }
 
   return (
@@ -118,7 +119,6 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
           <WidgetPanel name={""} />
         </div>
 
-
         <Suspense fallback={<Loading name={""} />}>
           <div className="bg-transparent cursor-move">
             <SanBartolome name={"SanBartolome"} />
@@ -129,7 +129,6 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
           <dialog id="SelectBuilding" className="modal">
             <div className="flex max-w-3xl modal-box">
               <aside className="flex flex-col px-3 py-3 pr-6 overflow-y-auto border-r w-96 h-96 text-base-content rtl:border-r-0 rtl:border-l dark:bg-base-100 ">
-
                 <div className="flex flex-col justify-between flex-1">
                   <nav className="-mx-3 space-y-6 ">
                     <div className="space-y-2 ">
@@ -137,10 +136,16 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                         Belmonte Building
                       </label>
                       <div className="grid grid-cols-4 gap-2">
-                        <button className="w-full col-span-3 text-xs btn rounded-2xl">Overview</button>
-                        <button className="w-full col-span-1 text-xs btn rounded-2xl"><Icon icon="typcn:info-large-outline" className="w-10 h-10" /></button>
+                        <button className="w-full col-span-3 text-xs btn rounded-2xl">
+                          Overview
+                        </button>
+                        <button className="w-full col-span-1 text-xs btn rounded-2xl">
+                          <Icon
+                            icon="typcn:info-large-outline"
+                            className="w-10 h-10"
+                          />
+                        </button>
                       </div>
-
                     </div>
 
                     <div className="space-y-2 ">
@@ -148,18 +153,32 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                         Floors
                       </label>
                       <div className="grid grid-cols-2 gap-2">
-                        <button className="w-full text-xs btn rounded-2xl">1st Floor</button>
-                        <button className="w-full text-xs btn rounded-2xl">2nd Floor</button>
-                        <button className="w-full text-xs btn rounded-2xl">3rd Floor</button>
-                        <button className="w-full text-xs btn rounded-2xl">4th Floor</button>
-                        <button className="w-full text-xs btn rounded-2xl">5th Floor</button>
-                        <button className="w-full text-xs btn rounded-2xl">6th Floor</button>
-                        <button className="w-full text-xs btn rounded-2xl">7th Floor</button>
-                        <button className="w-full text-xs btn rounded-2xl">8th Floor</button>
+                        <button className="w-full text-xs btn rounded-2xl">
+                          1st Floor
+                        </button>
+                        <button className="w-full text-xs btn rounded-2xl">
+                          2nd Floor
+                        </button>
+                        <button className="w-full text-xs btn rounded-2xl">
+                          3rd Floor
+                        </button>
+                        <button className="w-full text-xs btn rounded-2xl">
+                          4th Floor
+                        </button>
+                        <button className="w-full text-xs btn rounded-2xl">
+                          5th Floor
+                        </button>
+                        <button className="w-full text-xs btn rounded-2xl">
+                          6th Floor
+                        </button>
+                        <button className="w-full text-xs btn rounded-2xl">
+                          7th Floor
+                        </button>
+                        <button className="w-full text-xs btn rounded-2xl">
+                          8th Floor
+                        </button>
                       </div>
                     </div>
-
-
                   </nav>
                 </div>
               </aside>
@@ -167,8 +186,11 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                 {manual.map((manual, index) => (
                   <>
                     <div key={manual.id} className="modal-box">
-                      <h1 className="text-xl font-bold text-base-content">{manual.name}</h1>
-                      <div className="py-4"><img src={manual.picture} />
+                      <h1 className="text-xl font-bold text-base-content">
+                        {manual.name}
+                      </h1>
+                      <div className="py-4">
+                        <img src={manual.picture} />
                       </div>
                       <p>{manual.description}</p>
                     </div>
@@ -178,7 +200,6 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                   </>
                 ))}
               </dialog>
-
 
               <div className="grid w-full grid-cols-3 grid-rows-6 gap-2 p-3 overflow-y-auto bg-base-300 rounded-xl text-base-content h-96">
                 {/* <div className="col-span-2 row-span-1 bg-base-200 rounded-xl"></div>
@@ -195,7 +216,6 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
                 <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div>
                 <div className="col-span-1 row-span-1 bg-base-200 rounded-xl"></div> */}
                 {/* SHOULD BE PLACE BELOW HERE THE CODE I WANT TO RUn */}
-
               </div>
             </div>
 
