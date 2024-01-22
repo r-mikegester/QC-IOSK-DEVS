@@ -1,47 +1,48 @@
 /*Imported Dependencies */
-import { IonReactRouter } from '@ionic/react-router';
-import { Redirect, Route } from 'react-router-dom';
+import { IonReactRouter } from "@ionic/react-router";
+import { Redirect, Route } from "react-router-dom";
 
 /* Map*/
 import SanBartolome from './components/campus/SanBartolome';
 import SanFransisco from './components/campus/SanFransisco';
 import Batasan from './components/campus/Batasan';
 
+
 /** Error Catching */
 
 /* Main Routing */
+
 import Map from './pages/maps';
 import Home from './pages/home';
 import Search from './pages/search';
 import Layout from './pages/layout';
+
 
 /** Admin Routing */
 import Login from "./components/admin/auth/login";
 import Signup from "./components/admin/auth/signup";
 import Dashboard from "./components/admin/dashboardLayout/dashboard";
 
-
-
 /* Core CSS required for Ionic components to work properly */
-import '@ionic/react/css/core.css';
-import './assets/css/index.css';
+import "@ionic/react/css/core.css";
+import "./assets/css/index.css";
 
 /* Basic CSS for apps built with Ionic */
-import '@ionic/react/css/typography.css';
-import '@ionic/react/css/normalize.css';
-import '@ionic/react/css/structure.css';
-
+import "@ionic/react/css/typography.css";
+import "@ionic/react/css/normalize.css";
+import "@ionic/react/css/structure.css";
 
 /* Optional CSS utils that can be commented out */
-import '@ionic/react/css/text-transformation.css';
-import '@ionic/react/css/float-elements.css';
-import '@ionic/react/css/text-alignment.css';
-import '@ionic/react/css/flex-utils.css';
-import '@ionic/react/css/display.css';
-import '@ionic/react/css/padding.css';
+import "@ionic/react/css/text-transformation.css";
+import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/text-alignment.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/display.css";
+import "@ionic/react/css/padding.css";
 /* Theme variables */
-import './assets/css/variables.css';
+import "./assets/css/variables.css";
 /*Ionic Components*/
+
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import ManageAnnouncements from './components/admin/dashboardLayout/management/manageAnnoucements';
 import RoomManagement from './components/admin/dashboardLayout/management/manageRooms';
@@ -73,8 +74,7 @@ declare global {
 const App: React.FC<ContainerProps> = ({ name }) => (
   <IonApp>
     <IonReactRouter>
-      <IonRouterOutlet> 
-        
+      <IonRouterOutlet>
         <Route exact path="/">
             <Redirect to="/Home" />
           </Route> 
@@ -113,7 +113,6 @@ const App: React.FC<ContainerProps> = ({ name }) => (
           <Signup name={"Signup"} />
         </Route>
 
-
         {/* ADMIN ROUTES */}
 
         <Route exact path="/Dashboard">
@@ -123,7 +122,7 @@ const App: React.FC<ContainerProps> = ({ name }) => (
         <Route exact path="/Announcements">
           <ManageAnnouncements name={"Annoucements"} />
         </Route>
-       
+
         <Route exact path="/Rooms">
           <RoomManagement name={"Room Management"} />
         </Route>
