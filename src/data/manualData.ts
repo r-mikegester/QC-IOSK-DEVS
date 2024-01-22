@@ -28,21 +28,7 @@ export const manual = [
     icon: 'bx:buildings',
     description: 'this refers to navigation movement that can be rotate on a multi directional axis',
   },
-  {
-    id: 4,
-    name: 'Panning ',
-    picture: '/src/assets/imgs/gifs/swipe.gif',
-    icon: 'bx:buildings',
-    description: 'this refers to navigation movement that can be rotate on a multi directional axis',
-  },
-  {
-    id: 5,
-    name: 'Panning ',
-    picture: '/src/assets/imgs/gifs/swipe.gif',
-    icon: 'bx:buildings',
-    description: 'this refers to navigation movement that can be rotate on a multi directional axis',
-  },
-    // ... other manuals entries
+  // other manuals entries
   ];
 
   export default manual;

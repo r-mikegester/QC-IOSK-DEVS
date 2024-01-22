@@ -63,7 +63,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
         enablePan={true}
         zoomSpeed={1} // based sa touchpad
         autoRotate={true}
-        autoRotateSpeed={1}
+        autoRotateSpeed={0.3}
         enableZoom={true}
         minDistance={50}
         maxDistance={200}

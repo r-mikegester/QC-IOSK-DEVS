@@ -2,18 +2,21 @@
 import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router-dom";
 
-/* Campuses*/
-import SanBartolome from "./components/campus/SanBartolome";
-import SanFransisco from "./components/campus/SanFransisco";
-import Batasan from "./components/campus/Batasan";
+/* Map*/
+import SanBartolome from './components/campus/SanBartolome';
+import SanFransisco from './components/campus/SanFransisco';
+import Batasan from './components/campus/Batasan';
+
 
 /** Error Catching */
 
 /* Main Routing */
-import Campuses from "./pages/Campuses";
-import Home from "./pages/Home";
-import Search from "./pages/Search";
-import Layout from "./pages/layout";
+
+import Map from './pages/maps';
+import Home from './pages/home';
+import Search from './pages/search';
+import Layout from './pages/layout';
+
 
 /** Admin Routing */
 import Login from "./components/admin/auth/login";
@@ -39,13 +42,14 @@ import "@ionic/react/css/padding.css";
 /* Theme variables */
 import "./assets/css/variables.css";
 /*Ionic Components*/
-import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
-import ManageAnnouncements from "./components/admin/dashboardLayout/management/manageAnnoucements";
-import RoomManagement from "./components/admin/dashboardLayout/management/manageRooms";
-import BuildingManagement from "./components/admin/dashboardLayout/management/manageBuilding";
-import AdminSettings from "./components/admin/dashboardLayout/management/adminSettings";
-import EventManagement from "./components/admin/dashboardLayout/management/manageEvents";
-import ThemesManagement from "./components/admin/dashboardLayout/management/manageThemes";
+
+import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import ManageAnnouncements from './components/admin/dashboardLayout/management/manageAnnoucements';
+import RoomManagement from './components/admin/dashboardLayout/management/manageRooms';
+import BuildingManagement from './components/admin/dashboardLayout/management/manageBuilding';
+import AdminSettings from './components/admin/dashboardLayout/management/adminSettings';
+import EventManagement from './components/admin/dashboardLayout/management/manageEvents';
+import ThemesManagement from './components/admin/dashboardLayout/management/manageThemes';
 import CreateEvent from "./components/admin/dashboardLayout/management/eventsComponent/createEvent";
 import UpdateEvent from "./components/admin/dashboardLayout/management/eventsComponent/updateEvent";
 setupIonicReact();
@@ -72,34 +76,36 @@ const App: React.FC<ContainerProps> = ({ name }) => (
     <IonReactRouter>
       <IonRouterOutlet>
         <Route exact path="/">
-          <Redirect to="/Home" />
-        </Route>
+            <Redirect to="/Home" />
+          </Route> 
+       
+          <Route path="/Home">
+            <Home name={'Home'} />
+          </Route>
 
-        <Route path="/Home">
-          <Home name={"Home"} />
-        </Route>
+          <Route exact path="/Map">
+            <Map name={'Map'} />
+          </Route>
+       
+          <Route exact path="/SanBartolome">
+            <Layout name={'Layout'} buildingName={''} />
+          </Route>
+       
+          <Route exact path="/SanFransisco">
+            <SanFransisco name={'SanFransisco'} />
+          </Route>
+       
+          <Route exact path="/Batasan">
+            <Batasan name={'Batasan'} />
+          </Route>
+       
+          <Route exact path="/Search">
+            <Search name={'Search'} />
+          </Route>
+       
+         
 
-        <Route exact path="/Campuses">
-          <Campuses name={"Campuses"} />
-        </Route>
-
-        <Route exact path="/SanBartolome">
-          <Layout name={"Layout"} buildingName={""} />
-        </Route>
-
-        <Route exact path="/SanFransisco">
-          <SanFransisco name={"SanFransisco"} />
-        </Route>
-
-        <Route exact path="/Batasan">
-          <Batasan name={"Batasan"} />
-        </Route>
-
-        <Route exact path="/Search">
-          <Search name={"Search"} />
-        </Route>
-
-        <Route exact path="/Login">
+          <Route exact path="/Login">
           <Login name={"Login"} />
         </Route>
 
@@ -144,6 +150,7 @@ const App: React.FC<ContainerProps> = ({ name }) => (
         <Route exact path="/updateEvent/:eventId">
           <UpdateEvent name={"Update Events"} />
         </Route>
+        
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
