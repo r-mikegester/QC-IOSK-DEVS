@@ -16,10 +16,9 @@ import WidgetPanel from "../components/controls/widgetControls/widgetPanel";
 import Sidebar from "../components/controls/sidebarControls/sidebar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import swipe from '../assets/imgs/gifs/swipe.gif';
+import swipe from "../assets/imgs/gifs/swipe.gif";
 import { manual } from "../data/manualData";
 import Loading from '../components/loading';
-import EventsModal from '../components/modals/eventsModal';
 interface ContainerProps {
   name: string;
   buildingName: string;
