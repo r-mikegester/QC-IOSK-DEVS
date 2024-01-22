@@ -8,7 +8,9 @@
       {
         "ignore": [
           "dialog",
-          "meta[name=color-scheme]"
+          "meta[name=color-scheme]",
+          "input[type=time]",
+          "input[type=date]"
         ]
       }
     ],
