@@ -71,7 +71,15 @@ const Events: React.FC<ContainerProps> = ({ name }) => {
           <p className="text-sm 0">Showing Events for the month of January</p>
         </div>
         {loading ? (
-          <p>Loading...</p>
+          <>
+            <h1>LOADING. PLEASE WAIT....</h1>
+            <div className="flex flex-col gap-4 w-52">
+              <div className="skeleton h-32 w-full"></div>
+              <div className="skeleton h-4 w-28"></div>
+              <div className="skeleton h-4 w-full"></div>
+              <div className="skeleton h-4 w-full"></div>
+            </div>
+          </>
         ) : (
           <div className="px-3 space-y-3 pb-40">
             <div className="w-full h-auto rounded-2xl">
