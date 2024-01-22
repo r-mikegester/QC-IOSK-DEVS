@@ -66,71 +66,65 @@ const Events: React.FC<ContainerProps> = ({ name }) => {
   return (
     <>
       <div className="h-screen py-10 space-y-2 bg-base-100">
-        <div className="sticky top-0 z-50 px-3 py-1 pb-5 transition-all duration-150 ease-in-out bg-base-100">
+        <div className="sticky top-0 z-50 px-3 py-1  transition-all duration-150 ease-in-out bg-base-100">
           <h1 className="text-4xl font-bold text-left ">{t("Events")}</h1>
-          <p className="text-sm 0">Showing Events for the month of January</p>
+          <p className="text-sm 0">Showing events for the current month</p>
         </div>
         {loading ? (
           <>
-            <h1>LOADING. PLEASE WAIT....</h1>
-            <div className="flex flex-col gap-4 w-52">
-              <div className="skeleton h-32 w-full"></div>
-              <div className="skeleton h-4 w-28"></div>
-              <div className="skeleton h-4 w-full"></div>
-              <div className="skeleton h-4 w-full"></div>
+            <div className=" px-3 w-96 h-96 rounded-2xl pt-10 pr-6">
+              
+              <div className="flex flex-col gap-4">
+                <div className="skeleton h-96 rounded-2xl w-full"></div>
+                <div className="skeleton h-96 rounded-2xl w-full"></div>
+                <div className="skeleton h-full w-full"></div>
+              </div>
             </div>
           </>
         ) : (
-          <div className="px-3 space-y-3 pb-40">
+          <div className="px-3 space-y-3 pt-10 pb-40">
             <div className="w-full h-auto rounded-2xl">
-              <div className="space-y-2">
+              <div className="space-y-3">
                 {events.map((event, index) => (
-                  <div
-                    className="object-fill w-auto shadow-xl card cursor-pointer  rounded-3xl image-full"
-                    key={index}
-                    onClick={() => openModal(event)}
-                  >
-                    <figure className="rounded-3xl">
-                      {/* <img src={manualImg} alt="Kiosk Manual" className="" /> */}
-                      <img
-                        src={event.imageUrl}
-                        alt="Event Alt"
-                        className=""
-                        // style={{ maxWidth: "100px" }}
-                      />
-                    </figure>
+                  <a key={index} onClick={() => openModal(event)} class="group cursor-pointer space-y-2 relative block rounded-xl dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" >
 
-                    <div className="card-body">
-                      <h2 className="card-title text-4xl text-left">
-                        {" "}
-                        {event.name}{" "}
-                      </h2>
-                      <p className="text-ellipsis "> {event.eventDesc} </p>
-
-                      <div className="justify-between card-actions items-center">
-                        <div className="flex justify-between">
-                          <p
-                            className="font-semibold tooltip"
-                            data-tip={t("Event Date")}
-                          >
-                            {" "}
-                            {event.startDate}
-                          </p>
-                          {/* <p> {event.endDate}</p> */}
-                        </div>
-                        <button
-                          onClick={() => openModal(event)}
-                          className="btn btn-square flex hover:bg-base-300 bg-transparent tooltip justify-center hover:text-base-content text-base-100"
-                          data-tip={t("View Event")}
-                        >
-                          <Icon
-                            icon="icon-park-outline:preview-open"
-                            className="w-10 h-10"
-                          />
-                        </button>
+                    <>
+                      <div class="flex-shrink-0 relative  rounded-2xl overflow-hidden w-full h-[350px] before:absolute before:inset-x-0 before:w-full before:h-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
+                        <img class="w-full h-full absolute top-0 start-0 object-cover brightness-50 hover:scale-110" src={event.imageUrl} alt="Image Description" />
                       </div>
-                    </div>
-                  </div>
+                      <div class="absolute top-0 inset-x-0 z-10">
+                        <div class="p-4 lg:px-3 lg:py-1 flex flex-col h-full sm:p-6">
+
+                          <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                              <img class="h-[2.875rem] w-[2.875rem] border-2 border-white rounded-full" src="https://images.unsplash.com/photo-1669837401587-f9a4cfe3126e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80" alt="Image Description" />
+                            </div>
+                            <div class="ms-2.5 sm:ms-4">
+                              <h4 class="font-semibold text-white">
+                                Event Host
+                              </h4>
+                              <p class="text-xs text-white/[.8]">
+                                {" "}
+                                {event.startDate}
+                              </p>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div><div class="absolute bottom-0 inset-x-0 z-10">
+                        <div class="flex flex-col h-full p-4 sm:p-6">
+                          <h3 class="text-lg sm:text-3xl font-semibold text-white group-hover:text-white/[.8]">
+                            {" "}
+                            {event.name}{" "}
+                          </h3>
+                          <p class="mt-2 text-white/[.8]">
+                            {event.eventDesc}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+
+                  </a>
                 ))}
               </div>
             </div>
