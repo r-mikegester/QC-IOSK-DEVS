@@ -1,30 +1,37 @@
-import React, { Component, ChangeEvent, useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent, useRef } from "react";
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+import firebaseConfig, { db } from "../utils/firebase";
 import { IonContent, IonPage } from '@ionic/react';
 import { Icon } from '@iconify/react';
 import { useHistory } from 'react-router-dom';
-import '../assets/css/search.css';
-import Dock from '../components/controls/navigationControls/dock';
-import Backbtn from '../components/controls/navigationControls/Backbtn';
-import OSKeyboard from "../components/keyboard/onScreenKeyboard";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
+import Backbtn from '../components/controls/navigationControls/Backbtn';
+import Dock from '../components/controls/navigationControls/dock';
+import '../assets/css/search.css';
 import '../assets/css/keyboard.css';
 
 interface SearchProps {
   name: string;
 }
 
-interface SearchState {
-  layoutName: string;
-  input: string;
-}
-
 const Search: React.FC<SearchProps> = ({ name }) => {
-  const [keyboard, setKeyboard] = useState<Keyboard | null>(null);
+  const [keyboard, setKeyboard] = useState< Keyboard | null>(null);
   const [layoutName, setLayoutName] = useState<string>("default");
   const [input, setInput] = useState<string>("");
+  const history = useHistory();
+  const firestore = getFirestore(initializeApp(firebaseConfig));
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const joinRef = useRef<HTMLDivElement>(null);
+
+  
 
   useEffect(() => {
+    // Initialize Firebase
+    const firebaseApp = initializeApp(firebaseConfig);
+    const firestore = getFirestore(firebaseApp);
+
     // Perform any setup or side effects here
     // This effect will run once on mount
 
@@ -33,6 +40,27 @@ const Search: React.FC<SearchProps> = ({ name }) => {
       // Perform any cleanup here
     };
   }, []); // Empty dependency array means this effect runs once on mount
+
+  useEffect(() => {
+    const handleDocumentClick = (event: MouseEvent) => {
+      // Check if the clicked element is inside the "join" class
+      if (joinRef.current && joinRef.current.contains(event.target as Node)) {
+        // Clicked inside "join" class, keep the dropdown visible
+        setIsDropdownOpen(true);
+      } else {
+        // Clicked outside "join" class, hide the dropdown
+        setIsDropdownOpen(false);
+      }
+    };
+
+    // Add the click event listener to the document
+    document.addEventListener("click", handleDocumentClick);
+
+    // Cleanup function to remove the event listener when the component unmounts
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
 
   const onChange = (newInput: string) => {
     setInput(newInput);
@@ -57,21 +85,50 @@ const Search: React.FC<SearchProps> = ({ name }) => {
     if (keyboard) keyboard.setInput(newInput);
   };
 
-
-  const handleClick = () => {
-    // Redirect to the "/Map" route
-    history.push('/Map');
+  const handleDropdownToggle = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const handleSearch = () => {
-    // Redirect to the "/Map" route
-    history.push('/SanBartolome');
+  const handleSearch = async () => {
+    try {
+      // Check if there is a non-empty search term
+      if (input.trim() !== "") {
+        // Query data from Firestore using the current value of 'input'
+        const querySnapshot = await getDocs(collection(db, "buildings"));
+        const searchTerm = input.toLowerCase(); // Convert search term to lowercase for case-insensitive comparison
+  
+        // Flag to check if any matching result is found
+        let isMatchFound = false;
+  
+        querySnapshot.forEach((doc) => {
+          // Access the "name" field from the document data
+          const buildingName = doc.data().name.toLowerCase(); // Convert building name to lowercase
+  
+          // Check if the building name contains the search term
+          if (buildingName.includes(searchTerm)) {
+            // Log only the "name" field for matching results
+            console.log(`${doc.id} => Name: ${doc.data().name}`);
+            isMatchFound = true;
+          }
+        });
+  
+        // If no matching result is found, log an error message
+        if (!isMatchFound) {
+          console.log("No matching name found");
+        }
+      } else {
+        console.log("Please enter a search term");
+      }
+    } catch (error) {
+      console.error("Error querying Firestore:", error);
+    }
   };
+  
+  
 
   return (
     <IonPage>
       <IonContent fullscreen className="bg-sc">
-        {/* <h1>Before Removing Search</h1> */}
         <div className="overflow-hidden ">
           <div className="relative overflow-hidden ">
             <div className="max-w-full px-4 py-10 mx-auto sm:px-6 lg:px-8 sm:py-5">
@@ -79,7 +136,7 @@ const Search: React.FC<SearchProps> = ({ name }) => {
                 <h1 className="text-4xl font-bold sm:text-6xl">
                   Search
                 </h1>
-                <div className="join">
+                <div className="join" ref={joinRef} onClick={handleDropdownToggle}>
                   <div>
                     <div>
                       <input className="input input-bordered bg-white w-[650px] h-16 rounded-2xl text-gray-600 join-item" placeholder="Search..." value={input} onChange={onChangeInput}
@@ -88,9 +145,15 @@ const Search: React.FC<SearchProps> = ({ name }) => {
                   </div>
 
                   <div className="indicator">
-                    <button className="w-20 h-16 text-gray-700 bg-white btn hover:bg-gray-300 rounded-2xl join-item"><Icon icon="wpf:search" className="w-7 h-7" /></button>
+                    <button className="w-20 h-16 text-gray-700 bg-white btn hover:bg-gray-300 rounded-2xl join-item" onClick={handleSearch}><Icon icon="wpf:search" className="w-7 h-7" /></button>
                   </div>
                 </div>
+                {isDropdownOpen && (
+                    <div className="dropdown">
+                      {/* Your dropdown content goes here */}
+                      <p>This is the dropdown content</p>
+                    </div>
+                  )}
 
                 <div className="hidden">
                   <ul className="justify-center w-5/12 mx-auto mt-5 bg-white menu lg:menu-horizontal rounded-box">
@@ -146,12 +209,11 @@ const Search: React.FC<SearchProps> = ({ name }) => {
             </div>
           </div>
         </div>
-
-        <Backbtn name={'Back'} />
-        <Dock name={'Dock'} />
-      </IonContent>
-    </IonPage>
-  );
-};
-
+          <Backbtn name={'Back'} />
+          <Dock name={'Dock'} />
+        </IonContent>
+      </IonPage>
+    );
+  };
+  
 export default Search;
