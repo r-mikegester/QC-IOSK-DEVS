@@ -50,6 +50,7 @@ import BuildingManagement from './components/admin/dashboardLayout/management/ma
 import AdminSettings from './components/admin/dashboardLayout/management/adminSettings';
 import EventManagement from './components/admin/dashboardLayout/management/manageEvents';
 import ThemesManagement from './components/admin/dashboardLayout/management/manageThemes';
+import MikeGester from './components/admin/dashboardLayout/management/manualInlineKioskEditor';
 import CreateEvent from "./components/admin/dashboardLayout/management/eventsComponent/createEvent";
 import UpdateEvent from "./components/admin/dashboardLayout/management/eventsComponent/updateEvent";
 setupIonicReact();
@@ -149,6 +150,10 @@ const App: React.FC<ContainerProps> = ({ name }) => (
 
         <Route exact path="/updateEvent/:eventId">
           <UpdateEvent name={"Update Events"} />
+        </Route>
+
+        <Route exact path="/MikeGester">
+          <MikeGester name={"Mike Gester"} />
         </Route>
         
       </IonRouterOutlet>
