@@ -7,17 +7,17 @@ type ThemesType = {
 const ThemeSelection = () => {
   const lightThemes: ThemesType = {
     light: 'light',
-    retro: 'retro',
+    retro: 'gester',
     cyberpunk: 'cyberpunk',
     valentine: 'pink',
     aqua: 'blue',
     cupcake: 'cupcake',
     luxury: 'luxury',
-    dark: 'dark',
+    dark: 'adamos',
     synthwave: 'synthwave',
     dim: 'dimmed',
     night: 'night',
-    coffee: 'coffee'
+    coffee: 'jonhel'
   };
 
   const darkThemes: ThemesType = {
