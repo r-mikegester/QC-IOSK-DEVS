@@ -9,7 +9,7 @@ import { useHistory } from "react-router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
-
+import { Icon } from '@iconify/react';
 interface ContainerProps {
     name: string;
 }
@@ -102,11 +102,16 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                     <AdminHeader name={""} />
 
                     <div className="items-center justify-center text-base-content bg-base-300 lg:ps-64 ">
-                        <div className="w-full h-full grid-cols-4 grid-rows-5 gap-5 p-10 bg-base-100 rounded-tl-3xl">
-                            <h1>Create Event</h1>
-                            <button onClick={EventManagement} className="btn btn-primary">
-                                Back
-                            </button>
+                        <div className="w-full min-h-screen p-10 bg-base-100 rounded-tl-3xl">
+                            <div className="flex items-center justify-between">
+                                <h1 className="font-bold text-4xl">Create Event</h1>
+
+                                <button onClick={EventManagement} className="btn btn-square mr-6 tooltip flex justify-center"  >
+                                    <Icon icon="typcn:arrow-back-outline" className="w-10 h-10" />
+
+                                </button>
+                                
+                            </div>
                             <div className="overflow-x-auto">
                                 <table className="table">
                                     <thead>
@@ -126,6 +131,16 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     className="input input-bordered w-full max-w-xs"
                                                 />
                                             </td>
+                                            <th>Event Place:</th>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Event Place"
+                                                    value={eventPlace}
+                                                    onChange={(e) => setEventPlace(e.target.value)}
+                                                    className="input input-bordered w-full max-w-xs"
+                                                />
+                                            </td>
                                         </tr>
 
                                         <tr>
@@ -141,16 +156,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                         </tr>
 
                                         <tr>
-                                            <th>Event Place:</th>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    placeholder="Event Place"
-                                                    value={eventPlace}
-                                                    onChange={(e) => setEventPlace(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
-                                                />
-                                            </td>
+                                            
                                         </tr>
 
                                         <tr>
@@ -163,8 +169,6 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     className="input input-bordered w-full max-w-xs"
                                                 />
                                             </td>
-                                        </tr>
-                                        <tr>
                                             <th>End Date:</th>
                                             <td>
                                                 <input
@@ -176,6 +180,9 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                             </td>
                                         </tr>
                                         <tr>
+
+                                        </tr>
+                                        <tr>
                                             <th>From:</th>
                                             <td>
                                                 <input
@@ -185,8 +192,6 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     className="input input-bordered w-full max-w-xs"
                                                 />
                                             </td>
-                                        </tr>
-                                        <tr>
                                             <th>To:</th>
                                             <td>
                                                 <input
@@ -196,6 +201,9 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     className="input input-bordered w-full max-w-xs"
                                                 />
                                             </td>
+                                        </tr>
+                                        <tr>
+
                                         </tr>
 
                                         <tr>
@@ -208,8 +216,6 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     className="file-input w-full max-w-xs"
                                                 />
                                             </td>
-                                        </tr>
-                                        <tr>
                                             <td colSpan={2}>
                                                 {imagePreview && (
                                                     <>
@@ -219,27 +225,29 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                         >
                                                             Preview Image
                                                         </button>
-                                                        <Modal
+                                                        <Modal className=" w-screen h-screen flex justify-center items-center "
                                                             isOpen={isModalOpen}
                                                             onRequestClose={closeModal}
                                                         >
+                                                            <div className="flex flex-col">
                                                             <img
                                                                 src={imagePreview}
                                                                 alt="Image Preview"
-                                                                style={{ width: "100%", height: "auto" }}
+                                                                className="w-96 h-96 rounded-t-3xl"
                                                             />
                                                             <button
                                                                 onClick={closeModal}
-                                                                className="btn btn-secondary"
+                                                                className="btn rounded-b-3xl rounded-t-none bg-base-300 hover:bg-base-100"
                                                             >
                                                                 Close
                                                             </button>
+                                                            </div>
                                                         </Modal>
                                                     </>
                                                 )}
                                             </td>
+                                            
                                         </tr>
-
                                         <tr>
                                             <td colSpan={2}>
                                                 <button
@@ -249,7 +257,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     Add Event
                                                 </button>
                                             </td>
-                                        </tr>
+                                            </tr>
                                     </tbody>
                                 </table>
                             </div>

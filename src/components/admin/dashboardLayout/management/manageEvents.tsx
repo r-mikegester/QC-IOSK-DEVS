@@ -6,7 +6,7 @@ import { db } from "../../../../utils/firebase";
 import { collection, getDocs, deleteDoc, doc } from "@firebase/firestore";
 import { useHistory } from "react-router";
 import Modal from "react-modal";
-
+import { Icon } from '@iconify/react';
 interface ContainerProps {
   name: string;
 }
@@ -98,60 +98,69 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
           <AdminSideBar name={""} />
           <AdminHeader name={""} />
           <div className="items-center justify-center text-base-content bg-base-300 lg:ps-64 ">
-            <div className="w-full h-full grid-cols-4 grid-rows-5 gap-5 p-10 bg-base-100 rounded-tl-3xl">
-              <h1>Event Management</h1>
+            <div className="w-full min-h-screen grid-cols-4 grid-rows-5 gap-5 p-10 bg-base-100 rounded-tl-3xl">
+              <div className="flex items-center justify-between">
+                <h1 className="font-bold text-4xl">Event Management</h1>
 
-              <button onClick={createEvent} className="btn btn-primary">
-                Create Event
-              </button>
+
+                <button onClick={createEvent} className="btn btn-square mr-6 tooltip flex justify-center"  >
+                  <Icon icon="material-symbols:box-add-outline" className="w-10 h-10" />
+
+                </button>
+              </div>
               <br />
               <br />
               <div className="overflow-x-auto">
                 <table className="table">
-                  <thead>
+                  <thead className="font-bold border-b-2 border-base-300">
                     <tr>
-                      <th>Event Name</th>
-                      <th>Event Description</th>
-                      <th>Event Place</th>
-                      <th>Start Date</th>
-                      <th>End Date</th>
-                      <th>From</th>
-                      <th>To</th>
-                      <th>Event Image </th>
-                      <th>Action</th>
+                      <th className="w-20">Event Name</th>
+                      <th className="w-20">Event Description</th>
+                      <th className="w-20">Event Place</th>
+                      <th className="w-20">When</th>
+                      {/* <th>End Date</th> */}
+                      {/* <th>Time</th> */}
+                      {/* <th>To</th> */}
+                      <th className="w-20">Organizer </th>
+                      <th className="w-20">Event Image </th>
+                      <th className="w-20 text-center">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {events.map((event, index) => (
-                      <tr key={index}>
-                        <th>{event.name}</th>
-                        <td>{event.eventDesc}</td>
+                      <tr key={index} className="border-b-2 border-base-200">
+                        <td>{event.name}</td>
+                        <td className="max-w-20 truncate">{event.eventDesc}</td>
                         <td>{event.eventPlace}</td>
                         <td>{event.startDate}</td>
-                        <td>{event.endDate}</td>
-                        <td>{event.startTime}</td>
-                        <td>{event.endTime}</td>
-                        <td>
+                        {/* <td>{event.endDate}</td>
+                        <td>{event.startTime}</td> */}
+                        {/* <td>{event.endTime}</td> */}
+                        <td className=" justify-center items-center">
                           <img
                             src={event.imageUrl}
-                            alt="Event Alt"
-                            style={{ maxWidth: "100px", cursor: "pointer" }}
+                            alt="Event Source"
+                            className="rounded-2xl max-h-16 max-w-16 min-w-16 flex justify-center"
                             onClick={() => openImagePreview(event.imageUrl)}
                           />
                         </td>
-                        <td>
-                          <button
-                            onClick={() => updateEvent(event.id)}
-                            className="btn btn-primary"
-                          >
-                            Edit
+                        <td className=" justify-center items-center">
+                          <img
+                            src={event.imageUrl}
+                            alt="Event Alt"
+                            className="rounded-2xl  max-h-16 max-w-16 min-w-16  flex justify-center"
+                            onClick={() => openImagePreview(event.imageUrl)}
+                          />
+                        </td>
+                        <td className=" flex  justify-center space-x-2 mt-2 items-center">
+                          {/* <button onClick={() => updateEvent(event.id)} className="btn btn-square rounded-xl">
+                            <Icon icon="lets-icons:view" className="w-10 h-10" />
+                          </button> */}
+                          <button onClick={() => updateEvent(event.id)} className="btn btn-square rounded-xl">
+                            <Icon icon="tabler:edit" className="w-10 h-10" />
                           </button>
-                          <span> | </span>
-                          <button
-                            onClick={() => openDeleteConfirmation(event.id)}
-                            className="btn btn-primary"
-                          >
-                            Delete
+                          <button onClick={() => openDeleteConfirmation(event.id)} className="btn btn-square rounded-xl">
+                            <Icon icon="material-symbols:delete-outline-rounded" className="w-10 h-10" />
                           </button>
                         </td>
                       </tr>
@@ -163,31 +172,38 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
           </div>
         </div>
         {/* Image Preview Modal */}
-        <Modal
+        <Modal className=" w-screen h-screen flex justify-center items-center "
           isOpen={selectedImage !== null}
           onRequestClose={closeImagePreview}
         >
-          <img
-            src={selectedImage || ""}
-            alt="Image Preview"
-            style={{ maxWidth: "100%" }}
-          />
-          <button onClick={closeImagePreview} className="btn btn-primary">
-            Close
-          </button>
+          <div className="flex flex-col space-y-0">
+            <img
+              src={selectedImage || ""}
+              alt="Image Preview"
+              style={{ maxWidth: "100%" }}
+              className="rounded-t-3xl"
+            />
+            <button onClick={closeImagePreview} className="btn rounded-t-none rounded-b-3xl bg-base-300 hover:bg-base-100">
+              Close
+            </button>
+          </div>
         </Modal>
         {/* Delete Confirmation Modal */}
-        <Modal
+        <Modal className=" w-screen h-screen flex justify-center items-center "
           isOpen={selectedEventId !== null}
           onRequestClose={closeDeleteConfirmation}
         >
-          <p>Are you sure you want to delete this event?</p>
-          <button onClick={deleteEvent} className="btn btn-danger">
-            Yes, Delete
-          </button>
-          <button onClick={closeDeleteConfirmation} className="btn btn-primary">
-            Cancel
-          </button>
+          <div className="bg-base-100 relative w-56 h-56 text-base-content justify-center rounded-2xl px-6">
+            <h1 className="text-xl font-semibold text-center">Are you sure you want to delete this event?</h1>
+            <div className="flex space-x-2 justify-center absolute bottom-3 left-4 ">
+              <button onClick={deleteEvent} className="btn bg-base-300 hover:bg-red-500 text-white ">
+                Yes, Delete
+              </button>
+              <button onClick={closeDeleteConfirmation} className="btn bg-base-300">
+                Cancel
+              </button>
+            </div>
+          </div>
         </Modal>
       </IonContent>
     </IonPage>
