@@ -6,18 +6,18 @@ type ThemesType = {
 
 const ThemeSelection = () => {
   const lightThemes: ThemesType = {
-    light: 'light',
-    retro: 'gester',
-    cyberpunk: 'cyberpunk',
-    valentine: 'pink',
-    aqua: 'blue',
-    cupcake: 'cupcake',
-    luxury: 'luxury',
-    dark: 'adamos',
-    synthwave: 'synthwave',
-    dim: 'dimmed',
-    night: 'night',
-    coffee: 'jonhel'
+    light: 'delightra', //de lara
+    retro: 'gester', // mike
+    cyberpunk: 'czaiberpunk', // Chan
+    valentine: 'apenk', // phoebe
+    aqua: 'lilan blue', // lilan
+    cupcake: 'angeles', // Phoebe
+    luxury: 'luxury go', // Go
+    dark: 'adamos', // adamos
+    synthwave: 'davidliangamit17', // davidliangamit17felicidario
+    dim: 'dimñas', //vinas
+    night: 'julnight', //cominghod
+    coffee: 'jonhel' // jonhel
   };
 
   const darkThemes: ThemesType = {
