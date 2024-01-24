@@ -106,8 +106,8 @@ const Search: React.FC<SearchProps> = ({ name }) => {
   
           // Check if the building name contains the search term
           if (buildingName.includes(searchTerm)) {
-            // Log only the "name" field for matching results
-            console.log(`${doc.id} => Name: ${doc.data().name}`);
+            // Log all fields of the matching document
+            console.log(`${doc.id} => Data: `, doc.data());
             isMatchFound = true;
           }
         });
@@ -149,11 +149,12 @@ const Search: React.FC<SearchProps> = ({ name }) => {
                   </div>
                 </div>
                 {isDropdownOpen && (
-                    <div className="dropdown">
+                    <div>
                       {/* Your dropdown content goes here */}
-                      <p>This is the dropdown content</p>
+                      <p style={{ margin: 0 }}>This is the dropdown content</p>
                     </div>
                   )}
+
 
                 <div className="hidden">
                   <ul className="justify-center w-5/12 mx-auto mt-5 bg-white menu lg:menu-horizontal rounded-box">
