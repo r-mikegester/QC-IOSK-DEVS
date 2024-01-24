@@ -8,7 +8,7 @@ interface ContainerProps {
   name: string;
 }
 
-const BuildingManagement: React.FC<ContainerProps> = ({ name }) => {
+const MikeGester: React.FC<ContainerProps> = ({ name }) => {
   const { t } = useTranslation();
   return (
     <IonPage>
@@ -20,7 +20,7 @@ const BuildingManagement: React.FC<ContainerProps> = ({ name }) => {
 
         <div className="w-full min-h-screen p-10 bg-base-100 rounded-tl-3xl">
             <div className="flex items-center justify-between">
-                <h1 className="font-bold text-4xl">Building Management</h1>
+                <h1 className="font-bold text-4xl">Manual Inline Kiosk Editor (MIKE)</h1>
               </div>
         </div>
       </div>
@@ -30,4 +30,4 @@ const BuildingManagement: React.FC<ContainerProps> = ({ name }) => {
   );
 };
 
-export default BuildingManagement;
+export default MikeGester;

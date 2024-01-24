@@ -31,11 +31,11 @@ const Dashboard: React.FC<ContainerProps> = ({ name }) => {
     <IonPage>
       <IonContent fullscreen>
        {/* <AdminLayout name={""}/> */}
-       <AdminHeader/>
-       <AdminSidebar/>
+       <AdminHeader name={""}/>
+       <AdminSidebar name={""}/>
       <div className="items-center justify-center h-auto text-base-content bg-base-300 lg:ps-64 ">
 
-        <div className="grid w-full h-full grid-cols-4 grid-rows-4 gap-5 p-10 bg-base-100 rounded-tl-3xl">
+        <div className="grid w-full min-h-screen grid-cols-4 grid-rows-4 gap-5 p-10 bg-base-100 rounded-tl-3xl">
           <div className="col-span-4 lg:col-span-1 md:col-span-3 sm:col-span-3">
             <div className="flex flex-col items-center justify-between h-full p-3 shadow-md bg-base-300 rounded-2xl">
               <div className="flex items-center justify-between space-x-12">

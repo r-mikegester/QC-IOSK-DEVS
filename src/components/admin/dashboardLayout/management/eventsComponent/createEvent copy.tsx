@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
 import { Icon } from '@iconify/react';
+
 interface ContainerProps {
     name: string;
 }
@@ -25,6 +26,8 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
     const [endTime, setEndTime] = useState<string>("");
     const [image, setImage] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
+    const [OrganizerImage, setOrganizerImage] = useState<File | null>(null);
+    const [OrganizerImagePreview, setOrganizerImagePreview] = useState<string | null>(null);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const EventManagement = () => {
@@ -35,16 +38,36 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
         const file = e.target.files?.[0] || null;
         setImage(file);
 
+
         if (file) {
             const previewUrl = URL.createObjectURL(file);
             setImagePreview(previewUrl);
+
         } else {
             setImagePreview(null);
+
         }
     };
-
-    const handlePreviewClick = () => {
+ const handlePreviewClick = () => {
         if (imagePreview) {
+            setIsModalOpen(true);
+        } else {
+            alert("Please select an image first!");
+        }
+    };
+    const handleOrganizerImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const organizerFile = e.target.files?.[0] || null;
+        setOrganizerImage(organizerFile);
+
+        if (organizerFile) {
+            const OrganizerPreviewUrl = URL.createObjectURL(organizerFile);
+            setOrganizerImagePreview(OrganizerPreviewUrl);
+        } else {
+            setOrganizerImagePreview(null);
+        }
+    };
+    const handleOrganizerPreviewClick = () => {
+        if (OrganizerImagePreview) {
             setIsModalOpen(true);
         } else {
             alert("Please select an image first!");
@@ -57,16 +80,19 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
 
     const handleAddEvent = async () => {
         try {
-            if (image) {
+            if (image, OrganizerImage) {
                 const storageRef = ref(storage, `event-images/${image.name}`);
+                const organizerStorageRef = ref(storage, `event-organizer-images/${organizer.name}`);
                 await uploadBytes(storageRef, image);
+                await uploadBytes(organizerStorageRef, OrganizerImage);
                 const imageUrl = await getDownloadURL(storageRef);
-
+                const organizerUrl = await getDownloadURL(storageRef);
                 await addDoc(collection(db, "events"), {
                     name: eventName,
                     eventDesc,
                     eventPlace,
                     imageUrl,
+                    organizerUrl,
                     startDate,
                     endDate,
                     startTime,
@@ -79,6 +105,8 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                 setEventPlace("");
                 setImage(null);
                 setImagePreview(null);
+                setOrganizerImage(null);
+                setOrganizerImagePreview(null);
                 setStartDate("");
                 setEndDate("");
                 setStartTime("");
@@ -102,7 +130,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                     <AdminHeader name={""} />
 
                     <div className="items-center justify-center text-base-content bg-base-300 lg:ps-64 ">
-                        <div className="w-full min-h-screen p-10 bg-base-100 rounded-tl-3xl">
+                        <div className="w-full h-full grid-cols-4 grid-rows-5 gap-5 p-10 bg-base-100 rounded-tl-3xl">
                             <div className="flex items-center justify-between">
                                 <h1 className="font-bold text-4xl">Create Event</h1>
 
@@ -110,7 +138,6 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                     <Icon icon="typcn:arrow-back-outline" className="w-10 h-10" />
 
                                 </button>
-                                
                             </div>
                             <div className="overflow-x-auto">
                                 <table className="table">
@@ -131,16 +158,6 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     className="input input-bordered w-full max-w-xs"
                                                 />
                                             </td>
-                                            <th>Event Place:</th>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    placeholder="Event Place"
-                                                    value={eventPlace}
-                                                    onChange={(e) => setEventPlace(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
-                                                />
-                                            </td>
                                         </tr>
 
                                         <tr>
@@ -156,7 +173,16 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                         </tr>
 
                                         <tr>
-                                            
+                                            <th>Event Place:</th>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Event Place"
+                                                    value={eventPlace}
+                                                    onChange={(e) => setEventPlace(e.target.value)}
+                                                    className="input input-bordered w-full max-w-xs"
+                                                />
+                                            </td>
                                         </tr>
 
                                         <tr>
@@ -169,6 +195,8 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     className="input input-bordered w-full max-w-xs"
                                                 />
                                             </td>
+                                        </tr>
+                                        <tr>
                                             <th>End Date:</th>
                                             <td>
                                                 <input
@@ -180,9 +208,6 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                             </td>
                                         </tr>
                                         <tr>
-
-                                        </tr>
-                                        <tr>
                                             <th>From:</th>
                                             <td>
                                                 <input
@@ -192,6 +217,8 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     className="input input-bordered w-full max-w-xs"
                                                 />
                                             </td>
+                                        </tr>
+                                        <tr>
                                             <th>To:</th>
                                             <td>
                                                 <input
@@ -203,9 +230,46 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                             </td>
                                         </tr>
                                         <tr>
-
+                                            <th>Event Organizer Image:</th>
+                                            <td>
+                                                <input
+                                                    type="file"
+                                                    accept="image/*"
+                                                    onChange={handleOrganizerImageChange}
+                                                    className="file-input w-full max-w-xs"
+                                                />
+                                            </td>
+                                            <td colSpan={2}>
+                                                {OrganizerImagePreview && (
+                                                    <>
+                                                        <button
+                                                            onClick={handleOrganizerPreviewClick}
+                                                            className="btn btn-secondary"
+                                                        >
+                                                            Preview Image
+                                                        </button>
+                                                        <Modal
+                                                            isOpen={isModalOpen}
+                                                            onRequestClose={closeModal}
+                                                        >
+                                                            <img
+                                                                src={OrganizerImagePreview}
+                                                                alt="Image Preview"
+                                                                
+                                                                className="w-96 h-96"
+                                                            />
+                                                            <button
+                                                                onClick={closeModal}
+                                                                className="btn btn-secondary"
+                                                            >
+                                                                Close
+                                                            </button>
+                                                        </Modal>
+                                                    </>
+                                                )}
+                                            </td>
                                         </tr>
-
+                                      
                                         <tr>
                                             <th>Event Image:</th>
                                             <td>
@@ -215,7 +279,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     onChange={handleImageChange}
                                                     className="file-input w-full max-w-xs"
                                                 />
-                                            </td>
+                                            </td> 
                                             <td colSpan={2}>
                                                 {imagePreview && (
                                                     <>
@@ -225,29 +289,29 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                         >
                                                             Preview Image
                                                         </button>
-                                                        <Modal className=" w-screen h-screen flex justify-center items-center "
+                                                        <Modal
                                                             isOpen={isModalOpen}
                                                             onRequestClose={closeModal}
                                                         >
-                                                            <div className="flex flex-col">
                                                             <img
                                                                 src={imagePreview}
                                                                 alt="Image Preview"
-                                                                className="w-96 h-96 rounded-t-3xl"
+                                                                
+                                                                className="w-96 h-96"
                                                             />
                                                             <button
                                                                 onClick={closeModal}
-                                                                className="btn rounded-b-3xl rounded-t-none bg-base-300 hover:bg-base-100"
+                                                                className="btn btn-secondary"
                                                             >
                                                                 Close
                                                             </button>
-                                                            </div>
                                                         </Modal>
                                                     </>
                                                 )}
                                             </td>
-                                            
                                         </tr>
+                                      
+
                                         <tr>
                                             <td colSpan={2}>
                                                 <button
@@ -257,7 +321,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     Add Event
                                                 </button>
                                             </td>
-                                            </tr>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

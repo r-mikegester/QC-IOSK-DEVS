@@ -99,6 +99,15 @@ const AdminSideBar: React.FC<ContainerProps> = ({ name }) => {
               Announcement
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              className="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm  rounded-lg hover:bg-base-100 text-base-content dark:focus:outline-none"
+              to="/MikeGester"
+            >
+              <Icon icon="tabler:hexagon-letter-m" className="w-7 h-7" />
+              M.I.K.E
+            </NavLink>
+          </li>
 
           <li>
             <NavLink

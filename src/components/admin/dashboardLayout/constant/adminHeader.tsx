@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ThemeSelection from "../../../controls/sidebarControls/themes/themeSelection";
 import { themeChange } from "theme-change";
+import Reload from '../../../controls/sidebarControls/Reload';
 interface ContainerProps {
   name: string;
 }
@@ -28,6 +29,10 @@ const adminHeader: React.FC<ContainerProps> = ({ name }) => {
     themeChange(false);
   });
   const { t } = useTranslation();
+
+  const reloadPage = () => {
+    window.location.reload();
+  };
   return (
     <header className="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start text-base-content sm:flex-nowrap z-[48] w-full bg-base-300 border-b text-sm py-2.5 sm:py-4 lg:ps-64 border-base-300">
       <nav
@@ -48,17 +53,20 @@ const adminHeader: React.FC<ContainerProps> = ({ name }) => {
         <div className="flex flex-row-reverse items-center justify-end w-full ms-auto sm:justify-between sm:gap-x-3 sm:order-3">
           <div className="flex flex-row items-center justify-end gap-2">
 
+            <button onClick={reloadPage} className="btn btn-circle bg-base-100 tooltip flex justify-center"  >
+              <Icon icon="mi:refresh" className="w-8 h-8" />
+            </button>
 
             <div className="dropdown dropdown-bottom dropdown-end">
-              <div tabIndex={0} role="button" className="w-12 shadow-md btn btn-circle "><Icon icon="tdesign:palette" className="w-7 h-7" /></div>
-              <ul tabIndex={0} className="dropdown-content m-0 z-[1] bg-base-300 text-base-content gap-2 shadow h-64 rounded-box w-96 mt-10">
+              <div tabIndex={0} role="button" className="w-12 shadow-md btn bg-base-100 btn-circle "><Icon icon="tdesign:palette" className="w-7 h-7" /></div>
+              <ul tabIndex={0} className="dropdown-content m-0 z-[1] bg-base-300 text-base-content  shadow h-64 rounded-box w-96 mt-10">
                 <ThemeSelection />
               </ul>
             </div>
 
           </div>
         </div>
-        
+
       </nav>
     </header>
   );

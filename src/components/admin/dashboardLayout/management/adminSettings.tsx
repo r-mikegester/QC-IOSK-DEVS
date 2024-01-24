@@ -18,8 +18,10 @@ const AdminSettings: React.FC<ContainerProps> = ({ name }) => {
       <AdminHeader name={""} />
       <div className="items-center justify-center text-base-content bg-base-300 lg:ps-64 ">
 
-        <div className="grid w-full h-full grid-cols-4 grid-rows-5 gap-5 p-10 bg-base-100 rounded-tl-3xl">
-            <h1>Settings</h1>
+        <div className="w-full min-h-screen p-10 bg-base-100 rounded-tl-3xl">
+            <div className="flex items-center justify-between">
+                <h1 className="font-bold text-4xl">Settings</h1>
+              </div>
         </div>
       </div>
     </div>
