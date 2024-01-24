@@ -43,16 +43,19 @@ import "@ionic/react/css/padding.css";
 import "./assets/css/variables.css";
 /*Ionic Components*/
 
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
-import ManageAnnouncements from './components/admin/dashboardLayout/management/manageAnnoucements';
-import RoomManagement from './components/admin/dashboardLayout/management/manageRooms';
-import BuildingManagement from './components/admin/dashboardLayout/management/manageBuilding';
-import AdminSettings from './components/admin/dashboardLayout/management/adminSettings';
-import EventManagement from './components/admin/dashboardLayout/management/manageEvents';
-import ThemesManagement from './components/admin/dashboardLayout/management/manageThemes';
-import MikeGester from './components/admin/dashboardLayout/management/manualInlineKioskEditor';
+import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
+import ManageAnnouncements from "./components/admin/dashboardLayout/management/manageAnnoucements";
+import RoomManagement from "./components/admin/dashboardLayout/management/manageRooms";
+import BuildingManagement from "./components/admin/dashboardLayout/management/manageBuilding";
+import AdminSettings from "./components/admin/dashboardLayout/management/adminSettings";
+import EventManagement from "./components/admin/dashboardLayout/management/manageEvents";
+import ThemesManagement from "./components/admin/dashboardLayout/management/manageThemes";
 import CreateEvent from "./components/admin/dashboardLayout/management/eventsComponent/createEvent";
 import UpdateEvent from "./components/admin/dashboardLayout/management/eventsComponent/updateEvent";
+import CreateAnnouncement from "./components/admin/dashboardLayout/management/announcementsComponent/createAnnoncement";
+import UpdateAnnouncement from "./components/admin/dashboardLayout/management/announcementsComponent/updateAnnouncement";
+import Archive from "./components/admin/dashboardLayout/management/manageArchive";
+import MikeGester from "./components/admin/dashboardLayout/management/manualInlineKioskEditor";
 setupIonicReact();
 interface ContainerProps {
   name: string;
@@ -77,36 +80,36 @@ const App: React.FC<ContainerProps> = ({ name }) => (
     <IonReactRouter>
       <IonRouterOutlet>
         <Route exact path="/">
-            <Redirect to="/Home" />
-          </Route> 
-       
-          <Route path="/Home">
-            <Home name={'Home'} />
-          </Route>
+          <Redirect to="/Home" />
+        </Route>
 
-          <Route exact path="/Map">
-            <Map name={'Map'} />
-          </Route>
-       
-          <Route exact path="/SanBartolome">
-            <Layout name={'Layout'} buildingName={''} />
-          </Route>
-       
-          <Route exact path="/SanFransisco">
-            <SanFransisco name={'SanFransisco'} />
-          </Route>
-       
-          <Route exact path="/Batasan">
-            <Batasan name={'Batasan'} />
-          </Route>
-       
-          <Route exact path="/Search">
-            <Search name={'Search'} />
-          </Route>
-       
-         
+        <Route path="/Home">
+          <Home name={'Home'} />
+        </Route>
 
-          <Route exact path="/Login">
+        <Route exact path="/Map">
+          <Map name={'Map'} />
+        </Route>
+
+        <Route exact path="/SanBartolome">
+          <Layout name={'Layout'} buildingName={''} />
+        </Route>
+
+        <Route exact path="/SanFransisco">
+          <SanFransisco name={'SanFransisco'} />
+        </Route>
+
+        <Route exact path="/Batasan">
+          <Batasan name={'Batasan'} />
+        </Route>
+
+        <Route exact path="/Search">
+          <Search name={'Search'} />
+        </Route>
+
+
+
+        <Route exact path="/Login">
           <Login name={"Login"} />
         </Route>
 
@@ -155,7 +158,19 @@ const App: React.FC<ContainerProps> = ({ name }) => (
         <Route exact path="/MikeGester">
           <MikeGester name={"Mike Gester"} />
         </Route>
-        
+
+        <Route exact path="/createAnnouncement">
+          <CreateAnnouncement name={"Create Announcements"} />
+        </Route>
+
+        <Route exact path="/updateAnnouncement/:announcementId">
+          <UpdateAnnouncement name={"Update Announcements"} />
+        </Route>
+
+        <Route exact path="/Archive">
+          <Archive name={"Archive"} />
+        </Route>
+
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

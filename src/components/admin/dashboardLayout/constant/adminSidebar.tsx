@@ -26,6 +26,18 @@ const AdminSideBar: React.FC<ContainerProps> = ({ name }) => {
   };
 
   const { t } = useTranslation();
+
+  const Archive = () => {
+    history.replace("/Archive");
+  };
+
+  const Events = () => {
+    history.replace("/Events");
+  };
+
+  const Announcements = () => {
+    history.replace("/Announcements");
+  };
   return (
     <div
       id="application-sidebar"
@@ -37,7 +49,7 @@ const AdminSideBar: React.FC<ContainerProps> = ({ name }) => {
           href="#"
           aria-label="Brand"
         >
-          <img src={logo} className="w-12 h-12 mr-3"/>
+          <img src={logo} className="w-12 h-12 mr-3" />
           QC-IOSK
         </a>
       </div>
@@ -84,6 +96,7 @@ const AdminSideBar: React.FC<ContainerProps> = ({ name }) => {
             <NavLink
               className="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm  rounded-lg hover:bg-base-100 text-base-content dark:focus:outline-none"
               to="/Events"
+              onClick={Events}
             >
               <Icon icon="mdi:events" className="w-7 h-7" />
               Events
@@ -94,9 +107,23 @@ const AdminSideBar: React.FC<ContainerProps> = ({ name }) => {
             <NavLink
               className="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm  rounded-lg hover:bg-base-100 text-base-content dark:focus:outline-none"
               to="/Announcements"
+              onClick={Announcements}
             >
               <Icon icon="mingcute:announcement-line" className="w-7 h-7" />
               Announcement
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm  rounded-lg hover:bg-base-100 text-base-content dark:focus:outline-none"
+              to="/Archive"
+              onClick={Archive}
+            >
+              <Icon
+                icon="material-symbols:archive-outline"
+                className="w-7 h-7"
+              />
+              Archive
             </NavLink>
           </li>
           <li>
@@ -128,7 +155,7 @@ const AdminSideBar: React.FC<ContainerProps> = ({ name }) => {
               Settings
             </NavLink>
           </li>
-          
+
         </ul>
         <div className="flex flex-col">
           <li className="flex flex-col pb-5">
@@ -140,7 +167,7 @@ const AdminSideBar: React.FC<ContainerProps> = ({ name }) => {
               Logout
             </a>
           </li>
-            </div>
+        </div>
       </nav>
     </div>
   );

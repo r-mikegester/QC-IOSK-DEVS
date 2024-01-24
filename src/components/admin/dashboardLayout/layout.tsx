@@ -10,6 +10,7 @@ import ThemeSelection from "../../controls/sidebarControls/themes/themeSelection
 import ManageEvents from "./management/manageEvents";
 import manageAnnouncements from "./management/manageAnnoucements";
 import ManageAnnouncements from "./management/manageAnnoucements";
+import { ToastContainer } from "react-toastify";
 
 interface ContainerProps {
   name: string;
@@ -53,6 +54,7 @@ const AdminLayout: React.FC<ContainerProps> = ({ name }) => {
         <div className="w-full h-full bg-base-100">
           <AdminHeader name={"adminHeader"} />
           <AdminSidebar name={"adminSidebar"} />
+          <ToastContainer />
         </div>
       </IonContent>
     </IonPage>

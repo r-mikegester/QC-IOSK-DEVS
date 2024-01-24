@@ -3,10 +3,10 @@ import AdminSideBar from "../../constant/adminSidebar";
 import AdminHeader from "../../constant/adminHeader";
 import { useHistory, useParams } from "react-router";
 import { useEffect, useState } from "react";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { db, storage } from "../../../../../utils/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { Icon } from '@iconify/react';
+import { toast } from "react-toastify";
 
 interface ContainerProps {
     name: string;
@@ -16,25 +16,23 @@ interface ContainerProps {
 interface Event {
     id: string;
     name: string;
+    eventSource: string;
     eventDesc: string;
     eventPlace: string;
     imageUrl: string;
     startDate: string;
-    endDate: string;
     startTime: string;
-    endTime: string;
 }
 
 const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
     const history = useHistory();
     const { eventId } = useParams<{ eventId: string }>();
     const [eventName, setEventName] = useState<string>("");
+    const [eventSource, setEventSource] = useState<string>("");
     const [eventDesc, setEventDesc] = useState<string>("");
     const [eventPlace, setEventPlace] = useState<string>("");
     const [startDate, setStartDate] = useState<string>("");
-    const [endDate, setEndDate] = useState<string>("");
     const [startTime, setStartTime] = useState<string>("");
-    const [endTime, setEndTime] = useState<string>("");
     const [event, setEvent] = useState<Event | null>(null);
     const [eventImage, setEventImage] = useState<File | null>(null);
 
@@ -60,12 +58,11 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                     setEvent(eventData);
 
                     setEventName(eventData.name);
+                    setEventSource(eventData.eventSource);
                     setEventDesc(eventData.eventDesc);
                     setEventPlace(eventData.eventPlace);
                     setStartDate(eventData.startDate);
-                    setEndDate(eventData.endDate);
                     setStartTime(eventData.startTime);
-                    setEndTime(eventData.endTime);
                 } else {
                     console.error("Event not found");
                     history.push("/Events");
@@ -80,6 +77,7 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
 
     const handleUpdateEvent = async () => {
         try {
+            const now = serverTimestamp();
             let imageUrl = "";
             if (eventImage) {
                 const storageRef = ref(storage, `event-images/${eventId}`);
@@ -90,19 +88,20 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
             const eventRef = doc(db, "events", eventId);
             await updateDoc(eventRef, {
                 name: eventName,
+                eventSource: eventSource,
                 eventDesc: eventDesc,
                 eventPlace: eventPlace,
                 startDate: startDate,
-                endDate: endDate,
                 startTime: startTime,
-                endTime: endTime,
                 imageUrl: imageUrl,
+                updatedAt: now,
             });
 
             console.log("Event updated successfully!");
-            history.push("/Events");
+            history.push("/Events", toast.success("Event updated successfully!"));
         } catch (error) {
             console.error("Error updating event: ", error);
+            alert("Error on updating event.");
         }
     };
 
@@ -114,15 +113,11 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                     <AdminHeader name={""} />
 
                     <div className="items-center justify-center text-base-content bg-base-300 lg:ps-64 ">
-                        <div className="w-full min-h-screen p-10 bg-base-100 rounded-tl-3xl">
-                            <div className="flex items-center justify-between">
-                                <h1 className="font-bold text-4xl">Edit Event</h1>
-
-                                <button onClick={EventManagement} className="btn btn-square mr-6 tooltip flex justify-center"  >
-                                    <Icon icon="typcn:arrow-back-outline" className="w-10 h-10" />
-
-                                </button>
-                            </div>
+                        <div className="w-full h-full grid-cols-4 grid-rows-5 gap-5 p-10 bg-base-100 rounded-tl-3xl">
+                            <h1>Update Event</h1>
+                            <button onClick={EventManagement} className="btn btn-primary">
+                                Back
+                            </button>
                             <div className="overflow-x-auto">
                                 <table className="table">
                                     <thead>
@@ -142,13 +137,16 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     className="input input-bordered w-full max-w-xs"
                                                 />
                                             </td>
-                                            <th>Event Place:</th>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Event Source:</th>
                                             <td>
                                                 <input
                                                     type="text"
-                                                    placeholder="Event Place"
-                                                    value={eventPlace}
-                                                    onChange={(e) => setEventPlace(e.target.value)}
+                                                    placeholder="Event Source"
+                                                    value={eventSource}
+                                                    onChange={(e) => setEventSource(e.target.value)}
                                                     className="input input-bordered w-full max-w-xs"
                                                 />
                                             </td>
@@ -167,11 +165,20 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                         </tr>
 
                                         <tr>
-
+                                            <th>Event Place:</th>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Event Place"
+                                                    value={eventPlace}
+                                                    onChange={(e) => setEventPlace(e.target.value)}
+                                                    className="input input-bordered w-full max-w-xs"
+                                                />
+                                            </td>
                                         </tr>
 
                                         <tr>
-                                            <th>Start Date:</th>
+                                            <th>Date:</th>
                                             <td>
                                                 <input
                                                     type="date"
@@ -180,21 +187,10 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     className="input input-bordered w-full max-w-xs"
                                                 />
                                             </td>
-                                            <th>End Date:</th>
-                                            <td>
-                                                <input
-                                                    type="date"
-                                                    value={endDate}
-                                                    onChange={(e) => setEndDate(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
-                                                />
-                                            </td>
                                         </tr>
-                                        <tr>
 
-                                        </tr>
                                         <tr>
-                                            <th>From:</th>
+                                            <th>Time:</th>
                                             <td>
                                                 <input
                                                     type="time"
@@ -203,18 +199,6 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     className="input input-bordered w-full max-w-xs"
                                                 />
                                             </td>
-                                            <th>To:</th>
-                                            <td>
-                                                <input
-                                                    type="time"
-                                                    value={endTime}
-                                                    onChange={(e) => setEndTime(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr>
-
                                         </tr>
 
                                         <tr>
@@ -227,7 +211,6 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     className="file-input w-full max-w-xs"
                                                 />
                                             </td>
-
                                         </tr>
                                         <tr>
                                             <td colSpan={2}>

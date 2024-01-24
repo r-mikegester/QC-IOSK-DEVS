@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import manualImg from "../../../assets/imgs/kiosk.png";
 import { db } from "../../../utils/firebase";
-import { collection, getDocs } from "@firebase/firestore";
+import { collection, getDocs, query, orderBy } from "@firebase/firestore";
 import { Icon } from "@iconify/react";
 import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 interface ContainerProps {
   name: string;
@@ -48,7 +49,11 @@ const Events: React.FC<ContainerProps> = ({ name }) => {
     const fetchEvents = async () => {
       try {
         const eventsCollection = collection(db, "events");
-        const eventsSnapshot = await getDocs(eventsCollection);
+        const queryEvent = query(
+          eventsCollection,
+          orderBy("createdAt", "desc")
+        );
+        const eventsSnapshot = await getDocs(queryEvent);
         const eventsData = eventsSnapshot.docs.map(
           (doc) => doc.data() as Event
         );
@@ -73,7 +78,7 @@ const Events: React.FC<ContainerProps> = ({ name }) => {
         {loading ? (
           <>
             <div className=" px-3 w-96 h-96 rounded-2xl pt-10 pr-6">
-              
+
               <div className="flex flex-col gap-4">
                 <div className="skeleton h-96 rounded-2xl w-full"></div>
                 <div className="skeleton h-96 rounded-2xl w-full"></div>
@@ -82,52 +87,75 @@ const Events: React.FC<ContainerProps> = ({ name }) => {
             </div>
           </>
         ) : (
-          <div className="px-3 space-y-3 pt-10 pb-40">
-            <div className="w-full h-auto rounded-2xl">
-              <div className="space-y-3">
-                {events.map((event, index) => (
-                  <a key={index} onClick={() => openModal(event)} class="group cursor-pointer space-y-2 relative block rounded-xl dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" >
+          <div>
+            {events.length === 0 ? (
+              <div className="px-3 space-y-2">
+                <div role="alert" className="alert">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="stroke-info shrink-0 w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  <span>No events found.</span>
+                </div>
+              </div>
+            ) : (
+              <div className="px-3 space-y-3 pt-10 pb-40">
+                <div className="w-full h-auto rounded-2xl">
+                  <div className="space-y-3">
+                    {events.map((event, index) => (
+                      <a key={index} onClick={() => openModal(event)} className="group cursor-pointer space-y-2 relative block rounded-xl dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" >
 
-                    <>
-                      <div class="flex-shrink-0 relative  rounded-2xl overflow-hidden w-full h-[350px] before:absolute before:inset-x-0 before:w-full before:h-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
-                        <img class="w-full h-full absolute top-0 start-0 object-cover brightness-50 hover:scale-110" src={event.imageUrl} alt="Image Description" />
-                      </div>
-                      <div class="absolute top-0 inset-x-0 z-10">
-                        <div class="p-4 lg:px-3 lg:py-1 flex flex-col h-full sm:p-6">
+                        <>
+                          <div className="flex-shrink-0 relative  rounded-2xl overflow-hidden w-full h-[350px] before:absolute before:inset-x-0 before:w-full before:h-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
+                            <img className="w-full h-full absolute top-0 start-0 object-cover brightness-50 hover:scale-110" src={event.imageUrl} alt="Image Description" />
+                          </div>
+                          <div className="absolute top-0 inset-x-0 z-10">
+                            <div className="p-4 lg:px-3 lg:py-1 flex flex-col h-full sm:p-6">
 
-                          <div class="flex items-center">
-                            <div class="flex-shrink-0">
-                              <img class="h-[2.875rem] w-[2.875rem] border-2 border-white rounded-full" src="https://images.unsplash.com/photo-1669837401587-f9a4cfe3126e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80" alt="Image Description" />
+                              <div className="flex items-center">
+                                <div className="flex-shrink-0">
+                                  <img className="h-[2.875rem] w-[2.875rem] border-2 border-white rounded-full" src="https://images.unsplash.com/photo-1669837401587-f9a4cfe3126e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80" alt="Image Description" />
+                                </div>
+                                <div className="ms-2.5 sm:ms-4">
+                                  <h4 className="font-semibold text-white">
+                                    Event Host
+                                  </h4>
+                                  <p className="text-xs text-white/[.8]">
+                                    {" "}
+                                    {event.startDate}
+                                  </p>
+                                </div>
+                              </div>
+
                             </div>
-                            <div class="ms-2.5 sm:ms-4">
-                              <h4 class="font-semibold text-white">
-                                Event Host
-                              </h4>
-                              <p class="text-xs text-white/[.8]">
+                          </div><div className="absolute bottom-0 inset-x-0 z-10">
+                            <div className="flex flex-col h-full p-4 sm:p-6">
+                              <h3 className="text-lg sm:text-3xl font-semibold text-white group-hover:text-white/[.8]">
                                 {" "}
-                                {event.startDate}
+                                {event.name}{" "}
+                              </h3>
+                              <p className="mt-2 text-white/[.8]">
+                                {event.eventDesc}
                               </p>
                             </div>
                           </div>
+                        </>
 
-                        </div>
-                      </div><div class="absolute bottom-0 inset-x-0 z-10">
-                        <div class="flex flex-col h-full p-4 sm:p-6">
-                          <h3 class="text-lg sm:text-3xl font-semibold text-white group-hover:text-white/[.8]">
-                            {" "}
-                            {event.name}{" "}
-                          </h3>
-                          <p class="mt-2 text-white/[.8]">
-                            {event.eventDesc}
-                          </p>
-                        </div>
-                      </div>
-                    </>
-
-                  </a>
-                ))}
+                      </a>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         )}
       </div>
@@ -138,6 +166,7 @@ const Events: React.FC<ContainerProps> = ({ name }) => {
           isOpen={isModalOpen}
           onRequestClose={closeModal}
           contentLabel="Event Details"
+          ariaHideApp={false}
         >
           {selectedEvent && (
             <div className=" bg-base-100 rounded-3xl shadow-md p-6 justify-center w-8/12 h-8/12 items-center duration-150 ease-in-out">
