@@ -84,52 +84,33 @@ const Announcements: React.FC<ContainerProps> = ({ name }) => {
         </div>
         {loading ? (
           <>
-            <h1>LOADING. PLEASE WAIT....</h1>
-            <div className="flex flex-col gap-4 w-52">
-              <div className="skeleton h-32 w-full"></div>
-              <div className="skeleton h-4 w-28"></div>
-              <div className="skeleton h-4 w-full"></div>
-              <div className="skeleton h-4 w-full"></div>
+            <div className=" px-3 w-96 h-20 rounded-2xl pt-10 pr-6">
+
+              <div className="flex flex-col gap-4">
+                <div className="skeleton h-28 rounded-2xl w-full"></div>
+                <div className="skeleton h-28 rounded-2xl w-full"></div>
+                <div className="skeleton h-28 rounded-2xl w-full"></div>
+                <div className="skeleton h-28 rounded-2xl w-full"></div>
+                <div className="skeleton h-28 rounded-2xl w-full"></div>
+                <div className="skeleton h-28 rounded-2xl w-full"></div>
+                <div className="skeleton h-full w-full"></div>
+              </div>
             </div>
           </>
         ) : (
           <div>
             {announcements.length === 0 ? (
-              <div className="px-3 space-y-2">
-                <div role="alert" className="alert">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    className="stroke-info shrink-0 w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    ></path>
-                  </svg>
-                  <span>No announcements found.</span>
+              <div className="px-3 space-y-4 mt-10">
+                <div role="alert" className="alert rounded-2xl h-28 flex justify-center shadow-inner">
+                <Icon icon="uil:comment-info-alt" className="w-8 h-8" />
+                  <span className="text-xl">No announcements found.</span>
                 </div>
               </div>
             ) : (
-              <div className="px-3 space-y-2">
+              <div className="px-3 space-y-4 mt-10">
                 {announcements.map((announcement, index) => (
-                  <div role="alert" className="shadow-lg alert" key={index}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      className="w-6 h-6 stroke-info shrink-0"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      ></path>
-                    </svg>
+                  <div role="alert" className="shadow-lg alert rounded-2xl cursor-pointer" key={index} onClick={() => openModal(announcement)}>
+                    <Icon icon="uil:comment-info-alt" className="w-8 h-8" />
                     <div>
                       <h3 className="font-bold">{announcement.name}</h3>
                       <div className="text-xs">
@@ -137,10 +118,10 @@ const Announcements: React.FC<ContainerProps> = ({ name }) => {
                       </div>
                     </div>
                     <button
-                      className="btn bg-base-300 btn-sm"
+                      className="btn btn-square flex shadow-inner hover:bg-base-300"
                       onClick={() => openModal(announcement)}
                     >
-                      View
+                      <Icon icon="lets-icons:view" className="w-10 h-10" />
                     </button>
                   </div>
                 ))}
@@ -160,16 +141,16 @@ const Announcements: React.FC<ContainerProps> = ({ name }) => {
           ariaHideApp={false}
         >
           {selectedAnnouncement && (
-            <div className=" bg-base-100 rounded-3xl shadow-md p-6 justify-center w-8/12 h-8/12 items-center duration-150 ease-in-out">
+            <div className=" bg-base-100 rounded-3xl shadow-md p-6 justify-center w-7/9 h-auto items-center duration-150 ease-in-out">
               <div className="flex space-x-4">
-                <div className="bg-base-200 relative rounded-2xl shadow-inner w-96 p-6">
+                <div className="bg-base-200 relative rounded-2xl shadow-inner w-96 min-h-80 p-6">
                   <h1 className="capitalize font-semibold text-4xl">
                     {selectedAnnouncement.name}
                   </h1>
                   <p>{selectedAnnouncement.announcementSource}</p>
                   <p>{selectedAnnouncement.announcementDesc}</p>
-                  <div className="justify-between absolute bottom-0 flex space-x-2">
-                    <p>Start Date: {selectedAnnouncement.startDate}</p>
+                  <div className="justify-between absolute bottom-0 flex space-x-6">
+                    <p>Date: {selectedAnnouncement.startDate}</p>
                     <p>Time: {selectedAnnouncement.startTime}</p>
                   </div>
                 </div>

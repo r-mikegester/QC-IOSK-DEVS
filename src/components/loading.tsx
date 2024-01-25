@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import qculogo from '../assets/imgs/logo/qculogo.png';
 interface ContainerProps {
   name: string;
 }
@@ -12,7 +13,7 @@ const Loading: React.FC<ContainerProps> = ({ name }) => {
         <div className="flex content-center col-span-3 row-span-3 justify-center h-screen w-screen ">
           <div className="content-center">
             <div className="text-center text-base-content h-screen py-52">
-              <span className="loading loading-infinity w-96 h-96 "></span>
+              <img src={qculogo} className="animate-bounce" />
             </div>
           </div>
         </div>

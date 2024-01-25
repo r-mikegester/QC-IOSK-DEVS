@@ -6,6 +6,8 @@
   max-height: 550px;
   color: black;
   z-index: 9999;
+  border-radius: 20px;
+  padding: 20px;
 }
 
 .simple-keyboard.hg-theme-default.myTheme {
