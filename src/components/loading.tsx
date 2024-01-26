@@ -13,7 +13,7 @@ const Loading: React.FC<ContainerProps> = ({ name }) => {
         <div className="flex content-center col-span-3 row-span-3 justify-center h-screen w-screen ">
           <div className="content-center">
             <div className="text-center text-base-content h-screen py-52">
-              <img src={qculogo} className="animate-bounce w-52 h-52" />
+              <img src={qculogo} className="animate-bounce w-36 h-36 md:w-52 md:h-52" />
             </div>
           </div>
         </div>

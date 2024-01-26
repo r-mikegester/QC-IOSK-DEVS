@@ -65,7 +65,7 @@ const SideBar = () => {
   return (
     <div
       // ref={sidebarRef}
-      className="fixed top-0 left-0 z-50 flex w-16 h-screen p-2 shadow-lg bg-base-100 text-base-content backdrop-blur-lg"
+      className="hidden w-0 h-0 fixed bottom-20 md:fixed md:top-0 md:left-0 z-50 md:flex md:w-16 md:h-screen md:p-2 md:shadow-lg bg-base-100 text-base-content backdrop-blur-lg"
     >
       <div className="z-50 sidebar-content">
         {/* Sidebar contents */}
