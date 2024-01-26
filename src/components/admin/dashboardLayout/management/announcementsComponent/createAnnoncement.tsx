@@ -7,6 +7,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../../../utils/firebase";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Icon } from "@iconify/react";
 
 interface ContainerProps {
     name: string;
@@ -63,14 +64,12 @@ const CreateAnnouncement: React.FC<ContainerProps> = ({ name }) => {
                     <AdminHeader name={""} />
 
                     <div className="items-center justify-center text-base-content bg-base-300 lg:ps-64 ">
-                        <div className="w-full h-full grid-cols-4 grid-rows-5 gap-5 p-10 bg-base-100 rounded-tl-3xl">
-                            <h1>Create Announcement</h1>
-                            <button
-                                onClick={AnnouncementManagement}
-                                className="btn btn-primary"
-                            >
-                                Back
-                            </button>
+                        <div className="w-full h-screen p-10 bg-base-100 rounded-tl-3xl">
+                            <div className="flex items-center space-x-2">
+
+                                <h1 className="font-bold text-4xl">Create Announcement</h1>
+                            </div>
+
                             <div className="overflow-x-auto">
                                 <table className="table">
                                     <thead>
@@ -141,16 +140,25 @@ const CreateAnnouncement: React.FC<ContainerProps> = ({ name }) => {
 
                                         <tr>
                                             <td colSpan={2}>
-                                                <button
-                                                    onClick={handleAddAnnouncement}
-                                                    className="btn btn-primary"
-                                                >
-                                                    Add Event
-                                                </button>
+
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div className="flex justify-between items-center mt-5 mx-5">
+                                    <button
+                                        onClick={AnnouncementManagement}
+                                        className="btn btn-square hover:bg-base-300"
+                                    >
+                                        <Icon icon="icon-park-outline:back" className="w-10 h-10" />
+                                    </button>
+                                    <button
+                                        onClick={handleAddAnnouncement}
+                                        className="btn float-right"
+                                    >
+                                        <Icon icon="majesticons:clipboard-check-line" className="w-10 h-10" /><span>Add Announcement</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

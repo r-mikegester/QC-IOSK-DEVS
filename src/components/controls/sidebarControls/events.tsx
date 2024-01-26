@@ -14,6 +14,7 @@ interface ContainerProps {
 interface Event {
   name: string;
   eventDesc: string;
+  eventSource: string;
   imageUrl: string;
   startDate: string;
   endDate: string;
@@ -115,7 +116,7 @@ const Events: React.FC<ContainerProps> = ({ name }) => {
                                 </div>
                                 <div className="ms-2.5 sm:ms-4">
                                   <h4 className="font-semibold text-white">
-                                    Event Host
+                                    {event.eventSource}
                                   </h4>
                                   <p className="text-xs text-white/[.8]">
                                     {" "}
@@ -131,7 +132,7 @@ const Events: React.FC<ContainerProps> = ({ name }) => {
                                 {" "}
                                 {event.name}{" "}
                               </h3>
-                              <p className="mt-2 text-white/[.8]">
+                              <p className="mt-2 text-white/[.8] truncate">
                                 {event.eventDesc}
                               </p>
                             </div>
@@ -157,23 +158,24 @@ const Events: React.FC<ContainerProps> = ({ name }) => {
           ariaHideApp={false}
         >
           {selectedEvent && (
-            <div className=" bg-base-100 rounded-3xl shadow-md p-6 justify-center w-8/12 h-8/12 items-center duration-150 ease-in-out">
+            <div className=" bg-base-100 rounded-3xl shadow-md p-6 justify-center w-8/12 h-auto items-center duration-150 ease-in-out">
               <div className="flex space-x-4">
                 <div>
                   <img
                     src={selectedEvent.imageUrl}
                     alt="Event Alt"
-                    className="w-96 rounded-2xl"
+                    className="w-96 h-96 rounded-2xl"
                   />
                 </div>
-                <div className="bg-base-200 relative rounded-2xl shadow-inner w-96 p-6">
+                <div className="bg-base-200 relative rounded-2xl shadow-inner w-96 overflow-y-scroll  h-96 p-6">
                   <h1 className="capitalize font-semibold text-4xl">
                     {selectedEvent.name}
                   </h1>
                   <p>{selectedEvent.eventDesc}</p>
-                  <div className="justify-between absolute bottom-0 flex space-x-2">
-                    <p>Start Date: {selectedEvent.startDate}</p>
-                    <p>End Date: {selectedEvent.endDate}</p>
+                  <p className="font-semibold mt-10">{selectedEvent.eventSource}</p>
+                  <div className="">
+                    <p>Date: {selectedEvent.startDate}</p>
+                    
                   </div>
                 </div>
                 <button

@@ -9,6 +9,7 @@ import { useHistory } from "react-router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
+import { Icon } from "@iconify/react";
 
 interface ContainerProps {
     name: string;
@@ -102,11 +103,14 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                     <AdminHeader name={""} />
 
                     <div className="items-center justify-center text-base-content bg-base-300 lg:ps-64 ">
-                        <div className="w-full h-full grid-cols-4 grid-rows-5 gap-5 p-10 bg-base-100 rounded-tl-3xl">
-                            <h1>Create Event</h1>
-                            <button onClick={EventManagement} className="btn btn-primary">
-                                Back
-                            </button>
+                        <div className="w-full h-screen p-10 bg-base-100 rounded-tl-3xl">
+                            <div className="flex items-center justify-between space-x-2">
+                                <div className="flex items-center space-x-2">
+
+                                    <h1 className="font-bold text-4xl">Create Event</h1>
+                                </div>
+
+                            </div>
                             <div className="overflow-x-auto">
                                 <table className="table">
                                     <thead>
@@ -126,34 +130,6 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     className="input input-bordered w-full max-w-xs"
                                                 />
                                             </td>
-                                        </tr>
-
-                                        <tr>
-                                            <th>Event Source:</th>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    placeholder="Event Source"
-                                                    value={eventSource}
-                                                    onChange={(e) => setEventSource(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
-                                                />
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <th>Event Description:</th>
-                                            <td>
-                                                <textarea
-                                                    value={eventDesc}
-                                                    onChange={(e) => setEventDesc(e.target.value)}
-                                                    placeholder="Event Description..."
-                                                    className="textarea textarea-bordered textarea-xs w-full max-w-xs"
-                                                ></textarea>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
                                             <th>Event Place:</th>
                                             <td>
                                                 <input
@@ -164,6 +140,67 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     className="input input-bordered w-full max-w-xs"
                                                 />
                                             </td>
+
+                                        </tr>
+
+                                        <tr><th>Event Organizer:</th>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Event Source"
+                                                    value={eventSource}
+                                                    onChange={(e) => setEventSource(e.target.value)}
+                                                    className="input input-bordered w-full max-w-xs"
+                                                />
+                                            </td>
+                                            <th>Organizer Image:</th>
+                                            <td>
+                                                <input
+                                                    type="file"
+                                                    accept="image/*"
+                                                    onChange={handleImageChange}
+                                                    className="file-input w-full max-w-xs"
+                                                />
+                                            </td>
+                                            <td colSpan={2}>
+                                                {imagePreview && (
+                                                    <>
+                                                        <button
+                                                            onClick={handlePreviewClick}
+                                                            className="btn btn-square"
+                                                        >
+                                                            <Icon icon="akar-icons:eye-open" className="w-10 h-10" />
+                                                        </button>
+                                                        <Modal
+                                                            className="w-screen h-screen flex justify-center items-center space-x-2"
+                                                            isOpen={isModalOpen}
+                                                            onRequestClose={closeModal}
+                                                        >
+                                                            <div className="flex space-x-2">
+                                                                <img
+                                                                    src={imagePreview}
+                                                                    alt="Image Preview"
+                                                                    className="w-96 h-96 rounded-3xl"
+
+                                                                />
+                                                                <button
+                                                                    onClick={closeModal}
+                                                                    className="btn  btn-square"
+                                                                >
+                                                                    <Icon icon="heroicons:x-mark-16-solid" className="w-10 h-10" />
+                                                                </button>
+                                                            </div>
+
+
+
+                                                        </Modal>
+                                                    </>
+                                                )}
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+
                                         </tr>
 
                                         <tr>
@@ -176,9 +213,6 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     className="input input-bordered w-full max-w-xs"
                                                 />
                                             </td>
-                                        </tr>
-
-                                        <tr>
                                             <th>Time:</th>
                                             <td>
                                                 <input
@@ -189,8 +223,16 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                 />
                                             </td>
                                         </tr>
-
                                         <tr>
+                                            <th>Event Description:</th>
+                                            <td>
+                                                <textarea
+                                                    value={eventDesc}
+                                                    onChange={(e) => setEventDesc(e.target.value)}
+                                                    placeholder="Event Description..."
+                                                    className="textarea textarea-bordered textarea-xs w-full max-w-xs"
+                                                ></textarea>
+                                            </td>
                                             <th>Event Image:</th>
                                             <td>
                                                 <input
@@ -200,56 +242,64 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     className="file-input w-full max-w-xs"
                                                 />
                                             </td>
-                                        </tr>
-                                        <tr>
                                             <td colSpan={2}>
                                                 {imagePreview && (
                                                     <>
                                                         <button
                                                             onClick={handlePreviewClick}
-                                                            className="btn btn-secondary"
+                                                            className="btn btn-square"
                                                         >
-                                                            Preview Image
+                                                            <Icon icon="akar-icons:eye-open" className="w-10 h-10" />
                                                         </button>
                                                         <Modal
+                                                            className="w-screen h-screen flex justify-center items-center space-x-2"
                                                             isOpen={isModalOpen}
                                                             onRequestClose={closeModal}
                                                         >
-                                                            <img
-                                                                src={imagePreview}
-                                                                alt="Image Preview"
-                                                                style={{ width: "100%", height: "auto" }}
-                                                            />
-                                                            <button
-                                                                onClick={closeModal}
-                                                                className="btn btn-secondary"
-                                                            >
-                                                                Close
-                                                            </button>
+                                                            <div className="flex space-x-2">
+                                                                <img
+                                                                    src={imagePreview}
+                                                                    alt="Image Preview"
+                                                                    className="w-96 h-96 rounded-3xl"
+
+                                                                />
+                                                                <button
+                                                                    onClick={closeModal}
+                                                                    className="btn  btn-square"
+                                                                >
+                                                                    <Icon icon="heroicons:x-mark-16-solid" className="w-10 h-10" />
+                                                                </button>
+                                                            </div>
+
+
+
                                                         </Modal>
                                                     </>
                                                 )}
                                             </td>
                                         </tr>
 
-                                        <tr>
-                                            <td colSpan={2}>
-                                                <button
-                                                    onClick={handleAddEvent}
-                                                    className="btn btn-primary"
-                                                >
-                                                    Add Event
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        <tr></tr>
                                     </tbody>
                                 </table>
+                                <div className="flex items-center space-x-2 mt-5 justify-between mx-5">
+                                    <button onClick={EventManagement} className="btn btn-square hover:bg-base-300 ">
+                                        <Icon icon="icon-park-outline:back" className="w-10 h-10" />
+                                    </button>
+                                    <button
+                                        onClick={handleAddEvent}
+                                        className="btn bg-base-300 float-right hover:bg-emerald-500 hover:text-white"
+                                    >
+                                        <Icon icon="material-symbols:box-add-outline" className="w-10 h-10" /><span>Add Event</span>
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </IonContent>
-        </IonPage>
+        </IonPage >
     );
 };
 

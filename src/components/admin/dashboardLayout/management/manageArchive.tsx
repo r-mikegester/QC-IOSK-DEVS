@@ -165,8 +165,8 @@ const Archive: React.FC<ContainerProps> = ({ name }) => {
                     <AdminSideBar name={""} />
                     <AdminHeader name={""} />
                     <div className="items-center justify-center text-base-content bg-base-300 lg:ps-64 ">
-                        <div className="w-full h-full grid-cols-4 grid-rows-5 gap-5 p-10 bg-base-100 rounded-tl-3xl">
-                            <h1>Archive</h1>
+                        <div className="w-full h-screen p-10 bg-base-100 rounded-tl-3xl">
+                            <h1 className="font-bold text-4xl">Archive</h1>
                             <div role="tablist" className="tabs tabs-lifted">
                                 <input
                                     type="radio"

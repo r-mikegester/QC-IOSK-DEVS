@@ -166,27 +166,48 @@ const ManageAnnouncements: React.FC<ContainerProps> = ({ name }) => {
             <div className="w-full min-h-screen p-10 bg-base-100 rounded-tl-3xl">
               <div className="flex items-center justify-between">
                 <h1 className="font-bold text-4xl">Announcement Management</h1>
+                <div className="flex items-center space-x-3 mr-5">
+                  <button onClick={createAnnouncement} className="btn btn-square hover:bg-emerald-500 hover:text-white">
+                    <Icon icon="majesticons:clipboard-plus-line" className="w-10 h-10" />
+                  </button>
+                  <button
+                    onClick={openDeleteAllConfirmation}
+                    className="btn btn-square  hover:bg-red-500 hover:text-white"
+                  >
+                    <Icon icon="mdi:delete-alert-outline" className="w-10 h-10" />
+                  </button>
+                </div>
               </div>
-              <button onClick={createAnnouncement} className="btn btn-primary">
-                Create Announcement
-              </button>
-              <span> | </span>
-              <button
-                onClick={openDeleteAllConfirmation}
-                className="btn btn-accent"
-              >
-                Archive All
-              </button>
+
+
+
               <br />
               <br />
               {loading ? (
                 <>
-                  <h1>LOADING. PLEASE WAIT....</h1>
-                  <div className="flex flex-col gap-4 w-52">
-                    <div className="skeleton h-32 w-full"></div>
-                    <div className="skeleton h-4 w-28"></div>
-                    <div className="skeleton h-4 w-full"></div>
-                    <div className="skeleton h-4 w-full"></div>
+                  <div className="space-y-2">
+                    <div className="flex space-x-2 items-center justify-evenly">
+                      <div className="skeleton h-5 w-20"></div>
+                      <div className="skeleton h-5 w-20"></div>
+                      <div className="skeleton h-5 w-20"></div>
+                      <div className="skeleton h-5 w-20"></div>
+                      <div className="skeleton h-5 w-20"></div>
+                      <div className="skeleton h-5 w-20"></div>
+
+                    </div>
+                    <hr className="w-full h-2 bg-base-300 rounded-full " />
+                    <div className="flex flex-col gap-4 w-full">
+                      <div className="skeleton h-20 w-full"></div>
+                      <div className="skeleton h-20 w-full"></div>
+                      <div className="skeleton h-20 w-full"></div>
+                      <div className="skeleton h-20 w-full"></div>
+                      <div className="skeleton h-20 w-full"></div>
+
+                      <div className="skeleton h-20 w-full"></div>
+
+                      <div className="skeleton h-20 w-full"></div>
+
+                    </div>
                   </div>
                 </>
               ) : (
@@ -207,20 +228,8 @@ const ManageAnnouncements: React.FC<ContainerProps> = ({ name }) => {
                         <tr>
                           <td colSpan={6}>
                             <div role="alert" className="alert">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                className="stroke-info shrink-0 w-6 h-6"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="2"
-                                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                ></path>
-                              </svg>
-                              <span>No announcements found.</span>
+                              <Icon icon="uil:comment-info-alt" className="w-8 h-8" />
+                              <span>No Announcements found.</span>
                             </div>
                           </td>
                         </tr>
@@ -235,23 +244,25 @@ const ManageAnnouncements: React.FC<ContainerProps> = ({ name }) => {
                             <td>{announcement.startDate}</td>
                             <td>{announcement.startTime}</td>
                             <td>
-                              <button
-                                className="btn btn-primary"
-                                onClick={() =>
-                                  updateAnnouncement(announcement.id)
-                                }
-                              >
-                                Edit
-                              </button>
-                              <span> | </span>
-                              <button
-                                className="btn btn-primary"
-                                onClick={() =>
-                                  openDeleteConfirmation(announcement.id)
-                                }
-                              >
-                                Delete
-                              </button>
+                              <div className="flex items-center space-x-3">
+                                <button
+                                  className="btn btn-square hover:bg-orange-500 hover:text-white"
+                                  onClick={() =>
+                                    updateAnnouncement(announcement.id)
+                                  }
+                                >
+                                  <Icon icon="tabler:edit" className="w-10 h-10" />
+                                </button>
+
+                                <button
+                                  className="btn btn-square hover:bg-red-500 hover:text-white"
+                                  onClick={() =>
+                                    openDeleteConfirmation(announcement.id)
+                                  }
+                                >
+                                  <Icon icon="mdi:delete-empty-outline" className="w-10 h-10" />
+                                </button>
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -265,34 +276,44 @@ const ManageAnnouncements: React.FC<ContainerProps> = ({ name }) => {
         </div>
         {/* Delete Confirmation Modal */}
         <Modal
+          className="w-screen h-screen flex justify-center items-center"
           isOpen={selectedAnnouncementId !== null}
           onRequestClose={closeDeleteConfirmation}
           ariaHideApp={false}
         >
-          <p>Are you sure you want to delete this event?</p>
-          <button onClick={deleteAnnouncement} className="btn btn-danger">
-            Yes, Delete
-          </button>
-          <button onClick={closeDeleteConfirmation} className="btn btn-primary">
-            Cancel
-          </button>
+          <div className="bg-base-100 rounded-2xl h-56 w-96 shadow-xl p-6">
+            <p className="text-3xl text-center">Are you sure you want to delete this announcement?</p>
+            <div className="mt-6 space-x-3 flex justify-center">
+              <button onClick={deleteAnnouncement} className="btn btn-primary hover:bg-red-500 text-white">
+                Yes, Delete
+              </button>
+              <button onClick={closeDeleteConfirmation} className="btn bg-base-300">
+                Cancel
+              </button>
+            </div>
+          </div>
         </Modal>
         {/* Delete All Confirmation Modal */}
         <Modal
+          className="w-screen h-screen flex justify-center items-center"
           isOpen={deleteAllConfirmation}
           onRequestClose={closeDeleteAllConfirmation}
           ariaHideApp={false}
         >
-          <p>Are you sure you want to delete all announcements?</p>
-          <button onClick={deleteAllAnnouncements} className="btn btn-danger">
-            Yes, Delete All
-          </button>
-          <button
-            onClick={closeDeleteAllConfirmation}
-            className="btn btn-primary"
-          >
-            Cancel
-          </button>
+          <div className="bg-base-100 rounded-2xl h-56 w-96 shadow-xl p-6">
+            <p className="text-3xl text-center">Are you sure you want to delete all announcements?</p>
+           <div className="mt-6 space-x-3 flex justify-center">
+           <button onClick={deleteAllAnnouncements}className="btn btn-primary hover:bg-red-500 text-white">
+              Yes, Delete All
+            </button>
+            <button
+              onClick={closeDeleteAllConfirmation}
+              className="btn bg-base-300"
+            >
+              Cancel
+            </button>
+           </div>
+          </div>
         </Modal>
       </IonContent>
     </IonPage>

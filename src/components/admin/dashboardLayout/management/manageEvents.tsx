@@ -15,6 +15,7 @@ import {
 import { useHistory } from "react-router";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
+import { Icon } from "@iconify/react";
 
 interface ContainerProps {
   name: string;
@@ -169,31 +170,53 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
           <AdminSideBar name={""} />
           <AdminHeader name={""} />
           <div className="items-center justify-center text-base-content bg-base-300 lg:ps-64 ">
-            <div className="w-full h-full grid-cols-4 grid-rows-5 gap-5 p-10 bg-base-100 rounded-tl-3xl">
-            <div className="flex items-center justify-between">
+            <div className="w-full h-screen p-10 bg-base-100 rounded-tl-3xl">
+              <div className="flex items-center justify-between">
                 <h1 className="font-bold text-4xl">Event Management</h1>
+                <div className="flex items-center space-x-3 mr-5">
+                  <button onClick={createEvent} className="btn btn-square hover:bg-emerald-500 hover:text-white">
+                    <Icon icon="material-symbols:box-add-outline" className="w-10 h-10" />
+                  </button>
+                  <button
+                    onClick={openDeleteAllConfirmation}
+                    className="btn btn-square  hover:bg-red-500 hover:text-white"
+                  >
+
+                    <Icon icon="mdi:delete-alert-outline" className="w-10 h-10" />
+                  </button>
+                </div>
               </div>
 
-              <button onClick={createEvent} className="btn btn-primary">
-                Create Event
-              </button>
-              <span> | </span>
-              <button
-                onClick={openDeleteAllConfirmation}
-                className="btn btn-accent"
-              >
-                Archive All
-              </button>
+
+
               <br />
               <br />
               {loading ? (
                 <>
-                  <h1>LOADING. PLEASE WAIT....</h1>
-                  <div className="flex flex-col gap-4 w-52">
-                    <div className="skeleton h-32 w-full"></div>
-                    <div className="skeleton h-4 w-28"></div>
-                    <div className="skeleton h-4 w-full"></div>
-                    <div className="skeleton h-4 w-full"></div>
+                  <div className="space-y-2">
+                    <div className="flex space-x-2 items-center justify-evenly">
+                      <div className="skeleton h-5 w-20"></div>
+                      <div className="skeleton h-5 w-20"></div>
+                      <div className="skeleton h-5 w-20"></div>
+                      <div className="skeleton h-5 w-20"></div>
+                      <div className="skeleton h-5 w-20"></div>
+                      <div className="skeleton h-5 w-20"></div>
+                      <div className="skeleton h-5 w-20"></div>
+                      <div className="skeleton h-5 w-20"></div>
+                    </div>
+                    <hr className="w-full h-2 bg-base-300 rounded-full " />
+                    <div className="flex flex-col gap-4 w-full">
+                      <div className="skeleton h-20 w-full"></div>
+                      <div className="skeleton h-20 w-full"></div>
+                      <div className="skeleton h-20 w-full"></div>
+                      <div className="skeleton h-20 w-full"></div>
+                      <div className="skeleton h-20 w-full"></div>
+
+                      <div className="skeleton h-20 w-full"></div>
+
+                      <div className="skeleton h-20 w-full"></div>
+
+                    </div>
                   </div>
                 </>
               ) : (
@@ -205,7 +228,7 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
                         <th>Event Source</th>
                         <th>Event Description</th>
                         <th>Event Place</th>
-                        <th>Date</th>
+                        <th>Date (yyyy-dd-mm)</th>
                         <th>Time</th>
                         <th>Event Image </th>
                         <th>Action</th>
@@ -216,20 +239,8 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
                         <tr>
                           <td colSpan={9}>
                             <div role="alert" className="alert">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                className="stroke-info shrink-0 w-6 h-6"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="2"
-                                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                ></path>
-                              </svg>
-                              <span>No announcements found.</span>
+                              <Icon icon="uil:comment-info-alt" className="w-8 h-8" />
+                              <span>No Events found.</span>
                             </div>
                           </td>
                         </tr>
@@ -240,7 +251,11 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
                           <tr key={index}>
                             <th>{event.name}</th>
                             <th>{event.eventSource}</th>
-                            <td>{event.eventDesc}</td>
+                            <td>
+                              <div className="w-20 h-20 truncate flex items-center">
+                              {event.eventDesc}
+                              </div>
+                              </td>
                             <td>{event.eventPlace}</td>
                             <td>{event.startDate}</td>
                             <td>{event.startTime}</td>
@@ -248,24 +263,25 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
                               <img
                                 src={event.imageUrl}
                                 alt="Event Alt"
-                                style={{ maxWidth: "100px", cursor: "pointer" }}
+                                className="max-h-20 rounded-2xl max-w-28 cursor-pointer hover:scale-110"
                                 onClick={() => openImagePreview(event.imageUrl)}
                               />
                             </td>
                             <td>
-                              <button
-                                onClick={() => updateEvent(event.id)}
-                                className="btn btn-primary"
-                              >
-                                Edit
-                              </button>
-                              <span> | </span>
-                              <button
-                                onClick={() => openDeleteConfirmation(event.id)}
-                                className="btn btn-primary"
-                              >
-                                Delete
-                              </button>
+                              <div className="flex items-center space-x-3">
+                                <button
+                                  onClick={() => updateEvent(event.id)}
+                                  className="btn btn-square hover:bg-orange-500 hover:text-white"
+                                >
+                                  <Icon icon="tabler:edit" className="w-10 h-10" />
+                                </button>
+                                <button
+                                  onClick={() => openDeleteConfirmation(event.id)}
+                                  className="btn btn-square hover:bg-red-500 hover:text-white"
+                                >
+                                  <Icon icon="mdi:delete-empty-outline" className="w-10 h-10" />
+                                </button>
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -279,47 +295,60 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
         </div>
         {/* Image Preview Modal */}
         <Modal
+          className="w-screen h-screen flex justify-center items-center"
           isOpen={selectedImage !== null}
           onRequestClose={closeImagePreview}
         >
-          <img
-            src={selectedImage || ""}
-            alt="Image Preview"
-            style={{ maxWidth: "100%" }}
-          />
-          <button onClick={closeImagePreview} className="btn btn-primary">
-            Close
-          </button>
+          <div className="flex space-x-2">
+            <img
+              src={selectedImage || ""}
+              alt="Image Preview"
+              className="rounded-2xl w-96 h-96"
+            />
+            <button onClick={closeImagePreview} className="btn btn-square">
+              <Icon icon="heroicons:x-mark-16-solid" className="w-10 h-10" />
+            </button>
+          </div>
         </Modal>
         {/* Delete Confirmation Modal */}
         <Modal
+          className="w-screen h-screen flex justify-center items-center"
           isOpen={selectedEventId !== null}
           onRequestClose={closeDeleteConfirmation}
         >
-          <p>Are you sure you want to delete this event?</p>
-          <button onClick={deleteEvent} className="btn btn-danger">
-            Yes, Delete
-          </button>
-          <button onClick={closeDeleteConfirmation} className="btn btn-primary">
-            Cancel
-          </button>
+          <div className="bg-base-100 rounded-2xl h-56 w-96 shadow-xl p-6">
+            <p className="text-3xl text-center">Are you sure you want to delete this event?</p>
+            <div className="mt-14 space-x-3 flex justify-center">
+              <button onClick={deleteEvent} className="btn btn-primary hover:bg-red-500 text-white">
+                Yes, Delete
+              </button>
+              <button onClick={closeDeleteConfirmation} className="btn bg-base-300">
+                Cancel
+              </button>
+            </div>
+          </div>
         </Modal>
         {/* Delete All Confirmation Modal */}
         <Modal
+          className="w-screen h-screen flex justify-center items-center"
           isOpen={deleteAllConfirmation}
           onRequestClose={closeDeleteAllConfirmation}
           ariaHideApp={false}
         >
-          <p>Are you sure you want to delete all events?</p>
-          <button onClick={deleteAllEvents} className="btn btn-danger">
-            Yes, Delete All
-          </button>
-          <button
-            onClick={closeDeleteAllConfirmation}
-            className="btn btn-primary"
-          >
-            Cancel
-          </button>
+          <div className="bg-base-100 rounded-2xl h-56 w-96 shadow-xl p-6">
+            <p className="text-3xl text-center">Are you sure you want to delete all events?</p>
+            <div className="mt-14 space-x-3 flex justify-center">
+              <button onClick={deleteAllEvents} className="btn btn-primary hover:bg-red-500 text-white">
+                Yes, Delete All
+              </button>
+              <button
+                onClick={closeDeleteAllConfirmation}
+                className="btn bg-base-300"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
         </Modal>
       </IonContent>
     </IonPage>

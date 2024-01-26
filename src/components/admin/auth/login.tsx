@@ -147,7 +147,7 @@ const Login: React.FC<ContainerProps> = ({ name }) => {
                             </button>
                             <NavLink
                               to="/SanBartolome"
-                              className="font-medium bg-base-100 hover:bg-base-300 text-center py-3 w-full rounded-2xl text-base-content font-semibold decoration-2 hover:underline"
+                              className="bg-base-100 hover:bg-base-300 text-center py-3 w-full rounded-2xl text-base-content font-semibold decoration-2 "
                             >
                               Back to map
                             </NavLink>
