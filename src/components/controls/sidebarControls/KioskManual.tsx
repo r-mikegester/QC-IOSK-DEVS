@@ -116,7 +116,7 @@ const KioskManual: React.FC<ContainerProps> = ({ name }) => {
                                             <div className="text-lg">{manual.name}</div>
                                             <div className="" onClick={() => openModal(manual)}>
                                                 <Icon
-                                                    icon="material-symbols:info"
+                                                    icon="lets-icons:view"
                                                     className="w-10 h-10"
                                                 />
                                             </div>
@@ -139,20 +139,24 @@ const KioskManual: React.FC<ContainerProps> = ({ name }) => {
                     ariaHideApp={false}
                 >
                     {selectedManual && (
-                        <div className=" bg-base-100 rounded-3xl shadow-md p-6 justify-center w-8/12 h-8/12 items-center duration-150 ease-in-out">
+                        <div className=" bg-base-100 rounded-3xl shadow-md p-6 justify-center w-auto h-8/12 items-center duration-150 ease-in-out">
                             <div className="flex space-x-4">
+                                <div>
+                                     <img
+                                            src={selectedManual.imageUrl}
+                                            alt="Manual Alt"
+                                            className="w-auto h-96 rounded-2xl"
+                                        // style={{ maxWidth: "100px" }}
+                                        />
+
+                                </div>
                                 <div className="bg-base-200 relative rounded-2xl shadow-inner w-96 p-6">
                                     <h1 className="capitalize font-semibold text-4xl">
                                         {selectedManual.name}
                                     </h1>
                                     <p>{selectedManual.manualDesc}</p>
                                     <figure className="rounded-3xl">
-                                        <img
-                                            src={selectedManual.imageUrl}
-                                            alt="Manual Alt"
-                                            className=""
-                                        // style={{ maxWidth: "100px" }}
-                                        />
+                                       
                                     </figure>
                                 </div>
                                 <button
