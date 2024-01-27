@@ -166,7 +166,7 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                             <td>
                                                 <input
                                                     type="file"
-                                                    accept="image/*"
+                                                    accept="image/jpeg, image/png, umage/gif"
                                                     onChange={handleImageChange}
                                                     className="file-input w-full max-w-xs"
                                                 />
@@ -220,7 +220,7 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                             <td>
                                                 <input
                                                     type="file"
-                                                    accept="image/*"
+                                                    accept="image/jpeg, image/png, umage/gif"
                                                     onChange={handleImageChange}
                                                     className="file-input w-full max-w-xs"
                                                 />

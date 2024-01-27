@@ -157,7 +157,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                             <td>
                                                 <input
                                                     type="file"
-                                                    accept="image/*"
+                                                    accept="image/jpeg, image/png, umage/gif"
                                                     onChange={handleImageChange}
                                                     className="file-input w-full max-w-xs"
                                                 />
@@ -237,7 +237,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                             <td>
                                                 <input
                                                     type="file"
-                                                    accept="image/*"
+                                                    accept="image/jpeg, image/png, umage/gif"
                                                     onChange={handleImageChange}
                                                     className="file-input w-full max-w-xs"
                                                 />
@@ -290,7 +290,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                         onClick={handleAddEvent}
                                         className="btn bg-base-300 float-right hover:bg-emerald-500 hover:text-white"
                                     >
-                                        <Icon icon="material-symbols:box-add-outline" className="w-10 h-10" /><span>Add Event</span>
+                                        <Icon icon="icon-park-outline:add-three" className="w-10 h-10" /><span>Add Event</span>
                                     </button>
                                 </div>
 

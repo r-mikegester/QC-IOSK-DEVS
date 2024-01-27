@@ -55,7 +55,9 @@ import UpdateEvent from "./components/admin/dashboardLayout/management/eventsCom
 import CreateAnnouncement from "./components/admin/dashboardLayout/management/announcementsComponent/createAnnoncement";
 import UpdateAnnouncement from "./components/admin/dashboardLayout/management/announcementsComponent/updateAnnouncement";
 import Archive from "./components/admin/dashboardLayout/management/manageArchive";
-import MikeGester from "./components/admin/dashboardLayout/management/manualInlineKioskEditor";
+import ManageManual from "./components/admin/dashboardLayout/management/manualInlineKioskEditor";
+import CreateManual from "./components/admin/dashboardLayout/management/mikeComponent/createManual";
+import UpdateManual from "./components/admin/dashboardLayout/management/mikeComponent/updateManual";
 setupIonicReact();
 interface ContainerProps {
   name: string;
@@ -155,10 +157,6 @@ const App: React.FC<ContainerProps> = ({ name }) => (
           <UpdateEvent name={"Update Events"} />
         </Route>
 
-        <Route exact path="/MikeGester">
-          <MikeGester name={"Mike Gester"} />
-        </Route>
-
         <Route exact path="/createAnnouncement">
           <CreateAnnouncement name={"Create Announcements"} />
         </Route>
@@ -171,6 +169,21 @@ const App: React.FC<ContainerProps> = ({ name }) => (
           <Archive name={"Archive"} />
         </Route>
 
+        
+        <Route exact path="/Mike">
+          <ManageManual name={"Mike"} />
+        </Route>
+
+        <Route exact path="/createManual">
+          <CreateManual name={"Create Manual"} />
+        </Route>
+
+        <Route exact path="/updateManual/:manualId">
+          <UpdateManual name={"Update Manual"} />
+        </Route>
+
+        
+        
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

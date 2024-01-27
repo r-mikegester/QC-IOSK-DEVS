@@ -175,7 +175,7 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
                 <h1 className="font-bold text-4xl">Event Management</h1>
                 <div className="flex items-center space-x-3 mr-5">
                   <button onClick={createEvent} className="btn btn-square hover:bg-emerald-500 hover:text-white">
-                    <Icon icon="material-symbols:box-add-outline" className="w-10 h-10" />
+                    <Icon icon="icon-park-outline:add-three" className="w-10 h-10" />
                   </button>
                   <button
                     onClick={openDeleteAllConfirmation}

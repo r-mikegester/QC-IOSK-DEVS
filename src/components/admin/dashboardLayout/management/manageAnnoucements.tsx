@@ -168,7 +168,7 @@ const ManageAnnouncements: React.FC<ContainerProps> = ({ name }) => {
                 <h1 className="font-bold text-4xl">Announcement Management</h1>
                 <div className="flex items-center space-x-3 mr-5">
                   <button onClick={createAnnouncement} className="btn btn-square hover:bg-emerald-500 hover:text-white">
-                    <Icon icon="majesticons:clipboard-plus-line" className="w-10 h-10" />
+                    <Icon icon="icon-park-outline:add-three" className="w-10 h-10" />
                   </button>
                   <button
                     onClick={openDeleteAllConfirmation}
