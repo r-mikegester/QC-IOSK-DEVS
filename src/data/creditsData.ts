@@ -2,13 +2,18 @@
 export const credits = [
   {
     name: 'Mike Gester Sabuga',
-    position: 'Janitor Engineer',
+    position: 'Pull Stack Developer',
     picture: '/src/assets/imgs/ids/sabuga.png',
   },
   {
     name: 'John Michael Go',
-    position: 'Developer',
+    position: 'Pull Stack Developer',
     picture: '/src/assets/imgs/ids/GO.jpeg',
+  },
+  {
+    name: 'Comighod, Julius',
+    position: 'Augmented Reality Developer',
+    picture: '/src/assets/imgs/ids/Comighod.jpg',
   },
   {
     name: 'David Felicidario',
@@ -21,38 +26,33 @@ export const credits = [
     picture: '/src/assets/imgs/ids/Bulilan.png',
   },
   {
-    name: 'Comighod, Julius',
-    position: 'Developer',
-    picture: '/src/assets/imgs/ids/Comighod.jpg',
-  },
-  {
     name: 'Carza, Alfred Joshua',
-    position: 'Developer',
+    position: '3D Modeller',
     picture: '/src/assets/imgs/ids/Carza.jpg',
   },
   {
     name: 'Chan, Kurt Zaimond',
-    position: 'Developer',
+    position: '3D Modeller',
     picture: '/src/assets/imgs/ids/Chan.jpeg',
   },
   {
     name: 'Adamos, David Adrian',
-    position: 'Developer',
+    position: '3D Modeller',
     picture: '/src/assets/imgs/ids/Adamos.jpg',
   },
   {
     name: 'Vinas, Christopher',
-    position: 'Developer',
+    position: '3D Modeller',
     picture: '/src/assets/imgs/ids/Viñas.jpg',
   },
   {
     name: 'Longalong, Johnel',
-    position: 'Developer',
+    position: '3D Modeller',
     picture: '/src/assets/imgs/ids/LONGALONG.jpg',
   },
   {
     name: 'Angeles, Phoebi Nicole',
-    position: 'Developer',
+    position: '3D Modeller',
     picture: '/src/assets/imgs/ids/Angeles.jpg',
   },
   {
