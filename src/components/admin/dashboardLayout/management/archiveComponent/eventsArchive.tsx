@@ -251,7 +251,7 @@ const EventsArchive: React.FC<ContainerProps> = ({ name }) => {
                                     <tr key={index}>
                                         <th>{event.name}</th>
                                         <th>{event.eventSource}</th>
-                                        <td>{event.eventDesc}</td>
+                                        <td><div className="truncate w-40">{event.eventDesc}</div></td>
                                         <td>{event.eventPlace}</td>
                                         <td>{event.startDate}</td>
                                         <td>{event.startTime}</td>
