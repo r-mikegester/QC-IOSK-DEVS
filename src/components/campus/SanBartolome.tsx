@@ -15,8 +15,9 @@ import admin from '../../assets/models/sb_buildings/og_admin2.glb';
 import bautista from '../../assets/models/sb_buildings/og_bautista2.glb';
 import belmonte from '../../assets/models/sb_buildings/og_belmonte2.glb';
 import academic from '../../assets/models/sb_buildings/og_academic2.glb';
-import ballroom from '../../assets/models/sb_buildings/og_academic2.glb';
+import ballroom from '../../assets/models/sb_buildings/og_ballroom2.glb';
 import landscape from '../../assets/models/others/landscape.glb';
+import Modal from "react-modal";
 
 interface ContainerProps {
   name: string;
@@ -24,6 +25,8 @@ interface ContainerProps {
 
 const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
   const [isNight, setIsNight] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedBuilding, setSelectedBuilding] = useState("");
 
   useEffect(() => {
     const checkTime = () => {
@@ -43,11 +46,15 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
   }, []);
 
   const handleModelClick = (modelName: string) => {
+    setSelectedBuilding(modelName);
+    setShowModal(true);
     console.log(`Clicked on ${modelName}`);
   };
 
+
   return (
-    <Canvas
+    <>
+      <Canvas
       camera={{ fov: 25,  position: [10, 4, 10]}}
       className={
         isNight
@@ -56,6 +63,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
       }
       style={{ position: "absolute" }}
     >
+      
       <OrbitControls
       
         minPolarAngle={Math.PI / 6} // vertical rotation
@@ -66,7 +74,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
         autoRotateSpeed={0.3}
         enableZoom={true}
         minDistance={50}
-        maxDistance={200}
+        maxDistance={120}
       />
       <Clouds />
       <Stage environment={isNight ? "night" : "city"}>
@@ -95,7 +103,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               scale={[2.2, 2.2, 2.2]}
               name="Techvoc"
               textPosition={[-1, 3, 15]}
-              onClick={() => handleModelClick("TECHVOC")}
+              onClick={() => handleModelClick("Techvoc")}
             />
 
             {/* MULTIPURPOSE */}
@@ -104,6 +112,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               position={[11.9, 1, 16]}
               name="Multipurpose"
               textPosition={[11.9, 3, 16]}
+              onClick={() => handleModelClick("Multipurpose")}
             />
 
             {/* CHINESE B */}
@@ -113,6 +122,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               scale={[1.5, 1.5, 1.5]}
               name="Chinese B"
               textPosition={[11.9, 2.5, 10]}
+              onClick={() => handleModelClick("ChineseB")}
             />
 
             {/* BALLROOM */}
@@ -122,6 +132,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               scale={[1.5, 1.5, 1.5]}
               name="Ballroom"
               textPosition={[-17.5, 1.5, 11]}
+              onClick={() => handleModelClick("Ballroom")}
             />
 
             {/* CHED */}
@@ -131,6 +142,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               scale={[1.5, 1.5, 1.5]}
               name="CHED"
               textPosition={[-18.5, 2, 4]}
+              onClick={() => handleModelClick("Ched")}
             />
 
             {/* YELLOW */}
@@ -139,6 +151,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               position={[3.1, 1.1, 0]}
               name="Yellow Building"
               textPosition={[3.1, 4.5, 0]}
+              onClick={() => handleModelClick("Simon")}
             />
 
             {/* BELMONTE */}
@@ -148,6 +161,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               scale={[2, 2, 2]}
               name="Belmonte Building"
               textPosition={[10, 5.5, -11]}
+              onClick={() => handleModelClick("Belmonte")}
             />
 
             {/* ACADEMIC */}
@@ -157,6 +171,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               scale={[2, 2, 2]}
               name="Academic Building"
               textPosition={[9, 7, -25]}
+              onClick={() => handleModelClick("Academic")}
             />
 
             {/* ADMIN */}
@@ -165,6 +180,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               position={[-6, 2.1, -11.3]}
               name="Admin Building"
               textPosition={[-6, 6.5, -11.3]}
+              onClick={() => handleModelClick("Admin")}
             />
 
             {/* BAUTISTA */}
@@ -174,12 +190,15 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               scale={[2.5, 2.5, 2.5]}
               name="Bautista Building"
               textPosition={[-7, 7, -27]}
+              onClick={() => handleModelClick("Bautista")}
             />
           </SelectToZoom>
         </Bounds>
         <RotatingMesh />
       </Stage>
     </Canvas>
+    
+    </>
   );
 };
 
