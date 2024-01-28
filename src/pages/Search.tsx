@@ -94,7 +94,7 @@ const Search: React.FC<SearchProps> = ({ name }) => {
       // Check if there is a non-empty search term
       if (input.trim() !== "") {
         // Query data from Firestore using the current value of 'input'
-        const querySnapshot = await getDocs(collection(db, "buildings"));
+        const querySnapshot = await getDocs(collection(db, "Buildings"));
         const searchTerm = input.toLowerCase(); // Convert search term to lowercase for case-insensitive comparison
 
         // Flag to check if any matching result is found
