@@ -110,7 +110,7 @@ const KioskManual: React.FC<ContainerProps> = ({ name }) => {
                                 {manuals.map((manual, index) => (
                                     <div key={index}>
                                         <div
-                                            onClick={handleViewDemoClick} onClick={() => openModal(manual)}
+                                            onClick={() => openModal(manual)}
                                             className="flex items-center justify-between h-full p-3 px-6 shadow-md btn-block btn bg-base-300 rounded-2xl"
                                         >
                                             <div className="text-lg">{manual.name}</div>
@@ -132,14 +132,14 @@ const KioskManual: React.FC<ContainerProps> = ({ name }) => {
             {/* Modal for Manual Details */}
             <div className="">
                 <Modal
-                    className=" w-screen h-screen flex justify-center items-center "
+                    className=" w-screen h-screen flex justify-center items-center bg-black/60"
                     isOpen={isModalOpen}
                     onRequestClose={closeModal}
                     contentLabel="Announcement Details"
                     ariaHideApp={false}
                 >
                     {selectedManual && (
-                        <div className=" bg-base-100 rounded-3xl shadow-md p-6 justify-center w-auto h-8/12 items-center duration-150 ease-in-out">
+                        <div className=" bg-base-100 rounded-3xl shadow-inner p-6 justify-center w-auto h-8/12 items-center duration-150 ease-in-out">
                             <div className="flex space-x-4">
                                 <div>
                                      <img

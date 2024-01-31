@@ -281,7 +281,7 @@ const MikeGester: React.FC<ContainerProps> = ({ name }) => {
         </div>
         {/* Image Preview Modal */}
         <Modal
-          className="w-screen h-screen flex justify-center items-center"
+          className="w-screen h-screen flex justify-center items-center bg-black/60"
           isOpen={selectedImage !== null}
           onRequestClose={closeImagePreview}
         >
@@ -299,7 +299,7 @@ const MikeGester: React.FC<ContainerProps> = ({ name }) => {
         </Modal>
         {/* Delete Confirmation Modal */}
         <Modal
-        className="w-screen h-screen flex justify-center items-center"
+        className="w-screen h-screen flex justify-center items-center bg-black/60"
           isOpen={selectedManualId !== null}
           onRequestClose={closeDeleteConfirmation}
         >
@@ -317,7 +317,7 @@ const MikeGester: React.FC<ContainerProps> = ({ name }) => {
         </Modal>
         {/* Delete All Confirmation Modal */}
         <Modal
-        className="w-screen h-screen flex justify-center items-center"
+        className="w-screen h-screen flex justify-center items-center bg-black/60"
           isOpen={deleteAllConfirmation}
           onRequestClose={closeDeleteAllConfirmation}
           ariaHideApp={false}

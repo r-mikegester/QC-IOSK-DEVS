@@ -156,7 +156,7 @@ const CreateAnnouncement: React.FC<ContainerProps> = ({ name }) => {
                                         onClick={handleAddAnnouncement}
                                         className="btn float-right"
                                     >
-                                        <Icon icon="majesticons:clipboard-check-line" className="w-10 h-10" /><span>Add Announcement</span>
+                                        <Icon icon="icon-park-outline:add-three"  className="w-10 h-10" /><span>Add Announcement</span>
                                     </button>
                                 </div>
                             </div>

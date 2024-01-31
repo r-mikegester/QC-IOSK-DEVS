@@ -276,7 +276,7 @@ const ManageAnnouncements: React.FC<ContainerProps> = ({ name }) => {
         </div>
         {/* Delete Confirmation Modal */}
         <Modal
-          className="w-screen h-screen flex justify-center items-center"
+          className="w-screen h-screen flex justify-center items-center bg-black/60"
           isOpen={selectedAnnouncementId !== null}
           onRequestClose={closeDeleteConfirmation}
           ariaHideApp={false}
@@ -295,7 +295,7 @@ const ManageAnnouncements: React.FC<ContainerProps> = ({ name }) => {
         </Modal>
         {/* Delete All Confirmation Modal */}
         <Modal
-          className="w-screen h-screen flex justify-center items-center"
+          className="w-screen h-screen flex justify-center items-center bg-black/60"
           isOpen={deleteAllConfirmation}
           onRequestClose={closeDeleteAllConfirmation}
           ariaHideApp={false}

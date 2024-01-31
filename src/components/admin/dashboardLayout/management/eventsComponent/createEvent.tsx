@@ -172,7 +172,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                             <Icon icon="akar-icons:eye-open" className="w-10 h-10" />
                                                         </button>
                                                         <Modal
-                                                            className="w-screen h-screen flex justify-center items-center space-x-2"
+                                                            className="w-screen h-screen flex justify-center items-center bg-black/60 space-x-2"
                                                             isOpen={isModalOpen}
                                                             onRequestClose={closeModal}
                                                         >
@@ -252,7 +252,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                             <Icon icon="akar-icons:eye-open" className="w-10 h-10" />
                                                         </button>
                                                         <Modal
-                                                            className="w-screen h-screen flex justify-center items-center space-x-2"
+                                                            className="w-screen h-screen flex justify-center items-center bg-black/60 space-x-2"
                                                             isOpen={isModalOpen}
                                                             onRequestClose={closeModal}
                                                         >

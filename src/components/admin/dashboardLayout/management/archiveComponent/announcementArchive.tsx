@@ -270,7 +270,7 @@ const AnnouncementArchive: React.FC<ContainerProps> = ({ name }) => {
 
             {/* Delete Confirmation Modal */}
             <Modal
-                className="w-screen h-screen flex justify-center items-center"
+                className="w-screen h-screen flex justify-center items-center bg-black/60"
                 isOpen={deleteConfirmationId !== null}
                 onRequestClose={closeDeleteConfirmation}
                 ariaHideApp={false}
@@ -289,7 +289,7 @@ const AnnouncementArchive: React.FC<ContainerProps> = ({ name }) => {
             </Modal>
             {/* Delete All Announcements Modal */}
             <Modal
-                className="w-screen h-screen flex justify-center items-center"
+                className="w-screen h-screen flex justify-center items-center bg-black/60"
                 isOpen={deleteAllConfirmation}
                 onRequestClose={closeDeleteAllConfirmation}
                 ariaHideApp={false}
@@ -311,7 +311,7 @@ const AnnouncementArchive: React.FC<ContainerProps> = ({ name }) => {
             </Modal>
             {/* Restore Confirmation Modal */}
             <Modal
-                className="w-screen h-screen flex justify-center items-center"
+                className="w-screen h-screen flex justify-center items-center bg-black/60"
                 isOpen={restoreConfirmationId !== null}
                 onRequestClose={closeRestoreConfirmation}
                 ariaHideApp={false}

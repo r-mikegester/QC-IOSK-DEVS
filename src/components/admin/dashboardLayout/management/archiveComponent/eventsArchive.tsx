@@ -290,7 +290,7 @@ const EventsArchive: React.FC<ContainerProps> = ({ name }) => {
 
             {/* Image Preview Modal */}
             <Modal
-                className="w-screen h-screen flex justify-center items-center"
+                className="w-screen h-screen flex justify-center items-center bg-black/60"
                 isOpen={selectedImage !== null} onRequestClose={closeImagePreview}>
                 <div className="flex space-x-2" >
                     <img
@@ -306,7 +306,7 @@ const EventsArchive: React.FC<ContainerProps> = ({ name }) => {
             </Modal>
             {/* Delete Confirmation Modal */}
             <Modal
-                className="w-screen h-screen flex justify-center items-center"
+                className="w-screen h-screen flex justify-center items-center bg-black/60"
                 isOpen={deleteConfirmationId !== null}
                 onRequestClose={closeDeleteConfirmation}
                 ariaHideApp={false}
@@ -325,7 +325,7 @@ const EventsArchive: React.FC<ContainerProps> = ({ name }) => {
             </Modal>
             {/* Delete All Manual Modal */}
             <Modal
-                className="w-screen h-screen flex justify-center items-center"
+                className="w-screen h-screen flex justify-center items-center bg-black/60"
                 isOpen={deleteAllConfirmation}
                 onRequestClose={closeDeleteAllConfirmation}
                 ariaHideApp={false}
@@ -347,7 +347,7 @@ const EventsArchive: React.FC<ContainerProps> = ({ name }) => {
             </Modal>
             {/* Restore Confirmation Modal */}
             <Modal
-                className="w-screen h-screen flex justify-center items-center"
+                className="w-screen h-screen flex justify-center items-center bg-black/60"
                 isOpen={restoreConfirmationId !== null}
                 onRequestClose={closeRestoreConfirmation}
                 ariaHideApp={false}

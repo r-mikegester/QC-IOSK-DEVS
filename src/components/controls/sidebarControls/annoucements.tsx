@@ -134,7 +134,7 @@ const Announcements: React.FC<ContainerProps> = ({ name }) => {
       {/* Modal for Event Details */}
       <div className="">
         <Modal
-          className=" w-screen h-screen flex justify-center items-center "
+          className=" w-screen h-screen flex justify-center items-center bg-black/60 "
           isOpen={isModalOpen}
           onRequestClose={closeModal}
           contentLabel="Announcement Details"

@@ -151,14 +151,14 @@ const Events: React.FC<ContainerProps> = ({ name }) => {
       {/* Modal for Event Details */}
       <div className="">
         <Modal
-          className=" w-screen h-screen flex justify-center items-center "
+          className=" w-screen h-screen flex justify-center items-center bg-black/60 ease-in-out duration-150"
           isOpen={isModalOpen}
           onRequestClose={closeModal}
           contentLabel="Event Details"
           ariaHideApp={false}
         >
           {selectedEvent && (
-            <div className=" bg-base-100 rounded-3xl shadow-md p-6 justify-center w-8/12 h-auto items-center duration-150 ease-in-out">
+            <div className=" bg-base-100 rounded-3xl shadow-md p-6 justify-center w-auto h-auto items-center duration-150 ease-in-out">
               <div className="flex space-x-4">
                 <div>
                   <img
@@ -167,7 +167,7 @@ const Events: React.FC<ContainerProps> = ({ name }) => {
                     className="w-96 h-96 rounded-2xl"
                   />
                 </div>
-                <div className="bg-base-200 relative rounded-2xl shadow-inner w-96 overflow-y-scroll  h-96 p-6">
+                <div className="bg-base-200 relative rounded-2xl shadow-inner w-96 overflow-y-auto  h-96 p-6">
                   <h1 className="capitalize font-semibold text-4xl">
                     {selectedEvent.name}
                   </h1>
@@ -180,7 +180,7 @@ const Events: React.FC<ContainerProps> = ({ name }) => {
                 </div>
                 <button
                   onClick={closeModal}
-                  className="btn bg-base-200 shadow-inner btn-square w-12 "
+                  className="btn bg-base-200 shadow-inner btn-square w-12 hover:bg-red-500 hover:text-white "
                 >
                   <Icon icon="line-md:close-small" className="w-10 h-10" />
                 </button>
