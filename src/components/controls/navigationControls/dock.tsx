@@ -15,7 +15,7 @@ const Dock: React.FC<ContainerProps> = ({ name }) => {
   };
   const ClickMap = () => {
     // Redirect to the "/Map" route
-    history.push("/Campuses");
+    history.push("/Map");
   };
   const ClickSearch = () => {
     // Redirect to the "/Search" route
