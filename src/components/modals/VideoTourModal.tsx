@@ -1,4 +1,4 @@
-import Mp4 from '../../assets/vids/sb/r_belmonte.mp4';
+// import Mp4 from '../../assets/vids/sb/r_belmonte.mp4';
 import { Icon } from '@iconify/react';
 import React, { useRef } from 'react';
 
@@ -20,8 +20,8 @@ const CreditsModal: React.FC = () => {
     autoPlay
     controls
   >
-    <source src={Mp4} type="video/mp4" />
-    <source src={Mp4} type="video/ogg"></source>
+    {/* <source src={Mp4} type="video/mp4" />
+    <source src={Mp4} type="video/ogg"></source> */}
     {/* You can add multiple source elements for different video formats */}
     Your browser does not support the video tag.
   </video>
