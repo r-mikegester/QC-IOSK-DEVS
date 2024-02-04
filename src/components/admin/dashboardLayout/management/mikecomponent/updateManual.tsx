@@ -100,7 +100,7 @@ const UpdateManual: React.FC<ContainerProps> = ({ name }) => {
                     <div className="items-center justify-center text-base-content bg-base-300 lg:ps-64 ">
                         <div className="w-full h-screen grid-cols-4 grid-rows-5 gap-5 p-10 bg-base-100 rounded-tl-3xl">
                             <div className="flex items-center space-x-2">
-                                <h1 className="font-bold text-4xl">Update Manual</h1>
+                                <h1 className="text-4xl font-bold">Update Manual</h1>
                             </div>
 
                             <div className="overflow-x-auto">
@@ -119,7 +119,7 @@ const UpdateManual: React.FC<ContainerProps> = ({ name }) => {
                                                     placeholder="Manual Name"
                                                     value={manualName}
                                                     onChange={(e) => setManualName(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="w-full max-w-xs input input-bordered"
                                                 />
                                             </td>
                                         </tr>
@@ -131,7 +131,7 @@ const UpdateManual: React.FC<ContainerProps> = ({ name }) => {
                                                     value={manualDesc}
                                                     onChange={(e) => setManualDesc(e.target.value)}
                                                     placeholder="Manual Description..."
-                                                    className="textarea textarea-bordered textarea-xs w-full max-w-xs"
+                                                    className="w-full max-w-xs textarea textarea-bordered textarea-xs"
                                                 ></textarea>
                                             </td>
                                         </tr>
@@ -143,7 +143,7 @@ const UpdateManual: React.FC<ContainerProps> = ({ name }) => {
                                                     type="file"
                                                     accept="image/jpeg, image/png, image/gif"
                                                     onChange={handleImageChange}
-                                                    className="file-input w-full max-w-xs"
+                                                    className="w-full max-w-xs file-input"
                                                 />
                                             </td>
                                         </tr>
@@ -154,15 +154,15 @@ const UpdateManual: React.FC<ContainerProps> = ({ name }) => {
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div className="flex items-center space-x-2 mt-5 justify-between mx-5">
+                                <div className="flex items-center justify-between mx-5 mt-5 space-x-2">
                                 <button className="btn btn-square hover:bg-base-300 " onClick={ManualManagement}>
                                 <Icon icon="icon-park-outline:back" className="w-10 h-10" />
                                 </button>
                                 <button
                                     onClick={handleUpdateManual}
-                                    className="btn bg-base-300 float-right hover:bg-emerald-500 hover:text-white"
+                                    className="float-right btn bg-base-300 hover:bg-emerald-500 hover:text-white"
                                 >
-                                   <Icon icon="icon-park-outline:add-three" className="w-10 h-10" /><span>Update Manual</span>
+                                   <Icon icon="humbleicons:save"className="w-10 h-10" /><span>Save</span>
                                 </button>
                                 </div>
                             </div>

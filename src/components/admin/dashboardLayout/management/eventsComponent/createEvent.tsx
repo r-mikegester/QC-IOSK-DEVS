@@ -107,7 +107,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                             <div className="flex items-center justify-between space-x-2">
                                 <div className="flex items-center space-x-2">
 
-                                    <h1 className="font-bold text-4xl">Create Event</h1>
+                                    <h1 className="text-4xl font-bold">Create Event</h1>
                                 </div>
 
                             </div>
@@ -127,7 +127,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     placeholder="Event Name"
                                                     value={eventName}
                                                     onChange={(e) => setEventName(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="w-full max-w-xs input input-bordered"
                                                 />
                                             </td>
                                             <th>Event Place:</th>
@@ -137,7 +137,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     placeholder="Event Place"
                                                     value={eventPlace}
                                                     onChange={(e) => setEventPlace(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="w-full max-w-xs input input-bordered"
                                                 />
                                             </td>
 
@@ -150,7 +150,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     placeholder="Event Source"
                                                     value={eventSource}
                                                     onChange={(e) => setEventSource(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="w-full max-w-xs input input-bordered"
                                                 />
                                             </td>
                                             <th>Organizer Image:</th>
@@ -159,7 +159,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     type="file"
                                                     accept="image/jpeg, image/png, umage/gif"
                                                     onChange={handleImageChange}
-                                                    className="file-input w-full max-w-xs"
+                                                    className="w-full max-w-xs file-input"
                                                 />
                                             </td>
                                             <td colSpan={2}>
@@ -172,7 +172,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                             <Icon icon="akar-icons:eye-open" className="w-10 h-10" />
                                                         </button>
                                                         <Modal
-                                                            className="w-screen h-screen flex justify-center items-center bg-black/60 space-x-2"
+                                                            className="flex items-center justify-center w-screen h-screen space-x-2 bg-black/60"
                                                             isOpen={isModalOpen}
                                                             onRequestClose={closeModal}
                                                         >
@@ -185,7 +185,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                                 />
                                                                 <button
                                                                     onClick={closeModal}
-                                                                    className="btn  btn-square"
+                                                                    className="btn btn-square"
                                                                 >
                                                                     <Icon icon="heroicons:x-mark-16-solid" className="w-10 h-10" />
                                                                 </button>
@@ -210,7 +210,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     type="date"
                                                     value={startDate}
                                                     onChange={(e) => setStartDate(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="w-full max-w-xs input input-bordered"
                                                 />
                                             </td>
                                             <th>Time:</th>
@@ -219,7 +219,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     type="time"
                                                     value={startTime}
                                                     onChange={(e) => setStartTime(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="w-full max-w-xs input input-bordered"
                                                 />
                                             </td>
                                         </tr>
@@ -230,7 +230,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     value={eventDesc}
                                                     onChange={(e) => setEventDesc(e.target.value)}
                                                     placeholder="Event Description..."
-                                                    className="textarea textarea-bordered textarea-xs w-full max-w-xs"
+                                                    className="w-full max-w-xs textarea textarea-bordered textarea-xs"
                                                 ></textarea>
                                             </td>
                                             <th>Event Image:</th>
@@ -239,7 +239,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     type="file"
                                                     accept="image/jpeg, image/png, umage/gif"
                                                     onChange={handleImageChange}
-                                                    className="file-input w-full max-w-xs"
+                                                    className="w-full max-w-xs file-input"
                                                 />
                                             </td>
                                             <td colSpan={2}>
@@ -252,7 +252,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                             <Icon icon="akar-icons:eye-open" className="w-10 h-10" />
                                                         </button>
                                                         <Modal
-                                                            className="w-screen h-screen flex justify-center items-center bg-black/60 space-x-2"
+                                                            className="flex items-center justify-center w-screen h-screen space-x-2 bg-black/60"
                                                             isOpen={isModalOpen}
                                                             onRequestClose={closeModal}
                                                         >
@@ -265,7 +265,7 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                                 />
                                                                 <button
                                                                     onClick={closeModal}
-                                                                    className="btn  btn-square"
+                                                                    className="btn btn-square"
                                                                 >
                                                                     <Icon icon="heroicons:x-mark-16-solid" className="w-10 h-10" />
                                                                 </button>
@@ -282,15 +282,15 @@ const CreateEvent: React.FC<ContainerProps> = ({ name }) => {
                                         <tr></tr>
                                     </tbody>
                                 </table>
-                                <div className="flex items-center space-x-2 mt-5 justify-between mx-5">
+                                <div className="flex items-center justify-between mx-5 mt-5 space-x-2">
                                     <button onClick={EventManagement} className="btn btn-square hover:bg-base-300 ">
                                         <Icon icon="icon-park-outline:back" className="w-10 h-10" />
                                     </button>
                                     <button
                                         onClick={handleAddEvent}
-                                        className="btn bg-base-300 float-right hover:bg-emerald-500 hover:text-white"
+                                        className="float-right btn bg-base-300 hover:bg-emerald-500 hover:text-white"
                                     >
-                                        <Icon icon="icon-park-outline:add-three" className="w-10 h-10" /><span>Add Event</span>
+                                        <Icon icon="icon-park-outline:add-three" className="w-10 h-10" /><span>Create</span>
                                     </button>
                                 </div>
 

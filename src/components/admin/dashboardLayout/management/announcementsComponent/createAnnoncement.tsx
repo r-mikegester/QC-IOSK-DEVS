@@ -67,7 +67,7 @@ const CreateAnnouncement: React.FC<ContainerProps> = ({ name }) => {
                         <div className="w-full h-screen p-10 bg-base-100 rounded-tl-3xl">
                             <div className="flex items-center space-x-2">
 
-                                <h1 className="font-bold text-4xl">Create Announcement</h1>
+                                <h1 className="text-4xl font-bold">Create Announcement</h1>
                             </div>
 
                             <div className="overflow-x-auto">
@@ -86,7 +86,7 @@ const CreateAnnouncement: React.FC<ContainerProps> = ({ name }) => {
                                                     placeholder="Announcement Name"
                                                     value={announcementName}
                                                     onChange={(e) => setAnnouncementName(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="w-full max-w-xs input input-bordered"
                                                 />
                                             </td>
                                         </tr>
@@ -100,7 +100,7 @@ const CreateAnnouncement: React.FC<ContainerProps> = ({ name }) => {
                                                     onChange={(e) =>
                                                         setAnnouncementSource(e.target.value)
                                                     }
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="w-full max-w-xs input input-bordered"
                                                 />
                                             </td>
                                         </tr>
@@ -111,7 +111,7 @@ const CreateAnnouncement: React.FC<ContainerProps> = ({ name }) => {
                                                     value={announcementDesc}
                                                     placeholder="Announcement Description..."
                                                     onChange={(e) => setAnnouncementDesc(e.target.value)}
-                                                    className="textarea textarea-bordered textarea-xs w-full max-w-xs"
+                                                    className="w-full max-w-xs textarea textarea-bordered textarea-xs"
                                                 ></textarea>
                                             </td>
                                         </tr>
@@ -122,7 +122,7 @@ const CreateAnnouncement: React.FC<ContainerProps> = ({ name }) => {
                                                     type="date"
                                                     value={startDate}
                                                     onChange={(e) => setStartDate(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="w-full max-w-xs input input-bordered"
                                                 />
                                             </td>
                                         </tr>
@@ -133,7 +133,7 @@ const CreateAnnouncement: React.FC<ContainerProps> = ({ name }) => {
                                                     type="time"
                                                     value={startTime}
                                                     onChange={(e) => setStartTime(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="w-full max-w-xs input input-bordered"
                                                 />
                                             </td>
                                         </tr>
@@ -145,7 +145,7 @@ const CreateAnnouncement: React.FC<ContainerProps> = ({ name }) => {
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div className="flex justify-between items-center mt-5 mx-5">
+                                <div className="flex items-center justify-between mx-5 mt-5">
                                     <button
                                         onClick={AnnouncementManagement}
                                         className="btn btn-square hover:bg-base-300"
@@ -154,9 +154,9 @@ const CreateAnnouncement: React.FC<ContainerProps> = ({ name }) => {
                                     </button>
                                     <button
                                         onClick={handleAddAnnouncement}
-                                        className="btn float-right"
+                                        className="float-right btn"
                                     >
-                                        <Icon icon="icon-park-outline:add-three"  className="w-10 h-10" /><span>Add Announcement</span>
+                                        <Icon icon="icon-park-outline:add-three"  className="w-10 h-10" /><span>Create</span>
                                     </button>
                                 </div>
                             </div>

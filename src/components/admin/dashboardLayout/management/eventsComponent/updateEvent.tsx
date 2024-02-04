@@ -117,7 +117,7 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                         <div className="w-full h-screen grid-cols-4 grid-rows-5 gap-5 p-10 bg-base-100 rounded-tl-3xl">
                             <div className="flex items-center space-x-2">
 
-                                <h1 className="font-bold text-4xl">Update Event</h1>
+                                <h1 className="text-4xl font-bold">Update Event</h1>
                             </div>
 
                             <div className="overflow-x-auto">
@@ -136,7 +136,7 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     placeholder="Event Name"
                                                     value={eventName}
                                                     onChange={(e) => setEventName(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="w-full max-w-xs input input-bordered"
                                                 />
                                             </td>
                                             <th>Event Place:</th>
@@ -146,7 +146,7 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     placeholder="Event Place"
                                                     value={eventPlace}
                                                     onChange={(e) => setEventPlace(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="w-full max-w-xs input input-bordered"
                                                 />
                                             </td>
                                         </tr>
@@ -159,7 +159,7 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     placeholder="Event Source"
                                                     value={eventSource}
                                                     onChange={(e) => setEventSource(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="w-full max-w-xs input input-bordered"
                                                 />
                                             </td>
                                             <th>Organizer Image:</th>
@@ -168,7 +168,7 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     type="file"
                                                     accept="image/jpeg, image/png, umage/gif"
                                                     onChange={handleImageChange}
-                                                    className="file-input w-full max-w-xs"
+                                                    className="w-full max-w-xs file-input"
                                                 />
                                             </td>
                                         </tr>
@@ -188,7 +188,7 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     type="date"
                                                     value={startDate}
                                                     onChange={(e) => setStartDate(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="w-full max-w-xs input input-bordered"
                                                 />
                                             </td>
                                             <th>Time:</th>
@@ -197,7 +197,7 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     type="time"
                                                     value={startTime}
                                                     onChange={(e) => setStartTime(e.target.value)}
-                                                    className="input input-bordered w-full max-w-xs"
+                                                    className="w-full max-w-xs input input-bordered"
                                                 />
                                             </td>
                                         </tr>
@@ -213,7 +213,7 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     value={eventDesc}
                                                     onChange={(e) => setEventDesc(e.target.value)}
                                                     placeholder="Event Description..."
-                                                    className="textarea textarea-bordered textarea-xs w-full max-w-xs"
+                                                    className="w-full max-w-xs textarea textarea-bordered textarea-xs"
                                                 ></textarea>
                                             </td>
                                             <th>Event Image:</th>
@@ -222,7 +222,7 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                                     type="file"
                                                     accept="image/jpeg, image/png, umage/gif"
                                                     onChange={handleImageChange}
-                                                    className="file-input w-full max-w-xs"
+                                                    className="w-full max-w-xs file-input"
                                                 />
                                             </td>
                                         </tr>
@@ -234,7 +234,7 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div className="flex items-center space-x-2 mt-5 justify-between mx-5">
+                                <div className="flex items-center justify-between mx-5 mt-5 space-x-2">
                                     <button onClick={EventManagement} className="btn btn-square hover:bg-base-300 ">
                                         <Icon icon="icon-park-outline:back" className="w-10 h-10" />
                                     </button>
@@ -242,7 +242,7 @@ const UpdateEvent: React.FC<ContainerProps> = ({ name }) => {
                                         onClick={handleUpdateEvent}
                                         className="btn bg-base-300"
                                     >
-                                        <Icon icon="humbleicons:save" className="w-10 h-10" /><span>Update Event</span>
+                                        <Icon icon="humbleicons:save" className="w-10 h-10" /><span>Save</span>
 
                                     </button>
                                 </div>
