@@ -83,6 +83,14 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
         const data = buildingDoc.docs[0].data();
         console.log(`${modelName} Documents Found!!`);
         setBuildingData({ ...data, id: buildingDoc.docs[0].id }); // Include document ID in the data
+        console.log("Building Data:", { ...data, id: buildingDoc.docs[0].id });
+
+        console.log("Data before update:", { ...data, id: buildingDoc.docs[0].id });
+
+        setBuildingData({ ...data, id: buildingDoc.docs[0].id }); // Include document ID in the data
+
+        // Log data after updating state
+        console.log("Data after update:", { ...data, id: buildingDoc.docs[0].id });
       } else {
         console.warn("Document not found");
       }
@@ -240,6 +248,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
           <RotatingMesh />
         </Stage>
       </Canvas>
+
       <Modal
         className="flex items-center justify-center w-screen h-screen bg-black/60 text-base-content"
         isOpen={showModal}
@@ -249,51 +258,46 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
         <div className="w-full p-6 m-40 shadow-xl bg-base-100 rounded-3xl h-fit">
           <div className="flex items-center justify-between">
             <h2 className="text-3xl font-semibold text-center">{selectedBuilding}</h2>
-            <button onClick={closeModal} className="btn btn-square hover:bg-red-500 hover:text-white"><Icon icon="line-md:close-small" className="w-10 h-10" />
+            <button onClick={closeModal} className="btn btn-square hover:bg-red-500 hover:text-white">
+              <Icon icon="line-md:close-small" className="w-10 h-10" />
             </button>
           </div>
-          {/* Add more information or customize the modal content as needed */}
-          <div className="flex justify-center mt-6 space-x-3">
-            <div className="px-6 shadow-inner bg-base-300 w-96 h-96 rounded-3xl">
-              <div className="flex justify-center p-6 space-x-3 border-b-2 border-base-100">
-                <button className="w-full h-10 btn bg-base-100 hover:bg-base-200">Overview</button>
-                <button className="btn bg-base-100 hover:bg-base-200 btn-square">
-                  <Icon icon="clarity:help-info-line" className="w-10 h-10 p-1" />
-                </button>
+
+          {buildingData ? (
+            // If buildingData is available, display the data
+            <div>
+              <p className="p-2 text-2xl font-semibold">Floors</p>
+              {/* Render the floors based on your buildingData */}
+              <div className="grid grid-cols-2 gap-2">
+                {/* Map over your buildingData floors and display buttons */}
+                {buildingData.floors.map((floor: string, index: number) => (
+                  <button key={index} className="w-full h-10 bg-base-100 btn">
+                    {floor}
+                  </button>
+                ))}
               </div>
+
+              {/* Additional building information can be displayed here */}
+              {/* For example, you can display room information */}
               <div>
-                <p className="p-2 text-2xl font-semibold">Floors</p>
-                <div className="grid grid-cols-2 gap-2">
-                  <button className="w-full h-10 bg-base-100 btn">1</button>
-                  <button className="w-full h-10 bg-base-100 btn">2</button>
-                  <button className="w-full h-10 bg-base-100 btn">3</button>
-                  <button className="w-full h-10 bg-base-100 btn">4</button>
-                  <button className="w-full h-10 bg-base-100 btn">5</button>
-                  <button className="w-full h-10 bg-base-100 btn">6</button>
-                  <button className="w-full h-10 bg-base-100 btn">7</button>
-                  <button className="w-full h-10 bg-base-100 btn">8</button>
-                </div>
-              </div>
-            </div>
-            <div className="w-full shadow-inner bg-base-300 h-96 rounded-2xl">
-              <div className="flex items-center ">
+                <p className="p-2 text-2xl font-semibold">Rooms</p>
                 <div className="w-64 p-6 space-y-2 overflow-y-auto h-96">
-                  <button className="w-full bg-base-100 btn">IC101</button>
-                  <button className="w-full bg-base-100 btn">IC102</button>
-                  <button className="w-full bg-base-100 btn">IC103</button>
-                  <button className="w-full bg-base-100 btn">IC104</button>
-                  <button className="w-full bg-base-100 btn">IC105</button>
-                  <button className="w-full bg-base-100 btn">IC106</button>
-                  <button className="w-full bg-base-100 btn">CR</button>
-
+                  {/* Map over your buildingData rooms and display buttons */}
+                  {buildingData.rooms.map((room: string, index: number) => (
+                    <button key={index} className="w-full bg-base-100 btn">
+                      {room}
+                    </button>
+                  ))}
                 </div>
-                <div className="w-full shadow-inner bg-base-200 h-96 rounded-2xl"></div>
               </div>
             </div>
-
-          </div>
+          ) : (
+            // If buildingData is not available, display a loading or placeholder message
+            <p>Loading building data...</p>
+          )}
         </div>
       </Modal>
+
     </>
   );
 };
