@@ -40,7 +40,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
         const buildingsSnapshot = await getDocs(buildingsCollection);
 
         buildingsSnapshot.forEach((doc) => {
-          console.log(doc.id, " => ", doc.data());
+          // console.log(doc.id, " => ", doc.data());
         });
       } catch (error) {
         console.error("Error fetching data from Firebase Firestore:", error);
@@ -71,7 +71,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
   const handleModelClick = async (modelName: string) => {
     setSelectedBuilding(modelName);
     setShowModal(true);
-    console.log(`Clicked on ${modelName}`);
+    console.warn(`Clicked on ${modelName}`.toUpperCase());
 
     // Fetch the corresponding document data from Firestore
     try {
@@ -81,16 +81,17 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
       if (!buildingDoc.empty) {
         const data = buildingDoc.docs[0].data();
-        console.log(`${modelName} Documents Found!!`);
+        console.log(`${modelName} DOCUMENTS FOUND.`.toUpperCase());
         setBuildingData({ ...data, id: buildingDoc.docs[0].id }); // Include document ID in the data
-        console.log("Building Data:", { ...data, id: buildingDoc.docs[0].id });
+        console.log(`${modelName} data:`.toUpperCase(), { ...data, id: buildingDoc.docs[0].id });
 
-        console.log("Data before update:", { ...data, id: buildingDoc.docs[0].id });
+        // console.log("Data before update:", { ...data, id: buildingDoc.docs[0].id });
 
         setBuildingData({ ...data, id: buildingDoc.docs[0].id }); // Include document ID in the data
 
         // Log data after updating state
-        console.log("Data after update:", { ...data, id: buildingDoc.docs[0].id });
+        // console.log("Data after update:", { ...data, id: buildingDoc.docs[0].id });
+        console.warn("FETCHING DOCUMENT COMPLETED SUCCESSFULLY! ");
       } else {
         console.warn("Document not found");
       }
@@ -263,36 +264,34 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
             </button>
           </div>
 
-          {buildingData ? (
-            // If buildingData is available, display the data
+          {buildingData && Array.isArray(buildingData.floors) ? (
             <div>
               <p className="p-2 text-2xl font-semibold">Floors</p>
-              {/* Render the floors based on your buildingData */}
               <div className="grid grid-cols-2 gap-2">
-                {/* Map over your buildingData floors and display buttons */}
                 {buildingData.floors.map((floor: string, index: number) => (
                   <button key={index} className="w-full h-10 bg-base-100 btn">
                     {floor}
                   </button>
                 ))}
               </div>
-
               {/* Additional building information can be displayed here */}
               {/* For example, you can display room information */}
               <div>
                 <p className="p-2 text-2xl font-semibold">Rooms</p>
                 <div className="w-64 p-6 space-y-2 overflow-y-auto h-96">
-                  {/* Map over your buildingData rooms and display buttons */}
-                  {buildingData.rooms.map((room: string, index: number) => (
-                    <button key={index} className="w-full bg-base-100 btn">
-                      {room}
-                    </button>
-                  ))}
+                  {buildingData && Array.isArray(buildingData.rooms) ? (
+                    buildingData.rooms.map((room: string, index: number) => (
+                      <button key={index} className="w-full bg-base-100 btn">
+                        {room}
+                      </button>
+                    ))
+                  ) : (
+                    <p>No room data available.</p>
+                  )}
                 </div>
               </div>
             </div>
           ) : (
-            // If buildingData is not available, display a loading or placeholder message
             <p>Loading building data...</p>
           )}
         </div>
