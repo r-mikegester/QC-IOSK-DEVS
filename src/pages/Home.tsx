@@ -10,7 +10,7 @@ interface ContainerProps {
   name: string;
 };
 
-const CampusSelect: React.FC<ContainerProps> = ({ name }) => {
+const Home: React.FC<ContainerProps> = ({ name }) => {
   const history = useHistory();
 
   const handleClick = () => {
@@ -42,4 +42,4 @@ const CampusSelect: React.FC<ContainerProps> = ({ name }) => {
   );
 };
 
-export default CampusSelect;
+export default Home;

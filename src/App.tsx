@@ -14,7 +14,7 @@ import Batasan from './components/campus/batasan/Batasan';
 
 import Map from '../src/pages/maps';
 import Home from '../src/pages/home';
-import Search from '../src/pages/search';
+import SearchTab from '../src/pages/search';
 import Layout from '../src/pages/layout';
 
 
@@ -105,7 +105,7 @@ const App: React.FC<ContainerProps> = ({ name }) => (
         </Route>
 
         <Route exact path="/Search">
-          <Search name={'Search'} />
+          <SearchTab />
         </Route>
 
 

@@ -12,11 +12,7 @@ import Dock from '../components/navigation/dock';
 import '../assets/css/search.css';
 import '../assets/css/keyboard.css';
 
-interface SearchProps {
-  name: string;
-}
-
-const Search: React.FC<SearchProps> = ({ name }) => {
+const SearchTab: React.FC = () => {
   const [keyboard, setKeyboard] = useState<Keyboard | null>(null); // Added Keyboard type  const [layoutName, setLayoutName] = useState<string>("default");
   const [input, setInput] = useState<string>("");
   const [layoutName, setLayoutName] = useState<string>("default");
@@ -124,10 +120,6 @@ const Search: React.FC<SearchProps> = ({ name }) => {
     }
   };
 
-
-
-
-
   return (
     <IonPage>
       <IonContent fullscreen className="bg-sc">
@@ -224,4 +216,4 @@ const Search: React.FC<SearchProps> = ({ name }) => {
   );
 };
 
-export default Search;
+export default SearchTab;
