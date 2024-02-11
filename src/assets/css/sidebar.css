@@ -13,7 +13,7 @@
   .sidebar-icon {
     @apply relative flex items-center justify-center 
     h-12 w-12 mt-2 mb-2 mx-auto  
-    hover:bg-gradient-to-tr hover:from-base-300 shadow-lg
+    hover:bg-gradient-to-tr hover:from-accent shadow-lg
    bg-gradient-to-tr from-base-200 to-base-300
     hover:rounded-xl rounded-3xl
     transition-all duration-300 ease-linear
