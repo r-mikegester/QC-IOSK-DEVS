@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import AdminSidebar from "./constant/adminSidebar";
 import AdminHeader from "./constant/adminHeader";
 import { IonPage, IonContent } from "@ionic/react";
-import AdminLayout from "./layout";
+import AdminLayout from "./constant/layout";
 interface ContainerProps {
   name: string;
 }
