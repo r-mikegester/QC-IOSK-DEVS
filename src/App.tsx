@@ -13,8 +13,8 @@ import Batasan from './components/campus/batasan/Batasan';
 /* Main Routing */
 
 import Map from '../src/pages/maps';
-import Home from '../src/pages/home';
-import SearchTab from '../src/pages/search';
+import Home from './pages/Home';
+import SearchTab from './pages/Search';
 import Layout from '../src/pages/layout';
 
 
