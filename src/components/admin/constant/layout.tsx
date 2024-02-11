@@ -4,12 +4,12 @@ import { useEffect } from "react";
 import { auth } from "../../../utils/firebase";
 import { Icon } from "@iconify/react";
 import { useHistory } from "react-router";
-import AdminSidebar from "./constant/adminSidebar";
-import AdminHeader from "./constant/adminHeader";
-import ThemeSelection from "../../controls/sidebar/themes/themeSelection";
-import ManageEvents from "./management/manageEvents";
-import manageAnnouncements from "./management/manageAnnoucements";
-import ManageAnnouncements from "./management/manageAnnoucements";
+import AdminSidebar from "./adminSidebar";
+import AdminHeader from "./adminHeader";
+import ThemeSelection from "../../sidebar/themes/themeSelection";
+import ManageEvents from "../management/manageEvents";
+import manageAnnouncements from "../management/manageAnnoucements";
+import ManageAnnouncements from "../management/manageAnnoucements";
 import { ToastContainer } from "react-toastify";
 
 interface ContainerProps {
