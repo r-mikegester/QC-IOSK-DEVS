@@ -1,6 +1,6 @@
 import { credits } from '../../data/creditsData';
 import { Icon } from '@iconify/react';
-import niki from '../../assets/imgs/ids/niki.jpg';
+// import niki from '../../assets/imgs/ids/niki.jpg';
 import React from 'react';
 
 const CreditsModal: React.FC = () => {
@@ -58,7 +58,7 @@ const CreditsModal: React.FC = () => {
             <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1 ">
               <div className="flex flex-col p-4 bg-white border border-gray-200 rounded-3xl md:p-6 dark:bg-slate-800/70 backdrop-blur-lg dark:border-gray-700">
                 <div className="flex items-center gap-x-4 ">
-                  <img className="w-20 h-20 rounded-2xl" src={niki}/>
+                  {/* <img className="w-20 h-20 rounded-2xl" src={niki}/> */}
                   <div className="grow">
                     <h3 className="font-medium text-gray-800 dark:text-gray-200">
                       Niki

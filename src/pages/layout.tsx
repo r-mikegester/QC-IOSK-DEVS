@@ -1,19 +1,18 @@
 import { IonContent, IonPage } from "@ionic/react";
-import SanBartolome from "../components/campus/SanBartolome";
-import Dock from "../components/controls/navigationControls/dock";
+import SanBartolome from "../components/campus/sanBartolome/SanBartolome";
+import Dock from "../components/navigation/dock";
 import { Icon } from "@iconify/react";
-import Location from "../components/controls/widgetControls/location/Location";
-
+import Location from "../components/widgets/location/Location";
 import { themeChange } from "theme-change";
 import React, { useState, useRef, useEffect, Suspense } from "react";
-import Backbtn from "../components/controls/navigationControls/Backbtn";
+import Backbtn from "../components/navigation/Backbtn";
 import { useHistory } from "react-router-dom";
-import Widgets from "../components/controls/widgetControls/clock/clock";
+import Widgets from "../components/widgets/clock/clock";
 import CreditsModal from "../components/modals/CreditsModal";
 import KioskModal from "../components/modals/KioskModal";
 import VideoTourModal from "../components/modals/VideoTourModal";
-import WidgetPanel from "../components/controls/widgetControls/widgetPanel";
-import Sidebar from "../components/controls/sidebarControls/sidebar";
+import WidgetPanel from "../components/widgets/widgetPanel";
+import Sidebar from "../components/sidebar/sidebarLayout";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import swipe from "../assets/imgs/gifs/swipe.gif";
