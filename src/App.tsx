@@ -3,9 +3,9 @@ import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router-dom";
 
 /* Map*/
-import SanBartolome from './components/campus/SanBartolome';
-import SanFransisco from './components/campus/SanFransisco';
-import Batasan from './components/campus/Batasan';
+import SanBartolome from './components/campus/sanBartolome/SanBartolome';
+import SanFransisco from './components/campus/sanFrancisco/SanFransisco';
+import Batasan from './components/campus/batasan/Batasan';
 
 
 /** Error Catching */
@@ -19,9 +19,9 @@ import Layout from './pages/layout';
 
 
 /** Admin Routing */
-import Login from "./components/admin/auth/login";
-import Signup from "./components/admin/auth/signup";
-import Dashboard from "./components/admin/dashboardLayout/dashboard";
+import Login from "./components/sidebar/auth/unlogin";
+import Signup from "./components/sidebar/auth/signup";
+import Dashboard from "./components/admin/dashboard";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -44,20 +44,19 @@ import "./assets/css/variables.css";
 /*Ionic Components*/
 
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
-import ManageAnnouncements from "./components/admin/dashboardLayout/management/manageAnnoucements";
-import RoomManagement from "./components/admin/dashboardLayout/management/manageRooms";
-import BuildingManagement from "./components/admin/dashboardLayout/management/manageBuilding";
-import AdminSettings from "./components/admin/dashboardLayout/management/adminSettings";
-import EventManagement from "./components/admin/dashboardLayout/management/manageEvents";
-import ThemesManagement from "./components/admin/dashboardLayout/management/manageThemes";
-import CreateEvent from "./components/admin/dashboardLayout/management/eventsComponent/createEvent";
-import UpdateEvent from "./components/admin/dashboardLayout/management/eventsComponent/updateEvent";
-import CreateAnnouncement from "./components/admin/dashboardLayout/management/announcementsComponent/createAnnoncement";
-import UpdateAnnouncement from "./components/admin/dashboardLayout/management/announcementsComponent/updateAnnouncement";
-import Archive from "./components/admin/dashboardLayout/management/manageArchive";
-import ManageManual from "./components/admin/dashboardLayout/management/manualInlineKioskEditor";
-import CreateManual from "./components/admin/dashboardLayout/management/mikeComponent/createManual";
-import UpdateManual from "./components/admin/dashboardLayout/management/mikeComponent/updateManual";
+import ManageAnnouncements from "./components/admin/management/manageAnnoucements";
+import RoomManagement from "./components/admin/management/manageRooms";
+import BuildingManagement from "./components/admin/management/manageBuilding";
+import AdminSettings from "./components/admin/management/adminSettings";
+import EventManagement from "./components/admin/management/manageEvents";
+import CreateEvent from "./components/admin/management/eventsComponent/createEvent";
+import UpdateEvent from "./components/admin/management/eventsComponent/updateEvent";
+import CreateAnnouncement from "./components/admin/management/announcementsComponent/createAnnoncement";
+import UpdateAnnouncement from "./components/admin/management/announcementsComponent/updateAnnouncement";
+import Archive from "./components/admin/management/manageArchive";
+import ManageManual from "./components/admin/management/manualInlineKioskEditor";
+import CreateManual from "./components/admin/management/mikeComponent/createManual";
+import UpdateManual from "./components/admin/management/mikeComponent/updateManual";
 setupIonicReact();
 interface ContainerProps {
   name: string;
@@ -143,10 +142,6 @@ const App: React.FC<ContainerProps> = ({ name }) => (
 
         <Route exact path="/Events">
           <EventManagement name={"Event Management"} />
-        </Route>
-
-        <Route exact path="/Themes">
-          <ThemesManagement name={"Themes Management"} />
         </Route>
 
         <Route exact path="/createEvent">
