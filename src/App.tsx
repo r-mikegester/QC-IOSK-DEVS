@@ -12,10 +12,10 @@ import Batasan from './components/campus/batasan/Batasan';
 
 /* Main Routing */
 
-import Map from './pages/maps';
-import Home from './pages/home';
-import Search from './pages/search';
-import Layout from './pages/layout';
+import Map from '../src/pages/maps';
+import Home from '../src/pages/home';
+import Search from '../src/pages/search';
+import Layout from '../src/pages/layout';
 
 
 /** Admin Routing */
