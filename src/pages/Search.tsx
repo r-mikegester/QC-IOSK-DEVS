@@ -1,14 +1,14 @@
 import React, { useState, useEffect, ChangeEvent, useRef } from "react";
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, Firestore } from "firebase/firestore"; // Added Firestore type
 import firebaseConfig, { db } from "../utils/firebase";
 import { IonContent, IonPage } from '@ionic/react';
 import { Icon } from '@iconify/react';
 import { useHistory } from 'react-router-dom';
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
-import Backbtn from '../components/controls/navigationControls/Backbtn';
-import Dock from '../components/controls/navigationControls/dock';
+import Backbtn from '../components/navigation/Backbtn';
+import Dock from '../components/navigation/dock';
 import '../assets/css/search.css';
 import '../assets/css/keyboard.css';
 
@@ -17,11 +17,11 @@ interface SearchProps {
 }
 
 const Search: React.FC<SearchProps> = ({ name }) => {
-  const [keyboard, setKeyboard] = useState<Keyboard | null>(null);
-  const [layoutName, setLayoutName] = useState<string>("default");
+  const [keyboard, setKeyboard] = useState<Keyboard | null>(null); // Added Keyboard type  const [layoutName, setLayoutName] = useState<string>("default");
   const [input, setInput] = useState<string>("");
+  const [layoutName, setLayoutName] = useState<string>("default");
   const history = useHistory();
-  const firestore = getFirestore(initializeApp(firebaseConfig));
+  const firestore: Firestore = getFirestore(initializeApp(firebaseConfig)); // Added Firestore type
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const joinRef = useRef<HTMLDivElement>(null);
 
@@ -135,7 +135,7 @@ const Search: React.FC<SearchProps> = ({ name }) => {
           <div className="relative overflow-hidden ">
             <div className="max-w-full px-4 py-10 mx-auto sm:px-6 lg:px-8 sm:py-5">
               <div className="text-center mt-[10px]">
-                <h1 className="text-4xl text-white font-bold sm:text-6xl">
+                <h1 className="text-4xl font-bold text-white sm:text-6xl">
                   Search
                 </h1>
                 <div className="join" ref={joinRef} onClick={handleDropdownToggle}>
@@ -152,7 +152,7 @@ const Search: React.FC<SearchProps> = ({ name }) => {
                 </div>
                 {isDropdownOpen && (
                   <>
-                    <div className="w-full z-50 flex justify-center h-auto px-6 py-2">
+                    <div className="z-50 flex justify-center w-full h-auto px-6 py-2">
                       <div className="w-[730px] py-2 bg-base-100 rounded-2xl">
 
                         <div className="grid grid-cols-1">
@@ -185,9 +185,9 @@ const Search: React.FC<SearchProps> = ({ name }) => {
               </div>
               <div className="py-20">
                 <div>
-                  <div className="  flex justify-center">
-                    <Keyboard
-                      keyboardRef={(r) => setKeyboard(r)}
+                  <div className="flex justify-center ">
+                  <Keyboard
+                      keyboardRef={(r: Keyboard | null) => setKeyboard(r)}
                       layoutName={layoutName}
                       onChange={onChange}
                       onKeyPress={onKeyPress}
@@ -209,6 +209,8 @@ const Search: React.FC<SearchProps> = ({ name }) => {
                           "@ {space} .com"
                         ]
                       }} />
+
+
                   </div>
                 </div>
               </div>
