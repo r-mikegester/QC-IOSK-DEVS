@@ -9,7 +9,7 @@ import {
 } from "three";
 import ModelViewer from "./ModelViewer";
 import { Billboard, Html, Text } from "@react-three/drei";
-import UareHere from "/src/assets/Models/others/location2.glb";
+import UareHere from "/src/assets/models/others/location2.glb";
 
 const RotatingMesh = () => {
     const meshRef =
