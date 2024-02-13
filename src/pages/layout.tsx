@@ -17,7 +17,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import swipe from "../assets/imgs/gifs/swipe.gif";
 import { manual } from "../data/manualData";
-import Loading from '../components/loading';
+import Loading from './loading';
 interface ContainerProps {
   name: string;
   buildingName: string;
