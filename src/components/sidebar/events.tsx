@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { db } from "../../utils/firebase";
+import { db } from "../utils/firebase";
 import { collection, getDocs, query, orderBy } from "@firebase/firestore";
 import { Icon } from "@iconify/react";
 import Modal from "react-modal";

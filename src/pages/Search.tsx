@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ChangeEvent, useRef } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, Firestore } from "firebase/firestore"; // Added Firestore type
-import firebaseConfig, { db } from "../utils/firebase";
+import firebaseConfig, { db } from "../components/utils/firebase";
 import { IonContent, IonPage } from '@ionic/react';
 import { Icon } from '@iconify/react';
 import { useHistory } from 'react-router-dom';

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { themeChange } from "theme-change";
 import { useHistory } from "react-router-dom";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
-import { db } from "../../utils/firebase";
+import { db } from "../utils/firebase";
 import { useTranslation } from "react-i18next";
 import Modal from "react-modal";
 import { Icon } from "@iconify/react";

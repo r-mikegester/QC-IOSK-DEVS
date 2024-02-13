@@ -5,7 +5,7 @@ import { themeChange } from "theme-change";
 import { useTranslation } from "react-i18next";
 import { NavLink, useHistory } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../utils/firebase";
+import { auth } from "../../utils/firebase";
 const AdminLogin: React.FC = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");

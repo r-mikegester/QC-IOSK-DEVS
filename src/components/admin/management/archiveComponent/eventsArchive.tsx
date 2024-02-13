@@ -8,7 +8,7 @@ import {
     orderBy,
     query,
 } from "firebase/firestore";
-import { db } from "../../../../utils/firebase";
+import { db } from "../../../utils/firebase";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
 import { Icon } from "@iconify/react";
