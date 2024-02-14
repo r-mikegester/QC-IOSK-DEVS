@@ -22,7 +22,7 @@ const CreditsModal: React.FC = () => {
             {credits.map((person, index) => (
               <div key={index} className="flex flex-col p-4 bg-white border border-gray-200 rounded-3xl hover:drop-shadow-xl shadow-sky-600 md:p-6 dark:bg-slate-800/70 backdrop-blur-lg dark:border-gray-700">
                 <div className="flex items-center gap-x-4">
-                  <img className="object-cover w-20 h-20 rounded-2xl" src={person.picture} alt={person.name} />
+                  {/* <img className="object-cover w-20 h-20 rounded-2xl" src={person.picture} alt={person.name} /> */}
                   <div className="grow">
                     <h3 className="font-medium text-gray-800 dark:text-gray-200">
                       {person.name}

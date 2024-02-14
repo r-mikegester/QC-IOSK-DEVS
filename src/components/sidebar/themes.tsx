@@ -25,13 +25,7 @@ const Themes: React.FC = () => {
         <div className="flex items-baseline justify-between ">
           <h1 className="text-4xl font-bold text-left ">{t("Themes")}</h1>
           <div className="flex justify-center mx-3 space-x-2">
-            <a
-              onClick={ClickLogin}
-              className="p-2 btn-square btn hover:bg-base-300 tooltip tooltip-left"
-              data-tip={t("Admin Login")}
-            >
-              <Icon icon="mdi:administrator" className="w-8 h-8 " />
-            </a>
+            
           </div>
         </div>
         <div className="text-sm">{t("ChangeAccordingToYourPreference")}</div>

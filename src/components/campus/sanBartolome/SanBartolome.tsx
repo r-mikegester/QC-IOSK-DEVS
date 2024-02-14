@@ -232,7 +232,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
       {selectedRoomModel && animation ? (
         <>
           <Animation
-            name={""}
+            buildingName={""}
             roomName={selectedRoom}
             modelPath={selectedRoomModel}
           />
@@ -418,11 +418,10 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                         ].map((_, index: number) => (
                           <button
                             key={index}
-                            className={`w-full h-10 bg-base-100 btn ${
-                              selectedFloor === `${index + 1}`
+                            className={`w-full h-10 bg-base-100 btn ${selectedFloor === `${index + 1}`
                                 ? "bg-base-content text-base-100"
                                 : ""
-                            }`}
+                              }`}
                             onClick={() => clickFloor(`${index + 1}`)}
                           >
                             {index + 1}
@@ -449,18 +448,18 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                           )
                         )}
                     </div>
-                    <div className="w-full p-6 shadow-inner bg-base-200 h-96 rounded-2xl">
-                      <div className="flex flex-col w-full h-full space-y-3">
+                    <div className="flex flex-col w-full p-6 space-y-3 shadow-inner bg-base-200 h-96 rounded-2xl">
+                      <div className="flex w-full h-full space-x-3">
                         <div className="collapse collapse-arrow bg-base-100">
                           <input
                             type="radio"
                             name="my-accordion-2"
                             defaultChecked
                           />
-                          <div className="text-xl font-medium collapse-title">
+                          <div className="text-xl font-medium bg-base-300 collapse-title">
                             Details
                           </div>
-                          <div className="collapse-content">
+                          <div className="p-6 collapse-content ">
                             {selectedBuilding &&
                               selectedFloor &&
                               roomData[selectedBuilding][selectedFloor]
@@ -480,10 +479,10 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                         </div>
                         <div className="collapse collapse-arrow bg-base-100">
                           <input type="radio" name="my-accordion-2" />
-                          <div className="text-xl font-medium collapse-title">
+                          <div className="text-xl font-medium bg-base-300 collapse-title">
                             Text Navigation
                           </div>
-                          <div className="collapse-content">
+                          <div className="p-6 collapse-content">
                             {selectedBuilding &&
                               selectedFloor &&
                               roomData[selectedBuilding][selectedFloor]
@@ -501,12 +500,14 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                                 ))}
                           </div>
                         </div>
-                        <button
-                          className="btn btn-secondary"
-                          onClick={() => clickAnimation(selectedRoom)}
-                        >
-                          GO TO {selectedRoom}
-                        </button>
+                      </div>
+                      <div>
+                      <button
+                        className="float-right btn btn-accent"
+                        onClick={() => clickAnimation(selectedRoom)}
+                      >
+                        GO TO {selectedRoom}
+                      </button>
                       </div>
                     </div>
                   </div>
