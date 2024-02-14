@@ -28,8 +28,8 @@ import {
 } from "firebase/firestore";
 import firebaseConfig, { db } from "../../utils/firebase";
 import { initializeApp } from "firebase/app";
-import { useHistory } from "react-router";
-import { roomData } from '../../../data/roomData.ts';
+import Animation from "./animation/Animation";
+import { roomData } from '../../../data/roomData';
 interface ContainerProps {
   name: string;
 }
@@ -47,26 +47,28 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
   const [selectedBuilding, setSelectedBuilding] = useState("");
   const [buildingData, setBuildingData] = useState<any>(null); // State to store building data
   const firestore = getFirestore(initializeApp(firebaseConfig));
-  const [selectedFloor, setSelectedFloor] = useState('');
-  const [selectedRoom, setSelectedRoom] = useState('');
+  const [selectedFloor, setSelectedFloor] = useState("");
+  const [selectedRoom, setSelectedRoom] = useState("");
+  const [animation, setAnimation] = useState("");
+  const [selectedRoomModel, setSelectedRoomModel] = useState("");
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const buildingsCollection = collection(firestore, "Buildings");
-        const buildingsSnapshot = await getDocs(buildingsCollection);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const buildingsCollection = collection(firestore, "Buildings");
+  //       const buildingsSnapshot = await getDocs(buildingsCollection);
 
-        buildingsSnapshot.forEach((doc) => {
-          console.log(doc.id, " => ", doc.data());
-        });
-      } catch (error) {
-        console.error("Error fetching data from Firebase Firestore:", error);
-      }
-    };
+  //       buildingsSnapshot.forEach((doc) => {
+  //         console.log(doc.id, " => ", doc.data());
+  //       });
+  //     } catch (error) {
+  //       console.error("Error fetching data from Firebase Firestore:", error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []); // Empty dependency array means this effect runs once on mount
+  //   fetchData();
+  // }, []); // Empty dependency array means this effect runs once on mount
 
   useEffect(() => {
     const checkTime = () => {
@@ -125,6 +127,25 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
   };
   // Define room data
 
+  const clickAnimation = (room: string) => {
+    const selectedRoomData = roomData[selectedBuilding][selectedFloor]?.find(
+      (r) => r.name === room
+    );
+    console.log(room);
+    console.log(selectedRoomData?.modelPath);
+    if (selectedRoomData) {
+      setAnimation(room);
+      if (selectedRoomData.modelPath) {
+        setSelectedRoomModel(selectedRoomData.modelPath);
+      } else {
+        setSelectedRoomModel("");
+        alert("Model path is empty for this room.");
+      }
+    } else {
+      setSelectedRoomModel("");
+      alert("Selected room data not found.");
+    }
+  };
 
   // Define building data
   const buildingsData: BuildingsData[] = [
@@ -143,265 +164,358 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
   ];
 
   // Render rooms based on the selected building and floor
-  const renderRooms = () => {
-    if (!selectedBuilding || !selectedFloor) return null;
+  // const renderRooms = () => {
+  //   if (!selectedBuilding || !selectedFloor) return null;
 
-    const rooms = roomData[selectedBuilding]?.[selectedFloor];
-    if (!rooms) return null;
+  //   const rooms = roomData[selectedBuilding]?.[selectedFloor];
+  //   if (!rooms) return null;
 
-    return rooms.map((room, index) => (
-      <button
-        key={index}
-        className={`w-full bg-base-100 btn ${selectedRoom === room.name ? 'bg-blue-500 text-white' : ''}`}
-        onClick={() => selectRoom(room.name)}
-      >
-        {room.name}
-        {/* Render room information for each room */}
+  //   return rooms.map((room, index) => (
+  //     <button
+  //       key={index}
+  //       className={`w-full bg-base-100 btn ${selectedRoom === room.name ? 'bg-blue-500 text-white' : ''}`}
+  //       onClick={() => selectRoom(room.name)}
+  //     >
+  //       {room.name}
+  //       {/* Render room information for each room */}
 
-      </button>
-    ));
-  };
+  //     </button>
+  //   ));
+  // };
 
-  const renderRoomInfo = () => {
-    if (!selectedBuilding || !selectedFloor) return null;
+  // const renderRoomInfo = () => {
+  //   if (!selectedBuilding || !selectedFloor) return null;
 
-    const rooms = roomData[selectedBuilding]?.[selectedFloor];
-    if (!rooms) return null;
+  //   const rooms = roomData[selectedBuilding]?.[selectedFloor];
+  //   if (!rooms) return null;
 
-    const selectedRoomData = rooms.find((room) => room.name === selectedRoom);
-    if (!selectedRoomData) return null;
+  //   const selectedRoomData = rooms.find((room) => room.name === selectedRoom);
+  //   if (!selectedRoomData) return null;
 
-    return (
-      <div className="flex flex-col w-full h-full space-y-3">
-        <div className="collapse collapse-arrow bg-base-100">
-          <input type="radio" name="my-accordion-2" checked />
-          <div className="text-xl font-medium collapse-title">
-            Details
-          </div>
-          <div className="collapse-content">
-            {selectedRoomData.details.map((details: string, index: number) => (
-              <>
+  //   return (
+  //     <div className="flex w-full h-auto space-x-3">
+  //       <div className="collapse collapse-arrow bg-base-100">
+  //         <input type="radio" name="my-accordion-2" checked />
+  //         <div className="text-xl font-medium collapse-title">
+  //           Details
+  //         </div>
+  //         <div className="collapse-content">
+  //           {selectedRoomData.details.map((details: string, index: number) => (
+  //             <>
 
-                <p key={index}>{details}</p>
-              </>
-            ))}
-          </div>
-        </div>
-        <div className="collapse collapse-arrow bg-base-100">
-          <input type="radio" name="my-accordion-2" />
-          <div className="text-xl font-medium collapse-title">
-            Text Navigation
-          </div>
-          <div className="collapse-content">
-            {selectedRoomData.textGuide.map((textGuide: string, index: number) => (
-              <>
+  //               <p key={index}>{details}</p>
+  //             </>
+  //           ))}
+  //         </div>
+  //       </div>
+  //       <div className="collapse collapse-arrow bg-base-100">
+  //         <input type="radio" name="my-accordion-2" />
+  //         <div className="text-xl font-medium collapse-title">
+  //           Text Navigation
+  //         </div>
+  //         <div className="collapse-content">
+  //           {selectedRoomData.textGuide.map((textGuide: string, index: number) => (
+  //             <>
 
-                <p key={index}>{textGuide}</p>
-              </>
-            ))}
-          </div>
-        </div>
+  //               <p key={index}>{textGuide}</p>
+  //             </>
+  //           ))}
+  //         </div>
+  //       </div>
 
-      </div>
-    );
-  };
+  //     </div>
+  //   );
+  // };
 
   return (
     <>
-      <Canvas
-        camera={{ fov: 25, position: [10, 4, 10] }}
-        className={
-          isNight
-            ? "bg-gradient-to-tr from-stone-950 to-cyan-950"
-            : "bg-gradient-to-tr from-sky-900 to-sky-400"
-        }
-        style={{ position: "absolute" }}
-      >
-        <OrbitControls
-          minPolarAngle={Math.PI / 6} // vertical rotation
-          maxPolarAngle={Math.PI / 2.5} // vertical rotation
-          enablePan={true}
-          zoomSpeed={1} // based sa touchpad
-          autoRotate={true}
-          autoRotateSpeed={0.3}
-          enableZoom={true}
-          minDistance={50}
-          maxDistance={120}
-        />
-        <Clouds />
+      {selectedRoomModel && animation ? (
+        <>
+          <Animation
+            name={""}
+            roomName={selectedRoom}
+            modelPath={selectedRoomModel}
+          />
+        </>
+      ) : (
+        <>
+          <Canvas
+            camera={{ fov: 25, position: [10, 4, 10] }}
+            className={
+              isNight
+                ? "bg-gradient-to-tr from-stone-950 to-cyan-950"
+                : "bg-gradient-to-tr from-sky-900 to-sky-400"
+            }
+            style={{ position: "absolute" }}
+          >
+            <OrbitControls
+              minPolarAngle={Math.PI / 6} // vertical rotation
+              maxPolarAngle={Math.PI / 2.5} // vertical rotation
+              enablePan={true}
+              zoomSpeed={1} // based sa touchpad
+              autoRotate={true}
+              autoRotateSpeed={0.3}
+              enableZoom={true}
+              minDistance={50}
+              maxDistance={120}
+            />
+            <Clouds />
 
-        <Stage environment={isNight ? "night" : "city"}>
-          {isNight ? (
-            <>
-              <directionalLight castShadow intensity={2} position={[0, 0, 0]} />
-              <Stars radius={20} depth={50} count={50} factor={3} />
-            </>
-          ) : null}
-          {/* SB FLOORING */}
-          <ModelViewer modelPath={openGrounds} position={[0, 0, 0]} />
-          <ModelViewer modelPath={landscape} position={[0, -14, 25]} />
-          {/* BUILDINGS */}
-          <Bounds fit clip observe margin={2}>
-            <SelectToZoom>
-              {/* TECHVOC */}
-              <ModelViewer
-                modelPath={techvoc}
-                position={[-1, 1, 15]}
-                scale={[2.2, 2.2, 2.2]}
-                name="Techvoc"
-                textPosition={[-1, 3, 15]}
-                onClick={() => handleModelClick("Techvoc Building")}
-              />
+            <Stage environment={isNight ? "night" : "city"}>
+              {isNight ? (
+                <>
+                  <directionalLight
+                    castShadow
+                    intensity={2}
+                    position={[0, 0, 0]}
+                  />
+                  <Stars radius={20} depth={50} count={50} factor={3} />
+                </>
+              ) : null}
+              {/* SB FLOORING */}
+              <ModelViewer modelPath={openGrounds} position={[0, 0, 0]} />
+              <ModelViewer modelPath={landscape} position={[0, -14, 25]} />
+              {/* BUILDINGS */}
+              <Bounds fit clip observe margin={2}>
+                <SelectToZoom>
+                  {/* TECHVOC */}
+                  <ModelViewer
+                    modelPath={techvoc}
+                    position={[-1, 1, 15]}
+                    scale={[2.2, 2.2, 2.2]}
+                    name="Techvoc"
+                    textPosition={[-1, 3, 15]}
+                    onClick={() => handleModelClick("Techvoc Building")}
+                  />
 
-              {/* MULTIPURPOSE */}
-              <ModelViewer
-                modelPath={multipurpose}
-                position={[11.9, 1, 16]}
-                name="Multipurpose"
-                textPosition={[11.9, 3, 16]}
-                onClick={() => handleModelClick("Multipurpose Building")}
-              />
+                  {/* MULTIPURPOSE */}
+                  <ModelViewer
+                    modelPath={multipurpose}
+                    position={[11.9, 1, 16]}
+                    name="Multipurpose"
+                    textPosition={[11.9, 3, 16]}
+                    onClick={() => handleModelClick("Multipurpose Building")}
+                  />
 
-              {/* CHINESE B */}
-              <ModelViewer
-                modelPath={chineseB}
-                position={[11.9, 0.65, 10]}
-                scale={[1.5, 1.5, 1.5]}
-                name="Chinese B"
-                textPosition={[11.9, 2.5, 10]}
-                onClick={() => handleModelClick("ChineseB Building")}
-              />
+                  {/* CHINESE B */}
+                  <ModelViewer
+                    modelPath={chineseB}
+                    position={[11.9, 0.65, 10]}
+                    scale={[1.5, 1.5, 1.5]}
+                    name="Chinese B"
+                    textPosition={[11.9, 2.5, 10]}
+                    onClick={() => handleModelClick("ChineseB Building")}
+                  />
 
-              {/* BALLROOM */}
-              <ModelViewer
-                modelPath={ballroom}
-                position={[-17.5, 0.1, 11]}
-                scale={[1.5, 1.5, 1.5]}
-                name="Ballroom"
-                textPosition={[-17.5, 1.5, 11]}
-                onClick={() => handleModelClick("Ballroom Building")}
-              />
+                  {/* BALLROOM */}
+                  <ModelViewer
+                    modelPath={ballroom}
+                    position={[-17.5, 0.1, 11]}
+                    scale={[1.5, 1.5, 1.5]}
+                    name="Ballroom"
+                    textPosition={[-17.5, 1.5, 11]}
+                    onClick={() => handleModelClick("Ballroom Building")}
+                  />
 
-              {/* CHED */}
-              <ModelViewer
-                modelPath={ched}
-                position={[-18.5, 0.1, 4]}
-                scale={[1.5, 1.5, 1.5]}
-                name="CHED"
-                textPosition={[-18.5, 2, 4]}
-                onClick={() => handleModelClick("Ched Building")}
-              />
+                  {/* CHED */}
+                  <ModelViewer
+                    modelPath={ched}
+                    position={[-18.5, 0.1, 4]}
+                    scale={[1.5, 1.5, 1.5]}
+                    name="CHED"
+                    textPosition={[-18.5, 2, 4]}
+                    onClick={() => handleModelClick("Ched Building")}
+                  />
 
-              {/* YELLOW */}
-              <ModelViewer
-                modelPath={simon}
-                position={[3.1, 1.1, 0]}
-                name="Simon Building"
-                textPosition={[3.1, 4.5, 0]}
-                onClick={() => handleModelClick("Simon Building")}
-              />
+                  {/* YELLOW */}
+                  <ModelViewer
+                    modelPath={simon}
+                    position={[3.1, 1.1, 0]}
+                    name="Simon Building"
+                    textPosition={[3.1, 4.5, 0]}
+                    onClick={() => handleModelClick("Simon Building")}
+                  />
 
-              {/* BELMONTE */}
-              <ModelViewer
-                modelPath={belmonte}
-                position={[10, 2, -11]}
-                scale={[2, 2, 2]}
-                name="Belmonte Building"
-                textPosition={[10, 5.5, -11]}
-                onClick={() => handleModelClick("Belmonte Building")}
-              />
+                  {/* BELMONTE */}
+                  <ModelViewer
+                    modelPath={belmonte}
+                    position={[10, 2, -11]}
+                    scale={[2, 2, 2]}
+                    name="Belmonte Building"
+                    textPosition={[10, 5.5, -11]}
+                    onClick={() => handleModelClick("Belmonte Building")}
+                  />
 
-              {/* ACADEMIC */}
-              <ModelViewer
-                modelPath={academic}
-                position={[9, 2, -25]}
-                scale={[2, 2, 2]}
-                name="Academic Building"
-                textPosition={[9, 7, -25]}
-                onClick={() => handleModelClick("Academic Building")}
-              />
+                  {/* ACADEMIC */}
+                  <ModelViewer
+                    modelPath={academic}
+                    position={[9, 2, -25]}
+                    scale={[2, 2, 2]}
+                    name="Academic Building"
+                    textPosition={[9, 7, -25]}
+                    onClick={() => handleModelClick("Academic Building")}
+                  />
 
-              {/* ADMIN */}
-              <ModelViewer
-                modelPath={admin}
-                position={[-6, 2.1, -11.3]}
-                name="Admin Building"
-                textPosition={[-6, 6.5, -11.3]}
-                onClick={() => handleModelClick("Admin Building")}
-              />
+                  {/* ADMIN */}
+                  <ModelViewer
+                    modelPath={admin}
+                    position={[-6, 2.1, -11.3]}
+                    name="Admin Building"
+                    textPosition={[-6, 6.5, -11.3]}
+                    onClick={() => handleModelClick("Admin Building")}
+                  />
 
-              {/* BAUTISTA */}
-              <ModelViewer
-                modelPath={bautista}
-                position={[-7, 2, -27]}
-                scale={[2.5, 2.5, 2.5]}
-                name="Bautista Building"
-                textPosition={[-7, 7, -27]}
-                onClick={() => handleModelClick("Bautista Building")}
-              />
-            </SelectToZoom>
-          </Bounds>
-          <RotatingMesh />
-        </Stage>
-      </Canvas>
-      <Modal
-        className="flex items-center justify-center w-screen h-screen bg-black/60 text-base-content"
-        isOpen={showModal}
-        onRequestClose={closeModal}
-        contentLabel="Building Information"
-      >
-        <div className="w-full p-6 m-40 shadow-xl bg-base-200 rounded-3xl h-fit">
-          <div className="flex items-center justify-between">
-            <h2 className="text-3xl font-semibold text-center">
-              {selectedBuilding}
-            </h2>
-            <button
-              onClick={closeModal}
-              className="btn btn-square hover:bg-red-500 hover:text-white"
-            >
-              <Icon icon="line-md:close-small" className="w-10 h-10" />
-            </button>
-          </div>
-          <div className="flex justify-center mt-6 space-x-3">
-            <div className="px-6 shadow-inner bg-base-300 w-96 rounded-3xl">
-              <div className="flex justify-center py-6 border-b-2 border-base-100">
-                <button className="h-10 btn bg-base-100 btn-block hover:bg-base-200">
-                  Overview
+                  {/* BAUTISTA */}
+                  <ModelViewer
+                    modelPath={bautista}
+                    position={[-7, 2, -27]}
+                    scale={[2.5, 2.5, 2.5]}
+                    name="Bautista Building"
+                    textPosition={[-7, 7, -27]}
+                    onClick={() => handleModelClick("Bautista Building")}
+                  />
+                </SelectToZoom>
+              </Bounds>
+              <RotatingMesh />
+            </Stage>
+          </Canvas>
+          <Modal
+            className="flex items-center justify-center w-screen h-screen bg-black/60 text-base-content"
+            isOpen={showModal}
+            onRequestClose={closeModal}
+            contentLabel="Building Information"
+          >
+            <div className="w-full p-6 m-40 shadow-xl bg-base-200 rounded-3xl h-fit">
+              <div className="flex items-center justify-between">
+                <h2 className="text-3xl font-semibold text-center">
+                  {selectedBuilding}
+                </h2>
+                <button
+                  onClick={closeModal}
+                  className="btn btn-square hover:bg-red-500 hover:text-white"
+                >
+                  <Icon icon="line-md:close-small" className="w-10 h-10" />
                 </button>
-
               </div>
-              <div className="h-full overflow-y-auto ">
-                <p className="p-2 text-2xl font-semibold">Floors</p>
-                <div className="grid grid-cols-2 gap-2 ">
-                  {selectedBuilding &&
-                    [...Array(buildingsData.find((building: { name: string; }) => building.name === selectedBuilding)?.floors || 0)].map((_, index: number) => (
-                      <button
-                        key={index}
-                        className={`w-full h-10 bg-base-100 btn ${selectedFloor === `${index + 1}` ? 'bg-base-content text-base-100' : ''
-                          }`}
-                        onClick={() => clickFloor(`${index + 1}`)}
-                      >
-                        {index + 1}
-                      </button>
-                    ))}
+              <div className="flex justify-center mt-6 space-x-3">
+                <div className="px-6 shadow-inner bg-base-300 w-96 rounded-3xl">
+                  <div className="flex justify-center py-6 border-b-2 border-base-100">
+                    <button className="h-10 btn bg-base-100 btn-block hover:bg-base-200">
+                      Overview
+                    </button>
+                  </div>
+                  <div className="h-full overflow-y-auto ">
+                    <p className="p-2 text-2xl font-semibold">Floors</p>
+                    <div className="grid grid-cols-2 gap-2 ">
+                      {selectedBuilding &&
+                        [
+                          ...Array(
+                            buildingsData.find(
+                              (building: { name: string }) =>
+                                building.name === selectedBuilding
+                            )?.floors || 0
+                          ),
+                        ].map((_, index: number) => (
+                          <button
+                            key={index}
+                            className={`w-full h-10 bg-base-100 btn ${
+                              selectedFloor === `${index + 1}`
+                                ? "bg-base-content text-base-100"
+                                : ""
+                            }`}
+                            onClick={() => clickFloor(`${index + 1}`)}
+                          >
+                            {index + 1}
+                          </button>
+                        ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full h-full shadow-inner bg-base-300 rounded-2xl">
+                  <div className="flex items-center p-6 pl-0">
+                    <div className="w-64 p-6 space-y-2 overflow-y-auto h-96">
+                      {selectedBuilding &&
+                        selectedFloor &&
+                        roomData[selectedBuilding][selectedFloor]?.map(
+                          (room, roomIndex) => (
+                            <div key={roomIndex} className="flex flex-col">
+                              <button
+                                className="btn"
+                                onClick={() => selectRoom(room.name)}
+                              >
+                                {room.name}
+                              </button>
+                            </div>
+                          )
+                        )}
+                    </div>
+                    <div className="w-full p-6 shadow-inner bg-base-200 h-96 rounded-2xl">
+                      <div className="flex flex-col w-full h-full space-y-3">
+                        <div className="collapse collapse-arrow bg-base-100">
+                          <input
+                            type="radio"
+                            name="my-accordion-2"
+                            defaultChecked
+                          />
+                          <div className="text-xl font-medium collapse-title">
+                            Details
+                          </div>
+                          <div className="collapse-content">
+                            {selectedBuilding &&
+                              selectedFloor &&
+                              roomData[selectedBuilding][selectedFloor]
+                                ?.filter((room) => room.name === selectedRoom)
+                                .map((room, roomIndex) => (
+                                  <div key={roomIndex}>
+                                    <ul>
+                                      {room.details.map(
+                                        (detail, detailIndex) => (
+                                          <li key={detailIndex}>{detail}</li>
+                                        )
+                                      )}
+                                    </ul>
+                                  </div>
+                                ))}
+                          </div>
+                        </div>
+                        <div className="collapse collapse-arrow bg-base-100">
+                          <input type="radio" name="my-accordion-2" />
+                          <div className="text-xl font-medium collapse-title">
+                            Text Navigation
+                          </div>
+                          <div className="collapse-content">
+                            {selectedBuilding &&
+                              selectedFloor &&
+                              roomData[selectedBuilding][selectedFloor]
+                                ?.filter((room) => room.name === selectedRoom)
+                                .map((room, roomIndex) => (
+                                  <div key={roomIndex}>
+                                    <ul>
+                                      {room.textGuide.map(
+                                        (guide, guideIndex) => (
+                                          <li key={guideIndex}>{guide}</li>
+                                        )
+                                      )}
+                                    </ul>
+                                  </div>
+                                ))}
+                          </div>
+                        </div>
+                        <button
+                          className="btn btn-secondary"
+                          onClick={() => clickAnimation(selectedRoom)}
+                        >
+                          GO TO {selectedRoom}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="w-full h-full shadow-inner bg-base-300 rounded-2xl">
-              <div className="flex items-center p-6 pl-0">
-                <div className="w-64 p-6 space-y-2 overflow-y-auto h-96">
-                  {/* Render rooms or content based on the selected floor */}
-                  {renderRooms()}
-                </div>
-                <div className="w-full p-6 shadow-inner bg-base-200 h-96 rounded-2xl">
-                  {/* Render room information */}
-                  {renderRoomInfo()}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Modal>
+          </Modal>
+        </>
+      )}
     </>
   );
 };
