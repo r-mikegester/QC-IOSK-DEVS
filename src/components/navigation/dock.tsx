@@ -30,7 +30,7 @@ const Dock: React.FC<ContainerProps> = ({ name }) => {
         <div className="px-2 py-2 space-x-1">
           <div className="tooltip " data-tip={t("Home")}>
             <a onClick={ClickWelcome} className="">
-              <div className="w-16 h-16 duration-150 ease-in-out border border-none group btn bg-gradient-to-tr rounded-xl hover:-translate-y-5 from-base-100 to-base-300">
+              <div className="w-16 h-16 duration-150 ease-in-out border border-none group btn bg-gradient-to-tr rounded-xl hover:-translate-y-5 from-accent to-base-300">
                 <Icon icon="octicon:home-16" className="w-10 h-10 " />
 
               </div>
@@ -39,7 +39,7 @@ const Dock: React.FC<ContainerProps> = ({ name }) => {
           <div className="tooltip " data-tip={t("Maps")}>
             <a
               onClick={ClickMap}
-              className="w-16 h-16 duration-150 ease-in-out border-none btn group hover:-translate-y-5 bg-gradient-to-tr rounded-xl from-base-100 to-base-300"
+              className="w-16 h-16 duration-150 ease-in-out border-none btn group hover:-translate-y-5 bg-gradient-to-tr rounded-xl from-accent to-base-300"
             >
               <Icon
                 icon="carbon:ibm-data-product-exchange"
@@ -51,7 +51,7 @@ const Dock: React.FC<ContainerProps> = ({ name }) => {
           <div className="tooltip " data-tip={t("Search")}>
             <a
               onClick={ClickSearch}
-              className="w-16 h-16 duration-150 ease-in-out border-none btn group hover:-translate-y-5 bg-gradient-to-tr rounded-xl from-base-100 to-base-300"
+              className="w-16 h-16 duration-150 ease-in-out border-none btn group hover:-translate-y-5 bg-gradient-to-tr rounded-xl from-accent to-base-300"
             >
               <Icon icon="wpf:search" className="w-10 h-10 " />
 

@@ -145,7 +145,7 @@ const SideBarIcon: React.FC<SideBarIconProps> = ({
   text = "tooltip 💡",
   onClick,
 }) => (
-  <div className="sidebar-icon group" onClick={onClick}>
+  <div className="sidebar-icon group hover:bg-gradient-to-tr" onClick={onClick}>
     <Icon icon={icon} className="w-6 h-6" />
     <span className="sidebar-tooltip group-hover:scale-100">{text}</span>
   </div>

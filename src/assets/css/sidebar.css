@@ -22,7 +22,7 @@
 
   .sidebar-tooltip {
     @apply absolute w-auto p-2 m-2 min-w-max left-14 rounded-md shadow-md
-     bg-base-300 
+     bg-gradient-to-tr from-accent to-base-300 
     text-xs font-bold 
     transition-all duration-100 scale-0 origin-left;
   }
