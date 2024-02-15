@@ -103,7 +103,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
         <div className="absolute z-50 bottom-8 right-80 ">
           <div className="">
             {/* <button className="btn" onClick={notify}>Test Notification</button> */}
-            <ToastContainer limit={3} />
+            <ToastContainer />
           </div>
         </div>
 

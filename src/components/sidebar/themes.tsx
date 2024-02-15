@@ -18,6 +18,8 @@ const Themes: React.FC = () => {
     themeChange(false);
   });
 
+  
+
 
   return (
     <div className="h-full py-10 bg-base-100 text-base-content">

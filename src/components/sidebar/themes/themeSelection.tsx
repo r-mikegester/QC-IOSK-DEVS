@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Icon } from "@iconify/react";
 type ThemesType = {
   [key: string]: string;
 };
@@ -9,7 +11,7 @@ type ColorPaletteType = {
 };
 
 const ThemeSelection = () => {
-  const lightThemes: ThemesType = {
+  const themes: ThemesType = {
     light: 'delightra', //de lara
     retro: 'gester', // mike
     cyberpunk: 'czaiberpunk', // Chan
@@ -43,7 +45,6 @@ const ThemeSelection = () => {
     sunset: 'sunset'
   };
   
-
   const colorPalettes: ColorPaletteType = {
     light: ['bg-[#4a00ff]', 'bg-[#ff00d3]', 'bg-[#00d7c0]', 'bg-[#2b3440]'],
     retro: ['bg-[#ef9995]', 'bg-[#a4cbb4]', 'bg-[#DC8850]', 'bg-[#2E282A]'],
@@ -78,15 +79,23 @@ const ThemeSelection = () => {
     sunset: ['bg-[#FF865B]', 'bg-[#FD6F9C]', 'bg-[#B387FA]', 'bg-[#1B262C]']
   };
   
-
-  const [selectedTheme, setSelectedTheme] = useState<string>('light'); // Initial theme
-  const [currentThemes, setCurrentThemes] = useState<ThemesType>(lightThemes);
+  const [selectedTheme, setSelectedTheme] = useState<string>('light');
+  const [currentThemes, setCurrentThemes] = useState<ThemesType>(themes);
 
   const changeTheme = (theme: string, themeType: ThemesType) => {
     setSelectedTheme(theme);
     setCurrentThemes(themeType);
     document.documentElement.setAttribute('data-set-theme', theme);
     // Call any necessary functions to apply the theme changes
+    
+    // Display a toast message when the theme is changed
+    toast.success(`Selected theme: ${themes[theme]}`, {
+      position: toast.POSITION.BOTTOM_RIGHT,
+      className: " bg-base-100 font-bold rounded-2xl text-base-content ",
+      theme: "dark",
+      icon: <Icon icon="line-md:clipboard-check" className="w-10 h-10 text-xl" />,
+      progressClassName: "bg-accent rounded-full mx-3 mb-1 w-72",
+    });
   };
 
   return (
@@ -96,7 +105,7 @@ const ThemeSelection = () => {
           <button
             aria-label={currentThemes[theme]}
             data-set-theme={theme}
-            onClick={() => changeTheme(theme, lightThemes)}
+            onClick={() => changeTheme(theme, themes)}
             className={`flex justify-between btn w-full h-16 py-4 text- text-xl rounded-lg ${
               selectedTheme === theme ? 'bg-gradient-to-tr from-accent to-base-300 text-base-content border border-accent' : 'bg-gradient-to-tr from-base-200 to-base-300'
             }`}
