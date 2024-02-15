@@ -28,8 +28,8 @@
   }
 
   .sidebar-hr {
-    @apply border border-base-300 bg-base-300 rounded-full
-    mx-auto w-2;
+    @apply border border-base-300 bg-accent rounded-full
+    mx-auto w-10 ;
   }
 }
 

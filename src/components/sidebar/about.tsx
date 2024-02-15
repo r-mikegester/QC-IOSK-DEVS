@@ -64,6 +64,43 @@ const About: React.FC = () => {
         >
           <input type="checkbox" />
           <div className="flex text-lg font-medium collapse-title">
+            <Icon icon="tabler:adjustments-star" className=" w-7 h-7" />
+            <p className="ml-3 text-base-content">QC-iosk Features</p>
+          </div>
+          <div className="collapse-content bg-base-200">
+            <div className="py-4 mx-auto">
+              <h1 className="text-2xl text-center">Powered by: Devs</h1>
+              {credits.map((person, index) => (
+                <div
+                  key={index}
+                  className="grid grid-cols-1 mx-auto text-center text-base-content rounded-3xl hover:drop-shadow-xl backdrop-blur-lg "
+                >
+                  <div className="flex items-center gap-x-4 ">
+                    {/* <img
+                      className="object-cover w-10 h-10 mx-5 rounded-2xl"
+                      src={person.picture}
+                      alt={person.name}
+                    /> */}
+                    <div className="grow">
+                      <h3 className="font-medium text-base-content">
+                        {person.name}
+                      </h3>
+                      <p className="text-xs uppercase text-base-content">
+                        {person.position}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div
+          tabIndex={0}
+          className="mt-1 collapse collapse-arrow bg-base-300 rounded-2xl"
+        >
+          <input type="checkbox" />
+          <div className="flex text-lg font-medium collapse-title">
             <Icon icon="humbleicons:certificate" className=" w-7 h-7" />
             <p className="ml-3 text-base-content">Acknowledgements</p>
           </div>
@@ -95,6 +132,7 @@ const About: React.FC = () => {
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   );
