@@ -95,6 +95,7 @@ const ThemeSelection = () => {
       theme: "dark",
       icon: <Icon icon="line-md:clipboard-check" className="w-10 h-10 text-xl" />,
       progressClassName: "bg-accent rounded-full mx-3 mb-1 w-72",
+      autoClose: 1000, // 3000 milliseconds = 3 seconds
     });
   };
 
