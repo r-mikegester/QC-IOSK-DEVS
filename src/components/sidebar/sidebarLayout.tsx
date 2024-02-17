@@ -105,7 +105,7 @@ const SideBar = () => {
             <Divider />
             <div tabIndex={0} className="rounded-full collapse">
               <div className="relative flex items-center justify-center w-12 h-12 mx-auto mt-2 mb-2 transition-all duration-300 ease-linear shadow-lg hover:bg-gradient-to-tr hover:from-accent bg-gradient-to-tr from-base-200 to-base-300 hover:rounded-xl rounded-3xl cursor-pointercollapse-title">
-                <Icon icon="icon-park-outline:more-app" className="w-6 h-6" />
+                <Icon icon="uiw:appstore-o" className="w-6 h-6" />
               </div>
               <div className="collapse-content">
                 <SideBarIcon
