@@ -5,6 +5,14 @@ export default {
   daisyui: {
     // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
     themes: [
+      {
+        halloween: {
+          ...require("daisyui/src/theming/themes")["halloween"],
+          primary: "green",
+          secondary: "teal",
+          "base-100": "#0d1c13",
+        }
+      },
       "light",
       "dark",
       "cupcake",
