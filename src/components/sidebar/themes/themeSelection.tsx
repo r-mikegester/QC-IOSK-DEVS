@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Icon } from "@iconify/react";
@@ -12,8 +12,8 @@ type ColorPaletteType = {
 
 const ThemeSelection = () => {
   const themes: ThemesType = {
-    light: 'delightra', //de lara
-    retro: 'gester', // mike
+    light: 'delightra', //de lara 
+    halloween: 'gester', // mike
     cyberpunk: 'czaiberpunk', // Chan
     valentine: 'apenk', // phoebe
     aqua: 'lilan blue', // lilan
@@ -30,7 +30,7 @@ const ThemeSelection = () => {
     bumblebee: 'bumblebee', // added
     emerald: 'emerald', // added
     corporate: 'corporate', // added
-    halloween: 'halloween', // added
+    retro: 'retro', // added
     garden: 'garden', // added
     lofi: 'lofi', // added
     pastel: 'pastel', // added
@@ -44,7 +44,7 @@ const ThemeSelection = () => {
     nord: 'nord',
     sunset: 'sunset'
   };
-  
+
   const colorPalettes: ColorPaletteType = {
     light: ['bg-[#4a00ff]', 'bg-[#ff00d3]', 'bg-[#00d7c0]', 'bg-[#2b3440]'],
     retro: ['bg-[#ef9995]', 'bg-[#a4cbb4]', 'bg-[#DC8850]', 'bg-[#2E282A]'],
@@ -78,16 +78,24 @@ const ThemeSelection = () => {
     nord: ['bg-[#5E81AC]', 'bg-[#81A1C1]', 'bg-[#88C0D0]', 'bg-[#4C566A]'],
     sunset: ['bg-[#FF865B]', 'bg-[#FD6F9C]', 'bg-[#B387FA]', 'bg-[#1B262C]']
   };
-  
-  const [selectedTheme, setSelectedTheme] = useState<string>('light');
+
+  const [selectedTheme, setSelectedTheme] = useState<string>(() => {
+    // Check if there's a selected theme in local storage
+    const savedTheme = localStorage.getItem("selectedTheme");
+    return savedTheme || "light"; // Default to "light" if no theme is saved
+  });
   const [currentThemes, setCurrentThemes] = useState<ThemesType>(themes);
+
+  useEffect(() => {
+    // Set the selected theme in local storage whenever it changes
+    localStorage.setItem("selectedTheme", selectedTheme);
+    document.documentElement.setAttribute('data-set-theme', selectedTheme);
+  }, [selectedTheme]);
 
   const changeTheme = (theme: string, themeType: ThemesType) => {
     setSelectedTheme(theme);
     setCurrentThemes(themeType);
-    document.documentElement.setAttribute('data-set-theme', theme);
-    // Call any necessary functions to apply the theme changes
-    
+
     // Display a toast message when the theme is changed
     toast.success(`Selected theme: ${themes[theme]}`, {
       position: toast.POSITION.BOTTOM_RIGHT,
@@ -103,13 +111,13 @@ const ThemeSelection = () => {
     <div className='grid grid-cols-1'>
       {Object.keys(currentThemes).map((theme: string) => (
         <div key={theme} className='m-1.5 grid-cols-2 flex items-center'>
+
           <button
             aria-label={currentThemes[theme]}
             data-set-theme={theme}
             onClick={() => changeTheme(theme, themes)}
-            className={`flex justify-between btn w-full h-16 py-4 text- text-xl rounded-lg ${
-              selectedTheme === theme ? 'bg-gradient-to-tr from-accent to-base-300 text-base-content border border-accent' : 'bg-gradient-to-tr from-base-200 to-base-300'
-            }`}
+            className={`flex justify-between btn w-full h-16 py-4 text- text-xl rounded-lg ${selectedTheme === theme ? 'bg-gradient-to-tr from-accent to-base-300 text-base-content border border-accent' : 'bg-gradient-to-tr from-base-200 to-base-300'
+              }`}
           >
             <span>{currentThemes[theme]}</span>
             {/* Adding color avatars */}
@@ -118,12 +126,14 @@ const ThemeSelection = () => {
                 <div
                   key={index}
                   className={`w-5 h-5 rounded-full border-2 hover:border-red-900 ${color}`}
+                  title={`Color ${index + 1}: ${color}`} // Add title attribute with color information
                 />
               ))}
             </div>
           </button>
         </div>
       ))}
+
     </div>
   );
 };
