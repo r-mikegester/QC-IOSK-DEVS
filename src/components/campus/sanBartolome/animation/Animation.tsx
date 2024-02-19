@@ -1,15 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import Clouds from "../Clouds";
-import { useGLTF } from "@react-three/drei";
+import { Bounds, Stage, useGLTF } from "@react-three/drei";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
 import animation from "../../../../assets/animation/yellow/animation.glb";
 import * as THREE from "three";
 import { useHistory } from "react-router";
+import ModelViewer from "../ModelViewer";
+import openGrounds from "../../../../assets/models/others/sb_final2.glb";
+import simon from "../../../../assets/models/sb_buildings/og_yellow2.glb";
 
 interface ContainerProps {
   name: string;
   roomName: string;
+  modelPath: string;
 }
 
 const AnimatedModelViewer = ({ modelPath, mixer }: any) => {
@@ -31,13 +35,13 @@ const AnimatedModelViewer = ({ modelPath, mixer }: any) => {
 
   return (
     <>
-      <primitive object={scene} />
+      <primitive object={scene} position={[3, -2, 29]} />
     </>
   );
 };
 
-const Animation: React.FC<ContainerProps> = ({ name, roomName }) => {
-  const { scene, cameras } = useGLTF(animation) as GLTF;
+const Animation: React.FC<ContainerProps> = ({ name, roomName, modelPath }) => {
+  const { scene, cameras } = useGLTF(modelPath) as GLTF;
   const [activeCameraIndex, setActiveCameraIndex] = useState(0);
   const mixerRef = useRef<THREE.AnimationMixer | null>(null);
 
@@ -85,11 +89,14 @@ const Animation: React.FC<ContainerProps> = ({ name, roomName }) => {
         <ambientLight intensity={2} />
         <Clouds />
         <AnimatedModelViewer
-          modelPath={animation}
+          modelPath={modelPath}
           mixer={mixerRef.current}
           activeCameraIndex={activeCameraIndex}
           cameras={cameras}
         />
+
+        {/* SB FLOORING */}
+        <ModelViewer modelPath={openGrounds} position={[0, 0, 0]} />
       </Canvas>
     </>
   );
