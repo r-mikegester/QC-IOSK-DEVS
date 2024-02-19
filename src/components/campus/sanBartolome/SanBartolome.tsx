@@ -52,24 +52,6 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
   const [animation, setAnimation] = useState("");
   const [selectedRoomModel, setSelectedRoomModel] = useState("");
 
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const buildingsCollection = collection(firestore, "Buildings");
-  //       const buildingsSnapshot = await getDocs(buildingsCollection);
-
-  //       buildingsSnapshot.forEach((doc) => {
-  //         console.log(doc.id, " => ", doc.data());
-  //       });
-  //     } catch (error) {
-  //       console.error("Error fetching data from Firebase Firestore:", error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []); // Empty dependency array means this effect runs once on mount
-
   useEffect(() => {
     const checkTime = () => {
       const currentTime = new Date();
@@ -162,70 +144,6 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
     { name: "ChineseB Building", floors: 1 },
     // Add more buildings as needed
   ];
-
-  // Render rooms based on the selected building and floor
-  // const renderRooms = () => {
-  //   if (!selectedBuilding || !selectedFloor) return null;
-
-  //   const rooms = roomData[selectedBuilding]?.[selectedFloor];
-  //   if (!rooms) return null;
-
-  //   return rooms.map((room, index) => (
-  //     <button
-  //       key={index}
-  //       className={`w-full bg-base-100 btn ${selectedRoom === room.name ? 'bg-blue-500 text-white' : ''}`}
-  //       onClick={() => selectRoom(room.name)}
-  //     >
-  //       {room.name}
-  //       {/* Render room information for each room */}
-
-  //     </button>
-  //   ));
-  // };
-
-  // const renderRoomInfo = () => {
-  //   if (!selectedBuilding || !selectedFloor) return null;
-
-  //   const rooms = roomData[selectedBuilding]?.[selectedFloor];
-  //   if (!rooms) return null;
-
-  //   const selectedRoomData = rooms.find((room) => room.name === selectedRoom);
-  //   if (!selectedRoomData) return null;
-
-  //   return (
-  //     <div className="flex w-full h-auto space-x-3">
-  //       <div className="collapse collapse-arrow bg-base-100">
-  //         <input type="radio" name="my-accordion-2" checked />
-  //         <div className="text-xl font-medium collapse-title">
-  //           Details
-  //         </div>
-  //         <div className="collapse-content">
-  //           {selectedRoomData.details.map((details: string, index: number) => (
-  //             <>
-
-  //               <p key={index}>{details}</p>
-  //             </>
-  //           ))}
-  //         </div>
-  //       </div>
-  //       <div className="collapse collapse-arrow bg-base-100">
-  //         <input type="radio" name="my-accordion-2" />
-  //         <div className="text-xl font-medium collapse-title">
-  //           Text Navigation
-  //         </div>
-  //         <div className="collapse-content">
-  //           {selectedRoomData.textGuide.map((textGuide: string, index: number) => (
-  //             <>
-
-  //               <p key={index}>{textGuide}</p>
-  //             </>
-  //           ))}
-  //         </div>
-  //       </div>
-
-  //     </div>
-  //   );
-  // };
 
   return (
     <>
@@ -432,7 +350,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                 </div>
                 <div className="w-full h-full shadow-inner bg-base-300 rounded-2xl">
                   <div className="flex items-center p-6 pl-0">
-                    <div className="w-64 p-6 space-y-2 overflow-y-auto h-96">
+                    <div className="w-64 p-6 space-y-2 overflow-y-auto min-h-96 h-auto max-h-96">
                       {selectedBuilding &&
                         selectedFloor &&
                         roomData[selectedBuilding][selectedFloor]?.map(
@@ -450,16 +368,11 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     </div>
                     <div className="flex flex-col w-full p-6 space-y-3 shadow-inner bg-base-200 h-96 rounded-2xl">
                       <div className="flex w-full h-full space-x-3">
-                        <div className="collapse collapse-arrow bg-base-100">
-                          <input
-                            type="radio"
-                            name="my-accordion-2"
-                            defaultChecked
-                          />
-                          <div className="text-xl font-medium bg-base-300 collapse-title">
+                        <div className=" bg-base-100 rounded-2xl">
+                          <div className="text-xl font-medium bg-base-300 p-3 rounded-t-2xl">
                             Details
                           </div>
-                          <div className="p-6 collapse-content ">
+                          <div className="p-6 overflow-auto ">
                             {selectedBuilding &&
                               selectedFloor &&
                               roomData[selectedBuilding][selectedFloor]
@@ -477,12 +390,11 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                                 ))}
                           </div>
                         </div>
-                        <div className="collapse collapse-arrow bg-base-100">
-                          <input type="radio" name="my-accordion-2" />
-                          <div className="text-xl font-medium bg-base-300 collapse-title">
+                        <div className=" bg-base-100 rounded-2xl">
+                          <div className="text-xl font-medium p-3 rounded-t-2xl bg-base-300 ">
                             Text Navigation
                           </div>
-                          <div className="p-6 collapse-content">
+                          <div className="p-6 text-base-content overflow-auto">
                             {selectedBuilding &&
                               selectedFloor &&
                               roomData[selectedBuilding][selectedFloor]

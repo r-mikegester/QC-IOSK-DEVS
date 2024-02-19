@@ -42,7 +42,7 @@ const ThemeSelection = () => {
     lemonade: 'lemonade', // added
     winter: 'winter', // added
     nord: 'nord',
-    sunset: 'sunset'
+    sunset: 'niki'
   };
 
   const colorPalettes: ColorPaletteType = {
