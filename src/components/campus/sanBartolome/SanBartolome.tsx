@@ -5,7 +5,7 @@ import { Bounds, OrbitControls, Stage, Stars } from "@react-three/drei";
 import SelectToZoom from "./SelectToZoom";
 import RotatingMesh from "./RotatingMesh";
 import Clouds from "./Clouds";
-import openGrounds from "../../../assets/models/others/sb_final2.glb";
+import openGrounds from "../../../assets/models/sb_buildings/sb_final2.glb";
 import techvoc from "../../../assets/models/sb_buildings/og_techvoc2.glb";
 import multipurpose from "../../../assets/models/sb_buildings/og_multipurpose2.glb";
 import chineseB from "../../../assets/models/sb_buildings/og_chineseb2.glb";
