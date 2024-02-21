@@ -1,11 +1,11 @@
 import React from "react";
 import ModelViewer from "./ModelViewer";
-// import Cloud0 from "../../../assets/models/clouds/cloud.glb";
-// import Cloud1 from "../../../assets/models/clouds/cloud1.glb";
-// import Cloud2 from "../../../assets/models/clouds/cloud2.glb";
-// import Cloud3 from "../../../assets/models/clouds/cloud3.glb";
-// import Cloud4 from "../../../assets/models/clouds/cloud4.glb";
-// import Cloud5 from "../../../assets/models/clouds/cloud5.glb";
+import Cloud0 from "../../../assets/models/clouds/cloud.glb";
+import Cloud1 from "../../../assets/models/clouds/cloud1.glb";
+import Cloud2 from "../../../assets/models/clouds/cloud2.glb";
+import Cloud3 from "../../../assets/models/clouds/cloud3.glb";
+import Cloud4 from "../../../assets/models/clouds/cloud4.glb";
+import Cloud5 from "../../../assets/models/clouds/cloud5.glb";
 
 
 interface CloudProps {
