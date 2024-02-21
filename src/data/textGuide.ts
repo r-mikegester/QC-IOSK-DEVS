@@ -1,4 +1,3 @@
-import { textGuide } from './textGuide';
 // YourComponent.tsx
 export const textGuide = [
   {
