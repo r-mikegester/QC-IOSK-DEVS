@@ -1,13 +1,13 @@
-import IB101a from "../assets/animation/yellow/FirstFloor/IB101a.glb";
-import IB102a from "../assets/animation/yellow/FirstFloor/IB102a.glb";
-import IB103a from "../assets/animation/yellow/FirstFloor/IB103a.glb";
-import IB104a from "../assets/animation/yellow/FirstFloor/IB104a.glb";
-import IB105a from "../assets/animation/yellow/FirstFloor/IB105a.glb";
-import IB106a from "../assets/animation/yellow/FirstFloor/IB106a.glb";
-import IB107a from "../assets/animation/yellow/FirstFloor/IB107a.glb";
-import IB108a from "../assets/animation/yellow/FirstFloor/IB108a.glb";
-import IB109a from "../assets/animation/yellow/FirstFloor/IB109a.glb";
-import IB110a from "../assets/animation/yellow/FirstFloor/IB110a.glb";
+// import IB101a from "../assets/animation/yellow/FirstFloor/IB101a.glb";
+// import IB102a from "../assets/animation/yellow/FirstFloor/IB102a.glb";
+// import IB103a from "../assets/animation/yellow/FirstFloor/IB103a.glb";
+// import IB104a from "../assets/animation/yellow/FirstFloor/IB104a.glb";
+// import IB105a from "../assets/animation/yellow/FirstFloor/IB105a.glb";
+// import IB106a from "../assets/animation/yellow/FirstFloor/IB106a.glb";
+// import IB107a from "../assets/animation/yellow/FirstFloor/IB107a.glb";
+// import IB108a from "../assets/animation/yellow/FirstFloor/IB108a.glb";
+// import IB109a from "../assets/animation/yellow/FirstFloor/IB109a.glb";
+// import IB110a from "../assets/animation/yellow/FirstFloor/IB110a.glb";
 
 export const roomData: Record<string, Record<string, { buildingName: string; name: string; modelPath: string; details: string[]; textGuide: string[] }[]>> = {
   "Bautista Building": {
