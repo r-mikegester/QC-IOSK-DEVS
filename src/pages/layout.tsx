@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import swipe from "../assets/imgs/gifs/swipe.gif";
 import { manual } from "../data/manualData";
 import Loading from './loading';
+import {FpsView} from "react-fps";
 interface ContainerProps {
   name: string;
   buildingName: string;
@@ -72,8 +73,9 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
             <SanBartolome name={"SanBartolome"} />
           </div>
         </Suspense>
-        <Dock name={"Dock"} />
-        <VideoTourModal />
+        {/* <Dock name={"Dock"} /> */}
+        {/* <FpsView/> */}
+        {/* <VideoTourModal /> */}
       </IonContent>
     </IonPage>
   );

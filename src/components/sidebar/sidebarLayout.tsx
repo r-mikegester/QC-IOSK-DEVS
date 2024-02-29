@@ -11,6 +11,7 @@ import Events from "./events";
 import Announcements from './annoucements';
 import Themes from "./themes";
 import About from "./about";
+import { useHistory } from "react-router-dom";
 
 interface SideBarIconProps {
   icon: string;
@@ -19,6 +20,21 @@ interface SideBarIconProps {
 }
 
 const SideBar = () => {
+  const history = useHistory();
+
+  const ClickWelcome = () => {
+    // Redirect to the "/Home" route
+    history.push("/SanBartolome");
+  };
+  const ClickMap = () => {
+    // Redirect to the "/Map" route
+    history.push("/Map");
+  };
+  const ClickSearch = () => {
+    // Redirect to the "/Search" route
+    history.push("/Search");
+  };
+
   const handleContentChange = (content: string) => {
     setSelectedContent(content === selectedContent ? "" : content);
   };
@@ -73,22 +89,40 @@ const SideBar = () => {
         <div className="z-50 flex flex-col items-center justify-start flex-grow h-full">
           {/* <KioskManual name={"Kiosk Manual"} /> */}
           <SideBarIcon
-            icon="streamline:manual-book"
-            text={t("Kiosk Manual")}
-            onClick={() => handleContentChange("KioskManual")}
-          />
-          <Divider />
-          <SideBarIcon
-            icon="mingcute:announcement-line"
-            text={t("Announcements")}
-            onClick={() => handleContentChange("Announcements")}
+            icon="octicon:home-16"
+            text={t("Home")}
+            onClick={ClickWelcome}
           />
           <SideBarIcon
-            icon="mdi:events"
-            text={t("Events")}
-            onClick={() => handleContentChange("Events")}
+            icon="carbon:ibm-data-product-exchange"
+            text={t("Maps")}
+            onClick={ClickMap}
           />
+          <SideBarIcon
+            icon="wpf:search"
+            text={t("Search")}
+            onClick={ClickSearch}
+          />
+
+
           <div className="absolute bottom-5">
+            <SideBarIcon
+              icon="streamline:manual-book"
+              text={t("Kiosk Manual")}
+              onClick={() => handleContentChange("KioskManual")}
+            />
+
+            <SideBarIcon
+              icon="mingcute:announcement-line"
+              text={t("Announcements")}
+              onClick={() => handleContentChange("Announcements")}
+            />
+            <SideBarIcon
+              icon="mdi:events"
+              text={t("Events")}
+              onClick={() => handleContentChange("Events")}
+            />
+            <Divider />
             <AudioBG name="Minecraft" volume={0} />
             <Reload name={"Refresh"} />
             {/* <ChangeLanguage name={"Change Language"} /> */}
