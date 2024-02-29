@@ -3,7 +3,7 @@ import AdminSideBar from "../../constant/adminSidebar";
 import AdminHeader from "../../constant/adminHeader";
 import { useState } from "react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { db, storage } from "../../../../utils/firebase";
+import { db, storage } from "../../../utils/firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useHistory } from "react-router";
 import { toast } from "react-toastify";

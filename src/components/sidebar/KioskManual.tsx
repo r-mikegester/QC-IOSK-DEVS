@@ -5,7 +5,7 @@ import manualImg from "../../../assets/imgs/kiosk.png";
 import { Icon } from "@iconify/react";
 // import manual from '../../../data/manualData.ts';
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
-import { db } from "../../utils/firebase";
+import { db } from "../utils/firebase";
 import Modal from "react-modal";
 
 Modal.setAppElement("#root");

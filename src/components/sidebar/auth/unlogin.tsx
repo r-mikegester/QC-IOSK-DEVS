@@ -1,7 +1,7 @@
 import { IonContent, IonPage } from "@ionic/react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { auth } from "../../../utils/firebase";
+import { auth } from "../../utils/firebase";
 import { useHistory } from "react-router";
 import { NavLink } from "react-router-dom";
 // import sheesh from '../../../assets/imgs/sc-bg.png';

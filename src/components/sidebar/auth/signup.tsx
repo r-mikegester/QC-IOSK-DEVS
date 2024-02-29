@@ -2,7 +2,7 @@ import { IonContent, IonPage } from "@ionic/react";
 import { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../utils/firebase.js";
+import { auth } from "../../utils/firebase.js";
 
 interface ContainerProps {
   name: string;

@@ -20,7 +20,7 @@ import landscape from '../../assets/models/others/landscape.glb';
 import Modal from "react-modal";
 import { Icon } from "@iconify/react";
 import { getFirestore, collection, getDocs, query, where } from "firebase/firestore";
-import firebaseConfig, { db } from "../../../utils/firebase";
+import firebaseConfig, { db } from "../../utils/firebase";
 import { initializeApp } from "firebase/app";
 interface ContainerProps {
   name: string;

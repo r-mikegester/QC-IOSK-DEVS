@@ -4,7 +4,7 @@ import AdminHeader from "../../constant/adminHeader";
 import { useHistory } from "react-router";
 import { useState } from "react";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db } from "../../../../utils/firebase";
+import { db } from "../../../utils/firebase";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Icon } from "@iconify/react";

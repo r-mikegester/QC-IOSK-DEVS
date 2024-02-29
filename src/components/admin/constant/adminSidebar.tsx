@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 // import { useEffect } from "react";
-import { auth } from "../../../utils/firebase";
+import { auth } from "../../utils/firebase";
 import logo from "../../../assets/imgs/logo/qculogo.png";
 import { NavLink } from "react-router-dom";
 interface ContainerProps {

@@ -10,7 +10,7 @@ import Settings from "./auth/adminLogin";
 import Events from "./events";
 import Announcements from './annoucements';
 import Themes from "./themes";
-import Acknowledgements from "./acknowledgements";
+import About from "./about";
 
 interface SideBarIconProps {
   icon: string;
@@ -103,18 +103,23 @@ const SideBar = () => {
               onClick={() => handleContentChange("Themes")}
             />
             <Divider />
-            
-            <SideBarIcon
-              icon="humbleicons:certificate"
-              text={t("Acknowledgements")}
-              onClick={() => handleContentChange("Acknowledgements")}
-            />
-
-            <SideBarIcon
-              icon="mdi:administrator"
-              text={t("Admin")}
-              onClick={() => handleContentChange("Settings")}
-            />
+            <div tabIndex={0} className="rounded-full collapse">
+              <div className="relative flex items-center justify-center w-12 h-12 mx-auto mt-2 mb-2 transition-all duration-300 ease-linear shadow-lg hover:bg-gradient-to-tr hover:from-accent bg-gradient-to-tr from-base-200 to-base-300 hover:rounded-xl rounded-3xl cursor-pointercollapse-title">
+                <Icon icon="uiw:appstore-o" className="w-6 h-6" />
+              </div>
+              <div className="collapse-content">
+                <SideBarIcon
+                  icon="fontisto:info"
+                  text={t("About")}
+                  onClick={() => handleContentChange("About")}
+                />
+                <SideBarIcon
+                  icon="mdi:administrator"
+                  text={t("Admin")}
+                  onClick={() => handleContentChange("Settings")}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -132,8 +137,9 @@ const SideBar = () => {
           {selectedContent === "Language" && <ChangeLanguage name={"Lang"} />}
           {selectedContent === "Settings" && <Settings />}
           {selectedContent === "KioskManual" && <KioskManual name={""} />}
-          {selectedContent === "Acknowledgements" && <Acknowledgements />}
+          {selectedContent === "About" && <About />}
           {selectedContent === "Themes" && <Themes />}
+
         </div>
       </div>
     </div>
@@ -145,7 +151,7 @@ const SideBarIcon: React.FC<SideBarIconProps> = ({
   text = "tooltip 💡",
   onClick,
 }) => (
-  <div className="sidebar-icon group" onClick={onClick}>
+  <div className="sidebar-icon group hover:bg-gradient-to-tr" onClick={onClick}>
     <Icon icon={icon} className="w-6 h-6" />
     <span className="sidebar-tooltip group-hover:scale-100">{text}</span>
   </div>
