@@ -151,22 +151,22 @@ const Animation: React.FC<ContainerProps> = ({
 
   return (
     <>
-      <h1 className=" absolute z-10 ml-96 mt-10">{roomName}</h1>
+      <h1 className="absolute z-10 mt-10  ml-96">{roomName}</h1>
       <button
         onClick={handleCameraSwitch}
-        className="btn btn-secondary absolute z-10 ml-20 mt-10"
+        className="absolute z-10 mt-10 ml-20 btn btn-secondary"
       >
         Switch Camera
       </button>
       {/* <button
         onClick={handlePathSwitch}
-        className="btn btn-secondary absolute z-10 ml-20 mt-32"
+        className="absolute z-10 mt-32 ml-20 btn btn-secondary"
       >
         {currentPath === modelPath ? "Short Path" : "Model Path"}
       </button> */}
-      <div className="collapse bg-base-200 absolute z-10 ml-20 mt-28">
+      <div className="absolute z-10 ml-20 collapse bg-base-200 mt-28">
         <input type="checkbox" />
-        <div className="collapse-title text-xl font-medium">
+        <div className="text-xl font-medium collapse-title">
           Click to show directions
         </div>
         <div className="collapse-content">

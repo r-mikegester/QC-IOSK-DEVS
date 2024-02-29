@@ -12,6 +12,7 @@ import devPlan from "../assets/imgs/selectCampus/developmentalPlan.png";
 import sb from "../assets/imgs/selectCampus/SanBartolome.webp";
 import b from "../assets/imgs/selectCampus/Batasan.webp";
 import sf from "../assets/imgs/selectCampus/SanFransisco.webp";
+import SideBar from "../components/sidebar/sidebarLayout";
 interface ContainerProps {
   name: string;
 }
@@ -90,7 +91,8 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
 
             </div>
           </section>
-          <Dock name={""} />
+          {/* <Dock name={""} /> */}
+          <SideBar/>
         </main>
 
       </IonContent>

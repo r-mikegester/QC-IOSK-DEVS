@@ -28,7 +28,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import firebaseConfig, { db } from "../../../utils/firebase";
+import firebaseConfig, { db } from "../../utils/firebase";
 import { initializeApp } from "firebase/app";
 import { useHistory } from "react-router";
 import Animation from "./animation/Animation";
@@ -160,76 +160,6 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
     // Add more buildings as needed
   ];
 
-  // const roomData: Record<
-  //   string,
-  //   Record<
-  //     string,
-  //     {
-  //       name: string;
-  //       modelPath: string;
-  //       shortPath: string;
-  //       voice: string;
-  //       details: string[];
-  //       textGuide: string[];
-  //     }[]
-  //   >
-  // > = {
-  //   "Simon Building": {
-  //     "1": [
-  //       {
-  //         name: "IB101a",
-  //         modelPath: IB101,
-  //         shortPath: IB102,
-  //         voice: IB101Voice,
-  //         details: ["Room Info WEW", "Room Info WEW"],
-  //         textGuide: ["Text Guide WEW: 1asdasdasdasdWEW", "Room Info 2 WEW"],
-  //       },
-  //       {
-  //         name: "IB102a",
-  //         modelPath: IB102,
-  //         shortPath: "",
-  //         voice: "",
-  //         details: ["Room Info 1", "Room Info 2"],
-  //         textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-  //       },
-  //       {
-  //         name: "IB103a",
-  //         modelPath: IB103,
-  //         shortPath: "",
-  //         voice: "",
-  //         details: ["Room Info 1", "Room Info 2"],
-  //         textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-  //       },
-  //     ],
-  //     "2": [
-  //       {
-  //         name: "IB201f",
-  //         modelPath: "",
-  //         shortPath: "",
-  //         voice: "",
-  //         details: ["Room Info 1", "Room Info 2"],
-  //         textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-  //       },
-  //       {
-  //         name: "IB202c",
-  //         modelPath: "",
-  //         shortPath: "",
-  //         voice: "",
-  //         details: ["Room Info 1", "Room Info 2"],
-  //         textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-  //       },
-  //       {
-  //         name: "IB203b",
-  //         modelPath: "",
-  //         shortPath: "",
-  //         voice: "",
-  //         details: ["Room Info 1", "Room Info 2"],
-  //         textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-  //       },
-  //     ],
-  //   },
-  // };
-
   const clickSB = () => {
     setIsAnimationActive(false);
     setShowModal(false);
@@ -252,7 +182,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
           />
           <button
             onClick={clickSB}
-            className="btn btn-secondary absolute z-10 ml-60 mt-10"
+            className="absolute z-10 mt-10 btn btn-secondary ml-60"
           >
             Back
           </button>
@@ -283,21 +213,20 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               maxDistance={100}
             />
 
-            <Stage environment={isNight ? "night" : "park"}>
+            <Stage shadows environment={isNight ? "night" : "city"}>
               {isNight ? (
                 <>
-                  <directionalLight
-                    castShadow
+                  {/* <directionalLight
                     intensity={1}
                     position={[30, 30, 30]}
-                  />
+                  /> */}
                   <Stars radius={50} depth={30} count={100} factor={3} />
                 </>
               ) : null}
               {/* <Clouds /> */}
               {/* SB FLOORING */}
               <ModelViewer modelPath={openGrounds} position={[0, 0, 0]} />
-              {/* <ModelViewer modelPath={landscape} position={[0, -14, 25]} /> */}
+              <ModelViewer modelPath={landscape} position={[-20, -16, 40]} />
               {/* <ModelViewer modelPath={IL401a} position={[3.4, -2, 28.5]} /> */}
 
               {/* TECHVOC */}
@@ -416,7 +345,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                 onClick={() => handleModelClick("KorPhil Building")}
               />
 
-              <RotatingMesh />
+              {/* <RotatingMesh /> */}
             </Stage>
           </Canvas>
           <Modal

@@ -10,7 +10,7 @@ import { roomData } from "../data/roomData";
 import Animation from "../components/campus/sanBartolome/animation/Animation";
 import SideBar from "../components/sidebar/sidebarLayout";
 import WidgetPanel from "../components/widgets/widgetPanel";
-import Loading from "../components/loading";
+import Loading from "../pages/loading";
 
 export interface KeyboardRef {
   setInput: (input: string) => void;
@@ -95,11 +95,10 @@ const SearchTab: React.FC = () => {
                   roomName={"selectedRoom"}
                   modelPath={selectedModelPath}
                   voice={selectedVoice}
-                  shortPath={"selectedShortPath"}
-                />
+                  shortPath={"selectedShortPath"} roomData={undefined} selectedBuilding={""} selectedFloor={""} selectedRoom={""} />
                 <button
                   onClick={clickSearch}
-                  className="btn btn-secondary absolute z-10 ml-60 mt-10"
+                  className="absolute z-10 mt-10 btn btn-secondary ml-60"
                 >
                   Back
                 </button>
@@ -107,69 +106,76 @@ const SearchTab: React.FC = () => {
             </>
           ) : (
             <>
-              <div className="overflow-hidden ">
+              <div className="h-screen overflow-hidden">
                 <div className="relative overflow-hidden ">
-                  <div className="max-w-full px-4 py-10 mx-auto sm:px-6 lg:px-8 sm:py-5">
+                  <div className="px-4 py-10 mx-auto max-w-screen sm:px-6 lg:px-8 sm:py-5">
                     <div className="text-center mt-[10px]">
-                      <h1 className="text-4xl font-bold text-white sm:text-6xl">
+                      <h1 className="w-screen text-4xl font-bold text-center text-white sm:text-6xl">
                         Search
                       </h1>
                       <br />
 
-                      <div>
-                        <input
-                          value={input}
-                          placeholder={"Tap on the virtual keyboard to start"}
-                          onChange={(e) => onChangeInput(e)}
-                          onClick={handleSearchBarClick}
-                          onBlur={handleSearchBarBlur}
-                          className="text-black bg-white"
-                        />
-                        <br />
-                        <br />
+                      <div className="z-50 flex-col items-center justify-center w-screen h-screen ">
+                        <div className="flex items-center justify-center w-screen ">
+                          <div className="w-5/12">
+                            <input
+                              value={input}
+                              placeholder={"Tap on the virtual keyboard to start"}
+                              onChange={(e) => onChangeInput(e)}
+                              onClick={handleSearchBarClick}
+                              onBlur={handleSearchBarBlur}
+                              className="z-50 w-full h-16 p-5 text-black bg-white outline-none rounded-3xl"
+                            />
+                          </div>
+                        </div>
                         {input && (
-                          <div className="bg-white w-full">
-                            {suggestions.length > 0 ? (
-                              <div className="w-full py-6 h-56 overflow-auto">
-                                <h1 className="text-black">Result:</h1>
-                                <ul className="flex gap-4 flex-wrap p-6 justify-center">
-                                  {suggestions.map((room, index) => (
-                                    <li key={index}>
-                                      <button
-                                        className="btn btn-secondary w-24"
-                                        onClick={() =>
-                                          handleRoomButtonClick(room.name)
-                                        }
-                                      >
-                                        {room.name}
-                                      </button>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            ) : (
-                              <div className="w-full py-6 h-56 overflow-auto">
-                                <h1 className="text-black">No rooms found.</h1>
-                                <h1 className="text-black">
-                                  Enter another entry.
-                                </h1>
-                              </div>
-                            )}
+                          <div className="flex items-center justify-center w-screen py-2 -mt-7 ">
+                            <div className="w-5/12 h-auto bg-white rounded-b-3xl">
+                              {suggestions.length > 0 ? (
+                                <div className="w-full h-56 py-6 overflow-auto">
+                                  <h1 className="text-black">Result:</h1>
+                                  <ul className="flex flex-wrap justify-center gap-4 p-6">
+                                    {suggestions.map((room, index) => (
+                                      <li key={index}>
+                                        <button
+                                          className="w-24 btn btn-secondary"
+                                          onClick={() =>
+                                            handleRoomButtonClick(room.name)
+                                          }
+                                        >
+                                          {room.name}
+                                        </button>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              ) : (
+                                <div className="w-full h-56 py-6 overflow-auto">
+                                  <h1 className="text-black">No rooms found.</h1>
+                                  <h1 className="text-black">
+                                    Enter another entry.
+                                  </h1>
+                                </div>
+                              )}
+                            </div>
                           </div>
                         )}
-
-                        <br />
-                        <br />
-                        <KeyboardWrapper
-                          keyboardRef={keyboard}
-                          onChange={setInput}
-                        />
+                        <div className="sticky flex items-center justify-center w-screen bottom-10 ">
+                          <div className="w-5/12 h-auto p-3 bg-green-500">
+                            <KeyboardWrapper
+                              keyboardRef={keyboard}
+                              onChange={setInput}
+                            />
+                          </div>
+                        </div>
                       </div>
+
+
                     </div>
                   </div>
                 </div>
               </div>
-              <Backbtn name={"Back"} />
+              {/* <Backbtn name={"Back"} /> */}
             </>
           )}
 
@@ -180,7 +186,7 @@ const SearchTab: React.FC = () => {
             <WidgetPanel name={""} />
           </div>
 
-          <Dock name={"Dock"} />
+          {/* <Dock name={"Dock"} /> */}
         </>
       </IonContent>
     </IonPage>
