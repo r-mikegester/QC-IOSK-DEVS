@@ -5,17 +5,19 @@ import { Bounds, OrbitControls, Stage, Stars } from "@react-three/drei";
 import SelectToZoom from "./SelectToZoom";
 import RotatingMesh from "./RotatingMesh";
 import Clouds from "./Clouds";
-import openGrounds from "../../../assets/models/others/sb_final2.glb";
-import techvoc from "../../../assets/models/sb_buildings/og_techvoc2.glb";
-import multipurpose from "../../../assets/models/sb_buildings/og_multipurpose2.glb";
-import chineseB from "../../../assets/models/sb_buildings/og_chineseb2.glb";
-import ched from "../../../assets/models/sb_buildings/og_metalcasting2.glb";
-import simon from "../../../assets/models/sb_buildings/og_yellow2.glb";
-import admin from "../../../assets/models/sb_buildings/og_admin2.glb";
-import bautista from "../../../assets/models/sb_buildings/og_bautista2.glb";
-import belmonte from "../../../assets/models/sb_buildings/og_belmonte2.glb";
-import academic from "../../../assets/models/sb_buildings/og_academic2.glb";
-import ballroom from "../../../assets/models/sb_buildings/og_ballroom2.glb";
+import openGrounds from "../../../assets/models/others/sb_floor_final.glb";
+import techvoc from "../../../assets/models/sb_buildings/techvoc_final.glb";
+import multipurpose from "../../../assets/models/sb_buildings/multipurpose_final.glb";
+import chineseB from "../../../assets/models/sb_buildings/chineseb_final.glb";
+import ched from "../../../assets/models/sb_buildings/ched_final.glb";
+import simon from "../../../assets/models/sb_buildings/yellow_final.glb";
+import admin from "../../../assets/models/sb_buildings/admin_final.glb";
+import bautista from "../../../assets/models/sb_buildings/bautista_final.glb";
+import belmonte from "../../../assets/models/sb_buildings/belmonte_final.glb";
+import academic from "../../../assets/models/sb_buildings/academic_final.glb";
+import ballroom from "../../../assets/models/sb_buildings/ballroom_final.glb";
+import urbanFarming from "../../../assets/models/sb_buildings/urbanfarming_final.glb";
+import korPhil from "../../../assets/models/sb_buildings/korPhil_final.glb";
 import landscape from "../../../assets/models/others/landscape.glb";
 import Modal from "react-modal";
 import { Icon } from "@iconify/react";
@@ -34,6 +36,8 @@ import IB101 from "../../../assets/animation/yellow/101a.glb";
 import IB102 from "../../../assets/animation/yellow/102.glb";
 import IB103 from "../../../assets/animation/yellow/103a.glb";
 import IB101Voice from "../../../assets/audio/voice101a.mp3";
+import { roomData } from "../../../data/roomData";
+import IL401a from "../../../assets/animation/academic/Academic-IL401a.glb";
 
 interface ContainerProps {
   name: string;
@@ -128,7 +132,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
       if (selectedRoomData.modelPath) {
         setSelectedRoomModel(selectedRoomData.modelPath);
         setSelectedVoice(selectedRoomData.voice);
-        setSelectedShortPath(selectedRoomData.shortPath);
+        // setSelectedShortPath(selectedRoomData.shortPath);
         setIsAnimationActive(true);
       } else {
         setSelectedRoomModel("");
@@ -156,75 +160,75 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
     // Add more buildings as needed
   ];
 
-  const roomData: Record<
-    string,
-    Record<
-      string,
-      {
-        name: string;
-        modelPath: string;
-        shortPath: string;
-        voice: string;
-        details: string[];
-        textGuide: string[];
-      }[]
-    >
-  > = {
-    "Simon Building": {
-      "1": [
-        {
-          name: "IB101a",
-          modelPath: IB101,
-          shortPath: IB102,
-          voice: IB101Voice,
-          details: ["Room Info WEW", "Room Info WEW"],
-          textGuide: ["Text Guide WEW: 1asdasdasdasdWEW", "Room Info 2 WEW"],
-        },
-        {
-          name: "IB102a",
-          modelPath: IB102,
-          shortPath: "",
-          voice: "",
-          details: ["Room Info 1", "Room Info 2"],
-          textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-        },
-        {
-          name: "IB103a",
-          modelPath: IB103,
-          shortPath: "",
-          voice: "",
-          details: ["Room Info 1", "Room Info 2"],
-          textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-        },
-      ],
-      "2": [
-        {
-          name: "IB201f",
-          modelPath: "",
-          shortPath: "",
-          voice: "",
-          details: ["Room Info 1", "Room Info 2"],
-          textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-        },
-        {
-          name: "IB202c",
-          modelPath: "",
-          shortPath: "",
-          voice: "",
-          details: ["Room Info 1", "Room Info 2"],
-          textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-        },
-        {
-          name: "IB203b",
-          modelPath: "",
-          shortPath: "",
-          voice: "",
-          details: ["Room Info 1", "Room Info 2"],
-          textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-        },
-      ],
-    },
-  };
+  // const roomData: Record<
+  //   string,
+  //   Record<
+  //     string,
+  //     {
+  //       name: string;
+  //       modelPath: string;
+  //       shortPath: string;
+  //       voice: string;
+  //       details: string[];
+  //       textGuide: string[];
+  //     }[]
+  //   >
+  // > = {
+  //   "Simon Building": {
+  //     "1": [
+  //       {
+  //         name: "IB101a",
+  //         modelPath: IB101,
+  //         shortPath: IB102,
+  //         voice: IB101Voice,
+  //         details: ["Room Info WEW", "Room Info WEW"],
+  //         textGuide: ["Text Guide WEW: 1asdasdasdasdWEW", "Room Info 2 WEW"],
+  //       },
+  //       {
+  //         name: "IB102a",
+  //         modelPath: IB102,
+  //         shortPath: "",
+  //         voice: "",
+  //         details: ["Room Info 1", "Room Info 2"],
+  //         textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
+  //       },
+  //       {
+  //         name: "IB103a",
+  //         modelPath: IB103,
+  //         shortPath: "",
+  //         voice: "",
+  //         details: ["Room Info 1", "Room Info 2"],
+  //         textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
+  //       },
+  //     ],
+  //     "2": [
+  //       {
+  //         name: "IB201f",
+  //         modelPath: "",
+  //         shortPath: "",
+  //         voice: "",
+  //         details: ["Room Info 1", "Room Info 2"],
+  //         textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
+  //       },
+  //       {
+  //         name: "IB202c",
+  //         modelPath: "",
+  //         shortPath: "",
+  //         voice: "",
+  //         details: ["Room Info 1", "Room Info 2"],
+  //         textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
+  //       },
+  //       {
+  //         name: "IB203b",
+  //         modelPath: "",
+  //         shortPath: "",
+  //         voice: "",
+  //         details: ["Room Info 1", "Room Info 2"],
+  //         textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
+  //       },
+  //     ],
+  //   },
+  // };
 
   const clickSB = () => {
     setIsAnimationActive(false);
@@ -241,6 +245,10 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
             modelPath={selectedRoomModel}
             voice={selectedVoice}
             shortPath={selectedShortPath}
+            roomData={roomData}
+            selectedBuilding={selectedBuilding}
+            selectedFloor={selectedFloor}
+            selectedRoom={selectedRoom}
           />
           <button
             onClick={clickSB}
@@ -253,8 +261,8 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
         <>
           <Canvas
             camera={{
-              fov: 25,
-              position: isAnimationActive ? [90, 50, 90] : [90, 50, 90], // Change camera position based on animation activity
+              fov: 50,
+              position: isAnimationActive ? [80, 40, 80] : [80, 40, 80], // Change camera position based on animation activity
             }}
             className={
               isNight
@@ -272,7 +280,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               autoRotateSpeed={0.3}
               enableZoom={true}
               minDistance={50}
-              maxDistance={120}
+              maxDistance={100}
             />
 
             <Stage environment={isNight ? "night" : "park"}>
@@ -283,101 +291,131 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     intensity={1}
                     position={[30, 30, 30]}
                   />
-                  <Stars radius={20} depth={10} count={100} factor={3} />
+                  <Stars radius={50} depth={30} count={100} factor={3} />
                 </>
               ) : null}
-              <Clouds />
+              {/* <Clouds /> */}
               {/* SB FLOORING */}
               <ModelViewer modelPath={openGrounds} position={[0, 0, 0]} />
               {/* <ModelViewer modelPath={landscape} position={[0, -14, 25]} /> */}
-              {/* BUILDINGS */}
+              {/* <ModelViewer modelPath={IL401a} position={[3.4, -2, 28.5]} /> */}
+
               {/* TECHVOC */}
               <ModelViewer
                 modelPath={techvoc}
-                position={[-1, 1, 15]}
-                scale={[2.2, 2.2, 2.2]}
+                position={[-3.5, -0.95, 34]}
+                scale={[2.2, 2, 2]}
                 name="Techvoc"
-                textPosition={[-1, 3, 15]}
+                textPosition={[-3.5, 2, 34]}
                 onClick={() => handleModelClick("Techvoc Building")}
               />
               {/* MULTIPURPOSE */}
               <ModelViewer
                 modelPath={multipurpose}
-                position={[11.9, 1, 16]}
+                position={[10.5, -0.25, 34]}
                 name="Multipurpose"
-                textPosition={[11.9, 3, 16]}
+                textPosition={[10.5, 2, 34]}
                 onClick={() => handleModelClick("Multipurpose Building")}
               />
               {/* CHINESE B */}
               <ModelViewer
                 modelPath={chineseB}
-                position={[11.9, 0.65, 10]}
-                scale={[1.5, 1.5, 1.5]}
+                position={[10.5, -0.64, 28]}
+                scale={[1.7, 1.7, 1.7]}
                 name="Chinese B"
-                textPosition={[11.9, 2.5, 10]}
+                textPosition={[10.5, 1, 28]}
                 onClick={() => handleModelClick("ChineseB Building")}
               />
-              {/* BALLROOM */}
-              <ModelViewer
-                modelPath={ballroom}
-                position={[-17.5, 0.1, 11]}
-                scale={[1.5, 1.5, 1.5]}
-                name="Ballroom"
-                textPosition={[-17.5, 1.5, 11]}
-                onClick={() => handleModelClick("Ballroom Building")}
-              />
-              {/* CHED */}
-              <ModelViewer
-                modelPath={ched}
-                position={[-18.5, 0.1, 4]}
-                scale={[1.5, 1.5, 1.5]}
-                name="CHED"
-                textPosition={[-18.5, 2, 4]}
-                onClick={() => handleModelClick("Ched Building")}
-              />
+
               {/* YELLOW */}
               <ModelViewer
                 modelPath={simon}
-                position={[3.1, 1.1, 0]}
+                position={[0.3, -0.5, 16.5]}
                 name="Simon Building"
-                textPosition={[3.1, 4.5, 0]}
+                textPosition={[0.3, 3, 16.5]}
                 onClick={() => handleModelClick("Simon Building")}
               />
+
+              {/* BALLROOM */}
+              <ModelViewer
+                modelPath={ballroom}
+                position={[-20.5, -1.4, 30.5]}
+                scale={[1.7, 1.7, 1.7]}
+                name="Ballroom"
+                textPosition={[-20.5, 0.5, 30.5]}
+                onClick={() => handleModelClick("Ballroom Building")}
+              />
+
+              {/* CHED */}
+              <ModelViewer
+                modelPath={ched}
+                position={[-21, -0.5, 21.6]}
+                scale={[1, 1, 1]}
+                name="CHED"
+                textPosition={[-21, 1.5, 21.6]}
+                onClick={() => handleModelClick("Ched Building")}
+              />
+
               {/* BELMONTE */}
               <ModelViewer
                 modelPath={belmonte}
-                position={[10, 2, -11]}
+                position={[7, 1, 5.8]}
                 scale={[2, 2, 2]}
                 name="Belmonte Building"
-                textPosition={[10, 5.5, -11]}
+                textPosition={[7, 4.5, 5.8]}
                 onClick={() => handleModelClick("Belmonte Building")}
               />
+
               {/* ACADEMIC */}
               <ModelViewer
                 modelPath={academic}
-                position={[9, 2, -25]}
-                scale={[2, 2, 2]}
+                position={[6.5, 1.6, -8]}
+                scale={[2.2, 2.2, 2.2]}
                 name="Academic Building"
-                textPosition={[9, 7, -25]}
+                textPosition={[6.5, 5.5, -8]}
                 onClick={() => handleModelClick("Academic Building")}
               />
+
               {/* ADMIN */}
               <ModelViewer
                 modelPath={admin}
-                position={[-6, 2.1, -11.3]}
+                position={[-8.7, 0.2, 6.5]}
+                scale={[1.1, 1.1, 1.1]}
                 name="Admin Building"
-                textPosition={[-6, 6.5, -11.3]}
+                textPosition={[-8.7, 4.5, 6.5]}
                 onClick={() => handleModelClick("Admin Building")}
               />
+
               {/* BAUTISTA */}
               <ModelViewer
                 modelPath={bautista}
-                position={[-7, 2, -27]}
-                scale={[2.5, 2.5, 2.5]}
+                position={[-9.45, -2.8, -8.55]}
+                scale={[2.4, 2.4, 2.4]}
                 name="Bautista Building"
-                textPosition={[-7, 7, -27]}
+                textPosition={[-9.45, 6, -8.55]}
                 onClick={() => handleModelClick("Bautista Building")}
               />
+
+              {/* URBAN FARMING */}
+              <ModelViewer
+                modelPath={urbanFarming}
+                position={[-1, -2.9, -25]}
+                scale={[4, 4, 4]}
+                name="Urban Farming"
+                textPosition={[-1, 0, -25]}
+                onClick={() => handleModelClick("Urban Farming")}
+              />
+
+              {/* KORPHIL */}
+              <ModelViewer
+                modelPath={korPhil}
+                position={[-33, -5.5, -5]}
+                scale={[1, 1, 1]}
+                name="KorPhil Building"
+                textPosition={[-33, 1, -5]}
+                onClick={() => handleModelClick("KorPhil Building")}
+              />
+
               <RotatingMesh />
             </Stage>
           </Canvas>

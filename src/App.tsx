@@ -3,20 +3,18 @@ import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router-dom";
 
 /* Map*/
-import SanBartolome from './components/campus/sanBartolome/SanBartolome';
-import SanFransisco from './components/campus/sanFrancisco/SanFransisco';
-import Batasan from './components/campus/batasan/Batasan';
-
+import SanBartolome from "./components/campus/sanBartolome/SanBartolome";
+import SanFransisco from "./components/campus/sanFrancisco/SanFransisco";
+import Batasan from "./components/campus/batasan/Batasan";
 
 /** Error Catching */
 
 /* Main Routing */
 
-import Map from '../src/pages/maps';
-import Home from './pages/Home';
-import SearchTab from './pages/Search';
-import Layout from '../src/pages/layout';
-
+import Map from "../src/pages/maps";
+import Home from "./pages/Home";
+import SearchTab from "./pages/Search";
+import Layout from "../src/pages/layout";
 
 /** Admin Routing */
 import Login from "./components/sidebar/auth/unlogin";
@@ -57,6 +55,8 @@ import Archive from "./components/admin/management/manageArchive";
 import ManageManual from "./components/admin/management/manualInlineKioskEditor";
 import CreateManual from "./components/admin/management/mikeComponent/createManual";
 import UpdateManual from "./components/admin/management/mikeComponent/updateManual";
+import { Suspense } from "react";
+import Loading from "./components/loading";
 setupIonicReact();
 interface ContainerProps {
   name: string;
@@ -85,30 +85,28 @@ const App: React.FC<ContainerProps> = ({ name }) => (
         </Route>
 
         <Route path="/Home">
-          <Home name={'Home'} />
+          <Home name={"Home"} />
         </Route>
 
         <Route exact path="/Map">
-          <Map name={'Map'} />
+          <Map name={"Map"} />
         </Route>
 
         <Route exact path="/SanBartolome">
-          <Layout name={'Layout'} buildingName={''} />
+          <Layout name={"Layout"} buildingName={""} />
         </Route>
 
         <Route exact path="/SanFransisco">
-          <SanFransisco name={'SanFransisco'} />
+          <SanFransisco name={"SanFransisco"} />
         </Route>
 
         <Route exact path="/Batasan">
-          <Batasan name={'Batasan'} />
+          <Batasan name={"Batasan"} />
         </Route>
 
         <Route exact path="/Search">
           <SearchTab />
         </Route>
-
-
 
         <Route exact path="/Login">
           <Login name={"Login"} />
@@ -164,7 +162,6 @@ const App: React.FC<ContainerProps> = ({ name }) => (
           <Archive name={"Archive"} />
         </Route>
 
-        
         <Route exact path="/Mike">
           <ManageManual name={"Mike"} />
         </Route>
@@ -178,7 +175,6 @@ const App: React.FC<ContainerProps> = ({ name }) => (
         </Route>
 
         {/* sheeesh */}
-        
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
