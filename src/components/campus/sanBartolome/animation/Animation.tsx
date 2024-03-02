@@ -13,7 +13,7 @@ import animation from "../../../../assets/animation/yellow/animation.glb";
 import * as THREE from "three";
 import { useHistory } from "react-router";
 import ModelViewer from "../ModelViewer";
-import openGrounds from "../../../../assets/models/others/sb_floor_final.glb";
+import openGrounds from "../../../../assets/models/others/sb_floor_final2.glb";
 import techvoc from "../../../../assets/models/sb_buildings/techvoc_final.glb";
 import multipurpose from "../../../../assets/models/sb_buildings/multipurpose_final.glb";
 import chineseB from "../../../../assets/models/sb_buildings/chineseb_final.glb";
@@ -79,7 +79,7 @@ const AnimatedModelViewer = ({ modelPath, mixer }: any) => {
 
   return (
     <>
-      <primitive object={scene} position={[0, -3, 48]} />
+      <primitive object={scene} position={[0, 0, 0]} />
     </>
   );
 };
@@ -198,6 +198,13 @@ const Animation: React.FC<ContainerProps> = ({
         style={{ position: "absolute" }}
         camera={gltfCamera as THREE.PerspectiveCamera}
       >
+        <OrbitControls
+          target={[0, -20, 25]}
+          enablePan={true}
+          enableZoom={false}
+          enableRotate={false}
+          camera={cameras[1]}
+        />
         <ambientLight intensity={2} />
         <Clouds />
         <AnimatedModelViewer
@@ -212,96 +219,96 @@ const Animation: React.FC<ContainerProps> = ({
         {/* BUILDINGS */}
 
         {/* TECHVOC */}
-        <ModelViewer
+        {/* <ModelViewer
           modelPath={techvoc}
           position={[-3.5, -0.95, 34]}
           scale={[2.2, 2, 2]}
           textPosition={[-3.5, 2, 34]}
-        />
+        /> */}
         {/* MULTIPURPOSE */}
-        <ModelViewer
+        {/* <ModelViewer
           modelPath={multipurpose}
           position={[10.5, -0.25, 34]}
           textPosition={[10.5, 2, 34]}
-        />
+        /> */}
         {/* CHINESE B */}
-        <ModelViewer
+        {/* <ModelViewer
           modelPath={chineseB}
           position={[10.5, -0.64, 28]}
           scale={[1.7, 1.7, 1.7]}
           textPosition={[10.5, 1, 28]}
-        />
+        /> */}
 
         {/* YELLOW */}
-        <ModelViewer
+        {/* <ModelViewer
           modelPath={simon}
           position={[0.3, -0.5, 16.5]}
           textPosition={[0.3, 3, 16.5]}
-        />
+        /> */}
 
         {/* BALLROOM */}
-        <ModelViewer
+        {/* <ModelViewer
           modelPath={ballroom}
           position={[-20.5, -1.4, 30.5]}
           scale={[1.7, 1.7, 1.7]}
           textPosition={[-20.5, 0.5, 30.5]}
-        />
+        /> */}
 
         {/* CHED */}
-        <ModelViewer
+        {/* <ModelViewer
           modelPath={ched}
           position={[-21, -0.5, 21.6]}
           scale={[1, 1, 1]}
           textPosition={[-21, 1.5, 21.6]}
-        />
+        /> */}
 
         {/* BELMONTE */}
-        <ModelViewer
+        {/* <ModelViewer
           modelPath={belmonte}
           position={[7, 1, 5.8]}
           scale={[2, 2, 2]}
           textPosition={[7, 4.5, 5.8]}
-        />
+        /> */}
 
         {/* ACADEMIC */}
-        <ModelViewer
+        {/* <ModelViewer
           modelPath={academic}
           position={[6.5, 1.6, -8]}
           scale={[2.2, 2.2, 2.2]}
           textPosition={[6.5, 5.5, -8]}
-        />
+        /> */}
 
         {/* ADMIN */}
-        <ModelViewer
+        {/* <ModelViewer
           modelPath={admin}
           position={[-8.7, 0.2, 6.5]}
           scale={[1.1, 1.1, 1.1]}
           textPosition={[-8.7, 4.5, 6.5]}
-        />
+        /> */}
 
         {/* BAUTISTA */}
-        <ModelViewer
+        {/* <ModelViewer
           modelPath={bautista}
           position={[-9.45, -2.8, -8.55]}
           scale={[2.4, 2.4, 2.4]}
           textPosition={[-9.45, 6, -8.55]}
-        />
+        /> */}
 
         {/* URBAN FARMING */}
-        <ModelViewer
+        {/* <ModelViewer
           modelPath={urbanFarming}
           position={[-1, -2.9, -25]}
           scale={[4, 4, 4]}
           textPosition={[-1, 0, -25]}
-        />
+        /> */}
 
         {/* KORPHIL */}
-        <ModelViewer
+        {/* <ModelViewer
           modelPath={korPhil}
           position={[-33, -5.5, -5]}
           scale={[1, 1, 1]}
           textPosition={[-33, 1, -5]}
-        />
+        /> */}
       </Canvas>
       <audio ref={audioRef} src={voice} />
     </>

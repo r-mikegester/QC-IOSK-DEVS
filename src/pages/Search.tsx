@@ -1,4 +1,10 @@
-import React, { useState, ChangeEvent, useRef, Suspense } from "react";
+import React, {
+  useState,
+  ChangeEvent,
+  useRef,
+  Suspense,
+  useEffect,
+} from "react";
 import { IonContent, IonPage } from "@ionic/react";
 import "react-simple-keyboard/build/css/index.css";
 import Backbtn from "../components/navigation/Backbtn";
@@ -17,6 +23,11 @@ export interface KeyboardRef {
   // Add other methods if needed
 }
 
+interface BuildingsData {
+  name: string;
+  floors: number;
+}
+
 const SearchTab: React.FC = () => {
   const [input, setInput] = useState("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
@@ -25,6 +36,38 @@ const SearchTab: React.FC = () => {
   const [selectedVoice, setSelectedVoice] = useState("");
   const [isAnimationActive, setIsAnimationActive] = useState(false);
   const keyboard = useRef<KeyboardRef | undefined>(undefined);
+  const [selectedBuilding, setSelectedBuilding] = useState("");
+  const [selectedFloor, setSelectedFloor] = useState("");
+  const [selectedRoom, setSelectedRoom] = useState("");
+
+  useEffect(() => {
+    // Find matching room names whenever input changes
+    const matchingRooms = Object.values(roomData).flatMap((building) =>
+      Object.values(building).flatMap((rooms) =>
+        rooms.filter((room) =>
+          room.name.toLowerCase().includes(input.toLowerCase())
+        )
+      )
+    );
+
+    setSuggestions(matchingRooms);
+  }, [input]);
+
+  // Define building data
+  const buildingsData: BuildingsData[] = [
+    { name: "Belmonte Building", floors: 4 },
+    { name: "Bautista Building", floors: 9 },
+    { name: "Techvoc Building", floors: 2 },
+    { name: "Ched Building", floors: 2 },
+    { name: "Simon Building", floors: 2 },
+    { name: "Admin Building", floors: 5 },
+    { name: "Academic Building", floors: 7 },
+    { name: "Ballroom Building", floors: 1 },
+    { name: "Admin Building", floors: 1 },
+    { name: "Multipurpose Building", floors: 1 },
+    { name: "ChineseB Building", floors: 1 },
+    // Add more buildings as needed
+  ];
 
   const onChangeInput = (event: ChangeEvent<HTMLInputElement>): void => {
     const input = event.target.value;
@@ -55,12 +98,16 @@ const SearchTab: React.FC = () => {
     // Find the matching room
     let selectedRoomModelPath = "";
     let selectedRoomVoice = "";
-    Object.values(roomData).forEach((building) => {
-      Object.values(building).forEach((rooms) => {
+    let buildingName = "";
+    let floorNumber = "";
+    Object.entries(roomData).forEach(([building, floors]) => {
+      Object.entries(floors).forEach(([floor, rooms]) => {
         rooms.forEach((room) => {
           if (room.name === roomName) {
             selectedRoomModelPath = room.modelPath;
             selectedRoomVoice = room.voice;
+            buildingName = room.buildingName;
+            floorNumber = floor; // Assuming the floor number is a single-digit string
           }
         });
       });
@@ -71,6 +118,9 @@ const SearchTab: React.FC = () => {
       console.log("Model path:", selectedRoomModelPath);
       setSelectedModelPath(selectedRoomModelPath); // Update selected model path state
       setSelectedVoice(selectedRoomVoice);
+      setSelectedBuilding(buildingName);
+      setSelectedFloor(floorNumber);
+      setSelectedRoom(roomName);
       setIsAnimationActive(true);
     } else {
       console.log("Model path not found for the selected room.");
@@ -95,7 +145,12 @@ const SearchTab: React.FC = () => {
                   roomName={"selectedRoom"}
                   modelPath={selectedModelPath}
                   voice={selectedVoice}
-                  shortPath={"selectedShortPath"} roomData={undefined} selectedBuilding={""} selectedFloor={""} selectedRoom={""} />
+                  shortPath={"selectedShortPath"}
+                  roomData={roomData}
+                  selectedBuilding={selectedBuilding}
+                  selectedFloor={selectedFloor}
+                  selectedRoom={selectedRoom}
+                />
                 <button
                   onClick={clickSearch}
                   className="absolute z-10 mt-10 btn btn-secondary ml-60"
@@ -120,7 +175,9 @@ const SearchTab: React.FC = () => {
                           <div className="w-5/12">
                             <input
                               value={input}
-                              placeholder={"Tap on the virtual keyboard to start"}
+                              placeholder={
+                                "Tap on the virtual keyboard to start"
+                              }
                               onChange={(e) => onChangeInput(e)}
                               onClick={handleSearchBarClick}
                               onBlur={handleSearchBarBlur}
@@ -151,7 +208,9 @@ const SearchTab: React.FC = () => {
                                 </div>
                               ) : (
                                 <div className="w-full h-56 py-6 overflow-auto">
-                                  <h1 className="text-black">No rooms found.</h1>
+                                  <h1 className="text-black">
+                                    No rooms found.
+                                  </h1>
                                   <h1 className="text-black">
                                     Enter another entry.
                                   </h1>
@@ -169,8 +228,6 @@ const SearchTab: React.FC = () => {
                           </div>
                         </div>
                       </div>
-
-
                     </div>
                   </div>
                 </div>
