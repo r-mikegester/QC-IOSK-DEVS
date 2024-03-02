@@ -1,7 +1,7 @@
 import { IonContent, IonPage } from "@ionic/react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useEffect } from "react";
-import { auth } from "../../../utils/firebase";
+import { auth } from "../../utils/firebase";
 import { Icon } from "@iconify/react";
 import { useHistory } from "react-router";
 import AdminSidebar from "./adminSidebar";

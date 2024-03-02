@@ -47,6 +47,9 @@ const ChangeLanguage: React.FC<ContainerProps> = ({ name }) => {
       position: toast.POSITION.BOTTOM_RIGHT,
       className: " bg-base-100 text-base-content font-bold rounded-2xl",
       theme: "dark",
+      autoClose: 1000,
+      icon: <Icon icon="line-md:clipboard-check" className="w-10 h-10 text-xl" />,
+      progressClassName: "bg-accent rounded-full mx-3 mb-1 w-72", // 3000 milliseconds = 3 seconds
     
     });
 

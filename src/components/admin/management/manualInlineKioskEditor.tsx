@@ -2,7 +2,7 @@ import { useHistory } from "react-router-dom";
 import AdminSideBar from "../constant/adminSidebar";
 import AdminHeader from "../constant/adminHeader";
 import { IonPage, IonContent } from "@ionic/react";
-import { db } from "../../../utils/firebase";
+import { db } from "../../utils/firebase";
 import {
   collection,
   getDocs,

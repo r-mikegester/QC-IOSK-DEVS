@@ -5,11 +5,18 @@ import { themeChange } from "theme-change";
 import { useTranslation } from "react-i18next";
 import { NavLink, useHistory } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../utils/firebase";
+import { auth } from "../../utils/firebase";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const AdminLogin: React.FC = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const onClear = () => {
+    setEmail("");
+    setPassword("");
+  };
 
   const onLogin = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -17,13 +24,29 @@ const AdminLogin: React.FC = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        history.push("/Dashboard");
+        // Display toast for successful login
+        toast.success("Sign in successfully!", {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          className: " bg-base-100 font-bold rounded-2xl text-base-content ",
+          theme: "dark",
+          icon: <Icon icon="line-md:clipboard-check" className="w-10 h-10 text-xl" />,
+          progressClassName: "bg-accent rounded-full mx-3 mb-1 w-72",
+          autoClose: 1000, // 3000 milliseconds = 3 seconds
+        });
         console.log(user);
+        // Redirect after 3 seconds
+        setTimeout(() => {
+          history.push("/Dashboard");
+        }, 2500); // 3000 milliseconds = 3 seconds
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        // Display toast for unsuccessful login
+        toast.error(errorMessage, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+        console.error(errorCode, errorMessage);
       });
   };
   const { t } = useTranslation();
@@ -138,7 +161,7 @@ const AdminLogin: React.FC = () => {
                       Sign in
                     </button>
                     <button
-                      onClick={onLogin}
+                      onClick={onClear}
                       className="inline-flex items-center justify-center w-20 px-4 py-3 text-sm font-semibold border-2 text-base-content bg-base-300 gap-x-2 rounded-xl hover:bg-base-200 disabled:opacity-50 disabled:pointer-events-none"
                     >
                       Clear

@@ -4,7 +4,7 @@ import AdminHeader from "../../constant/adminHeader";
 import { useHistory, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
-import { db, storage } from "../../../../utils/firebase";
+import { db, storage } from "../../../utils/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { toast } from "react-toastify";
 import { Icon } from "@iconify/react";

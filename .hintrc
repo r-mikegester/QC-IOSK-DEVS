@@ -59,7 +59,8 @@
       "default",
       {
         "aria-required-children": "off",
-        "aria-command-name": "off"
+        "aria-command-name": "off",
+        "aria-progressbar-name": "off"
       }
     ],
     "axe/parsing": [
