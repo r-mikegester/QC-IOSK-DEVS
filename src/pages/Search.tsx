@@ -130,7 +130,7 @@ const SearchTab: React.FC = () => {
                         </div>
                         {input && (
                           <div className="flex items-center justify-center w-screen py-2 -mt-7 ">
-                            <div className="w-5/12 h-auto bg-white rounded-b-3xl">
+                            <div className="w-5/12 h-auto bg-white  rounded-b-3xl">
                               {suggestions.length > 0 ? (
                                 <div className="w-full h-56 py-6 overflow-auto">
                                   <h1 className="text-black">Result:</h1>
@@ -161,7 +161,7 @@ const SearchTab: React.FC = () => {
                           </div>
                         )}
                         <div className="sticky flex items-center justify-center w-screen bottom-10 ">
-                          <div className="w-5/12 h-auto p-3 bg-green-500">
+                          <div className="w-5/12 h-auto mt-56  ">
                             <KeyboardWrapper
                               keyboardRef={keyboard}
                               onChange={setInput}
