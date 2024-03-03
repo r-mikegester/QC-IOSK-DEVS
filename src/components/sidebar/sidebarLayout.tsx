@@ -86,8 +86,9 @@ const SideBar = () => {
     >
       <div className="z-50 sidebar-content">
         {/* Sidebar contents */}
-        <div className="z-50 flex flex-col items-center justify-start flex-grow h-full">
+        <div className=" flex flex-col items-center justify-start flex-grow h-full">
           {/* <KioskManual name={"Kiosk Manual"} /> */}
+          <div className="z-50 bg-base-100 pb-5">
           <SideBarIcon
             icon="octicon:home-16"
             text={t("Home")}
@@ -103,9 +104,10 @@ const SideBar = () => {
             text={t("Search")}
             onClick={ClickSearch}
           />
+          </div>
 
 
-          <div className="absolute bottom-5">
+          <div className="absolute bottom-5 z-10">
             <SideBarIcon
               icon="streamline:manual-book"
               text={t("Kiosk Manual")}
@@ -142,6 +144,7 @@ const SideBar = () => {
                 <Icon icon="uiw:appstore-o" className="w-6 h-6" />
               </div>
               <div className="collapse-content">
+            
                 <SideBarIcon
                   icon="fontisto:info"
                   text={t("About")}

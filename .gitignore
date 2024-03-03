@@ -27,3 +27,4 @@ yarn-error.log*
 
 # Optional eslint cache
 .eslintcache
+src/assets/models/others/sb_floor_final2.glb
