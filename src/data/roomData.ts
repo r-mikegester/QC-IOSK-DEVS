@@ -12,6 +12,8 @@ export const roomData: Record<
     string,
     {
       buildingName: string;
+      floorNumber: string;
+      officeName?: string;
       name: string;
       modelPath: string;
       voice: string;
@@ -24,6 +26,8 @@ export const roomData: Record<
     "3": [
       {
         buildingName: "Academic Building",
+        floorNumber: "3rd",
+        officeName: "LESIT (Sample)",
         name: "IB301a",
         modelPath: IL301a,
         voice: "",
@@ -32,6 +36,8 @@ export const roomData: Record<
       },
       {
         buildingName: "Academic Building",
+        floorNumber: "3rd",
+        officeName: "SSC (Sample)",
         name: "IB302a",
         modelPath: "",
         voice: "",
@@ -40,6 +46,7 @@ export const roomData: Record<
       },
       {
         buildingName: "Academic Building",
+        floorNumber: "3rd",
         name: "IB303a",
         modelPath: "",
         voice: "",
@@ -48,6 +55,7 @@ export const roomData: Record<
       },
       {
         buildingName: "Academic Building",
+        floorNumber: "3rd",
         name: "IB304a",
         modelPath: "",
         voice: "",
@@ -56,6 +64,7 @@ export const roomData: Record<
       },
       {
         buildingName: "Academic Building",
+        floorNumber: "3rd",
         name: "IB305a",
         modelPath: "",
         voice: "",
@@ -64,6 +73,7 @@ export const roomData: Record<
       },
       {
         buildingName: "Academic Building",
+        floorNumber: "3rd",
         name: "IB306a",
         modelPath: "",
         voice: "",
@@ -72,6 +82,7 @@ export const roomData: Record<
       },
       {
         buildingName: "Academic Building",
+        floorNumber: "3rd",
         name: "IB307a",
         modelPath: "",
         voice: "",
@@ -80,6 +91,7 @@ export const roomData: Record<
       },
       {
         buildingName: "Academic Building",
+        floorNumber: "3rd",
         name: "IB308a",
         modelPath: "",
         voice: "",
@@ -88,6 +100,7 @@ export const roomData: Record<
       },
       {
         buildingName: "Academic Building",
+        floorNumber: "3rd",
         name: "IB308a",
         modelPath: "",
         voice: "",
@@ -96,89 +109,8 @@ export const roomData: Record<
       },
       {
         buildingName: "Academic Building",
+        floorNumber: "3rd",
         name: "IB310a",
-        modelPath: "",
-        voice: "",
-        details: ["Room Info 1", "Room Info 2"],
-        textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-      },
-    ],
-    "4": [
-      {
-        buildingName: "Academic Building",
-        name: "IB401a",
-        modelPath: IL401a,
-        voice: "",
-        details: ["Room Info 1", "Room Info 2"],
-        textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-      },
-      {
-        buildingName: "Academic Building",
-        name: "IB402a",
-        modelPath: "",
-        voice: "",
-        details: ["Room Info 1", "Room Info 2"],
-        textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-      },
-      {
-        buildingName: "Academic Building",
-        name: "IB403a",
-        modelPath: "",
-        voice: "",
-        details: ["Room Info 1", "Room Info 2"],
-        textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-      },
-      {
-        buildingName: "Academic Building",
-        name: "IB404a",
-        modelPath: "",
-        voice: "",
-        details: ["Room Info 1", "Room Info 2"],
-        textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-      },
-      {
-        buildingName: "Academic Building",
-        name: "IB405a",
-        modelPath: "",
-        voice: "",
-        details: ["Room Info 1", "Room Info 2"],
-        textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-      },
-      {
-        buildingName: "Academic Building",
-        name: "IB406a",
-        modelPath: "",
-        voice: "",
-        details: ["Room Info 1", "Room Info 2"],
-        textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-      },
-      {
-        buildingName: "Academic Building",
-        name: "IB407a",
-        modelPath: "",
-        voice: "",
-        details: ["Room Info 1", "Room Info 2"],
-        textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-      },
-      {
-        buildingName: "Academic Building",
-        name: "IB408a",
-        modelPath: "",
-        voice: "",
-        details: ["Room Info 1", "Room Info 2"],
-        textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-      },
-      {
-        buildingName: "Academic Building",
-        name: "IB408a",
-        modelPath: "",
-        voice: "",
-        details: ["Room Info 1", "Room Info 2"],
-        textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
-      },
-      {
-        buildingName: "Academic Building",
-        name: "IB410a",
         modelPath: "",
         voice: "",
         details: ["Room Info 1", "Room Info 2"],
@@ -191,6 +123,7 @@ export const roomData: Record<
     "1": [
       {
         buildingName: "Simon Building",
+        floorNumber: "1st",
         name: "IB101a",
         modelPath: IB101,
         voice: IB101Voice,
@@ -205,6 +138,7 @@ export const roomData: Record<
       },
       {
         buildingName: "Simon Building",
+        floorNumber: "1st",
         name: "IB102a",
         modelPath: IB102,
         voice: "",
@@ -213,6 +147,7 @@ export const roomData: Record<
       },
       {
         buildingName: "Simon Building",
+        floorNumber: "1st",
         name: "IB103a",
         modelPath: IB103,
         voice: "",
@@ -223,6 +158,7 @@ export const roomData: Record<
     "2": [
       {
         buildingName: "Simon Building",
+        floorNumber: "2nd",
         name: "IB201f",
         modelPath: "",
         voice: "",

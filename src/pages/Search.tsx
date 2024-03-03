@@ -1,14 +1,7 @@
-import React, {
-  useState,
-  ChangeEvent,
-  useRef,
-  Suspense,
-  useEffect,
-} from "react";
+import React, { useState, ChangeEvent, useRef, Suspense } from "react";
 import { IonContent, IonPage } from "@ionic/react";
 import "react-simple-keyboard/build/css/index.css";
 import Backbtn from "../components/navigation/Backbtn";
-import Dock from "../components/navigation/dock";
 import "../assets/css/search.css";
 import "../assets/css/keyboard.css";
 import KeyboardWrapper from "./keyboard/Keyboard";
@@ -23,11 +16,6 @@ export interface KeyboardRef {
   // Add other methods if needed
 }
 
-interface BuildingsData {
-  name: string;
-  floors: number;
-}
-
 const SearchTab: React.FC = () => {
   const [input, setInput] = useState("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
@@ -39,35 +27,7 @@ const SearchTab: React.FC = () => {
   const [selectedBuilding, setSelectedBuilding] = useState("");
   const [selectedFloor, setSelectedFloor] = useState("");
   const [selectedRoom, setSelectedRoom] = useState("");
-
-  useEffect(() => {
-    // Find matching room names whenever input changes
-    const matchingRooms = Object.values(roomData).flatMap((building) =>
-      Object.values(building).flatMap((rooms) =>
-        rooms.filter((room) =>
-          room.name.toLowerCase().includes(input.toLowerCase())
-        )
-      )
-    );
-
-    setSuggestions(matchingRooms);
-  }, [input]);
-
-  // Define building data
-  const buildingsData: BuildingsData[] = [
-    { name: "Belmonte Building", floors: 4 },
-    { name: "Bautista Building", floors: 9 },
-    { name: "Techvoc Building", floors: 2 },
-    { name: "Ched Building", floors: 2 },
-    { name: "Simon Building", floors: 2 },
-    { name: "Admin Building", floors: 5 },
-    { name: "Academic Building", floors: 7 },
-    { name: "Ballroom Building", floors: 1 },
-    { name: "Admin Building", floors: 1 },
-    { name: "Multipurpose Building", floors: 1 },
-    { name: "ChineseB Building", floors: 1 },
-    // Add more buildings as needed
-  ];
+  const [selectedOffice, setSelectedOffice] = useState("");
 
   const onChangeInput = (event: ChangeEvent<HTMLInputElement>): void => {
     const input = event.target.value;
@@ -77,8 +37,11 @@ const SearchTab: React.FC = () => {
     // Find matching room names
     const matchingRooms = Object.values(roomData).flatMap((building) =>
       Object.values(building).flatMap((rooms) =>
-        rooms.filter((room) =>
-          room.name.toLowerCase().includes(input.toLowerCase())
+        rooms.filter(
+          (room) =>
+            room.name.toLowerCase().includes(input) ||
+            room.buildingName.toLowerCase().includes(input) ||
+            (room.officeName && room.officeName.toLowerCase().includes(input))
         )
       )
     );
@@ -94,20 +57,27 @@ const SearchTab: React.FC = () => {
     setIsClicked(false);
   };
 
-  const handleRoomButtonClick = (roomName: string) => {
+  const handleRoomButtonClick = (
+    roomName: string,
+    buildingName: string,
+    floorNumber: string,
+    officeName: string
+  ) => {
     // Find the matching room
     let selectedRoomModelPath = "";
     let selectedRoomVoice = "";
-    let buildingName = "";
-    let floorNumber = "";
+    let building = "";
+    let floor = "";
+    let office = null;
     Object.entries(roomData).forEach(([building, floors]) => {
       Object.entries(floors).forEach(([floor, rooms]) => {
         rooms.forEach((room) => {
           if (room.name === roomName) {
             selectedRoomModelPath = room.modelPath;
             selectedRoomVoice = room.voice;
-            buildingName = room.buildingName;
-            floorNumber = floor; // Assuming the floor number is a single-digit string
+            building = room.buildingName;
+            floor = floor; // Assuming the floor number is a single-digit string
+            office = room.officeName;
           }
         });
       });
@@ -120,6 +90,7 @@ const SearchTab: React.FC = () => {
       setSelectedVoice(selectedRoomVoice);
       setSelectedBuilding(buildingName);
       setSelectedFloor(floorNumber);
+      setSelectedOffice(officeName);
       setSelectedRoom(roomName);
       setIsAnimationActive(true);
     } else {
@@ -191,16 +162,26 @@ const SearchTab: React.FC = () => {
                               {suggestions.length > 0 ? (
                                 <div className="w-full h-56 py-6 overflow-auto">
                                   <h1 className="text-black">Result:</h1>
-                                  <ul className="flex flex-wrap justify-center gap-4 p-6">
+                                  <ul>
                                     {suggestions.map((room, index) => (
                                       <li key={index}>
                                         <button
-                                          className="w-24 btn btn-secondary"
+                                          className="btn btn-secondary w-auto m-1"
                                           onClick={() =>
-                                            handleRoomButtonClick(room.name)
+                                            handleRoomButtonClick(
+                                              room.name,
+                                              room.buildingName,
+                                              room.floorNumber,
+                                              room.officeName
+                                            )
                                           }
                                         >
-                                          {room.name}
+                                          {room.name} - {room.buildingName} -{" "}
+                                          {""}
+                                          {room.floorNumber} Floor
+                                          {room.officeName && (
+                                            <> - Office: {room.officeName}</>
+                                          )}
                                         </button>
                                       </li>
                                     ))}
@@ -242,8 +223,6 @@ const SearchTab: React.FC = () => {
           <div className="absolute top-0 right-0 z-50 ">
             <WidgetPanel name={""} />
           </div>
-
-          {/* <Dock name={"Dock"} /> */}
         </>
       </IonContent>
     </IonPage>
