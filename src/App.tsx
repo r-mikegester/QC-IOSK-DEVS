@@ -85,7 +85,7 @@ const App: React.FC<ContainerProps> = ({ name }) => (
         </Route>
 
         <Route path="/Home">
-          <Home name={"Home"} />
+          <Home name={"Home"} buildingName={""} />
         </Route>
 
         <Route exact path="/Map">
