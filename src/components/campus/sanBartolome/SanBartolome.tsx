@@ -367,7 +367,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
             onRequestClose={closeModal}
             contentLabel="Building Information"
           >
-            <div className="w-full p-6 m-80 shadow-xl bg-base-200 rounded-3xl h-fit">
+            <div className="w-full p-6 shadow-xl m-80 bg-base-200 rounded-3xl h-fit">
               <div className="flex items-center justify-between">
                 <h2 className="text-3xl font-semibold text-center">
                   {selectedBuilding}
@@ -381,7 +381,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               </div>
               <div className="flex justify-center mt-6 space-x-3">
                 <div className="px-6 shadow-inner bg-base-300 w-96 rounded-3xl">
-                  <div className="flex-col flex justify-center py-6 border-b-2 space-y-3 border-base-100">
+                  <div className="flex flex-col justify-center py-6 space-y-3 border-b-2 border-base-100">
                     <button
                       onClick={handleOverviewClick}
                       className={`h-10 btn-blocked btn  hover:bg-base-200 ${showOverview ? "bg-base-content text-white" : ""}`}
@@ -433,7 +433,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                   )}
                 </div>
                 {showOverview ? (
-                  <div className="w-full h-full shadow-inner bg-base-300 rounded-2xl ease-in-out duration-150">
+                  <div className="w-full h-full duration-150 ease-in-out shadow-inner bg-base-300 rounded-2xl">
                     <div className="flex items-center p-6">
                       <div className="w-full p-6 shadow-inner bg-base-200 h-96 rounded-2xl">
                         <div className="flex flex-col w-full h-full space-y-3">
@@ -457,7 +457,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                           ))}
                       </div>
                       <div className="w-full p-6 shadow-inner bg-base-200 h-96 rounded-2xl">
-                        <div className="flex flex-col w-full relative h-full space-y-3">
+                        <div className="relative flex flex-col w-full h-full space-y-3">
                           <div className="text-base-content">
 
 
@@ -474,7 +474,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                                         <li key={detailIndex}>{detail}</li>
                                       ))}
                                       <button
-                                        className="btn absolute bottom-0 right-0 btn-secondary btn-block"
+                                        className="absolute bottom-0 right-0 btn btn-secondary btn-block"
                                         onClick={() => clickAnimation(selectedRoom)}
                                       >
                                         GO TO {selectedRoom}
