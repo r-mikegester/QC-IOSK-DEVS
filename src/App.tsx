@@ -12,7 +12,7 @@ import Batasan from "./components/campus/batasan/Batasan";
 /* Main Routing */
 
 import Map from "../src/pages/maps";
-import Home from "./pages/Home";
+import Home from "./pages/layout";
 import SearchTab from "./pages/Search";
 import Layout from "../src/pages/layout";
 
@@ -56,7 +56,7 @@ import ManageManual from "./components/admin/management/manualInlineKioskEditor"
 import CreateManual from "./components/admin/management/mikeComponent/createManual";
 import UpdateManual from "./components/admin/management/mikeComponent/updateManual";
 import { Suspense } from "react";
-import Loading from "./components/loading";
+import Loading from "./pages/loading";
 setupIonicReact();
 interface ContainerProps {
   name: string;

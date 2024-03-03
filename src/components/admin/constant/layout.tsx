@@ -32,7 +32,7 @@ const AdminLayout: React.FC<ContainerProps> = ({ name }) => {
         // User is signed out
         // ...
         console.log("user is logged out");
-        history.push("/Login");
+        history.push("/SanBartolome");
       }
     });
   }, []);
@@ -41,7 +41,7 @@ const AdminLayout: React.FC<ContainerProps> = ({ name }) => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        history.push("/Login");
+        history.push("/SanBartolome");
         console.log("Signed out successfully");
       })
       .catch((error) => {

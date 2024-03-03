@@ -2,7 +2,6 @@ import React, { useState, ChangeEvent, useRef, Suspense } from "react";
 import { IonContent, IonPage } from "@ionic/react";
 import "react-simple-keyboard/build/css/index.css";
 import Backbtn from "../components/navigation/Backbtn";
-import Dock from "../components/navigation/dock";
 import "../assets/css/search.css";
 import "../assets/css/keyboard.css";
 import KeyboardWrapper from "./keyboard/Keyboard";
@@ -25,6 +24,10 @@ const SearchTab: React.FC = () => {
   const [selectedVoice, setSelectedVoice] = useState("");
   const [isAnimationActive, setIsAnimationActive] = useState(false);
   const keyboard = useRef<KeyboardRef | undefined>(undefined);
+  const [selectedBuilding, setSelectedBuilding] = useState("");
+  const [selectedFloor, setSelectedFloor] = useState("");
+  const [selectedRoom, setSelectedRoom] = useState("");
+  const [selectedOffice, setSelectedOffice] = useState("");
 
   const onChangeInput = (event: ChangeEvent<HTMLInputElement>): void => {
     const input = event.target.value;
@@ -34,8 +37,11 @@ const SearchTab: React.FC = () => {
     // Find matching room names
     const matchingRooms = Object.values(roomData).flatMap((building) =>
       Object.values(building).flatMap((rooms) =>
-        rooms.filter((room) =>
-          room.name.toLowerCase().includes(input.toLowerCase())
+        rooms.filter(
+          (room) =>
+            room.name.toLowerCase().includes(input) ||
+            room.buildingName.toLowerCase().includes(input) ||
+            (room.officeName && room.officeName.toLowerCase().includes(input))
         )
       )
     );
@@ -51,16 +57,27 @@ const SearchTab: React.FC = () => {
     setIsClicked(false);
   };
 
-  const handleRoomButtonClick = (roomName: string) => {
+  const handleRoomButtonClick = (
+    roomName: string,
+    buildingName: string,
+    floorNumber: string,
+    officeName: string
+  ) => {
     // Find the matching room
     let selectedRoomModelPath = "";
     let selectedRoomVoice = "";
-    Object.values(roomData).forEach((building) => {
-      Object.values(building).forEach((rooms) => {
+    let building = "";
+    let floor = "";
+    let office = null;
+    Object.entries(roomData).forEach(([building, floors]) => {
+      Object.entries(floors).forEach(([floor, rooms]) => {
         rooms.forEach((room) => {
           if (room.name === roomName) {
             selectedRoomModelPath = room.modelPath;
             selectedRoomVoice = room.voice;
+            building = room.buildingName;
+            floor = floor; // Assuming the floor number is a single-digit string
+            office = room.officeName;
           }
         });
       });
@@ -71,6 +88,10 @@ const SearchTab: React.FC = () => {
       console.log("Model path:", selectedRoomModelPath);
       setSelectedModelPath(selectedRoomModelPath); // Update selected model path state
       setSelectedVoice(selectedRoomVoice);
+      setSelectedBuilding(buildingName);
+      setSelectedFloor(floorNumber);
+      setSelectedOffice(officeName);
+      setSelectedRoom(roomName);
       setIsAnimationActive(true);
     } else {
       console.log("Model path not found for the selected room.");
@@ -95,7 +116,12 @@ const SearchTab: React.FC = () => {
                   roomName={"selectedRoom"}
                   modelPath={selectedModelPath}
                   voice={selectedVoice}
-                  shortPath={"selectedShortPath"} roomData={undefined} selectedBuilding={""} selectedFloor={""} selectedRoom={""} />
+                  shortPath={"selectedShortPath"}
+                  roomData={roomData}
+                  selectedBuilding={selectedBuilding}
+                  selectedFloor={selectedFloor}
+                  selectedRoom={selectedRoom}
+                />
                 <button
                   onClick={clickSearch}
                   className="absolute z-10 mt-10 btn btn-secondary ml-60"
@@ -120,7 +146,9 @@ const SearchTab: React.FC = () => {
                           <div className="w-5/12">
                             <input
                               value={input}
-                              placeholder={"Tap on the virtual keyboard to start"}
+                              placeholder={
+                                "Tap on the virtual keyboard to start"
+                              }
                               onChange={(e) => onChangeInput(e)}
                               onClick={handleSearchBarClick}
                               onBlur={handleSearchBarBlur}
@@ -130,20 +158,30 @@ const SearchTab: React.FC = () => {
                         </div>
                         {input && (
                           <div className="flex items-center justify-center w-screen py-2 -mt-7 ">
-                            <div className="w-5/12 h-auto bg-white rounded-b-3xl">
+                            <div className="w-5/12 h-auto bg-white  rounded-b-3xl">
                               {suggestions.length > 0 ? (
                                 <div className="w-full h-56 py-6 overflow-auto">
                                   <h1 className="text-black">Result:</h1>
-                                  <ul className="flex flex-wrap justify-center gap-4 p-6">
+                                  <ul>
                                     {suggestions.map((room, index) => (
                                       <li key={index}>
                                         <button
-                                          className="w-24 btn btn-secondary"
+                                          className="btn btn-secondary w-auto m-1"
                                           onClick={() =>
-                                            handleRoomButtonClick(room.name)
+                                            handleRoomButtonClick(
+                                              room.name,
+                                              room.buildingName,
+                                              room.floorNumber,
+                                              room.officeName
+                                            )
                                           }
                                         >
-                                          {room.name}
+                                          {room.name} - {room.buildingName} -{" "}
+                                          {""}
+                                          {room.floorNumber} Floor
+                                          {room.officeName && (
+                                            <> - Office: {room.officeName}</>
+                                          )}
                                         </button>
                                       </li>
                                     ))}
@@ -151,7 +189,9 @@ const SearchTab: React.FC = () => {
                                 </div>
                               ) : (
                                 <div className="w-full h-56 py-6 overflow-auto">
-                                  <h1 className="text-black">No rooms found.</h1>
+                                  <h1 className="text-black">
+                                    No rooms found.
+                                  </h1>
                                   <h1 className="text-black">
                                     Enter another entry.
                                   </h1>
@@ -161,7 +201,7 @@ const SearchTab: React.FC = () => {
                           </div>
                         )}
                         <div className="sticky flex items-center justify-center w-screen bottom-10 ">
-                          <div className="w-5/12 h-auto p-3 bg-green-500">
+                          <div className="w-5/12 h-auto mt-56  ">
                             <KeyboardWrapper
                               keyboardRef={keyboard}
                               onChange={setInput}
@@ -169,8 +209,6 @@ const SearchTab: React.FC = () => {
                           </div>
                         </div>
                       </div>
-
-
                     </div>
                   </div>
                 </div>
@@ -185,8 +223,6 @@ const SearchTab: React.FC = () => {
           <div className="absolute top-0 right-0 z-50 ">
             <WidgetPanel name={""} />
           </div>
-
-          {/* <Dock name={"Dock"} /> */}
         </>
       </IonContent>
     </IonPage>

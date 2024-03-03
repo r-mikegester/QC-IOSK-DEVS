@@ -84,7 +84,7 @@ const AdminLogin: React.FC = () => {
                         type="email"
                         id="email"
                         name="email"
-                        className="w-full px-4 py-3 text-sm border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none bg-base-300 dark:focus:ring-gray-600"
+                        className="w-full h-10 px-4 py-3 text-sm border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none bg-base-300 dark:focus:ring-gray-600"
                         required
                         aria-describedby="email-error"
                       />
@@ -126,7 +126,7 @@ const AdminLogin: React.FC = () => {
                         type="password"
                         id="password"
                         name="password"
-                        className="block w-full px-4 py-3 text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none bg-base-300 "
+                        className="block w-full h-10 px-4 py-3 text-sm rounded-lg focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none bg-base-300 "
                         required
                         aria-describedby="password-error"
                       />

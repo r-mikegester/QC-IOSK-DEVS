@@ -17,7 +17,7 @@ const AdminSideBar: React.FC<ContainerProps> = ({ name }) => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        history.push("/Login");
+        history.push("/SanBartolome");
         console.log("Signed out successfully");
       })
       .catch((error) => {

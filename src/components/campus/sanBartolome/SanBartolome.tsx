@@ -5,7 +5,7 @@ import { Bounds, OrbitControls, Stage, Stars } from "@react-three/drei";
 import SelectToZoom from "./SelectToZoom";
 import RotatingMesh from "./RotatingMesh";
 import Clouds from "./Clouds";
-import openGrounds from "../../../assets/models/others/sb_floor_final.glb";
+import openGrounds from "../../../assets/models/others/sb_floor_final2.glb";
 import techvoc from "../../../assets/models/sb_buildings/techvoc_final.glb";
 import multipurpose from "../../../assets/models/sb_buildings/multipurpose_final.glb";
 import chineseB from "../../../assets/models/sb_buildings/chineseb_final.glb";
@@ -63,6 +63,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
   const [selectedVoice, setSelectedVoice] = useState("");
   const [selectedShortPath, setSelectedShortPath] = useState("");
   const [isAnimationActive, setIsAnimationActive] = useState(false);
+  const [showOverview, setShowOverview] = useState(false); // State to toggle overview
 
   useEffect(() => {
     const checkTime = () => {
@@ -114,6 +115,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
   const clickFloor = (floor: string) => {
     setSelectedFloor(floor);
     setSelectedRoom("");
+    setShowOverview(false); // Hide overview when floor is clicked
   };
 
   const selectRoom = (room: string) => {
@@ -165,6 +167,17 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
     setShowModal(false);
     return;
   };
+
+  const handleOverviewClick = () => {
+    setShowOverview(true); // Toggle the showOverview state
+  };
+  const handleFloorsClick = () => {
+    setShowOverview(false); // Toggle the showOverview state
+  };
+
+  const selectedBuildingData = buildingsData.find(building => building.name === selectedBuilding);
+
+
   return (
     <>
       {selectedRoomModel && animation && isAnimationActive ? (
@@ -354,7 +367,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
             onRequestClose={closeModal}
             contentLabel="Building Information"
           >
-            <div className="w-full p-6 m-40 shadow-xl bg-base-200 rounded-3xl h-fit">
+            <div className="w-full p-6 shadow-xl m-80 bg-base-200 rounded-3xl h-fit">
               <div className="flex items-center justify-between">
                 <h2 className="text-3xl font-semibold text-center">
                   {selectedBuilding}
@@ -368,123 +381,121 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               </div>
               <div className="flex justify-center mt-6 space-x-3">
                 <div className="px-6 shadow-inner bg-base-300 w-96 rounded-3xl">
-                  <div className="flex justify-center py-6 border-b-2 border-base-100">
-                    <button className="h-10 btn bg-base-100 btn-block hover:bg-base-200">
-                      Overview
+                  <div className="flex flex-col justify-center py-6 space-y-3 border-b-2 border-base-100">
+                    <button
+                      onClick={handleOverviewClick}
+                      className={`h-10 btn-blocked btn  hover:bg-base-200 ${showOverview ? "bg-base-content text-white" : ""}`}
+                    >
+                      Building Details
                     </button>
-                  </div>
-                  <div className="h-full overflow-y-auto ">
-                    <p className="p-2 text-2xl font-semibold">Floors</p>
-                    <div className="grid grid-cols-2 gap-2 ">
-                      {selectedBuilding &&
-                        [
-                          ...Array(
-                            buildingsData.find(
-                              (building: { name: string }) =>
-                                building.name === selectedBuilding
-                            )?.floors || 0
-                          ),
-                        ].map((_, index: number) => (
-                          <button
-                            key={index}
-                            className={`w-full h-10 bg-base-100 btn ${
-                              selectedFloor === `${index + 1}`
-                                ? "bg-base-content text-base-100"
-                                : ""
-                            }`}
-                            onClick={() => clickFloor(`${index + 1}`)}
-                          >
-                            {index + 1}
-                          </button>
-                        ))}
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full h-full shadow-inner bg-base-300 rounded-2xl">
-                  <div className="flex items-center p-6 pl-0">
-                    <div className="w-64 p-6 space-y-2 overflow-y-auto h-96">
-                      {selectedBuilding &&
-                        selectedFloor &&
-                        roomData[selectedBuilding][selectedFloor]?.map(
-                          (room, roomIndex) => (
-                            <div key={roomIndex} className="flex flex-col">
-                              <button
-                                className="btn"
-                                onClick={() => selectRoom(room.name)}
-                              >
-                                {room.name}
-                              </button>
-                            </div>
-                          )
-                        )}
-                    </div>
-                    <div className="w-full p-6 shadow-inner bg-base-200 h-96 rounded-2xl">
-                      <div className="flex flex-col w-full h-full space-y-3">
-                        <div className="collapse collapse-arrow bg-base-100">
-                          <input
-                            type="radio"
-                            name="my-accordion-2"
-                            defaultChecked
-                          />
-                          <div className="text-xl font-medium collapse-title">
-                            Details
-                          </div>
-                          <div className="collapse-content">
-                            {selectedBuilding &&
-                              selectedFloor &&
-                              roomData[selectedBuilding][selectedFloor]
-                                ?.filter((room) => room.name === selectedRoom)
-                                .map((room, roomIndex) => (
-                                  <div key={roomIndex}>
-                                    <ul>
-                                      {room.details.map(
-                                        (detail, detailIndex) => (
-                                          <li key={detailIndex}>{detail}</li>
-                                        )
-                                      )}
-                                    </ul>
-                                  </div>
-                                ))}
-                          </div>
-                        </div>
-                        <div className="collapse collapse-arrow bg-base-100">
-                          <input type="radio" name="my-accordion-2" />
-                          <div className="text-xl font-medium collapse-title">
-                            Text Navigation
-                          </div>
-                          <div className="collapse-content">
-                            {selectedBuilding &&
-                              selectedFloor &&
-                              roomData[selectedBuilding][selectedFloor]
-                                ?.filter((room) => room.name === selectedRoom)
-                                .map((room, roomIndex) => (
-                                  <div key={roomIndex}>
-                                    <ul>
-                                      {room.textGuide.map(
-                                        (guide, guideIndex) => (
-                                          <li key={guideIndex}>{guide}</li>
-                                        )
-                                      )}
-                                    </ul>
-                                  </div>
-                                ))}
-                          </div>
-                        </div>
+                    {/* Conditionally render the "Building Details" button if more than one floor */}
+                    {selectedBuildingData && selectedBuildingData.floors > 1 && (
+                      <>
                         <button
-                          className="btn btn-secondary"
-                          onClick={() => clickAnimation(selectedRoom)}
+                          onClick={handleFloorsClick}
+                          className={`h-10 btn-blocked btn  hover:bg-base-200 ${!showOverview ? "bg-base-content text-white" : ""}`}
                         >
-                          GO TO {selectedRoom}
-                        </button>
+                          Floors
+                        </button></>
+                    )}
+                  </div>
+                  {showOverview ? (
+                    <div className="h-full overflow-y-auto">
+                      <p className="p-2 text-2xl font-semibold">Building Details</p>
+                      <p className="p-2 text-lg">Building Sqm: 6969</p>
+                      <p className="p-2 text-lg">Building Status: 6969</p>
+                      <p className="p-2 text-lg">Building floors: 6969</p>
+                    </div>
+                  ) : (
+                    <div>
+                      {selectedBuildingData && selectedBuildingData.floors > 1 && !showOverview && (
+                        <div className="h-full overflow-y-auto">
+                          <p className="p-2 text-2xl font-semibold">Floors</p>
+                          <div className="grid grid-cols-2 gap-2">
+                            {selectedBuilding &&
+                              Array.from(
+                                { length: selectedBuildingData.floors },
+                                (_, index) => (
+                                  <button
+                                    key={index}
+                                    className={`w-full h-10 bg-base-100 btn ${selectedFloor === `${index + 1}` ? "bg-base-content text-base-100" : "hover:bg-base-200"
+                                      }`}
+                                    onClick={() => clickFloor(`${index + 1}`)}
+                                  >
+                                    {index + 1}
+                                  </button>
+                                )
+                              )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+                {showOverview ? (
+                  <div className="w-full h-full duration-150 ease-in-out shadow-inner bg-base-300 rounded-2xl">
+                    <div className="flex items-center p-6">
+                      <div className="w-full p-6 shadow-inner bg-base-200 h-96 rounded-2xl">
+                        <div className="flex flex-col w-full h-full space-y-3">
+                          <h1>Building Details</h1>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="w-full h-full shadow-inner bg-base-300 rounded-2xl">
+                    <div className="flex items-center p-6 pl-0">
+                      <div className="w-64 p-6 space-y-2 overflow-y-auto h-96">
+                        {selectedBuilding &&
+                          selectedFloor &&
+                          roomData[selectedBuilding][selectedFloor]?.map((room, roomIndex) => (
+                            <div key={roomIndex} className="flex flex-col">
+                              <button className="btn" onClick={() => selectRoom(room.name)}>
+                                {room.name}
+                              </button>
+                            </div>
+                          ))}
+                      </div>
+                      <div className="w-full p-6 shadow-inner bg-base-200 h-96 rounded-2xl">
+                        <div className="relative flex flex-col w-full h-full space-y-3">
+                          <div className="text-base-content">
+
+
+
+                            {selectedBuilding &&
+                              selectedFloor &&
+                              roomData[selectedBuilding][selectedFloor]
+                                ?.filter((room) => room.name === selectedRoom)
+                                .map((room, roomIndex) => (
+                                  <div key={roomIndex}>
+                                    <ul>
+                                      <h1>Room Details</h1>
+                                      {room.details.map((detail, detailIndex) => (
+                                        <li key={detailIndex}>{detail}</li>
+                                      ))}
+                                      <button
+                                        className="absolute bottom-0 right-0 btn btn-secondary btn-block"
+                                        onClick={() => clickAnimation(selectedRoom)}
+                                      >
+                                        GO TO {selectedRoom}
+                                      </button>
+                                    </ul>
+                                  </div>
+                                ))}
+
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </Modal>
         </>
       )}
+
     </>
   );
 };
