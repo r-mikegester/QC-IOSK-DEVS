@@ -134,16 +134,17 @@ const SearchTab: React.FC = () => {
             <>
               <div className="h-screen overflow-hidden">
                 <div className="relative overflow-hidden ">
-                  <div className="px-4 py-10 mx-auto max-w-screen sm:px-6 lg:px-8 sm:py-5">
-                    <div className="text-center mt-[10px]">
+                  <div className="max-h-screen px-4 mx-auto max-w-screen sm:px-6 lg:px-8">
+                    <div className="flex flex-col items-center justify-center w-screen h-screen text-center mt-72">
                       <h1 className="w-screen text-4xl font-bold text-center text-white sm:text-6xl">
                         Search
                       </h1>
-                      <br />
+                      
 
                       <div className="z-50 flex-col items-center justify-center w-screen h-screen ">
-                        <div className="flex items-center justify-center w-screen ">
-                          <div className="w-5/12">
+                        <div className="flex items-start justify-center w-screen space-x-3 ">
+                          <div className="flex flex-col w-5/12 space-y-3 ">
+                          <div className="w-full">
                             <input
                               value={input}
                               placeholder={
@@ -154,19 +155,28 @@ const SearchTab: React.FC = () => {
                               onBlur={handleSearchBarBlur}
                               className="z-50 w-full h-16 p-5 text-black bg-white outline-none rounded-3xl"
                             />
+                          </div>  
+                          
+                        <div className="w-full">
+                          <div className="w-auto h-auto ">
+                            <KeyboardWrapper
+                              keyboardRef={keyboard}
+                              onChange={setInput}
+                            />
                           </div>
                         </div>
-                        {input && (
-                          <div className="flex items-center justify-center w-screen py-2 -mt-7 ">
-                            <div className="w-5/12 h-auto bg-white  rounded-b-3xl">
+                          </div>
+                          {input && (
+                          <div className="w-96">
+                            <div className="h-auto p-3 bg-white w-96 rounded-3xl">
                               {suggestions.length > 0 ? (
-                                <div className="w-full h-56 py-6 overflow-auto">
+                                <div className="w-full py-6 overflow-auto h-96">
                                   <h1 className="text-black">Result:</h1>
-                                  <ul>
+                                  <ul className="px-1 space-y-1">
                                     {suggestions.map((room, index) => (
-                                      <li key={index}>
+                                      <li key={index} className="space-">
                                         <button
-                                          className="btn btn-secondary w-auto m-1"
+                                          className=" btn btn-block btn-secondary"
                                           onClick={() =>
                                             handleRoomButtonClick(
                                               room.name,
@@ -200,13 +210,6 @@ const SearchTab: React.FC = () => {
                             </div>
                           </div>
                         )}
-                        <div className="sticky flex items-center justify-center w-screen bottom-10 ">
-                          <div className="w-5/12 h-auto mt-56  ">
-                            <KeyboardWrapper
-                              keyboardRef={keyboard}
-                              onChange={setInput}
-                            />
-                          </div>
                         </div>
                       </div>
                     </div>
