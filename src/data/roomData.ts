@@ -22,6 +22,20 @@ export const roomData: Record<
     }[]
   >
 > = {
+  "Bautista Building": {
+    "1": [
+      {
+        buildingName: "Bautista Building",
+        floorNumber: "1st",
+        name: "IK101a",
+        officeName: "-",
+        modelPath: "",
+        voice: "",
+        details: ["Room Info 1", "Room Info 2"],
+        textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
+      },
+    ],
+  },
   "Academic Building": {
     "3": [
       {

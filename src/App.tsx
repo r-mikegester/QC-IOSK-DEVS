@@ -57,6 +57,7 @@ import CreateManual from "./components/admin/management/mikeComponent/createManu
 import UpdateManual from "./components/admin/management/mikeComponent/updateManual";
 import { Suspense } from "react";
 import Loading from "./components/loading";
+import UpdateRoom from "./components/admin/management/roomComponent/updateRoom";
 setupIonicReact();
 interface ContainerProps {
   name: string;
@@ -172,6 +173,10 @@ const App: React.FC<ContainerProps> = ({ name }) => (
 
         <Route exact path="/updateManual/:manualId">
           <UpdateManual name={"Update Manual"} />
+        </Route>
+
+        <Route path="/updateRoom/:roomName">
+          <UpdateRoom />
         </Route>
 
         {/* sheeesh */}
