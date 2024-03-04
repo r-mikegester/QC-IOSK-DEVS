@@ -198,7 +198,7 @@ const SearchTab: React.FC = () => {
                                   </ul>
                                 </div>
                               ) : (
-                                <div className="w-full h-56 py-6 overflow-auto">
+                                <div className="w-full h-96 py-6 overflow-auto">
                                   <h1 className="text-black">
                                     No rooms found.
                                   </h1>
