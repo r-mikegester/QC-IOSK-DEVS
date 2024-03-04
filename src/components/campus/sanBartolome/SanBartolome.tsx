@@ -30,7 +30,6 @@ import {
 } from "firebase/firestore";
 import firebaseConfig, { db } from "../../utils/firebase";
 import { initializeApp } from "firebase/app";
-import { useHistory } from "react-router";
 import Animation from "./animation/Animation";
 import IB101 from "../../../assets/animation/yellow/101a.glb";
 import IB102 from "../../../assets/animation/yellow/102.glb";
@@ -162,11 +161,6 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
     // Add more buildings as needed
   ];
 
-  const clickSB = () => {
-    setIsAnimationActive(false);
-    setShowModal(false);
-    return;
-  };
 
   const handleOverviewClick = () => {
     setShowOverview(true); // Toggle the showOverview state
@@ -193,12 +187,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
             selectedFloor={selectedFloor}
             selectedRoom={selectedRoom}
           />
-          <button
-            onClick={clickSB}
-            className="absolute z-10 mt-10 btn btn-secondary ml-60"
-          >
-            Back
-          </button>
+         
         </>
       ) : (
         <>
