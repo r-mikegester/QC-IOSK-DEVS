@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import Clouds from "../Clouds";
+import { Icon } from "@iconify/react";
 import {
   Bounds,
   CameraControls,
@@ -13,7 +14,7 @@ import animation from "../../../../assets/animation/yellow/animation.glb";
 import * as THREE from "three";
 import { useHistory } from "react-router";
 import ModelViewer from "../ModelViewer";
-import openGrounds from "../../../../assets/models/others/sb_floor_final2.glb";
+import openGrounds from "../../../../assets/models/others/sb_floor_final_joined.glb";
 import techvoc from "../../../../assets/models/sb_buildings/techvoc_final.glb";
 import multipurpose from "../../../../assets/models/sb_buildings/multipurpose_final.glb";
 import chineseB from "../../../../assets/models/sb_buildings/chineseb_final.glb";
@@ -151,46 +152,74 @@ const Animation: React.FC<ContainerProps> = ({
 
   return (
     <>
-      <h1 className="absolute z-10 mt-10  ml-96">{roomName}</h1>
-      <button
-        onClick={handleCameraSwitch}
-        className="absolute z-10 mt-10 ml-20 btn btn-secondary"
-      >
-        Switch Camera
-      </button>
       {/* <button
         onClick={handlePathSwitch}
         className="absolute z-10 mt-32 ml-20 btn btn-secondary"
       >
         {currentPath === modelPath ? "Short Path" : "Model Path"}
       </button> */}
-      <div className="absolute z-10 ml-20 collapse bg-base-200 mt-28">
-        <input type="checkbox" />
-        <div className="text-xl font-medium collapse-title">
-          Click to show directions
-        </div>
-        <div className="collapse-content">
-          {selectedBuilding &&
-            selectedFloor &&
-            selectedRoom &&
-            roomData[selectedBuilding][selectedFloor]?.map(
-              (room, roomIndex) => {
-                if (room.name === selectedRoom) {
-                  return (
-                    <div key={roomIndex}>
-                      <ul className="steps steps-vertical">
-                        {room.textGuide.map((guide, guideIndex) => (
-                          <li key={guideIndex} className="step step-primary">
-                            {guide}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  );
-                }
-                return null;
-              }
-            )}
+      <div className="fixed z-20 w-full h-auto bottom-2 ">
+        <div className="flex items-start justify-center space-x-3">
+          <div
+            tabIndex={0}
+            className="z-30 border-collapse collapse collapse-arrow bg-base-200 text-base-content w-96"
+          >
+            <input type="checkbox" />
+            <div className="flex items-center justify-between collapse-title">
+              <p className="text-xl font-bold">Room: {roomName}</p>
+            </div>
+            <div className="collapse-content">
+              {selectedBuilding &&
+                selectedFloor &&
+                selectedRoom &&
+                roomData[selectedBuilding][selectedFloor]?.map(
+                  (room, roomIndex) => {
+                    if (room.name === selectedRoom) {
+                      return (
+                        <div key={roomIndex}>
+                          <ul className="steps steps-vertical">
+                            {room.textGuide.map((guide, guideIndex) => (
+                              <li
+                                key={guideIndex}
+                                className="step step-primary"
+                              >
+                                {guide}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      );
+                    }
+                    return null;
+                  }
+                )}
+            </div>
+          </div>
+          <button
+            onClick={handleCameraSwitch}
+            className="btn-square rounded-2xl btn mt-1.5 btn-accent"
+          >
+            <Icon
+              icon="icon-park-outline:flip-camera"
+              className="w-10 h-10 text-base-content"
+            />
+          </button>
+          <div className="chat chat-end">
+            <div className="chat-image avatar">
+              <div className="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS chat bubble component"
+                  src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                />
+              </div>
+            </div>
+            <div className="chat-header">
+              Anakin
+              <time className="text-xs opacity-50">12:46</time>
+            </div>
+            <div className="chat-bubble">I hate you!</div>
+            <div className="opacity-50 chat-footer">Seen at 12:46</div>
+          </div>
         </div>
       </div>
       <Canvas

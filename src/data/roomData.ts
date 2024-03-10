@@ -5,6 +5,11 @@ import IB101Voice from "../assets/audio/voice101a.mp3";
 
 import IL401a from "../assets/animation/academic/Academic-IL401a.glb";
 import IL301a from "../assets/animation/academic/Acad - IL301.glb";
+import admin from "../assets/animation/admin.glb";
+import belmonte from "../assets/animation/belmonte.glb";
+import multicasting from "../assets/animation/multicasting.glb";
+import techvoc from "../assets/animation/techvoc.glb";
+import yellow from "../assets/animation/yellow.glb";
 
 export const roomData: Record<
   string,
@@ -16,6 +21,7 @@ export const roomData: Record<
       officeName?: string;
       name: string;
       modelPath: string;
+
       voice: string;
       details: string[];
       textGuide: string[];
@@ -139,7 +145,7 @@ export const roomData: Record<
         buildingName: "Simon Building",
         floorNumber: "1st",
         name: "IB101a",
-        modelPath: IB101,
+        modelPath: yellow,
         voice: IB101Voice,
         details: ["Room Info 1", "Room Info 2"],
         textGuide: [
@@ -175,6 +181,58 @@ export const roomData: Record<
         floorNumber: "2nd",
         name: "IB201f",
         modelPath: "",
+        voice: "",
+        details: ["Room Info 1", "Room Info 2"],
+        textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
+      },
+    ],
+  },
+  "Admin Building": {
+    "1": [
+      {
+        buildingName: "Admin Building",
+        floorNumber: "1st",
+        name: "Open Lobby",
+        modelPath: admin,
+        voice: "",
+        details: ["Room Info 1", "Room Info 2"],
+        textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
+      },
+    ],
+  },
+  "Belmonte Building": {
+    "1": [
+      {
+        buildingName: "Belmonte Building",
+        floorNumber: "1st",
+        name: "IC101a",
+        modelPath: belmonte,
+        voice: "",
+        details: ["Room Info 1", "Room Info 2"],
+        textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
+      },
+    ],
+  },
+  "Techvoc Building": {
+    "1": [
+      {
+        buildingName: "Techvoc Building",
+        floorNumber: "1st",
+        name: "TVGYM",
+        modelPath: techvoc,
+        voice: "",
+        details: ["Room Info 1", "Room Info 2"],
+        textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
+      },
+    ],
+  },
+  "Ched Building": {
+    "1": [
+      {
+        buildingName: "Ched Building",
+        floorNumber: "1st",
+        name: "ID101",
+        modelPath: multicasting,
         voice: "",
         details: ["Room Info 1", "Room Info 2"],
         textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
