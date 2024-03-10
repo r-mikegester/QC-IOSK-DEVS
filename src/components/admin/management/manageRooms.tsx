@@ -14,12 +14,15 @@ interface ContainerProps {
 interface Building {
   id: string;
   buildingName: string;
+  roomName: string;
+  textGuide: string[];
 }
 
 interface Room {
   id: string;
   roomName: string;
   buildingName: string;
+  textGuide: string[];
 }
 
 const RoomManagement: React.FC<ContainerProps> = ({ name }) => {
@@ -56,25 +59,43 @@ const RoomManagement: React.FC<ContainerProps> = ({ name }) => {
 
   const fetchRooms = async (buildingName: string) => {
     try {
-      const roomsCollection = collection(db, "roomData");
+      const buildingsCollection = collection(db, "buildings");
       const q = query(
-        roomsCollection,
-        where("buildingName", "==", buildingName) // Filter rooms based on selected building
+        buildingsCollection,
+        where("buildingName", "==", buildingName)
       );
 
       const querySnapshot = await getDocs(q);
-      const roomsData = querySnapshot.docs.map((doc) => {
-        const data = doc.data();
-        const room: Room = {
-          id: doc.id,
-          roomName: data.roomName,
-          buildingName: data.buildingName,
-          // Add other room properties here as needed
-        };
-        return room;
-      });
-      setRooms(roomsData);
-      setLoading(false);
+      const buildingDoc = querySnapshot.docs[0]; // Assuming there's only one document per building name
+      const buildingData = buildingDoc.data();
+      const floors = buildingData.floors;
+
+      // Check if floors is a map
+      if (typeof floors === "object" && floors !== null) {
+        // Iterate over each floor
+        const roomsData: Room[] = [];
+        Object.values(floors).forEach((floor: any) => {
+          // Check if floor is a map and contains rooms
+          if (typeof floor === "object" && floor !== null) {
+            Object.values(floor).forEach((room: any) => {
+              // Assuming each room has a "roomName" and a "textGuide" field
+              roomsData.push({
+                id: room.id, // Assuming you have an id field for each room
+                roomName: room.roomName,
+                buildingName: buildingName,
+                textGuide: room.textGuide || [], // Ensure textGuide is an array, default to empty array
+              });
+            });
+          }
+        });
+
+        setRooms(roomsData);
+        setLoading(false);
+      } else {
+        // Handle if floors is not an object or null
+        console.error("Floors data is not in the expected format");
+        setLoading(false);
+      }
     } catch (error) {
       console.error("Error fetching rooms: ", error);
       setLoading(false);
@@ -146,8 +167,8 @@ const RoomManagement: React.FC<ContainerProps> = ({ name }) => {
                   <table className="table">
                     <thead>
                       <tr>
-                        <th>Building Name</th>
-
+                        <th>Room Name</th>
+                        <th>Text Guide</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -167,9 +188,10 @@ const RoomManagement: React.FC<ContainerProps> = ({ name }) => {
                       </tbody>
                     ) : (
                       <tbody>
-                        {rooms.map((room) => (
-                          <tr key={room.id}>
-                            <th>{room.roomName}</th>
+                        {rooms.map((building) => (
+                          <tr key={building.id}>
+                            <th>{building.roomName}</th>
+                            <td>{building.textGuide}</td>
 
                             <td>
                               <div className="flex items-center space-x-3">

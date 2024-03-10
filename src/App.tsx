@@ -12,7 +12,7 @@ import Batasan from "./components/campus/batasan/Batasan";
 /* Main Routing */
 
 import Map from "../src/pages/maps";
-import Home from "./pages/Home";
+import Home from "./pages/layout";
 import SearchTab from "./pages/Search";
 import Layout from "../src/pages/layout";
 
@@ -56,7 +56,7 @@ import ManageManual from "./components/admin/management/manualInlineKioskEditor"
 import CreateManual from "./components/admin/management/mikeComponent/createManual";
 import UpdateManual from "./components/admin/management/mikeComponent/updateManual";
 import { Suspense } from "react";
-import Loading from "./components/loading";
+import Loading from "../src/pages/loading";
 import UpdateRoom from "./components/admin/management/roomComponent/updateRoom";
 setupIonicReact();
 interface ContainerProps {
@@ -85,9 +85,9 @@ const App: React.FC<ContainerProps> = ({ name }) => (
           <Redirect to="/Home" />
         </Route>
 
-        <Route path="/Home">
+        {/* <Route path="/Home">
           <Home name={"Home"} />
-        </Route>
+        </Route> */}
 
         <Route exact path="/Map">
           <Map name={"Map"} />
