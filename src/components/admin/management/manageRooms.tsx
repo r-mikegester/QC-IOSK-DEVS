@@ -14,15 +14,15 @@ interface ContainerProps {
 interface Building {
   id: string;
   buildingName: string;
-  roomName: string;
-  textGuide: string[];
 }
 
 interface Room {
   id: string;
-  roomName: string;
   buildingName: string;
+  roomCode: string;
+  description: string;
   textGuide: string[];
+  squareMeter: number;
 }
 
 const RoomManagement: React.FC<ContainerProps> = ({ name }) => {
@@ -57,11 +57,19 @@ const RoomManagement: React.FC<ContainerProps> = ({ name }) => {
     fetchBuildings();
   }, []);
 
+  useEffect(() => {
+    // Fetch rooms when buildings data is loaded or when the component mounts
+    if (buildings.length > 0) {
+      const selectedBuildingName = buildings[selectedTab].buildingName;
+      fetchRooms(selectedBuildingName);
+    }
+  }, [buildings, selectedTab]);
+
   const fetchRooms = async (buildingName: string) => {
     try {
       const buildingsCollection = collection(db, "buildings");
       const q = query(
-        buildingsCollection,
+        buildingsCollection,      
         where("buildingName", "==", buildingName)
       );
 
@@ -81,8 +89,10 @@ const RoomManagement: React.FC<ContainerProps> = ({ name }) => {
               // Assuming each room has a "roomName" and a "textGuide" field
               roomsData.push({
                 id: room.id, // Assuming you have an id field for each room
-                roomName: room.roomName,
-                buildingName: buildingName,
+                roomCode: room.roomCode,
+                squareMeter: room.squareMeter,
+                description: room.description,
+                buildingName: room.buildingName,
                 textGuide: room.textGuide || [], // Ensure textGuide is an array, default to empty array
               });
             });
@@ -104,8 +114,6 @@ const RoomManagement: React.FC<ContainerProps> = ({ name }) => {
 
   const handleTabChange = (index: number) => {
     setSelectedTab(index);
-    const selectedBuildingName = buildings[index].buildingName;
-    fetchRooms(selectedBuildingName);
   };
 
   return (
@@ -167,7 +175,9 @@ const RoomManagement: React.FC<ContainerProps> = ({ name }) => {
                   <table className="table">
                     <thead>
                       <tr>
-                        <th>Room Name</th>
+                        <th>Room Code</th>
+                        <th>No. of m^2</th>
+                        <th>Description</th>
                         <th>Text Guide</th>
                         <th>Action</th>
                       </tr>
@@ -188,10 +198,12 @@ const RoomManagement: React.FC<ContainerProps> = ({ name }) => {
                       </tbody>
                     ) : (
                       <tbody>
-                        {rooms.map((building) => (
-                          <tr key={building.id}>
-                            <th>{building.roomName}</th>
-                            <td>{building.textGuide}</td>
+                        {rooms.map((room) => (
+                          <tr key={room.id}>
+                            <th>{room.roomCode}</th>
+                            <th>{room.squareMeter}</th>
+                            <th>{room.description}</th>
+                            <td>{room.textGuide}</td>
 
                             <td>
                               <div className="flex items-center space-x-3">
