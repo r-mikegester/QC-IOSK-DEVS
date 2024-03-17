@@ -1,22 +1,16 @@
 import { IonContent, IonPage } from "@ionic/react";
-import SanBartolome from "../components/campus/sanBartolome/SanBartolome";
-import Dock from "../components/navigation/dock";
+import React, { useState, useRef, useEffect, Suspense, lazy } from "react";
+// import SanBartolome from '../components/campus/sanBartolome/SanBartolome';
+const SanBartolome = lazy(() => import("../components/campus/sanBartolome/SanBartolome"))
 import { Icon } from "@iconify/react";
-import Location from "../components/widgets/location/Location";
 import { themeChange } from "theme-change";
-import React, { useState, useRef, useEffect, Suspense } from "react";
-import Backbtn from "../components/navigation/Backbtn";
-import { useHistory } from "react-router-dom";
-import Widgets from "../components/widgets/clock/clock";
-import VideoTourModal from "../components/modals/VideoTourModal";
 import WidgetPanel from "../components/widgets/widgetPanel";
 import Sidebar from "../components/sidebar/sidebarLayout";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import swipe from "../assets/imgs/gifs/swipe.gif";
-import { manual } from "../data/manualData";
+
 import Loading from './loading';
-import {FpsView} from "react-fps";
+import { FpsView } from "react-fps";
 interface ContainerProps {
   name: string;
   buildingName: string;
@@ -30,20 +24,21 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
   const customId = "custom-id-yes";
   const notify = () =>
     toast("Wow so easy!", {
-      position: toast.POSITION.BOTTOM_RIGHT,
-      className: "foo-bar bg-base-100 text-base-content rounded-2xl",
+      className: "foo-bar bg-base-100 absolute bottom-20 text-base-content rounded-2xl",
       theme: "dark",
       toastId: customId,
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
     });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-
-  const history = useHistory();
-
-  const handleStart = () => {
-    // Redirect to the "/Map" route
-    history.push("/Home");
-  };
   const contentRef = useRef<HTMLIonContentElement>(null);
 
 
@@ -51,15 +46,16 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
     const defaultIcon = "eos-icons:three-dots-loading";
 
     return
-    <Loading name={""} />
+    // <Loading name={""} />
   }
 
   return (
     <IonPage>
       <IonContent fullscreen>
-        <div className="absolute z-50 bottom-8 right-80 ">
+        
+        <div className="absolute z-50 bottom-40 right-80 ">
           <div className="">
-            <ToastContainer />
+            <ToastContainer stacked/>
           </div>
         </div>
         <div className="absolute top-0 left-0 z-50 ">
@@ -69,7 +65,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
           <WidgetPanel name={""} />
         </div>
         <Suspense fallback={<Loading name={""} />}>
-          <div className="bg-transparent cursor-move">
+          <div className="bg-transparent cursor-grab">
             <SanBartolome name={"SanBartolome"} />
           </div>
         </Suspense>
