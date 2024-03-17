@@ -1,11 +1,12 @@
 /*Imported Dependencies */
-import { IonReactRouter } from "@ionic/react-router";
-import { Redirect, Route } from "react-router-dom";
 
+import { Redirect, Route } from 'react-router-dom';
+
+import { IonReactRouter } from "@ionic/react-router";
 /* Map*/
 import SanBartolome from "./components/campus/sanBartolome/SanBartolome";
-import SanFransisco from "./components/campus/sanFrancisco/SanFransisco";
-import Batasan from "./components/campus/batasan/Batasan";
+// import SanFrancisco from "./components/campus/sanFrancisco/SanFransisco";
+// import Batasan from "./components/campus/batasan/Batasan";
 
 /** Error Catching */
 
@@ -80,7 +81,7 @@ const App: React.FC<ContainerProps> = ({ name }) => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/">
+        <Route  path="/">
           <Redirect to="/Home" />
         </Route>
 
@@ -88,89 +89,89 @@ const App: React.FC<ContainerProps> = ({ name }) => (
           <Home name={"Home"} buildingName={""} />
         </Route>
 
-        <Route exact path="/Map">
+        <Route  path="/Map">
           <Map name={"Map"} />
         </Route>
 
-        <Route exact path="/SanBartolome">
+        <Route  path="/SanBartolome">
           <Layout name={"Layout"} buildingName={""} />
         </Route>
 
-        <Route exact path="/SanFransisco">
-          <SanFransisco name={"SanFransisco"} />
-        </Route>
-
-        <Route exact path="/Batasan">
+        {/* <Route  path="/SanFrancisco">
+          <SanFrancisco name={"SanFrancisco"} />
+        </Route> */}
+{/* 
+        <Route  path="/Batasan">
           <Batasan name={"Batasan"} />
-        </Route>
+        </Route> */}
 
-        <Route exact path="/Search">
+        <Route  path="/Search">
           <SearchTab />
         </Route>
 
-        <Route exact path="/Login">
+        <Route  path="/Login">
           <Login name={"Login"} />
         </Route>
 
-        <Route exact path="/Signup">
+        <Route  path="/Signup">
           <Signup name={"Signup"} />
         </Route>
 
         {/* ADMIN ROUTES */}
 
-        <Route exact path="/Dashboard">
+        <Route  path="/Dashboard">
           <Dashboard name={"Dashboard"} />
         </Route>
 
-        <Route exact path="/Announcements">
+        <Route  path="/Announcements">
           <ManageAnnouncements name={"Annoucements"} />
         </Route>
 
-        <Route exact path="/Rooms">
+        <Route  path="/Rooms">
           <RoomManagement name={"Room Management"} />
         </Route>
 
-        <Route exact path="/Buildings">
+        <Route  path="/Buildings">
           <BuildingManagement name={"Building Management"} />
         </Route>
 
-        <Route exact path="/Settings">
+        <Route  path="/Settings">
           <AdminSettings name={"Settings"} />
         </Route>
 
-        <Route exact path="/Events">
+        <Route  path="/Events">
           <EventManagement name={"Event Management"} />
         </Route>
 
-        <Route exact path="/createEvent">
+        <Route  path="/createEvent">
           <CreateEvent name={"Create Events"} />
         </Route>
 
-        <Route exact path="/updateEvent/:eventId">
+        <Route  path="/updateEvent/:eventId">
           <UpdateEvent name={"Update Events"} />
         </Route>
 
-        <Route exact path="/createAnnouncement">
+        <Route  path="/createAnnouncement">
           <CreateAnnouncement name={"Create Announcements"} />
         </Route>
 
-        <Route exact path="/updateAnnouncement/:announcementId">
+        <Route  path="/updateAnnouncement/:announcementId">
           <UpdateAnnouncement name={"Update Announcements"} />
         </Route>
 
-        <Route exact path="/Archive">
+        <Route  path="/Archive">
           <Archive name={"Archive"} />
         </Route>
 
-        <Route exact path="/Mike">
+        <Route  path="/Mike">
           <ManageManual name={"Mike"} />
         </Route>
 
-        <Route exact path="/createManual">
+        <Route  path="/createManual">
           <CreateManual name={"Create Manual"} />
         </Route>
 
-        <Route exact path="/updateManual/:manualId">
+        <Route  path="/updateManual/:manualId">
           <UpdateManual name={"Update Manual"} />
         </Route>
 
