@@ -76,6 +76,19 @@ const AdminSideBar: React.FC<ContainerProps> = ({ name }) => {
           <li>
             <NavLink
               className="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm  rounded-lg hover:bg-base-100 text-base-content dark:focus:outline-none"
+              to="/SBMapScene"
+            >
+              <Icon
+                icon="material-symbols:room-preferences-outline-rounded"
+                className="w-7 h-7"
+              />
+              3D Map
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+              className="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm  rounded-lg hover:bg-base-100 text-base-content dark:focus:outline-none"
               to="/Rooms"
             >
               <Icon
@@ -140,7 +153,6 @@ const AdminSideBar: React.FC<ContainerProps> = ({ name }) => {
               Archive
             </NavLink>
           </li>
-          
 
           <li>
             <NavLink
@@ -151,7 +163,6 @@ const AdminSideBar: React.FC<ContainerProps> = ({ name }) => {
               Settings
             </NavLink>
           </li>
-
         </ul>
         <div className="flex flex-col">
           <li className="flex flex-col pb-5">

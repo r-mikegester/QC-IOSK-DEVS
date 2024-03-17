@@ -34,6 +34,11 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
     history.push("/SanBartolome");
   };
 
+  const ClickBT = () => {
+    // Redirect to the "/Map" route
+    history.push("/Batasan");
+  };
+
   return (
     <IonPage>
       <IonContent fullscreen className="bg-sc">
@@ -60,7 +65,10 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
                 <span className="indicator-item indicator-middle indicator-center badge badge-secondary">
                   Coming soon...
                 </span>
-                <div className="flex flex-col items-center p-4">
+                <div
+                  className="flex flex-col items-center p-4"
+                  onClick={ClickBT}
+                >
                   <img
                     src={b}
                     className="h-64 duration-150 cursor-pointer w-96 rounded-2xl hover:scale-110"
@@ -129,7 +137,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
             </div>
           </section>
           {/* <Dock name={""} /> */}
-          <SideBar/>
+          <SideBar />
         </main>
       </IonContent>
     </IonPage>
