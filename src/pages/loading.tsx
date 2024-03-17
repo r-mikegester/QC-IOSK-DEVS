@@ -9,7 +9,7 @@ interface ContainerProps {
 const Loading: React.FC<ContainerProps> = ({ name }) => {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const messages = ["Loading...", "Please wait...", "Almost there...", "Hang tight...", "Getting things ready...", "Rendering Chunks...", "Technoblade Never Die...", "Little Root Town <3..."];
+  const messages = ["Loading...", "Please wait...", "Almost there...", "Hang tight...", "Getting things ready...", "Rendering Chunks..."];
 
   // Create a state to keep track of the index of the current message
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
