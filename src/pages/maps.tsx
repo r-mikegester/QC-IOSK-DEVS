@@ -4,7 +4,7 @@ import "../assets/css/Campuses.css";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import SanBartolome from "../components/campus/sanBartolome/SanBartolome";
-import SanFransisco from "../components/campus/sanFrancisco/SanFransisco";
+import SanFransisco from "../components/campus/sanFrancisco/SanFrancisco";
 import { Icon } from "@iconify/react";
 import Dock from "../components/navigation/dock";
 import sample from "../assets/imgs/selectCampus/sample.png";
