@@ -17,14 +17,14 @@ const ChangeLanguage: React.FC<ContainerProps> = ({ name }) => {
   const [borderStyles, setBorderStyles] = useState<Record<string, string>>({
     en: "",
     tg: "",
-    fr: "",
-    bsy: "",
-    jpn: "",
-    vn: "",
-    cmd: "",
-    kr: "",
-    gmy: "",
-    thai: "",
+    // fr: "",
+    // bsy: "",
+    // jpn: "",
+    // vn: "",
+    // cmd: "",
+    // kr: "",
+    // gmy: "",
+    // thai: "",
     // Add other languages and their initial border styles here
   });
 
@@ -36,24 +36,24 @@ const ChangeLanguage: React.FC<ContainerProps> = ({ name }) => {
     setSelectedLanguage(language);
     i18n.changeLanguage(language);
 
-    
+
     const clearWaitingQueue = () => {
       // Easy, right 😎
       toast.clearWaitingQueue();
     }
-    
+
     // Display a toast message when the language is changed
     toast.success(`Selected language: ${language}`, {
-      position: toast.POSITION.BOTTOM_RIGHT,
+      position: "bottom-right",
       className: " bg-base-100 text-base-content font-bold rounded-2xl",
       theme: "dark",
       autoClose: 1000,
       icon: <Icon icon="line-md:clipboard-check" className="w-10 h-10 text-xl" />,
       progressClassName: "bg-accent rounded-full mx-3 mb-1 w-72", // 3000 milliseconds = 3 seconds
-    
+
     });
 
-    
+
     // Additional logic can be added here if needed upon language change
     // Update border styles based on the selected language
     const updatedBorderStyles: Record<string, string> = {};
@@ -76,32 +76,36 @@ const ChangeLanguage: React.FC<ContainerProps> = ({ name }) => {
           {t("ChooseYourPreferredLanguage")}
         </p>
       </div>
-      <div className="w-full h-auto p-4 space-y-2 rounded-2xl">
-        <button
-          className={`btn w-full h-16 text-xl hover:bg-gradient-to-tr hover:from-base-300 bg-gradient-to-tr from-base-200 to-base-300 justify-between border-2 border-transparent ${borderStyles["en"]}`}
-          onClick={(e) => handleLanguageChange(e, "en")}
-        >
-          English <div className="badge badge-lg">{t("Default")}</div>
-          <div className="">
-            <Icon
-              icon="emojione-v1:flag-for-united-states"
-              className="w-14 h-14"
-            />
-          </div>
-        </button>
-        <button
-          className={`btn w-full h-16 text-xl bg-gradient-to-tr from-base-200 to-base-300 hover:bg-gradient-to-tr hover:from-base-300 justify-between border-2 border-transparent ${borderStyles["tg"]}`}
-          onClick={(e) => handleLanguageChange(e, "tg")}
-        >
-          Filipino{" "}
-          <div className="">
-            <Icon
-              icon="emojione-v1:flag-for-philippines"
-              className="w-14 h-14"
-            />
-          </div>
-        </button>
-        <button
+      <div className="w-full h-auto p-4 space-y-2 rounded-2xl flex flex-col justify-around">
+        <div>
+          <button
+            className={`btn w-full h-16 text-xl hover:bg-gradient-to-tr hover:from-base-300 bg-gradient-to-tr from-base-200 to-base-300 justify-between border-2 border-transparent ${borderStyles["en"]}`}
+            onClick={(e) => handleLanguageChange(e, "en")}
+          >
+            English <div className="badge badge-lg">{t("Default")}</div>
+            <div className="">
+              <Icon
+                icon="emojione-v1:flag-for-united-states"
+                className="w-14 h-14"
+              />
+            </div>
+          </button>
+        </div>
+        <div>
+          <button
+            className={`btn w-full h-16 text-xl bg-gradient-to-tr from-base-200 to-base-300 hover:bg-gradient-to-tr hover:from-base-300 justify-between border-2 border-transparent ${borderStyles["tg"]}`}
+            onClick={(e) => handleLanguageChange(e, "tg")}
+          >
+            Filipino{" "}
+            <div className="">
+              <Icon
+                icon="emojione-v1:flag-for-philippines"
+                className="w-14 h-14"
+              />
+            </div>
+          </button>
+        </div>
+        {/* <button
           className={`btn w-full h-16 text-xl hover:bg-gradient-to-tr hover:from-base-300 bg-gradient-to-tr from-base-200 to-base-300 justify-between border-2 border-transparent ${borderStyles["kr"]}`}
           onClick={(e) => handleLanguageChange(e, "kr")}
         >
@@ -184,8 +188,11 @@ const ChangeLanguage: React.FC<ContainerProps> = ({ name }) => {
               />
             </div>
           </button>
+        </div> */}
+        <div className=" w-auto flex justify-center items-center">
+          <p className="badge badge-lg">more languages will be supported soon.</p>
         </div>
-       
+
       </div>
     </div>
   );
