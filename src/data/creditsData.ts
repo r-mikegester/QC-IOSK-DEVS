@@ -67,12 +67,12 @@ export const credits = {
   ],
   programmers: [
     {
-      name: 'John Michael Go',
-      position: 'Team Manager / Back End Developer',
+      name: 'Go, John Michael D.',
+      position: 'Lead Programmer / Back-End Developer',
     },
     {
-      name: 'Mike Gester Sabuga',
-      position: 'Lead Programmer / Pull Stack Developer',
+      name: 'Sabuga, Mike Gester',
+      position: 'Assistant Programmer / Front-End Developer',
     },
 
     {
@@ -80,11 +80,11 @@ export const credits = {
       position: 'Augmented Reality Developer',
     },
     {
-      name: 'David Felicidario',
+      name: 'Felicidario, David Lian G.',
       position: 'programmer / 3d modeler',
     },
     {
-      name: 'Bulilan, Christian',
+      name: 'Bulilan, Christian G.',
       position: 'programmer / 3d modeler',
     },
     // Add more programmer entries here
@@ -132,6 +132,11 @@ export const credits = {
     {
       name: 'Niki',
       position: 'Deutsch Translation',
+
+    },
+    {
+      name: 'Sabuga, Mike Gester',
+      position: 'Other Translations',
 
     },
   ],
