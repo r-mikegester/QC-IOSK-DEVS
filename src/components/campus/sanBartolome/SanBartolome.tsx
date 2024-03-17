@@ -16,7 +16,7 @@ import bautista from "../../../assets/models/sb_buildings/bautista_final.glb";
 import belmonte from "../../../assets/models/sb_buildings/belmonte_final.glb";
 import academic from "../../../assets/models/sb_buildings/academic_final.glb";
 import ballroom from "../../../assets/models/sb_buildings/ballroom_final.glb";
-import urbanFarming from "../../../assets/models/sb_buildings/urbanfarming_final.glb";
+import urbanFarming from "../../../assets/models/sb_buildings/urbanFarming_final.glb";
 import korPhil from "../../../assets/models/sb_buildings/korPhil_final.glb";
 import landscape from "../../../assets/models/others/landscape.glb";
 import Modal from "react-modal";
@@ -375,7 +375,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                       onClick={handleOverviewClick}
                       className={`h-10 btn-blocked btn  hover:bg-base-200 ${showOverview ? "bg-base-content text-white" : ""}`}
                     >
-                      Building Details
+                      Building Information
                     </button>
                     {/* Conditionally render the "Building Details" button if more than one floor */}
                     {selectedBuildingData && selectedBuildingData.floors > 1 && (
@@ -390,7 +390,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                   </div>
                   {showOverview ? (
                     <div className="h-full overflow-y-auto">
-                      <p className="p-2 text-2xl font-semibold">Building Details</p>
+                      <p className="p-2 text-2xl font-semibold">Quick Specs</p>
                       <p className="p-2 text-lg">Building Sqm: 6969</p>
                       <p className="p-2 text-lg">Building Status: 6969</p>
                       <p className="p-2 text-lg">Building floors: 6969</p>
@@ -407,7 +407,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                                 (_, index) => (
                                   <button
                                     key={index}
-                                    className={`w-full h-10 bg-base-100 btn ${selectedFloor === `${index + 1}` ? "bg-base-content text-base-100" : "hover:bg-base-200"
+                                    className={`w-full h-10 bg-bsase-100 btn ${selectedFloor === `${index + 1}` ? "bg-base-content text-base-100" : "hover:bg-base-200"
                                       }`}
                                     onClick={() => clickFloor(`${index + 1}`)}
                                   >
