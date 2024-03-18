@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import AdminSideBar from "../constant/adminSidebar";
 import AdminHeader from "../constant/adminHeader";
 import { IonPage, IonContent } from "@ionic/react";
@@ -16,6 +16,11 @@ import { useHistory } from "react-router";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
 import { Icon } from "@iconify/react";
+import {
+  MaterialReactTable,
+  useMaterialReactTable,
+  type MRT_ColumnDef,
+} from "material-react-table";
 
 interface ContainerProps {
   name: string;
@@ -27,7 +32,7 @@ interface Event {
   eventSource: string;
   eventDesc: string;
   eventPlace: string;
-  imageUrl: string;
+  imageUrl: string; // Change type from Blob to string
   startDate: string;
   startTime: string;
 }
@@ -41,6 +46,37 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
   const [deleteAllConfirmation, setDeleteAllConfirmation] =
     useState<boolean>(false);
 
+  const columns = useMemo<MRT_ColumnDef<Event>[]>(
+    () => [
+      { accessorKey: "name", header: "Event Name", size: 150 },
+      { accessorKey: "eventSource", header: "Event Source", size: 150 },
+      { accessorKey: "eventDesc", header: "Event Description", size: 200 },
+      { accessorKey: "eventPlace", header: "Event Place", size: 150 },
+      { accessorKey: "startDate", header: "Start Date", size: 150 },
+      { accessorKey: "startTime", header: "Start Time", size: 150 },
+      {
+        accessorKey: "imageUrl",
+        header: "Event Image",
+        size: 150,
+        renderCell: (row: any) => (
+          <img
+            src={row.imageUrl} // Render the imageUrl directly
+            alt="Event Image"
+            className="max-w-full h-auto"
+          />
+        ),
+      },
+
+      // You can add more columns as needed
+    ],
+    []
+  );
+
+  const table = useMaterialReactTable({
+    columns,
+    data: events,
+  });
+
   const createEvent = () => {
     history.replace("/createEvent");
   };
@@ -49,9 +85,9 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
     history.replace(`/updateEvent/${eventId}`);
   };
 
-  const openImagePreview = (imageUrl: string) => {
-    setSelectedImage(imageUrl);
-  };
+  // const openImagePreview = (imageUrl: string) => {
+  //   setSelectedImage(imageUrl);
+  // };
 
   const closeImagePreview = () => {
     setSelectedImage(null);
@@ -174,20 +210,26 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
               <div className="flex items-center justify-between">
                 <h1 className="text-4xl font-bold">Event Management</h1>
                 <div className="flex items-center mr-5 space-x-3">
-                  <button onClick={createEvent} className="btn btn-square hover:bg-emerald-500 hover:text-white">
-                    <Icon icon="icon-park-outline:add-three" className="w-10 h-10" />
+                  <button
+                    onClick={createEvent}
+                    className="btn btn-square hover:bg-emerald-500 hover:text-white"
+                  >
+                    <Icon
+                      icon="icon-park-outline:add-three"
+                      className="w-10 h-10"
+                    />
                   </button>
                   <button
                     onClick={openDeleteAllConfirmation}
                     className="btn btn-square hover:bg-red-500 hover:text-white"
                   >
-
-                    <Icon icon="mdi:delete-alert-outline" className="w-10 h-10" />
+                    <Icon
+                      icon="mdi:delete-alert-outline"
+                      className="w-10 h-10"
+                    />
                   </button>
                 </div>
               </div>
-
-
 
               <br />
               <br />
@@ -215,80 +257,11 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
                       <div className="w-full h-20 skeleton"></div>
 
                       <div className="w-full h-20 skeleton"></div>
-
                     </div>
                   </div>
                 </>
               ) : (
-                <div className="overflow-x-auto">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Event Name</th>
-                        <th>Event Source</th>
-                        <th>Event Description</th>
-                        <th>Event Place</th>
-                        <th>Date (yyyy-dd-mm)</th>
-                        <th>Time</th>
-                        <th>Event Image </th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    {events.length === 0 ? (
-                      <tbody>
-                        <tr>
-                          <td colSpan={9}>
-                            <div role="alert" className="alert">
-                              <Icon icon="uil:comment-info-alt" className="w-8 h-8" />
-                              <span>No Events found.</span>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    ) : (
-                      <tbody>
-                        {events.map((event, index) => (
-                          <tr key={index}>
-                            <th>{event.name}</th>
-                            <th>{event.eventSource}</th>
-                            <td>
-                              <div className="flex items-center w-20 h-20 truncate">
-                              {event.eventDesc}
-                              </div>
-                              </td>
-                            <td>{event.eventPlace}</td>
-                            <td>{event.startDate}</td>
-                            <td>{event.startTime}</td>
-                            <td>
-                              <img
-                                src={event.imageUrl}
-                                alt="Event Alt"
-                                className="cursor-pointer max-h-20 rounded-2xl max-w-28 hover:scale-110"
-                                onClick={() => openImagePreview(event.imageUrl)}
-                              />
-                            </td>
-                            <td>
-                              <div className="flex items-center space-x-3">
-                                <button
-                                  onClick={() => updateEvent(event.id)}
-                                  className="btn btn-square hover:bg-orange-500 hover:text-white"
-                                >
-                                  <Icon icon="tabler:edit" className="w-10 h-10" />
-                                </button>
-                                <button
-                                  onClick={() => openDeleteConfirmation(event.id)}
-                                  className="btn btn-square hover:bg-red-500 hover:text-white"
-                                >
-                                  <Icon icon="mdi:delete-empty-outline" className="w-10 h-10" />
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    )}
-                  </table>
-                </div>
+                <MaterialReactTable table={table} />
               )}
             </div>
           </div>
@@ -300,11 +273,11 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
           onRequestClose={closeImagePreview}
         >
           <div className="flex space-x-2">
-            <img
+            {/* <img
               src={selectedImage || ""}
               alt="Image Preview"
               className="rounded-2xl w-96 h-96"
-            />
+            /> */}
             <button onClick={closeImagePreview} className="btn btn-square">
               <Icon icon="heroicons:x-mark-16-solid" className="w-10 h-10" />
             </button>
@@ -317,12 +290,20 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
           onRequestClose={closeDeleteConfirmation}
         >
           <div className="h-56 p-6 shadow-xl bg-base-100 rounded-2xl w-96">
-            <p className="text-3xl text-center">Are you sure you want to delete this event?</p>
+            <p className="text-3xl text-center">
+              Are you sure you want to delete this event?
+            </p>
             <div className="flex justify-center space-x-3 mt-14">
-              <button onClick={deleteEvent} className="text-white btn btn-primary hover:bg-red-500">
+              <button
+                onClick={deleteEvent}
+                className="text-white btn btn-primary hover:bg-red-500"
+              >
                 Yes, Delete
               </button>
-              <button onClick={closeDeleteConfirmation} className="btn bg-base-300">
+              <button
+                onClick={closeDeleteConfirmation}
+                className="btn bg-base-300"
+              >
                 Cancel
               </button>
             </div>
@@ -336,9 +317,14 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
           ariaHideApp={false}
         >
           <div className="h-56 p-6 shadow-xl bg-base-100 rounded-2xl w-96">
-            <p className="text-3xl text-center">Are you sure you want to delete all events?</p>
+            <p className="text-3xl text-center">
+              Are you sure you want to delete all events?
+            </p>
             <div className="flex justify-center space-x-3 mt-14">
-              <button onClick={deleteAllEvents} className="text-white btn btn-primary hover:bg-red-500">
+              <button
+                onClick={deleteAllEvents}
+                className="text-white btn btn-primary hover:bg-red-500"
+              >
                 Yes, Delete All
               </button>
               <button
