@@ -49,7 +49,7 @@ const ChangeLanguage: React.FC<ContainerProps> = ({ name }) => {
       theme: "dark",
       autoClose: 1000,
       icon: <Icon icon="line-md:clipboard-check" className="w-10 h-10 text-xl" />,
-      progressClassName: "bg-accent rounded-full mx-3 mb-1 w-72", // 3000 milliseconds = 3 seconds
+      // 3000 milliseconds = 3 seconds
 
     });
 
@@ -76,7 +76,7 @@ const ChangeLanguage: React.FC<ContainerProps> = ({ name }) => {
           {t("ChooseYourPreferredLanguage")}
         </p>
       </div>
-      <div className="w-full h-auto p-4 space-y-2 rounded-2xl flex flex-col justify-around">
+      <div className="flex flex-col justify-around w-full h-auto p-4 space-y-2 rounded-2xl">
         <div>
           <button
             className={`btn w-full h-16 text-xl hover:bg-gradient-to-tr hover:from-base-300 bg-gradient-to-tr from-base-200 to-base-300 justify-between border-2 border-transparent ${borderStyles["en"]}`}
@@ -189,7 +189,7 @@ const ChangeLanguage: React.FC<ContainerProps> = ({ name }) => {
             </div>
           </button>
         </div> */}
-        <div className=" w-auto flex justify-center items-center">
+        <div className="flex items-center justify-center w-auto ">
           <p className="badge badge-lg">more languages will be supported soon.</p>
         </div>
 

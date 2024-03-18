@@ -24,18 +24,15 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
   const customId = "custom-id-yes";
   const notify = () =>
     toast("Wow so easy!", {
-      className: "foo-bar bg-base-100 absolute bottom-20 text-base-content rounded-2xl",
+      className: "foo-bar bg-base-100 text-base-content rounded-2xl",
       theme: "dark",
       toastId: customId,
-      position: "bottom-right",
-      autoClose: 5000,
+      position: "top-right",
+      autoClose: 1000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      progress: undefined,
-      theme: "dark",
-      transition: Bounce,
     });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -55,7 +52,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
         
         <div className="absolute z-50 bottom-40 right-80 ">
           <div className="">
-            <ToastContainer stacked/>
+            <ToastContainer className="mb-1"/>
           </div>
         </div>
         <div className="absolute top-0 left-0 z-50 ">
