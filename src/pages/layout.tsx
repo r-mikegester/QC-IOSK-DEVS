@@ -43,7 +43,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
     const defaultIcon = "eos-icons:three-dots-loading";
 
     return
-    // <Loading name={""} />
+     <Loading />
   }
 
   return (
@@ -61,7 +61,7 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
         <div className="absolute top-0 right-0 z-50 ">
           <WidgetPanel name={""} />
         </div>
-        <Suspense fallback={<Loading name={""} />}>
+        <Suspense fallback={<Loading />}>
           <div className="bg-transparent cursor-grab">
             <SanBartolome name={"SanBartolome"} />
           </div>
