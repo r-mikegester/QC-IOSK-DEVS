@@ -1,11 +1,13 @@
 import React, { Suspense, useEffect, useState, useTransition } from "react";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import { Canvas } from "@react-three/fiber";
 import ModelViewer from "./ModelViewer";
 import { Bounds, OrbitControls, Stage, Stars } from "@react-three/drei";
 import SelectToZoom from "./SelectToZoom";
 import RotatingMesh from "./RotatingMesh";
 import Clouds from "./Clouds";
-import openGrounds from "../../../assets/models/others/sb_floor_final2.glb";
+import openGrounds from "../../../assets/models/others/sb_floor_cfinal.glb";
 import techvoc from "../../../assets/models/sb_buildings/techvoc_final.glb";
 import multipurpose from "../../../assets/models/sb_buildings/multipurpose_final.glb";
 import chineseB from "../../../assets/models/sb_buildings/chineseb_final.glb";
@@ -38,6 +40,7 @@ import IB101Voice from "../../../assets/audio/voice101a.mp3";
 import { roomData } from "../../../data/roomData";
 import IL401a from "../../../assets/animation/academic/Academic-IL401a.glb";
 
+
 interface ContainerProps {
   name: string;
 }
@@ -50,6 +53,15 @@ interface BuildingsData {
 }
 
 const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
+
+  // Create DRACO loader instance with the decoder path
+  const dracoLoader = new DRACOLoader();
+  dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.7/");
+  dracoLoader.setDecoderConfig({ type: 'js' }); // Specify the type of decoder (js or wasm)
+  
+  const gltfLoader = new GLTFLoader();
+gltfLoader.setDRACOLoader(dracoLoader); // Pass the DRACOLoader instance
+
   const [isNight, setIsNight] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedBuilding, setSelectedBuilding] = useState("");
@@ -187,7 +199,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
             selectedFloor={selectedFloor}
             selectedRoom={selectedRoom}
           />
-         
+
         </>
       ) : (
         <>
