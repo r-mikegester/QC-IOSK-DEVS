@@ -1,32 +1,29 @@
-import { IonContent, IonPage } from "@ionic/react";
 import React, { useState, useRef, useEffect, Suspense, lazy } from "react";
-// import SanBartolome from '../components/campus/sanBartolome/SanBartolome';
-const SanBartolome = lazy(() => import("../components/campus/sanBartolome/SanBartolome"))
-import { Icon } from "@iconify/react";
+import { IonContent, IonPage } from "@ionic/react";
 import { themeChange } from "theme-change";
+import { Icon } from "@iconify/react";
 import WidgetPanel from "../components/widgets/widgetPanel";
 import Sidebar from "../components/sidebar/sidebarLayout";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import Loading from './loading';
-import { FpsView } from "react-fps";
+import SanBartolome from "../components/campus/sanBartolome/SanBartolome";
+
+// Import your components here
+// const SanBartolome = lazy(() => import("../components/campus/sanBartolome/SanBartolome"));
+// const Batasan = lazy(() => import("../components/campus/batasan/Batasan"));
+// const SanFrancisco = lazy(() => import("../components/campus/sanFrancisco/SanFrancisco"));
+
 interface ContainerProps {
   name: string;
   buildingName: string;
 }
 
-const Map: React.FC<ContainerProps> = ({ name }) => {
-  useEffect(() => {
-    themeChange(false);
-  });
-
-  const customId = "custom-id-yes";
+const layout: React.FC<ContainerProps> = ({ name }) => {
   const notify = () =>
     toast("Wow so easy!", {
       className: "foo-bar bg-base-100 text-base-content rounded-2xl",
       theme: "dark",
-      toastId: customId,
       position: "top-right",
       autoClose: 1000,
       hideProgressBar: true,
@@ -34,25 +31,14 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
       pauseOnHover: true,
       draggable: true,
     });
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const contentRef = useRef<HTMLIonContentElement>(null);
-
-
-  function Loading2() {
-    const defaultIcon = "eos-icons:three-dots-loading";
-
-    return
-     <Loading />
-  }
-
+  
   return (
     <IonPage>
       <IonContent fullscreen>
-        
+        {/* Your other components */}
         <div className="absolute z-50 bottom-40 right-80 ">
           <div className="">
-            <ToastContainer className="mb-1"/>
+            <ToastContainer className="mb-1" newestOnTop />
           </div>
         </div>
         <div className="absolute top-0 left-0 z-50 ">
@@ -61,17 +47,19 @@ const Map: React.FC<ContainerProps> = ({ name }) => {
         <div className="absolute top-0 right-0 z-50 ">
           <WidgetPanel name={""} />
         </div>
+
+        {/* Selection mechanism */}
+
+
+        {/* Rendering selected option */}
         <Suspense fallback={<Loading />}>
-          <div className="bg-transparent cursor-grab">
-            <SanBartolome name={"SanBartolome"} />
+          <div className=" cursor-grab">
+            <SanBartolome name={""} />
           </div>
         </Suspense>
-        {/* <Dock name={"Dock"} /> */}
-        {/* <FpsView/> */}
-        {/* <VideoTourModal /> */}
       </IonContent>
     </IonPage>
   );
 };
 
-export default Map;
+export default layout;
