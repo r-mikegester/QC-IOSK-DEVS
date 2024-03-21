@@ -14,7 +14,7 @@ import {
 } from "@firebase/firestore";
 import { useHistory } from "react-router";
 import Modal from "react-modal";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { Icon } from "@iconify/react";
 import {
   MaterialReactTable,
@@ -30,9 +30,10 @@ interface Event {
   id: string;
   name: string;
   eventSource: string;
+  organizerImageUrl: string;
   eventDesc: string;
   eventPlace: string;
-  imageUrl: string; // Change type from Blob to string
+  imageUrl: string;
   startDate: string;
   startTime: string;
 }
@@ -48,26 +49,62 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
 
   const columns = useMemo<MRT_ColumnDef<Event>[]>(
     () => [
+      {
+        accessorKey: "actions",
+        header: "Actions",
+        Cell: ({ row }) => (
+          <div className="flex space-x-2">
+            <button
+              onClick={() => updateEvent(row.original.id)}
+              className="btn btn-primary"
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => openDeleteConfirmation(row.original.id)}
+              className="btn btn-danger"
+            >
+              Delete
+            </button>
+          </div>
+        ),
+      },
       { accessorKey: "name", header: "Event Name", size: 150 },
-      { accessorKey: "eventSource", header: "Event Source", size: 150 },
-      { accessorKey: "eventDesc", header: "Event Description", size: 200 },
       { accessorKey: "eventPlace", header: "Event Place", size: 150 },
+      { accessorKey: "eventSource", header: "Event Organizer", size: 150 },
+      {
+        accessorKey: "organizerImageUrl",
+        header: "Organizer Image",
+        size: 150,
+        Cell: ({ row }) => (
+          <img
+            alt="Organizer Image"
+            className="cursor-pointer max-h-20 rounded-2xl max-w-28 hover:scale-110"
+            src={row.original.organizerImageUrl}
+            loading="lazy"
+            style={{ borderRadius: "50%" }}
+            onClick={() => openImagePreview(row.original.organizerImageUrl)}
+          />
+        ),
+      },
+      { accessorKey: "eventDesc", header: "Event Description", size: 200 },
       { accessorKey: "startDate", header: "Start Date", size: 150 },
       { accessorKey: "startTime", header: "Start Time", size: 150 },
       {
         accessorKey: "imageUrl",
         header: "Event Image",
         size: 150,
-        renderCell: (row: any) => (
+        Cell: ({ row }) => (
           <img
-            src={row.imageUrl} // Render the imageUrl directly
-            alt="Event Image"
-            className="max-w-full h-auto"
+            alt="avatar"
+            className="cursor-pointer max-h-20 rounded-2xl max-w-28 hover:scale-110"
+            src={row.original.imageUrl}
+            loading="lazy"
+            style={{ borderRadius: "50%" }}
+            onClick={() => openImagePreview(row.original.imageUrl)}
           />
         ),
       },
-
-      // You can add more columns as needed
     ],
     []
   );
@@ -85,9 +122,9 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
     history.replace(`/updateEvent/${eventId}`);
   };
 
-  // const openImagePreview = (imageUrl: string) => {
-  //   setSelectedImage(imageUrl);
-  // };
+  const openImagePreview = (imageUrl: string) => {
+    setSelectedImage(imageUrl);
+  };
 
   const closeImagePreview = () => {
     setSelectedImage(null);
@@ -116,7 +153,7 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
       await addDoc(archiveCollectionRef, event);
 
       console.log("Event archived successfully!");
-      toast.info("Event archived successfully!");
+      // toast.info("Event archived successfully!");
     } catch (error) {
       console.error("Error archiving event: ", error);
       alert("Error archiving event.");
@@ -243,8 +280,6 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
                       <div className="w-20 h-5 skeleton"></div>
                       <div className="w-20 h-5 skeleton"></div>
                       <div className="w-20 h-5 skeleton"></div>
-                      <div className="w-20 h-5 skeleton"></div>
-                      <div className="w-20 h-5 skeleton"></div>
                     </div>
                     <hr className="w-full h-2 rounded-full bg-base-300 " />
                     <div className="flex flex-col w-full gap-4">
@@ -273,11 +308,11 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
           onRequestClose={closeImagePreview}
         >
           <div className="flex space-x-2">
-            {/* <img
+            <img
               src={selectedImage || ""}
               alt="Image Preview"
               className="rounded-2xl w-96 h-96"
-            /> */}
+            />
             <button onClick={closeImagePreview} className="btn btn-square">
               <Icon icon="heroicons:x-mark-16-solid" className="w-10 h-10" />
             </button>
@@ -336,6 +371,7 @@ const EventManagement: React.FC<ContainerProps> = ({ name }) => {
             </div>
           </div>
         </Modal>
+        <ToastContainer />
       </IonContent>
     </IonPage>
   );

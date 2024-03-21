@@ -14,9 +14,14 @@ import {
   orderBy,
   addDoc,
 } from "@firebase/firestore";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Modal from "react-modal";
 import { ToastContainer, toast } from "react-toastify";
+import {
+  MaterialReactTable,
+  useMaterialReactTable,
+  type MRT_ColumnDef,
+} from "material-react-table";
 
 Modal.setAppElement("#root");
 interface ContainerProps {
@@ -41,6 +46,50 @@ const ManageAnnouncements: React.FC<ContainerProps> = ({ name }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [deleteAllConfirmation, setDeleteAllConfirmation] =
     useState<boolean>(false);
+
+  const columns = useMemo<MRT_ColumnDef<Announcement>[]>(
+    () => [
+      {
+        accessorKey: "actions",
+        header: "Actions",
+        Cell: ({ row }) => (
+          <div className="flex space-x-2">
+            <button
+              onClick={() => updateAnnouncement(row.original.id)}
+              className="btn btn-primary"
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => openDeleteConfirmation(row.original.id)}
+              className="btn btn-danger"
+            >
+              Delete
+            </button>
+          </div>
+        ),
+      },
+      { accessorKey: "name", header: "Announcement Name", size: 150 },
+      {
+        accessorKey: "announcementSource",
+        header: "Source",
+        size: 150,
+      },
+      {
+        accessorKey: "announcementDesc",
+        header: "Description",
+        size: 150,
+      },
+      { accessorKey: "startDate", header: "Start Date", size: 150 },
+      { accessorKey: "startTime", header: "Start Time", size: 150 },
+    ],
+    []
+  );
+
+  const table = useMaterialReactTable({
+    columns,
+    data: announcements,
+  });
 
   const createAnnouncement = () => {
     history.replace("/createAnnouncement");
@@ -73,7 +122,6 @@ const ManageAnnouncements: React.FC<ContainerProps> = ({ name }) => {
       await addDoc(archiveCollectionRef, announcement);
 
       console.log("Announcement archived successfully!");
-      toast.info("Announcement archived successfully!");
     } catch (error) {
       console.error("Error archiving announcement: ", error);
       alert("Error archiving announcement.");
@@ -155,6 +203,7 @@ const ManageAnnouncements: React.FC<ContainerProps> = ({ name }) => {
 
     fetchAnnouncements();
   }, []);
+
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -162,24 +211,30 @@ const ManageAnnouncements: React.FC<ContainerProps> = ({ name }) => {
           <AdminSideBar name={""} />
           <AdminHeader name={""} />
           <div className="items-center justify-center text-base-content bg-base-300 lg:ps-64 ">
-
             <div className="w-full min-h-screen p-10 bg-base-100 rounded-tl-3xl">
               <div className="flex items-center justify-between">
                 <h1 className="text-4xl font-bold">Announcement Management</h1>
                 <div className="flex items-center mr-5 space-x-3">
-                  <button onClick={createAnnouncement} className="btn btn-square hover:bg-emerald-500 hover:text-white">
-                    <Icon icon="icon-park-outline:add-three" className="w-10 h-10" />
+                  <button
+                    onClick={createAnnouncement}
+                    className="btn btn-square hover:bg-emerald-500 hover:text-white"
+                  >
+                    <Icon
+                      icon="icon-park-outline:add-three"
+                      className="w-10 h-10"
+                    />
                   </button>
                   <button
                     onClick={openDeleteAllConfirmation}
                     className="btn btn-square hover:bg-red-500 hover:text-white"
                   >
-                    <Icon icon="mdi:delete-alert-outline" className="w-10 h-10" />
+                    <Icon
+                      icon="mdi:delete-alert-outline"
+                      className="w-10 h-10"
+                    />
                   </button>
                 </div>
               </div>
-
-
 
               <br />
               <br />
@@ -193,7 +248,6 @@ const ManageAnnouncements: React.FC<ContainerProps> = ({ name }) => {
                       <div className="w-20 h-5 skeleton"></div>
                       <div className="w-20 h-5 skeleton"></div>
                       <div className="w-20 h-5 skeleton"></div>
-
                     </div>
                     <hr className="w-full h-2 rounded-full bg-base-300 " />
                     <div className="flex flex-col w-full gap-4">
@@ -206,70 +260,11 @@ const ManageAnnouncements: React.FC<ContainerProps> = ({ name }) => {
                       <div className="w-full h-20 skeleton"></div>
 
                       <div className="w-full h-20 skeleton"></div>
-
                     </div>
                   </div>
                 </>
               ) : (
-                <div className="overflow-x-auto">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Announcement Name</th>
-                        <th>Announcement Source</th>
-                        <th>Announcement Description</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    {announcements.length === 0 ? (
-                      <tbody>
-                        <tr>
-                          <td colSpan={6}>
-                            <div role="alert" className="alert">
-                              <Icon icon="uil:comment-info-alt" className="w-8 h-8" />
-                              <span>No Announcements found.</span>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    ) : (
-                      <tbody>
-                        {announcements.map((announcement, index) => (
-                          <tr key={index}>
-                            <th>{announcement.name}</th>
-                            <td>{announcement.announcementSource}</td>
-                            <td>{announcement.announcementDesc}</td>
-                            <td>{announcement.startDate}</td>
-                            <td>{announcement.startTime}</td>
-                            <td>
-                              <div className="flex items-center space-x-3">
-                                <button
-                                  className="btn btn-square hover:bg-orange-500 hover:text-white"
-                                  onClick={() =>
-                                    updateAnnouncement(announcement.id)
-                                  }
-                                >
-                                  <Icon icon="tabler:edit" className="w-10 h-10" />
-                                </button>
-
-                                <button
-                                  className="btn btn-square hover:bg-red-500 hover:text-white"
-                                  onClick={() =>
-                                    openDeleteConfirmation(announcement.id)
-                                  }
-                                >
-                                  <Icon icon="mdi:delete-empty-outline" className="w-10 h-10" />
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    )}
-                  </table>
-                </div>
+                <MaterialReactTable table={table} />
               )}
             </div>
           </div>
@@ -282,12 +277,20 @@ const ManageAnnouncements: React.FC<ContainerProps> = ({ name }) => {
           ariaHideApp={false}
         >
           <div className="h-56 p-6 shadow-xl bg-base-100 rounded-2xl w-96">
-            <p className="text-3xl text-center">Are you sure you want to delete this announcement?</p>
+            <p className="text-3xl text-center">
+              Are you sure you want to delete this announcement?
+            </p>
             <div className="flex justify-center mt-6 space-x-3">
-              <button onClick={deleteAnnouncement} className="text-white btn btn-primary hover:bg-red-500">
+              <button
+                onClick={deleteAnnouncement}
+                className="text-white btn btn-primary hover:bg-red-500"
+              >
                 Yes, Delete
               </button>
-              <button onClick={closeDeleteConfirmation} className="btn bg-base-300">
+              <button
+                onClick={closeDeleteConfirmation}
+                className="btn bg-base-300"
+              >
                 Cancel
               </button>
             </div>
@@ -301,20 +304,26 @@ const ManageAnnouncements: React.FC<ContainerProps> = ({ name }) => {
           ariaHideApp={false}
         >
           <div className="h-56 p-6 shadow-xl bg-base-100 rounded-2xl w-96">
-            <p className="text-3xl text-center">Are you sure you want to delete all announcements?</p>
-           <div className="flex justify-center mt-6 space-x-3">
-           <button onClick={deleteAllAnnouncements}className="text-white btn btn-primary hover:bg-red-500">
-              Yes, Delete All
-            </button>
-            <button
-              onClick={closeDeleteAllConfirmation}
-              className="btn bg-base-300"
-            >
-              Cancel
-            </button>
-           </div>
+            <p className="text-3xl text-center">
+              Are you sure you want to delete all announcements?
+            </p>
+            <div className="flex justify-center mt-6 space-x-3">
+              <button
+                onClick={deleteAllAnnouncements}
+                className="text-white btn btn-primary hover:bg-red-500"
+              >
+                Yes, Delete All
+              </button>
+              <button
+                onClick={closeDeleteAllConfirmation}
+                className="btn bg-base-300"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </Modal>
+        <ToastContainer />
       </IonContent>
     </IonPage>
   );
