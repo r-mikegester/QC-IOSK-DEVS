@@ -8,7 +8,6 @@ import KeyboardWrapper from "./keyboard/Keyboard";
 import { roomData } from "../data/roomData";
 import Animation from "../components/campus/sanBartolome/animation/Animation";
 import SideBar from "../components/sidebar/sidebarLayout";
-import WidgetPanel from "../components/widgets/widgetPanel";
 import Loading from "../pages/loading";
 
 export interface KeyboardRef {
@@ -110,7 +109,7 @@ const SearchTab: React.FC = () => {
         <>
           {selectedModelPath && isAnimationActive ? (
             <>
-              <Suspense fallback={<Loading name={""} />}>
+              <Suspense fallback={<Loading />}>
                 <Animation
                   name={""}
                   roomName={"selectedRoom"}
@@ -198,7 +197,7 @@ const SearchTab: React.FC = () => {
                                   </ul>
                                 </div>
                               ) : (
-                                <div className="w-full h-96 py-6 overflow-auto">
+                                <div className="w-full py-6 overflow-auto h-96">
                                   <h1 className="text-black">
                                     No rooms found.
                                   </h1>
@@ -223,9 +222,7 @@ const SearchTab: React.FC = () => {
           <div className="absolute top-0 left-0 z-50 ">
             <SideBar />
           </div>
-          <div className="absolute top-0 right-0 z-50 ">
-            <WidgetPanel name={""} />
-          </div>
+         
         </>
       </IonContent>
     </IonPage>
