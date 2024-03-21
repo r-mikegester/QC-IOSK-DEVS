@@ -44,7 +44,7 @@ const AdminLogin: React.FC = () => {
         const errorMessage = error.message;
         // Display toast for unsuccessful login
         toast.error(errorMessage, {
-          position: toast.POSITION.BOTTOM_RIGHT,
+          position: "bottom-right",
         });
         console.error(errorCode, errorMessage);
       });
