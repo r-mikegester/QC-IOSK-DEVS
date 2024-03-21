@@ -8,18 +8,18 @@ import SelectToZoom from "./SelectToZoom";
 import RotatingMesh from "./RotatingMesh";
 import Clouds from "./Clouds";
 import openGrounds from "../../../assets/models/others/sb_floor_cfinal.glb";
-import techvoc from "../../../assets/models/sb_buildings/techvoc_final.glb";
-import multipurpose from "../../../assets/models/sb_buildings/multipurpose_final.glb";
-import chineseB from "../../../assets/models/sb_buildings/chineseb_final.glb";
-import ched from "../../../assets/models/sb_buildings/ched_final.glb";
-import simon from "../../../assets/models/sb_buildings/yellow_final.glb";
-import admin from "../../../assets/models/sb_buildings/admin_final.glb";
-import bautista from "../../../assets/models/sb_buildings/bautista_final.glb";
-import belmonte from "../../../assets/models/sb_buildings/belmonte_final.glb";
-import academic from "../../../assets/models/sb_buildings/academic_final.glb";
-import ballroom from "../../../assets/models/sb_buildings/ballroom_final.glb";
-import urbanFarming from "../../../assets/models/sb_buildings/urbanFarming_final.glb";
-import korPhil from "../../../assets/models/sb_buildings/korPhil_final.glb";
+import techvoc from "../../../assets/models/draco/cTechVoc.glb";
+import multipurpose from "../../../assets/models/draco/cMultiPurpose.glb";
+import chineseB from "../../../assets/models/draco/cChineseB.glb";
+import ched from "../../../assets/models/draco/cChed.glb";
+import simon from "../../../assets/models/draco/cYellow.glb";
+import admin from "../../../assets/models/draco/cAdmin.glb";
+import bautista from "../../../assets/models/draco/cBautista.glb";
+import belmonte from "../../../assets/models/draco/cBelmonte.glb";
+import academic from "../../../assets/models/draco/cAcademic.glb";
+import ballroom from "../../../assets/models/draco/cBallroom.glb";
+import urbanFarming from "../../../assets/models/draco/cUrbanFarming.glb";
+import korPhil from "../../../assets/models/draco/cKorPhil.glb";
 import landscape from "../../../assets/models/others/landscape.glb";
 import Modal from "react-modal";
 import { Icon } from "@iconify/react";
@@ -402,10 +402,10 @@ gltfLoader.setDRACOLoader(dracoLoader); // Pass the DRACOLoader instance
                   </div>
                   {showOverview ? (
                     <div className="h-full overflow-y-auto">
-                      <p className="p-2 text-2xl font-semibold">Quick Specs</p>
-                      <p className="p-2 text-lg">Building Sqm: 6969</p>
-                      <p className="p-2 text-lg">Building Status: 6969</p>
-                      <p className="p-2 text-lg">Building floors: 6969</p>
+                      <p className="p-2 text-2xl font-semibold">Directories</p>
+                      <p className="p-2 text-base">Gymnasium</p>
+                      <p className="p-2 text-base">Rooms: </p>
+                      <p className="p-2 text-base">Area: </p>
                     </div>
                   ) : (
                     <div>
@@ -437,8 +437,14 @@ gltfLoader.setDRACOLoader(dracoLoader); // Pass the DRACOLoader instance
                   <div className="w-full h-full duration-150 ease-in-out shadow-inner bg-base-300 rounded-2xl">
                     <div className="flex items-center p-6">
                       <div className="w-full p-6 shadow-inner bg-base-200 h-96 rounded-2xl">
-                        <div className="flex flex-col w-full h-full space-y-3">
-                          <h1>Building Details</h1>
+                        <div className="flex w-full h-full space-x-3 ">
+                          <div className="flex items-center justify-center h-16 bg-red-500 min-w-80 rounded-2xl ">
+                            <h1>Building Information</h1>
+                            </div>
+                          <div className="flex bg-blue-500">
+                          <div className="w-full h-40 bg-green-500 rounded-2xl"></div>
+                          <div className="w-full h-40 bg-green-500 rounded-2xl"></div>
+                          </div>
                         </div>
                       </div>
                     </div>
