@@ -12,6 +12,7 @@ import Announcements from './annoucements';
 import Themes from "./themes";
 import About from "./about";
 import { useHistory } from "react-router-dom";
+import FpsViewer from "./FpsViewer";
 
 interface SideBarIconProps {
   icon: string;
@@ -26,9 +27,9 @@ const SideBar = () => {
     // Redirect to the "/Home" route
     history.push("/SanBartolome");
   };
-  const ClickMap = () => {
+  const ClickMaps = () => {
     // Redirect to the "/Map" route
-    history.push("/Map");
+    history.push("/Maps");
   };
   const ClickSearch = () => {
     // Redirect to the "/Search" route
@@ -79,6 +80,7 @@ const SideBar = () => {
     };
   }, []);
 
+
   return (
     <div
       // ref={sidebarRef}
@@ -86,28 +88,29 @@ const SideBar = () => {
     >
       <div className="z-50 sidebar-content">
         {/* Sidebar contents */}
-        <div className=" flex flex-col items-center justify-start flex-grow h-full">
+        <div className="flex flex-col items-center justify-start flex-grow h-full ">
           {/* <KioskManual name={"Kiosk Manual"} /> */}
-          <div className="z-50 bg-base-100 pb-5">
-          <SideBarIcon
-            icon="octicon:home-16"
-            text={t("Home")}
-            onClick={ClickWelcome}
-          />
-          <SideBarIcon
-            icon="carbon:ibm-data-product-exchange"
-            text={t("Maps")}
-            onClick={ClickMap}
-          />
-          <SideBarIcon
-            icon="wpf:search"
-            text={t("Search")}
-            onClick={ClickSearch}
-          />
+          <div className="z-50 pb-5 bg-base-100">
+            <SideBarIcon
+              icon="octicon:home-16"
+              text={t("Home")}
+              onClick={ClickWelcome}
+            />
+            <SideBarIcon
+              icon="carbon:ibm-data-product-exchange"
+              text={t("Maps")}
+              onClick={ClickMaps}
+            />
+            <SideBarIcon
+              icon="wpf:search"
+              text={t("Search")}
+              onClick={ClickSearch}
+            />
+            
           </div>
 
 
-          <div className="absolute bottom-5 z-10">
+          <div className="absolute z-10 bottom-5">
             <SideBarIcon
               icon="streamline:manual-book"
               text={t("Kiosk Manual")}
@@ -127,7 +130,6 @@ const SideBar = () => {
             <Divider />
             <AudioBG name="Minecraft" volume={0} />
             <Reload name={"Refresh"} />
-            {/* <ChangeLanguage name={"Change Language"} /> */}
             <SideBarIcon
               icon="ion:language"
               text={t("Languages")}
@@ -144,7 +146,7 @@ const SideBar = () => {
                 <Icon icon="uiw:appstore-o" className="w-6 h-6" />
               </div>
               <div className="collapse-content">
-            
+
                 <SideBarIcon
                   icon="fontisto:info"
                   text={t("About")}
@@ -155,6 +157,7 @@ const SideBar = () => {
                   text={t("Admin")}
                   onClick={() => handleContentChange("Settings")}
                 />
+                <FpsViewer />
               </div>
             </div>
           </div>
