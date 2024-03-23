@@ -58,9 +58,9 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
   const dracoLoader = new DRACOLoader();
   dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.7/");
   dracoLoader.setDecoderConfig({ type: 'js' }); // Specify the type of decoder (js or wasm)
-  
+
   const gltfLoader = new GLTFLoader();
-gltfLoader.setDRACOLoader(dracoLoader); // Pass the DRACOLoader instance
+  gltfLoader.setDRACOLoader(dracoLoader); // Pass the DRACOLoader instance
 
   const [isNight, setIsNight] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -75,6 +75,8 @@ gltfLoader.setDRACOLoader(dracoLoader); // Pass the DRACOLoader instance
   const [selectedShortPath, setSelectedShortPath] = useState("");
   const [isAnimationActive, setIsAnimationActive] = useState(false);
   const [showOverview, setShowOverview] = useState(false); // State to toggle overview
+  const [modalContent, setModalContent] = useState("");
+  const [showError, setErrorModal] = useState(false);
 
   useEffect(() => {
     const checkTime = () => {
@@ -121,6 +123,7 @@ gltfLoader.setDRACOLoader(dracoLoader); // Pass the DRACOLoader instance
   const closeModal = () => {
     setShowModal(false);
     setIsAnimationActive(false);
+    setErrorModal(false);
   };
 
   const clickFloor = (floor: string) => {
@@ -137,23 +140,22 @@ gltfLoader.setDRACOLoader(dracoLoader); // Pass the DRACOLoader instance
     const selectedRoomData = roomData[selectedBuilding][selectedFloor]?.find(
       (r) => r.name === room
     );
-    console.log(room);
-    console.log(selectedRoomData?.modelPath);
-    console.log(selectedRoomData?.voice);
+
     if (selectedRoomData) {
       setAnimation(room);
       if (selectedRoomData.modelPath) {
         setSelectedRoomModel(selectedRoomData.modelPath);
         setSelectedVoice(selectedRoomData.voice);
-        // setSelectedShortPath(selectedRoomData.shortPath);
         setIsAnimationActive(true);
       } else {
-        setSelectedRoomModel("");
-        alert("Model path is empty for this room.");
+        // Show modal with appropriate message
+        setModalContent("Model path is empty for this room.");
+        setErrorModal(true);
       }
     } else {
-      setSelectedRoomModel("");
-      alert("Selected room data not found.");
+      // Show modal with appropriate message
+      setModalContent("Selected room data not found.");
+      setErrorModal(true);
     }
   };
 
@@ -237,7 +239,7 @@ gltfLoader.setDRACOLoader(dracoLoader); // Pass the DRACOLoader instance
                   <Stars radius={50} depth={30} count={100} factor={3} />
                 </>
               ) : null}
-              {/* <Clouds /> */}
+              <Clouds />
               {/* SB FLOORING */}
               <ModelViewer modelPath={openGrounds} position={[0, 0, 0]} />
               <ModelViewer modelPath={landscape} position={[-20, -16, 40]} />
@@ -368,36 +370,21 @@ gltfLoader.setDRACOLoader(dracoLoader); // Pass the DRACOLoader instance
             onRequestClose={closeModal}
             contentLabel="Building Information"
           >
-            <div className="w-full p-6 shadow-xl m-80 bg-base-200 rounded-3xl h-fit">
-              <div className="flex items-center justify-between">
-                <h2 className="text-3xl font-semibold text-center">
-                  {selectedBuilding}
-                </h2>
-                <button
-                  onClick={closeModal}
-                  className="btn btn-square hover:bg-red-500 hover:text-white"
-                >
-                  <Icon icon="line-md:close-small" className="w-10 h-10" />
-                </button>
-              </div>
-              <div className="flex justify-center mt-6 space-x-3">
-                <div className="px-6 shadow-inner bg-base-300 w-96 rounded-3xl">
-                  <div className="flex flex-col justify-center py-6 space-y-3 border-b-2 border-base-100">
-                    <button
-                      onClick={handleOverviewClick}
-                      className={`h-10 btn-blocked btn  hover:bg-base-200 ${showOverview ? "bg-base-content text-white" : ""}`}
-                    >
-                      Building Information
-                    </button>
+            <div className="w-5/12 py-0 pl-0 transition-all duration-150 ease-in-out shadow-xl m-80 bg-base-100 rounded-3xl h-fit">
+              <div className="relative flex justify-center space-x-3">
+                <div className="w-20 h-full px-3 mr-2 shadow-lg rounded-3xl">
+                  <div className="flex flex-col justify-center py-3 space-y-3 border-b-2 border-base-100">
+
                     {/* Conditionally render the "Building Details" button if more than one floor */}
                     {selectedBuildingData && selectedBuildingData.floors > 1 && (
                       <>
                         <button
                           onClick={handleFloorsClick}
-                          className={`h-10 btn-blocked btn  hover:bg-base-200 ${!showOverview ? "bg-base-content text-white" : ""}`}
+                          className={`h-10 btn  hover:bg-base-content hover:text-base-300 ${!showOverview ? "bg-transparent btn-block shadow-none text-lg text-base-content" : ""}`}
                         >
                           Floors
-                        </button></>
+                        </button>
+                      </>
                     )}
                   </div>
                   {showOverview ? (
@@ -411,8 +398,7 @@ gltfLoader.setDRACOLoader(dracoLoader); // Pass the DRACOLoader instance
                     <div>
                       {selectedBuildingData && selectedBuildingData.floors > 1 && !showOverview && (
                         <div className="h-full overflow-y-auto">
-                          <p className="p-2 text-2xl font-semibold">Floors</p>
-                          <div className="grid grid-cols-2 gap-2">
+                          <div className="grid grid-cols-1 gap-2 my-3">
                             {selectedBuilding &&
                               Array.from(
                                 { length: selectedBuildingData.floors },
@@ -433,70 +419,172 @@ gltfLoader.setDRACOLoader(dracoLoader); // Pass the DRACOLoader instance
                     </div>
                   )}
                 </div>
-                {showOverview ? (
-                  <div className="w-full h-full duration-150 ease-in-out shadow-inner bg-base-300 rounded-2xl">
-                    <div className="flex items-center p-6">
-                      <div className="w-full p-6 shadow-inner bg-base-200 h-96 rounded-2xl">
-                        <div className="flex w-full h-full space-x-3 ">
-                          <div className="flex items-center justify-center h-16 bg-red-500 min-w-80 rounded-2xl ">
-                            <h1>Building Information</h1>
-                            </div>
-                          <div className="flex bg-blue-500">
-                          <div className="w-full h-40 bg-green-500 rounded-2xl"></div>
-                          <div className="w-full h-40 bg-green-500 rounded-2xl"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                <div className="absolute w-20 h-full px-3 transition-all duration-150 ease-in-out shadow-inner -left-3 bg-base-300 rounded-3xl">
+                  <div className="flex flex-col justify-center py-5 space-y-3 border-b-2 border-base-200">
+
+                    {/* Conditionally render the "Building Details" button if more than one floor */}
+                    {selectedBuildingData && selectedBuildingData.floors > 1 && (
+                      <>
+                        <button
+                          onClick={showOverview ? handleFloorsClick : handleOverviewClick}
+                          className={` btn h-16  w-full bg-transparent btn-square shadow-none ${!showOverview ? "bg-transparent btn-square shadow-none font-semibold text-base-content" : ""}`}
+                        >
+                          {showOverview ? (
+                            // Render back icon here
+                            <Icon icon="icon-park-outline:back" className="w-10 h-10" />
+                          ) : (
+                            // Render floor icon here
+                            <Icon icon="tabler:box-multiple" className={`w-10 h-10`} />
+                          )}
+
+                        </button></>
+                    )}
                   </div>
-                ) : (
-                  <div className="w-full h-full shadow-inner bg-base-300 rounded-2xl">
-                    <div className="flex items-center p-6 pl-0">
-                      <div className="w-64 p-6 space-y-2 overflow-y-auto h-96">
-                        {selectedBuilding &&
-                          selectedFloor &&
-                          roomData[selectedBuilding][selectedFloor]?.map((room, roomIndex) => (
-                            <div key={roomIndex} className="flex flex-col">
-                              <button className="btn" onClick={() => selectRoom(room.name)}>
-                                {room.name}
-                              </button>
-                            </div>
-                          ))}
-                      </div>
-                      <div className="w-full p-6 shadow-inner bg-base-200 h-96 rounded-2xl">
-                        <div className="relative flex flex-col w-full h-full space-y-3">
-                          <div className="text-base-content">
+                  {showOverview ? (
+                    <div className="h-full overflow-y-auto">
+
+                    </div>
+                  ) : (
+                    <div>
 
 
+                      {selectedBuildingData && selectedBuildingData.floors > 1 && !showOverview && (
+                        <div className="h-full overflow-y-auto">
+                          <div className="grid grid-cols-1 gap-2 my-5">
 
                             {selectedBuilding &&
-                              selectedFloor &&
-                              roomData[selectedBuilding][selectedFloor]
-                                ?.filter((room) => room.name === selectedRoom)
-                                .map((room, roomIndex) => (
-                                  <div key={roomIndex}>
-                                    <ul>
-                                      <h1>Room Details</h1>
-                                      {room.details.map((detail, detailIndex) => (
-                                        <li key={detailIndex}>{detail}</li>
-                                      ))}
-                                      <button
-                                        className="absolute bottom-0 right-0 btn btn-secondary btn-block"
-                                        onClick={() => clickAnimation(selectedRoom)}
-                                      >
-                                        GO TO {selectedRoom}
-                                      </button>
-                                    </ul>
-                                  </div>
-                                ))}
-
+                              Array.from(
+                                { length: selectedBuildingData.floors },
+                                (_, index) => (
+                                  <button
+                                    key={index}
+                                    className={`w-full h-10 bg-base-100 btn text-2xl ${selectedFloor === `${index + 1}` ? "bg-base-content text-base-100" : "hover:bg-base-200"
+                                      }`}
+                                    onClick={() => clickFloor(`${index + 1}`)}
+                                  >
+                                    {index + 1}
+                                  </button>
+                                )
+                              )}
                           </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+                <div className="flex flex-col w-full space-y-3 transition-all duration-150 ease-in-out">
+                  <div className="flex items-center justify-between w-full ">
+                    <button
+                      onClick={handleOverviewClick}
+                      className={` rounded-xl text-3xl p-2 font-bold mx-2 mt-4 h-14 hover:bg-base-300 ${showOverview ? "hover:bg-transparent text-base-content w-full mt-4 h-14 mx-4" : ""}`}
+                    >
+                      {selectedBuilding}
+                    </button>
+                    <button
+                      onClick={closeModal}
+                      className="mt-5 mr-5 btn btn-square hover:bg-red-500 hover:text-white"
+                    >
+                      <Icon icon="line-md:close-small" className="w-10 h-10" />
+                    </button>
+                  </div>
 
+                  <div className="flex items-start justify-center w-full h-full transition-all duration-150 ease-in-out ">
+                    {!showOverview && (
+                      <div className="flex flex-col justify-between h-auto bg-base-200 space-y- rounded-3xl">
+                        <h1 className="text-2xl font-semibold text-center">Rooms</h1>
+                        <div className="w-64 p-3 pb-4 space-y-2 overflow-y-auto h-96 overflow-cli bg-base-300 rounded-2xl">
+                          {!selectedFloor && (
+                            <div className="flex flex-col items-center justify-center w-full p-6 text-lg text-center text-base-content">
+                              <Icon icon="typcn:warning-outline" className="w-10 h-10" />
+                              <h1>Please select a desired floor from the sidebar on the left</h1>
+                            </div>
+                          )}
+                          {selectedBuilding &&
+                            selectedFloor &&
+                            roomData[selectedBuilding][selectedFloor]?.map((room, roomIndex) => (
+                              <div key={roomIndex} className="flex flex-col">
+                                <button className="btn" onClick={() => selectRoom(room.name)}>
+                                  {room.name}
+                                </button>
+                              </div>
+                            ))}
                         </div>
                       </div>
-                    </div>
+                    )}
+                    {showOverview ? (
+                      <div className="w-full h-full duration-150 ease-in-out bg-base-100 rounded-2xl">
+                        <div className="flex items-center p-6 pt-0 pl-0">
+                          <div className="w-full p-6 shadow-inner bg-base-200 h-96 rounded-2xl">
+                            <div className="flex w-full h-full space-x-3 ">
+                              <div className="flex items-center justify-center w-full h-5 rounded-2xl ">
+                                <h1 className="text-3xl font-semibold text-base-content">Details</h1>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="w-full h-auto m-6 mt-0 shadow-inner bg-base-300 rounded-2xl">
+
+                        <div className="flex flex-col items-center p-0">
+
+
+                          <div className="w-full p-6 shadow-inner bg-base-200 h-[375px] rounded-2xl">
+                            <div className="relative flex flex-col w-full h-full space-y-3">
+                              <div className="text-base-content">
+
+                                {selectedBuilding &&
+                                  selectedFloor &&
+                                  roomData[selectedBuilding][selectedFloor]
+                                    ?.filter((room) => room.name === selectedRoom)
+                                    .map((room, roomIndex) => (
+                                      <div key={roomIndex}>
+                                        <ul>
+                                          <h1 className="mb-5 -mt-0 font-bold text-center">Details</h1>
+                                          {room.details.map((detail, detailIndex) => (
+                                            <li key={detailIndex}>{detail}</li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                    ))}
+
+                              </div>
+
+                            </div>
+                          </div>
+                          <div className="w-full p-3">
+                            <button
+                              className=" btn btn-secondary btn-block"
+                              onClick={() => clickAnimation(selectedRoom)}
+                            >
+                              Get Direction {selectedRoom}
+                            </button>
+                          </div>
+                        </div>
+
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
+              </div>
+            </div>
+          </Modal>
+          <Modal
+            className="flex items-center justify-center w-screen h-screen transition-all duration-150 ease-in-out bg-black/60"
+            isOpen={showError}
+            onRequestClose={() => setShowModal(false)}
+            contentLabel="Alert"
+          >
+            <div className="h-56 p-6 shadow-xl bg-base-100 rounded-2xl w-96">
+              <p className="text-3xl text-center">{modalContent}</p>
+              <div className="flex justify-center space-x-3 mt-14">
+
+                <button
+                  onClick={closeModal}
+                  className="btn bg-base-300"
+                >
+                  <Icon icon="line-md:close-small" className="w-10 h-10" /> Close
+                </button>
               </div>
             </div>
           </Modal>
