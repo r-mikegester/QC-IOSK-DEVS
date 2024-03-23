@@ -19,7 +19,7 @@ import belmonte from "../../../assets/models/draco/cBelmonte.glb";
 import academic from "../../../assets/models/draco/cAcademic.glb";
 import ballroom from "../../../assets/models/draco/cBallroom.glb";
 import urbanFarming from "../../../assets/models/draco/cUrbanFarming.glb";
-// import korPhil from "../../../assets/models/draco/cKorPhil.glb";
+import korPhil from "../../../assets/models/draco/cKorPhil.glb";
 import landscape from "../../../assets/models/others/landscape.glb";
 import Modal from "react-modal";
 import { Icon } from "@iconify/react";
@@ -352,7 +352,14 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
               />
 
               {/* KORPHIL */}
-           
+              <ModelViewer
+                modelPath={korPhil}
+                position={[-33, -5.5, -5]}
+                scale={[1, 1, 1]}
+                name="KorPhil Building"
+                textPosition={[-33, 1, -5]}
+                onClick={() => handleModelClick("KorPhil Building")}
+              />
 
               {/* <RotatingMesh /> */}
             </Stage>
