@@ -31,7 +31,11 @@ export const roomData: Record<
         name: "IB301a",
         modelPath: IL301a,
         voice: "",
-        details: ["Room Info 1", "Room Info 2"],
+        details: ["Room Name: IB301a",
+                  "Building: Academic Building",
+                  "Floor: 3rd Floor","Distance: 1.9 km (sample)",
+                  "ETA: 10 mins.",
+                  "Occupied by: LESIT (sample)"],
         textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
       },
       {
@@ -167,4 +171,5 @@ export const roomData: Record<
       },
     ],
   },
+  
 };
