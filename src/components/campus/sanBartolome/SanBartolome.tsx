@@ -19,7 +19,7 @@ import belmonte from "../../../assets/models/draco/cBelmonte.glb";
 import academic from "../../../assets/models/draco/cAcademic.glb";
 import ballroom from "../../../assets/models/draco/cBallroom.glb";
 import urbanFarming from "../../../assets/models/draco/cUrbanFarming.glb";
-import korPhil from "../../../assets/models/draco/cKorPhil.glb";
+import korPhil from "../../../assets/models/draco/cKOREAPHIL.glb";
 import landscape from "../../../assets/models/others/landscape.glb";
 import Modal from "react-modal";
 import { Icon } from "@iconify/react";
@@ -445,7 +445,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
 
                     </div>
                   ) : (
-                    <div>
+                    <div className="overflow-auto h-full">
 
 
                       {selectedBuildingData && selectedBuildingData.floors > 1 && !showOverview && (
