@@ -14,7 +14,7 @@ import animation from "../../../../assets/animation/yellow/animation.glb";
 import * as THREE from "three";
 import { useHistory } from "react-router";
 import ModelViewer from "../ModelViewer";
-import openGrounds from "../../../../assets/models/others/sb_floor_final_joined.glb";
+import openGrounds from "../../../../assets/models/others/cAnimationMap.glb";
 import techvoc from "../../../../assets/models/sb_buildings/techvoc_final.glb";
 import multipurpose from "../../../../assets/models/sb_buildings/multipurpose_final.glb";
 import chineseB from "../../../../assets/models/sb_buildings/chineseb_final.glb";

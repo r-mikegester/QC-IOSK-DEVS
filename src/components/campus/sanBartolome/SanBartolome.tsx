@@ -7,7 +7,7 @@ import { Bounds, OrbitControls, Stage, Stars } from "@react-three/drei";
 import SelectToZoom from "./SelectToZoom";
 import RotatingMesh from "./RotatingMesh";
 import Clouds from "./Clouds";
-import openGrounds from "../../../assets/models/others/sb_floor_cfinal.glb";
+import openGrounds from "../../../assets/models/others/cOpenGrounds.glb";
 import techvoc from "../../../assets/models/draco/cTechVoc.glb";
 import multipurpose from "../../../assets/models/draco/cMultiPurpose.glb";
 import chineseB from "../../../assets/models/draco/cChineseB.glb";
@@ -172,6 +172,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
     { name: "Admin Building", floors: 1 },
     { name: "Multipurpose Building", floors: 1 },
     { name: "ChineseB Building", floors: 1 },
+    { name: "KorPhil Building", floors: 5 },
     // Add more buildings as needed
   ];
 
@@ -370,7 +371,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
             onRequestClose={closeModal}
             contentLabel="Building Information"
           >
-            <div className="w-5/12 py-0 pl-0 transition-all duration-150 ease-in-out shadow-xl m-80 bg-base-100 rounded-3xl h-fit">
+            <div className="max-w-full py-0 pl-0 transition-all duration-150 ease-in-out shadow-xl m-80 bg-base-100 rounded-3xl h-fit">
               <div className="relative flex justify-center space-x-3">
                 <div className="w-20 h-full px-3 mr-2 shadow-lg rounded-3xl">
                   <div className="flex flex-col justify-center py-3 space-y-3 border-b-2 border-base-100">
@@ -420,14 +421,14 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                   )}
                 </div>
                 <div className="absolute w-20 h-full px-3 transition-all duration-150 ease-in-out shadow-inner -left-3 bg-base-300 rounded-3xl">
-                  <div className="flex flex-col justify-center py-5 space-y-3 border-b-2 border-base-200">
+                  <div className="flex flex-col justify-center pt-3">
 
                     {/* Conditionally render the "Building Details" button if more than one floor */}
                     {selectedBuildingData && selectedBuildingData.floors > 1 && (
                       <>
                         <button
                           onClick={showOverview ? handleFloorsClick : handleOverviewClick}
-                          className={` btn h-16  w-full bg-transparent btn-square shadow-none ${!showOverview ? "bg-transparent btn-square shadow-none font-semibold text-base-content" : ""}`}
+                          className={` btn   w-full bg-transparent btn-square shadow-none ${!showOverview ? "bg-transparent btn-square shadow-none font-semibold text-base-content" : ""}`}
                         >
                           {showOverview ? (
                             // Render back icon here
@@ -441,16 +442,14 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     )}
                   </div>
                   {showOverview ? (
-                    <div className="h-full overflow-y-auto">
+                    <div className=" overflow-y-auto">
 
                     </div>
                   ) : (
-                    <div className="overflow-auto h-full">
-
-
+                    <div className="h-[530px]">
                       {selectedBuildingData && selectedBuildingData.floors > 1 && !showOverview && (
                         <div className="h-full overflow-y-auto">
-                          <div className="grid grid-cols-1 gap-2 my-5">
+                          <div className="grid grid-cols-1 gap-2 my-3">
 
                             {selectedBuilding &&
                               Array.from(
@@ -492,7 +491,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     {!showOverview && (
                       <div className="flex flex-col justify-between h-auto bg-base-200 space-y- rounded-3xl">
                         <h1 className="text-2xl font-semibold text-center">Rooms</h1>
-                        <div className="w-64 p-3 pb-4 space-y-2 overflow-y-auto h-96 overflow-cli bg-base-300 rounded-2xl">
+                        <div className=" w-64 p-3 pb-4 space-y-2 overflow-y-auto h-96 overflow-cli bg-base-300 rounded-2xl">
                           {!selectedFloor && (
                             <div className="flex flex-col items-center justify-center w-full p-6 text-lg text-center text-base-content">
                               <Icon icon="typcn:warning-outline" className="w-10 h-10" />
