@@ -3,29 +3,49 @@ import { IonPage, IonContent } from "@ionic/react";
 import { Canvas } from "@react-three/fiber";
 import ModelViewer from "../../campus/sanBartolome/ModelViewer";
 import { storage } from "../../utils/firebase"; // Assuming you have initialized Firebase storage
-import { OrbitControls } from "@react-three/drei";
+import {
+  GizmoHelper,
+  GizmoViewcube,
+  GizmoViewport,
+  OrbitControls,
+} from "@react-three/drei";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 
 interface ContainerProps {
   name: string;
 }
 
+interface Model {
+  id: string;
+  modelName: string;
+  modelPath: string;
+  position: [number, number, number];
+  textPosition?: [number, number, number];
+}
+
 const Batasan: React.FC<ContainerProps> = ({ name }) => {
-  const [glbUrl, setGlbUrl] = useState<string | null>(null); // Initialize with null
+  const [models, setModels] = useState<Model[]>([]);
 
   useEffect(() => {
-    const fetchGlbFile = async () => {
+    const fetchModels = async () => {
       try {
-        // Replace "glbFiles/Plane.glb" with the actual path to your uploaded GLB file
-        const glbRef = storage.ref().child("glbFiles/Plane.glb");
-
-        const url = await glbRef.getDownloadURL();
-        setGlbUrl(url);
+        const db = getFirestore();
+        const modelsCollection = collection(db, "3D Objects");
+        const modelsSnapshot = await getDocs(modelsCollection);
+        const modelsData = modelsSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          modelName: doc.data().modelName,
+          modelPath: doc.data().modelPath,
+          position: doc.data().position,
+          textPosition: doc.data().textPosition,
+        }));
+        setModels(modelsData);
       } catch (error) {
-        console.error("Error fetching GLB file:", error);
+        console.error("Error fetching models:", error);
       }
     };
 
-    fetchGlbFile();
+    fetchModels();
   }, []);
 
   return (
@@ -46,11 +66,22 @@ const Batasan: React.FC<ContainerProps> = ({ name }) => {
             maxPolarAngle={Math.PI / 2}
             enableZoom
           />
+          <GizmoHelper>
+            <GizmoViewport labelColor="white" axisHeadScale={1.5} />
+          </GizmoHelper>
 
           <ambientLight intensity={2} />
-          {glbUrl && <ModelViewer modelPath={glbUrl} position={[0, 0, 0]} />}
+          {models.map((model) => (
+            <ModelViewer
+              key={model.id}
+              name={model.modelName}
+              modelPath={model.modelPath}
+              position={model.position}
+              textPosition={model.textPosition}
+            />
+          ))}
 
-          {/* Add other models if needed */}
+          <gridHelper args={[30, 30, 0xff0000, "teal"]} />
         </Canvas>
       </IonContent>
     </IonPage>

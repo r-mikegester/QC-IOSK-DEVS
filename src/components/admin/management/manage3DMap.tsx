@@ -1,27 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import AdminSideBar from "../constant/adminSidebar";
 import AdminHeader from "../constant/adminHeader";
 import { IonPage, IonContent } from "@ionic/react";
 import { Canvas } from "@react-three/fiber";
 import ModelViewer from "../../campus/sanBartolome/ModelViewer";
-import Plane from "../../../assets/models/Plane.glb";
-import cubePink from "../../../assets/models/cubePink.glb";
-import cubeBlue from "../../../assets/models/cubeBlue.glb";
-import { OrbitControls, TransformControls } from "@react-three/drei";
+import { GizmoHelper, GizmoViewcube, OrbitControls } from "@react-three/drei";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { GridHelper } from "three";
 
 interface ContainerProps {
   name: string;
 }
 
+interface Model {
+  id: string;
+  modelName: string;
+  modelPath: string;
+  position: [number, number, number];
+  textPosition?: [number, number, number];
+}
+
 const SBMapSceneManagement: React.FC<ContainerProps> = ({ name }) => {
   const history = useHistory();
-  const [selectedObject, setSelectedObject] = useState<string | null>(null);
-  const [orbitControlsEnabled, setOrbitControlsEnabled] = useState(true);
+  const [models, setModels] = useState<Model[]>([]);
 
   const create3DModel = () => {
     history.replace("/create3DModel");
   };
+
+  const handleModelClick = (modelId: string) => {
+    console.log("Clicked model:", modelId);
+  };
+
+  useEffect(() => {
+    const fetchModels = async () => {
+      try {
+        const db = getFirestore();
+        const modelsCollection = collection(db, "3D Objects");
+        const modelsSnapshot = await getDocs(modelsCollection);
+        const modelsData = modelsSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          modelName: doc.data().modelName,
+          modelPath: doc.data().modelPath,
+          position: doc.data().position,
+          textPosition: doc.data().textPosition,
+        }));
+        setModels(modelsData);
+      } catch (error) {
+        console.error("Error fetching models:", error);
+      }
+    };
+
+    fetchModels();
+  }, []);
 
   return (
     <IonPage>
@@ -39,13 +71,6 @@ const SBMapSceneManagement: React.FC<ContainerProps> = ({ name }) => {
                 >
                   Create 3D Model
                 </button>
-                <button
-                  onClick={() => setOrbitControlsEnabled(!orbitControlsEnabled)}
-                >
-                  {orbitControlsEnabled
-                    ? "Disable Orbit Controls"
-                    : "Enable Orbit Controls"}
-                </button>
               </div>
               <Canvas
                 camera={{
@@ -54,35 +79,29 @@ const SBMapSceneManagement: React.FC<ContainerProps> = ({ name }) => {
                 }}
                 style={{ position: "absolute" }}
               >
-                {orbitControlsEnabled && (
-                  <OrbitControls
-                    minPolarAngle={Math.PI / 25}
-                    maxPolarAngle={Math.PI / 2}
-                    enableZoom
-                  />
-                )}
+                <OrbitControls
+                  makeDefault
+                  minPolarAngle={Math.PI / 25}
+                  maxPolarAngle={Math.PI / 2}
+                  enableZoom
+                />
+                <GizmoHelper>
+                  <GizmoViewcube />
+                </GizmoHelper>
+
                 <ambientLight intensity={2} />
-                <ModelViewer modelPath={Plane} position={[0, 0, 0]} />
 
-                <group>
-                  <TransformControls>
-                    <ModelViewer
-                      modelPath={cubePink}
-                      position={[0, 0, 0]}
-                      onClick={() => setSelectedObject("blue")}
-                    />
-                  </TransformControls>
-                </group>
-
-                <group position={[5, 0, 0]}>
-                  <TransformControls>
-                    <ModelViewer
-                      modelPath={cubeBlue}
-                      position={[5, 0, 0]}
-                      onClick={() => setSelectedObject("pink")}
-                    />
-                  </TransformControls>
-                </group>
+                {models.map((model) => (
+                  <ModelViewer
+                    key={model.id}
+                    name={model.modelName}
+                    modelPath={model.modelPath}
+                    position={model.position}
+                    textPosition={model.textPosition}
+                    onClick={() => handleModelClick(model.id)}
+                  />
+                ))}
+                <gridHelper args={[30, 30, 0xff0000, "teal"]} />
               </Canvas>
               <br />
               <br />
