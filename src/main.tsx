@@ -15,7 +15,7 @@ import translationTG from "./components/locales/tagalog_translation.json";
 // import translationCMD from "./components/locales/cambodia_translation.json";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-
+import { Analytics } from "@vercel/analytics/react"
 const container = document.getElementById('root');
 const root = createRoot(container!);
 const resources = {
@@ -61,8 +61,10 @@ i18n.use(initReactI18next).init({
 });
 root.render(
   <React.StrictMode>
+    <Analytics/>
     <I18nextProvider i18n={i18next}>
       <App name={"App"} />
     </I18nextProvider>
+    
   </React.StrictMode>
 );
