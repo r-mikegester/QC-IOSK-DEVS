@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from './loading';
 import SanBartolome from "../components/campus/sanBartolome/SanBartolome";
+import { Analytics } from "@vercel/analytics/react";
 
 // Import your components here
 // const SanBartolome = lazy(() => import("../components/campus/sanBartolome/SanBartolome"));
@@ -35,6 +36,7 @@ const layout: React.FC<ContainerProps> = ({ name }) => {
   return (
     <IonPage>
       <IonContent fullscreen>
+      <Analytics/>
         {/* Your other components */}
         <div className="absolute z-50 bottom-40 right-80 ">
           <div className="">

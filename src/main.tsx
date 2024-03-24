@@ -61,7 +61,6 @@ i18n.use(initReactI18next).init({
 });
 root.render(
   <React.StrictMode>
-    <Analytics/>
     <I18nextProvider i18n={i18next}>
       <App name={"App"} />
     </I18nextProvider>
