@@ -83,3 +83,4 @@ TIPS:
 YOU MUST DO THE STEP 3 ON A WHOLE FILE THEN CODE THEM 
 DOWN IN THE translation FILE
 
+testing testing
