@@ -15,7 +15,7 @@ const Home: React.FC<ContainerProps> = ({ name }) => {
 
   const handleClick = () => {
     // Redirect to the "/Map" route
-    history.push('/SanBartolome');
+    history.push('/Home');
   };
 
   return (
