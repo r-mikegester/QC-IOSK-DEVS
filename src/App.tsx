@@ -60,6 +60,7 @@ import Loading from "../src/pages/loading";
 import UpdateRoom from "./components/admin/management/roomComponent/updateRoom";
 import SBMapScene from "../src/components/admin/management/manage3DMap";
 import Create3DModel from "../src/components/admin/management/3DMapComponent/create3DModel";
+import Update3DModel from "./components/admin/management/3DMapComponent/update3DMode";
 
 setupIonicReact();
 interface ContainerProps {
@@ -144,6 +145,10 @@ const App: React.FC<ContainerProps> = ({ name }) => (
 
         <Route exact path="/create3DModel">
           <Create3DModel name={"Create 3d Model"} />
+        </Route>
+
+        <Route exact path="/update3DModel/:modelId">
+          <Update3DModel name={"Update 3d Model"} />
         </Route>
 
         <Route exact path="/Settings">

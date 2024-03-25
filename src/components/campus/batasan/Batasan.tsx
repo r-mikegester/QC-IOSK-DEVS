@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { IonPage, IonContent } from "@ionic/react";
 import { Canvas } from "@react-three/fiber";
 import ModelViewer from "../../campus/sanBartolome/ModelViewer";
@@ -7,7 +7,9 @@ import {
   GizmoHelper,
   GizmoViewcube,
   GizmoViewport,
+  Html,
   OrbitControls,
+  useProgress,
 } from "@react-three/drei";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 
@@ -21,6 +23,15 @@ interface Model {
   modelPath: string;
   position: [number, number, number];
   textPosition?: [number, number, number];
+}
+
+function Loader() {
+  const { active, progress, errors, item, loaded, total } = useProgress();
+  return (
+    <Html center className="text-base-content">
+      {progress} % loaded
+    </Html>
+  );
 }
 
 const Batasan: React.FC<ContainerProps> = ({ name }) => {
@@ -61,27 +72,30 @@ const Batasan: React.FC<ContainerProps> = ({ name }) => {
           }}
           style={{ position: "absolute" }}
         >
-          <OrbitControls
-            minPolarAngle={Math.PI / 25}
-            maxPolarAngle={Math.PI / 2}
-            enableZoom
-          />
-          <GizmoHelper>
-            <GizmoViewport labelColor="white" axisHeadScale={1.5} />
-          </GizmoHelper>
-
-          <ambientLight intensity={2} />
-          {models.map((model) => (
-            <ModelViewer
-              key={model.id}
-              name={model.modelName}
-              modelPath={model.modelPath}
-              position={model.position}
-              textPosition={model.textPosition}
+          <Suspense fallback={<Loader />}>
+            <OrbitControls
+              minPolarAngle={Math.PI / 25}
+              maxPolarAngle={Math.PI / 2}
+              enableZoom
             />
-          ))}
+            <GizmoHelper>
+              <GizmoViewport labelColor="white" axisHeadScale={1.5} />
+            </GizmoHelper>
 
-          <gridHelper args={[30, 30, 0xff0000, "teal"]} />
+            <ambientLight intensity={2} />
+
+            {models.map((model) => (
+              <ModelViewer
+                key={model.id}
+                name={model.modelName}
+                modelPath={model.modelPath}
+                position={model.position}
+                textPosition={model.textPosition}
+              />
+            ))}
+
+            <gridHelper args={[30, 30, 0xff0000, "teal"]} />
+          </Suspense>
         </Canvas>
       </IonContent>
     </IonPage>
