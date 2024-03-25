@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 import { themeChange } from "theme-change";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,18 +23,24 @@ const AdminLogin: React.FC = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        toast.success("Sign in successfully!", {
-          position: toast.POSITION.BOTTOM_RIGHT,
-          className: " bg-base-100 font-bold rounded-2xl text-base-content ",
-          theme: "dark",
-          icon: <Icon icon="line-md:clipboard-check" className="w-10 h-10 text-xl" />,
-          progressClassName: "bg-accent rounded-full mx-3 mb-1 w-72",
-          autoClose: 1000,
-        });
-        console.log(user);
-        setTimeout(() => {
-          history.push("/Dashboard");
-        }, 2500);
+        if (user.emailVerified) {
+          toast.success("Sign in successfully!", {
+            position: toast.POSITION.BOTTOM_RIGHT,
+            className: " bg-base-100 font-bold rounded-2xl text-base-content ",
+            theme: "dark",
+            icon: <Icon icon="line-md:clipboard-check" className="w-10 h-10 text-xl" />,
+            progressClassName: "bg-accent rounded-full mx-3 mb-1 w-72",
+            autoClose: 1000,
+          });
+          console.log(user);
+          setTimeout(() => {
+            history.push("/Dashboard");
+          }, 2500);
+        } else {
+          toast.error("Please verify your email before signing in.", {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+        }
       })
       .catch((error) => {
         toast.error("Incorrect email or password", {
@@ -42,6 +48,23 @@ const AdminLogin: React.FC = () => {
         });
         console.error(error.code, error.message);
       });
+  };
+
+  const sendVerificationEmail = () => {
+    const user = auth.currentUser;
+    if (user) {
+      sendEmailVerification(user)
+        .then(() => {
+          toast.success("Verification email sent!", {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+        })
+        .catch((error) => {
+          console.error("Error sending verification email:", error);
+        });
+    } else {
+      console.error("No user is currently logged in.");
+    }
   };
 
   const { t } = useTranslation();
@@ -110,6 +133,14 @@ const AdminLogin: React.FC = () => {
                       className="inline-flex items-center justify-center w-20 px-4 py-3 text-sm font-semibold border-2 text-base-content bg-base-300 gap-x-2 rounded-xl hover:bg-base-200 disabled:opacity-50 disabled:pointer-events-none"
                     >
                       Clear
+                    </button>
+                  </div>
+                  <div className="flex justify-center">
+                    <button
+                      onClick={sendVerificationEmail}
+                      className="text-blue-500 underline focus:outline-none"
+                    >
+                      Resend verification email
                     </button>
                   </div>
                 </div>
