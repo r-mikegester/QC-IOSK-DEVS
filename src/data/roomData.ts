@@ -2,7 +2,11 @@ import IB101 from "../assets/animation/yellow/101a.glb";
 import IB102 from "../assets/animation/yellow/102.glb";
 import IB103 from "../assets/animation/yellow/103a.glb";
 import IB101Voice from "../assets/audio/voice101a.mp3";
-
+import admin from "../assets/animation/admin.glb";
+import belmonte from "../assets/animation/belmonte.glb";
+import multicasting from "../assets/animation/multicasting.glb";
+import techvoc from "../assets/animation/techvoc.glb";
+import yellow from "../assets/animation/yellow.glb";
 import IL401a from "../assets/animation/academic/Academic-IL401a.glb";
 import IL301a from "../assets/animation/academic/Acad - IL301.glb";
 export const roomData: Record<
@@ -36,7 +40,7 @@ export const roomData: Record<
     "2": [
       {
         buildingName: "Bautista Building",
-        floorNumber: "",
+        floorNumber: "1st",
         name: "IK101",
         modelPath: "",
         voice: "",
@@ -1156,9 +1160,9 @@ export const roomData: Record<
     "1": [
       {
         buildingName: "Admin Building",
-        floorNumber: "",
+        floorNumber: "1st",
         name: "Open Lobby",
-        modelPath: "",
+        modelPath: "admin",
         voice: "",
         details: ["Room Info 1", "Room Info 2"],
         textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
@@ -1285,9 +1289,9 @@ export const roomData: Record<
     "1": [
       {
         buildingName: "Belmonte Building",
-        floorNumber: "",
+        floorNumber: "1st",
         name: "IC101a",
-        modelPath: "",
+        modelPath: belmonte,
         voice: "",
         details: ["Room Info 1", "Room Info 2"],
         textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
@@ -1513,7 +1517,7 @@ export const roomData: Record<
         buildingName: "Techvoc Building",
         floorNumber: "",
         name: "TVGYM",
-        modelPath: "",
+        modelPath: techvoc,
         voice: "",
         details: ["Room Info 1", "Room Info 2"],
         textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
@@ -1780,7 +1784,7 @@ export const roomData: Record<
         buildingName: "Ched Building",
         floorNumber: "",
         name: "ID101",
-        modelPath: "",
+        modelPath: multicasting,
         voice: "",
         details: ["Room Info 1", "Room Info 2"],
         textGuide: ["Text Guide: 1asdasdasdasd", "Room Info 2"],
@@ -1858,7 +1862,7 @@ export const roomData: Record<
         buildingName: "Simon Building",
         floorNumber: "1st",
         name: "IB101a",
-        modelPath: IB101,
+        modelPath: yellow,
         voice: IB101Voice,
         details: ["Room Info 1", "Room Info 2"],
         textGuide: [

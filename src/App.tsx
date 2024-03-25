@@ -57,6 +57,9 @@ import CreateManual from "./components/admin/management/mikeComponent/createManu
 import UpdateManual from "./components/admin/management/mikeComponent/updateManual";
 import { Suspense } from "react";
 import Loading from "./pages/loading";
+import UpdateRoom from "./components/admin/management/roomComponent/updateRoom";
+import SBMapScene from "../src/components/admin/management/manage3DMap";
+import Create3DModel from "../src/components/admin/management/3DMapComponent/create3DModel";
 import SanFrancisco from './components/campus/sanFrancisco/SanFrancisco';
 import Batasan from './components/campus/batasan/Batasan';
 setupIonicReact();
@@ -122,6 +125,14 @@ const App: React.FC<ContainerProps> = ({ name }) => (
           <BuildingManagement name={"Building Management"} />
         </Route>
 
+        <Route exact path="/SBMapScene">
+          <SBMapScene name={"3D Map Management"} />
+        </Route>
+
+        <Route exact path="/create3DModel">
+          <Create3DModel name={"Create 3d Model"} />
+        </Route>
+
         <Route path="/Settings">
           <AdminSettings name={"Settings"} />
         </Route>
@@ -160,6 +171,10 @@ const App: React.FC<ContainerProps> = ({ name }) => (
 
         <Route path="/updateManual/:manualId">
           <UpdateManual name={"Update Manual"} />
+        </Route>
+
+        <Route path="/updateRoom/:roomName">
+          <UpdateRoom />
         </Route>
 
         {/* sheeesh */}
