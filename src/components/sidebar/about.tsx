@@ -57,9 +57,9 @@ const About: React.FC = () => {
                 <div className="flex items-center gap-x-4">
                   <div className="grow">
                     <p className="text-base text-justify uppercase text-base-content">
-                    The primary goal of this project is to create the QC-IOSK, a user-friendly navigation tool tailored for Quezon City University campuses.
-                    This system aims to enhance the navigation experience for students, university staff, and visitors by providing precise location information
-                    and a visual representation of the university's grounds.
+                      The primary goal of this project is to create the QC-IOSK, a user-friendly navigation tool tailored for Quezon City University campuses.
+                      This system aims to enhance the navigation experience for students, university staff, and visitors by providing precise location information
+                      and a visual representation of the university's grounds.
                     </p>
                   </div>
                 </div>
@@ -69,19 +69,7 @@ const About: React.FC = () => {
         </div>
 
         {/* QC-iosk Features - Powered by Devs */}
-        <div
-          tabIndex={0}
-          className="mt-1 collapse collapse-arrow bg-base-300 rounded-2xl"
-        >
-          <input type="checkbox" />
-          <div className="flex text-lg font-medium collapse-title">
-            <Icon icon="tabler:adjustments-star" className=" w-7 h-7" />
-            <p className="ml-3 text-base-content">QC-iosk Features</p>
-          </div>
-          <div className="collapse-content bg-base-200">
 
-          </div>
-        </div>
 
         {/* Acknowledgements - Documentors */}
         <div
@@ -272,6 +260,33 @@ const About: React.FC = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+        <div
+          tabIndex={0}
+          className="mt-1 collapse collapse-arrow bg-base-300 rounded-2xl"
+        >
+          <input type="checkbox" />
+          <div className="flex text-lg font-medium collapse-title">
+            <Icon icon="tabler:adjustments-star" className=" w-7 h-7" />
+            <p className="ml-3 text-base-content">Evacuation Plan</p>
+          </div>
+          <div className="collapse-content bg-base-200">
+            make this as a image modal
+          </div>
+        </div>
+        <div
+          tabIndex={0}
+          className="mt-1 collapse collapse-arrow bg-base-300 rounded-2xl"
+        >
+          <input type="checkbox" />
+          <div className="flex text-lg font-medium collapse-title">
+            <Icon icon="tabler:adjustments-star" className=" w-7 h-7" />
+            <p className="ml-3 text-base-content">Developmental Plan</p>
+          </div>
+          <div className="collapse-content bg-base-200">
+            make this as a image modal
           </div>
         </div>
       </div>

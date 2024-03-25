@@ -1,23 +1,25 @@
 import React, { Suspense, useEffect, useState, useTransition } from "react";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import { Canvas } from "@react-three/fiber";
 import ModelViewer from "./ModelViewer";
 import { Bounds, OrbitControls, Stage, Stars } from "@react-three/drei";
 import SelectToZoom from "./SelectToZoom";
 import RotatingMesh from "./RotatingMesh";
 import Clouds from "./Clouds";
-import openGrounds from "../../../assets/models/others/sb_floor_final2.glb";
-import techvoc from "../../../assets/models/sb_buildings/techvoc_final.glb";
-import multipurpose from "../../../assets/models/sb_buildings/multipurpose_final.glb";
-import chineseB from "../../../assets/models/sb_buildings/chineseb_final.glb";
-import ched from "../../../assets/models/sb_buildings/ched_final.glb";
-import simon from "../../../assets/models/sb_buildings/yellow_final.glb";
-import admin from "../../../assets/models/sb_buildings/admin_final.glb";
-import bautista from "../../../assets/models/sb_buildings/bautista_final.glb";
-import belmonte from "../../../assets/models/sb_buildings/belmonte_final.glb";
-import academic from "../../../assets/models/sb_buildings/academic_final.glb";
-import ballroom from "../../../assets/models/sb_buildings/ballroom_final.glb";
-import urbanFarming from "../../../assets/models/sb_buildings/urbanfarming_final.glb";
-import korPhil from "../../../assets/models/sb_buildings/korPhil_final.glb";
+import openGrounds from "../../../assets/models/others/cOpenGrounds.glb";
+import techvoc from "../../../assets/models/draco/cTechVoc.glb";
+import multipurpose from "../../../assets/models/draco/cMultiPurpose.glb";
+import chineseB from "../../../assets/models/draco/cChineseB.glb";
+import ched from "../../../assets/models/draco/cChed.glb";
+import simon from "../../../assets/models/draco/cYellow.glb";
+import admin from "../../../assets/models/draco/cAdmin.glb";
+import bautista from "../../../assets/models/draco/cBautista.glb";
+import belmonte from "../../../assets/models/draco/cBelmonte.glb";
+import academic from "../../../assets/models/draco/cAcademic.glb";
+import ballroom from "../../../assets/models/draco/cBallroom.glb";
+import urbanFarming from "../../../assets/models/draco/cUrbanFarming.glb";
+import korPhil from "../../../assets/models/draco/cKOREAPHIL.glb";
 import landscape from "../../../assets/models/others/landscape.glb";
 import Modal from "react-modal";
 import { Icon } from "@iconify/react";
@@ -30,7 +32,6 @@ import {
 } from "firebase/firestore";
 import firebaseConfig, { db } from "../../utils/firebase";
 import { initializeApp } from "firebase/app";
-import { useHistory } from "react-router";
 import Animation from "./animation/Animation";
 import IB101 from "../../../assets/animation/yellow/101a.glb";
 import IB102 from "../../../assets/animation/yellow/102.glb";
@@ -38,6 +39,7 @@ import IB103 from "../../../assets/animation/yellow/103a.glb";
 import IB101Voice from "../../../assets/audio/voice101a.mp3";
 import { roomData } from "../../../data/roomData";
 import IL401a from "../../../assets/animation/academic/Academic-IL401a.glb";
+
 
 interface ContainerProps {
   name: string;
@@ -51,6 +53,15 @@ interface BuildingsData {
 }
 
 const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
+
+  // Create DRACO loader instance with the decoder path
+  const dracoLoader = new DRACOLoader();
+  dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.7/");
+  dracoLoader.setDecoderConfig({ type: 'js' }); // Specify the type of decoder (js or wasm)
+
+  const gltfLoader = new GLTFLoader();
+  gltfLoader.setDRACOLoader(dracoLoader); // Pass the DRACOLoader instance
+
   const [isNight, setIsNight] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedBuilding, setSelectedBuilding] = useState("");
@@ -64,6 +75,8 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
   const [selectedShortPath, setSelectedShortPath] = useState("");
   const [isAnimationActive, setIsAnimationActive] = useState(false);
   const [showOverview, setShowOverview] = useState(false); // State to toggle overview
+  const [modalContent, setModalContent] = useState("");
+  const [showError, setErrorModal] = useState(false);
 
   useEffect(() => {
     const checkTime = () => {
@@ -110,6 +123,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
   const closeModal = () => {
     setShowModal(false);
     setIsAnimationActive(false);
+    setErrorModal(false);
   };
 
   const clickFloor = (floor: string) => {
@@ -126,23 +140,22 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
     const selectedRoomData = roomData[selectedBuilding][selectedFloor]?.find(
       (r) => r.name === room
     );
-    console.log(room);
-    console.log(selectedRoomData?.modelPath);
-    console.log(selectedRoomData?.voice);
+
     if (selectedRoomData) {
       setAnimation(room);
       if (selectedRoomData.modelPath) {
         setSelectedRoomModel(selectedRoomData.modelPath);
         setSelectedVoice(selectedRoomData.voice);
-        // setSelectedShortPath(selectedRoomData.shortPath);
         setIsAnimationActive(true);
       } else {
-        setSelectedRoomModel("");
-        alert("Model path is empty for this room.");
+        // Show modal with appropriate message
+        setModalContent("Model path is empty for this room.");
+        setErrorModal(true);
       }
     } else {
-      setSelectedRoomModel("");
-      alert("Selected room data not found.");
+      // Show modal with appropriate message
+      setModalContent("Selected room data not found.");
+      setErrorModal(true);
     }
   };
 
@@ -159,14 +172,10 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
     { name: "Admin Building", floors: 1 },
     { name: "Multipurpose Building", floors: 1 },
     { name: "ChineseB Building", floors: 1 },
+    { name: "KorPhil Building", floors: 5 },
     // Add more buildings as needed
   ];
 
-  const clickSB = () => {
-    setIsAnimationActive(false);
-    setShowModal(false);
-    return;
-  };
 
   const handleOverviewClick = () => {
     setShowOverview(true); // Toggle the showOverview state
@@ -193,12 +202,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
             selectedFloor={selectedFloor}
             selectedRoom={selectedRoom}
           />
-          <button
-            onClick={clickSB}
-            className="absolute z-10 mt-10 btn btn-secondary ml-60"
-          >
-            Back
-          </button>
+
         </>
       ) : (
         <>
@@ -236,7 +240,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                   <Stars radius={50} depth={30} count={100} factor={3} />
                 </>
               ) : null}
-              {/* <Clouds /> */}
+              <Clouds />
               {/* SB FLOORING */}
               <ModelViewer modelPath={openGrounds} position={[0, 0, 0]} />
               <ModelViewer modelPath={landscape} position={[-20, -16, 40]} />
@@ -367,58 +371,42 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
             onRequestClose={closeModal}
             contentLabel="Building Information"
           >
-            <div className="w-full p-6 shadow-xl m-80 bg-base-200 rounded-3xl h-fit">
-              <div className="flex items-center justify-between">
-                <h2 className="text-3xl font-semibold text-center">
-                  {selectedBuilding}
-                </h2>
-                <button
-                  onClick={closeModal}
-                  className="btn btn-square hover:bg-red-500 hover:text-white"
-                >
-                  <Icon icon="line-md:close-small" className="w-10 h-10" />
-                </button>
-              </div>
-              <div className="flex justify-center mt-6 space-x-3">
-                <div className="px-6 shadow-inner bg-base-300 w-96 rounded-3xl">
-                  <div className="flex flex-col justify-center py-6 space-y-3 border-b-2 border-base-100">
-                    <button
-                      onClick={handleOverviewClick}
-                      className={`h-10 btn-blocked btn  hover:bg-base-200 ${showOverview ? "bg-base-content text-white" : ""}`}
-                    >
-                      Building Details
-                    </button>
+            <div className="max-w-full py-0 pl-0 transition-all duration-150 ease-in-out shadow-xl m-80 bg-base-100 rounded-3xl h-fit">
+              <div className="relative flex justify-center space-x-3">
+                <div className="w-20 h-full px-3 mr-2 shadow-lg rounded-3xl">
+                  <div className="flex flex-col justify-center py-3 space-y-3 border-b-2 border-base-100">
+
                     {/* Conditionally render the "Building Details" button if more than one floor */}
                     {selectedBuildingData && selectedBuildingData.floors > 1 && (
                       <>
                         <button
                           onClick={handleFloorsClick}
-                          className={`h-10 btn-blocked btn  hover:bg-base-200 ${!showOverview ? "bg-base-content text-white" : ""}`}
+                          className={`h-10 btn  hover:bg-base-content hover:text-base-300 ${!showOverview ? "bg-transparent btn-block shadow-none text-lg text-base-content" : ""}`}
                         >
                           Floors
-                        </button></>
+                        </button>
+                      </>
                     )}
                   </div>
                   {showOverview ? (
                     <div className="h-full overflow-y-auto">
-                      <p className="p-2 text-2xl font-semibold">Building Details</p>
-                      <p className="p-2 text-lg">Building Sqm: 6969</p>
-                      <p className="p-2 text-lg">Building Status: 6969</p>
-                      <p className="p-2 text-lg">Building floors: 6969</p>
+                      <p className="p-2 text-2xl font-semibold">Directories</p>
+                      <p className="p-2 text-base">Gymnasium</p>
+                      <p className="p-2 text-base">Rooms: </p>
+                      <p className="p-2 text-base">Area: </p>
                     </div>
                   ) : (
                     <div>
                       {selectedBuildingData && selectedBuildingData.floors > 1 && !showOverview && (
                         <div className="h-full overflow-y-auto">
-                          <p className="p-2 text-2xl font-semibold">Floors</p>
-                          <div className="grid grid-cols-2 gap-2">
+                          <div className="grid grid-cols-1 gap-2 my-3">
                             {selectedBuilding &&
                               Array.from(
                                 { length: selectedBuildingData.floors },
                                 (_, index) => (
                                   <button
                                     key={index}
-                                    className={`w-full h-10 bg-base-100 btn ${selectedFloor === `${index + 1}` ? "bg-base-content text-base-100" : "hover:bg-base-200"
+                                    className={`w-full h-10 bg-bsase-100 btn ${selectedFloor === `${index + 1}` ? "bg-base-content text-base-100" : "hover:bg-base-200"
                                       }`}
                                     onClick={() => clickFloor(`${index + 1}`)}
                                   >
@@ -432,64 +420,170 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     </div>
                   )}
                 </div>
-                {showOverview ? (
-                  <div className="w-full h-full duration-150 ease-in-out shadow-inner bg-base-300 rounded-2xl">
-                    <div className="flex items-center p-6">
-                      <div className="w-full p-6 shadow-inner bg-base-200 h-96 rounded-2xl">
-                        <div className="flex flex-col w-full h-full space-y-3">
-                          <h1>Building Details</h1>
-                        </div>
-                      </div>
-                    </div>
+                <div className="absolute w-20 h-full px-3 transition-all duration-150 ease-in-out shadow-inner -left-3 bg-base-300 rounded-3xl">
+                  <div className="flex flex-col justify-center pt-3">
+
+                    {/* Conditionally render the "Building Details" button if more than one floor */}
+                    {selectedBuildingData && selectedBuildingData.floors > 1 && (
+                      <>
+                        <button
+                          onClick={showOverview ? handleFloorsClick : handleOverviewClick}
+                          className={` btn   w-full bg-transparent btn-square shadow-none ${!showOverview ? "bg-transparent btn-square shadow-none font-semibold text-base-content" : ""}`}
+                        >
+                          {showOverview ? (
+                            // Render back icon here
+                            <Icon icon="icon-park-outline:back" className="w-10 h-10" />
+                          ) : (
+                            // Render floor icon here
+                            <Icon icon="tabler:box-multiple" className={`w-10 h-10`} />
+                          )}
+
+                        </button></>
+                    )}
                   </div>
-                ) : (
-                  <div className="w-full h-full shadow-inner bg-base-300 rounded-2xl">
-                    <div className="flex items-center p-6 pl-0">
-                      <div className="w-64 p-6 space-y-2 overflow-y-auto h-96">
-                        {selectedBuilding &&
-                          selectedFloor &&
-                          roomData[selectedBuilding][selectedFloor]?.map((room, roomIndex) => (
-                            <div key={roomIndex} className="flex flex-col">
-                              <button className="btn" onClick={() => selectRoom(room.name)}>
-                                {room.name}
-                              </button>
-                            </div>
-                          ))}
-                      </div>
-                      <div className="w-full p-6 shadow-inner bg-base-200 h-96 rounded-2xl">
-                        <div className="relative flex flex-col w-full h-full space-y-3">
-                          <div className="text-base-content">
+                  {showOverview ? (
+                    <div className=" overflow-y-auto">
 
-
+                    </div>
+                  ) : (
+                    <div className="h-[530px]">
+                      {selectedBuildingData && selectedBuildingData.floors > 1 && !showOverview && (
+                        <div className="h-full overflow-y-auto">
+                          <div className="grid grid-cols-1 gap-2 my-3">
 
                             {selectedBuilding &&
-                              selectedFloor &&
-                              roomData[selectedBuilding][selectedFloor]
-                                ?.filter((room) => room.name === selectedRoom)
-                                .map((room, roomIndex) => (
-                                  <div key={roomIndex}>
-                                    <ul>
-                                      <h1>Room Details</h1>
-                                      {room.details.map((detail, detailIndex) => (
-                                        <li key={detailIndex}>{detail}</li>
-                                      ))}
-                                      <button
-                                        className="absolute bottom-0 right-0 btn btn-secondary btn-block"
-                                        onClick={() => clickAnimation(selectedRoom)}
-                                      >
-                                        GO TO {selectedRoom}
-                                      </button>
-                                    </ul>
-                                  </div>
-                                ))}
-
+                              Array.from(
+                                { length: selectedBuildingData.floors },
+                                (_, index) => (
+                                  <button
+                                    key={index}
+                                    className={`w-full h-10 bg-base-100 btn text-2xl ${selectedFloor === `${index + 1}` ? "bg-base-content text-base-100" : "hover:bg-base-200"
+                                      }`}
+                                    onClick={() => clickFloor(`${index + 1}`)}
+                                  >
+                                    {index + 1}
+                                  </button>
+                                )
+                              )}
                           </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+                <div className="flex flex-col w-full space-y-3 transition-all duration-150 ease-in-out">
+                  <div className="flex items-center justify-between w-full ">
+                    <button
+                      onClick={handleOverviewClick}
+                      className={` rounded-xl text-3xl p-2 font-bold mx-2 mt-4 h-14 hover:bg-base-300 ${showOverview ? "hover:bg-transparent text-base-content w-full mt-4 h-14 mx-4" : ""}`}
+                    >
+                      {selectedBuilding}
+                    </button>
+                    <button
+                      onClick={closeModal}
+                      className="mt-5 mr-5 btn btn-square hover:bg-red-500 hover:text-white"
+                    >
+                      <Icon icon="line-md:close-small" className="w-10 h-10" />
+                    </button>
+                  </div>
 
+                  <div className="flex items-start justify-center w-full h-full transition-all duration-150 ease-in-out ">
+                    {!showOverview && (
+                      <div className="flex flex-col justify-between h-auto bg-base-200 space-y- rounded-3xl">
+                        <h1 className="text-2xl font-semibold text-center">Rooms</h1>
+                        <div className=" w-64 p-3 pb-4 space-y-2 overflow-y-auto h-96 overflow-cli bg-base-300 rounded-2xl">
+                          {!selectedFloor && (
+                            <div className="flex flex-col items-center justify-center w-full p-6 text-lg text-center text-base-content">
+                              <Icon icon="typcn:warning-outline" className="w-10 h-10" />
+                              <h1>Please select a desired floor from the sidebar on the left</h1>
+                            </div>
+                          )}
+                          {selectedBuilding &&
+                            selectedFloor &&
+                            roomData[selectedBuilding][selectedFloor]?.map((room, roomIndex) => (
+                              <div key={roomIndex} className="flex flex-col">
+                                <button className="btn" onClick={() => selectRoom(room.name)}>
+                                  {room.name}
+                                </button>
+                              </div>
+                            ))}
                         </div>
                       </div>
-                    </div>
+                    )}
+                    {showOverview ? (
+                      <div className="w-full h-full duration-150 ease-in-out bg-base-100 rounded-2xl">
+                        <div className="flex items-center p-6 pt-0 pl-0">
+                          <div className="w-full p-6 shadow-inner bg-base-200 h-96 rounded-2xl">
+                            <div className="flex w-full h-full space-x-3 ">
+                              <div className="flex items-center justify-center w-full h-5 rounded-2xl ">
+                                <h1 className="text-3xl font-semibold text-base-content">Details</h1>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="w-full h-auto m-6 mt-0 shadow-inner bg-base-300 rounded-2xl">
+
+                        <div className="flex flex-col items-center p-0">
+
+
+                          <div className="w-full p-6 shadow-inner bg-base-200 h-[375px] rounded-2xl">
+                            <div className="relative flex flex-col w-full h-full space-y-3">
+                              <div className="text-base-content">
+
+                                {selectedBuilding &&
+                                  selectedFloor &&
+                                  roomData[selectedBuilding][selectedFloor]
+                                    ?.filter((room) => room.name === selectedRoom)
+                                    .map((room, roomIndex) => (
+                                      <div key={roomIndex}>
+                                        <ul>
+                                          <h1 className="mb-5 -mt-0 font-bold text-center">Details</h1>
+                                          {room.details.map((detail, detailIndex) => (
+                                            <li key={detailIndex}>{detail}</li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                    ))}
+
+                              </div>
+
+                            </div>
+                          </div>
+                          <div className="w-full p-3">
+                            <button
+                              className=" btn btn-secondary btn-block"
+                              onClick={() => clickAnimation(selectedRoom)}
+                            >
+                              Get Direction {selectedRoom}
+                            </button>
+                          </div>
+                        </div>
+
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
+              </div>
+            </div>
+          </Modal>
+          <Modal
+            className="flex items-center justify-center w-screen h-screen transition-all duration-150 ease-in-out bg-black/60"
+            isOpen={showError}
+            onRequestClose={() => setShowModal(false)}
+            contentLabel="Alert"
+          >
+            <div className="h-56 p-6 shadow-xl bg-base-100 rounded-2xl w-96">
+              <p className="text-3xl text-center">{modalContent}</p>
+              <div className="flex justify-center space-x-3 mt-14">
+
+                <button
+                  onClick={closeModal}
+                  className="btn bg-base-300"
+                >
+                  <Icon icon="line-md:close-small" className="w-10 h-10" /> Close
+                </button>
               </div>
             </div>
           </Modal>

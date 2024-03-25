@@ -2,11 +2,7 @@ import { IonContent, IonPage } from "@ionic/react";
 import { useHistory } from "react-router-dom";
 import "../assets/css/Campuses.css";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
-import SanBartolome from "../components/campus/sanBartolome/SanBartolome";
-import SanFransisco from "../components/campus/sanFrancisco/SanFransisco";
 import { Icon } from "@iconify/react";
-import Dock from "../components/navigation/dock";
 import sample from "../assets/imgs/selectCampus/sample.png";
 import devPlan from "../assets/imgs/selectCampus/developmentalPlan.png";
 import sb from "../assets/imgs/selectCampus/SanBartolome.webp";
@@ -33,6 +29,14 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
     // Redirect to the "/Map" route
     history.push("/SanBartolome");
   };
+  const ClickB = () => {
+    // Redirect to the "/Map" route
+    history.push("/Batasan");
+  };
+  const ClickSF = () => {
+    // Redirect to the "/Map" route
+    history.push("/SanFrancisco");
+  };
 
   return (
     <IonPage>
@@ -56,11 +60,9 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
               </div>
 
               {/* BATASAN */}
-              <div className="indicator">
-                <span className="indicator-item indicator-middle indicator-center badge badge-secondary">
-                  Coming soon...
-                </span>
-                <div className="flex flex-col items-center p-4">
+             
+                
+                <div className="flex flex-col items-center p-4" onClick={ClickB}>
                   <img
                     src={b}
                     className="h-64 duration-150 cursor-pointer w-96 rounded-2xl hover:scale-110"
@@ -69,14 +71,12 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
 
                   <div className="space-y-1 leadi"></div>
                 </div>
-              </div>
+              
 
               {/* SAN FRANCISCO */}
-              <div className="indicator">
-                <span className="indicator-item indicator-middle indicator-center badge badge-secondary">
-                  Coming soon...
-                </span>
-                <div className="flex flex-col items-center p-4">
+            
+                
+                <div className="flex flex-col items-center p-4" onClick={ClickSF}>
                   <img
                     src={sf}
                     className="h-64 duration-150 cursor-pointer w-96 rounded-2xl hover:scale-110"
@@ -84,7 +84,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
                   <h3 className="my-3 text-3xl font-semibold">San Francisco</h3>
                   <div className="space-y-1 leadi"></div>
                 </div>
-              </div>
+              
             </div>
 
             <div className="container p-4 mx-auto my-6 space-y-2 text-center">
@@ -128,7 +128,7 @@ const SelectCampus: React.FC<ContainerProps> = ({ name }) => {
               </div>
             </div>
           </section>
-          {/* <Dock name={""} /> */}
+          
           <SideBar/>
         </main>
       </IonContent>

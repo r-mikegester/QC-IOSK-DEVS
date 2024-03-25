@@ -1,20 +1,20 @@
 /*Imported Dependencies */
-import { IonReactRouter } from "@ionic/react-router";
-import { Redirect, Route } from "react-router-dom";
 
+import { Redirect, Route } from 'react-router-dom';
+
+import { IonReactRouter } from "@ionic/react-router";
 /* Map*/
-import SanBartolome from "./components/campus/sanBartolome/SanBartolome";
-import SanFransisco from "./components/campus/sanFrancisco/SanFransisco";
-import Batasan from "./components/campus/batasan/Batasan";
+// import SanFrancisco from "./components/campus/sanFrancisco/SanFransisco";
+// import Batasan from "./components/campus/batasan/Batasan";
 
 /** Error Catching */
 
 /* Main Routing */
 
-import Map from "../src/pages/maps";
+import Maps from "./pages/maps";
 import Home from "./pages/layout";
 import SearchTab from "./pages/Search";
-import Layout from "../src/pages/layout";
+
 
 /** Admin Routing */
 import Login from "./components/sidebar/auth/unlogin";
@@ -57,30 +57,21 @@ import CreateManual from "./components/admin/management/mikeComponent/createManu
 import UpdateManual from "./components/admin/management/mikeComponent/updateManual";
 import { Suspense } from "react";
 import Loading from "./pages/loading";
+import UpdateRoom from "./components/admin/management/roomComponent/updateRoom";
+import SBMapScene from "../src/components/admin/management/manage3DMap";
+import Create3DModel from "../src/components/admin/management/3DMapComponent/create3DModel";
+import SanFrancisco from './components/campus/sanFrancisco/SanFrancisco';
+import Batasan from './components/campus/batasan/Batasan';
 setupIonicReact();
 interface ContainerProps {
   name: string;
-}
-
-declare global {
-  interface Window {
-    my_modal_2: {
-      showModal: () => void;
-    };
-    select_room: {
-      showModal: () => void;
-    };
-    select_floor: {
-      showModal: () => void;
-    };
-  }
 }
 
 const App: React.FC<ContainerProps> = ({ name }) => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/">
+        <Route path="/">
           <Redirect to="/Home" />
         </Route>
 
@@ -88,90 +79,102 @@ const App: React.FC<ContainerProps> = ({ name }) => (
           <Home name={"Home"} buildingName={""} />
         </Route>
 
-        <Route exact path="/Map">
-          <Map name={"Map"} />
+        <Route path="/Maps">
+          <Maps name={''} />
         </Route>
 
-        <Route exact path="/SanBartolome">
-          <Layout name={"Layout"} buildingName={""} />
+        <Route path="/SanBartolome">
+          <Home name={"home"} buildingName={""} />
         </Route>
 
-        <Route exact path="/SanFransisco">
-          <SanFransisco name={"SanFransisco"} />
+        <Route path="/SanFrancisco">
+          <SanFrancisco name={"SanFrancisco"} />
         </Route>
 
-        <Route exact path="/Batasan">
+        <Route path="/Batasan">
           <Batasan name={"Batasan"} />
         </Route>
 
-        <Route exact path="/Search">
+        <Route path="/Search">
           <SearchTab />
         </Route>
 
-        <Route exact path="/Login">
+        <Route path="/Login">
           <Login name={"Login"} />
         </Route>
 
-        <Route exact path="/Signup">
+        <Route path="/Signup">
           <Signup name={"Signup"} />
         </Route>
 
         {/* ADMIN ROUTES */}
 
-        <Route exact path="/Dashboard">
+        <Route path="/Dashboard">
           <Dashboard name={"Dashboard"} />
         </Route>
 
-        <Route exact path="/Announcements">
+        <Route path="/Announcements">
           <ManageAnnouncements name={"Annoucements"} />
         </Route>
 
-        <Route exact path="/Rooms">
+        <Route path="/Rooms">
           <RoomManagement name={"Room Management"} />
         </Route>
 
-        <Route exact path="/Buildings">
+        <Route path="/Buildings">
           <BuildingManagement name={"Building Management"} />
         </Route>
 
-        <Route exact path="/Settings">
+        <Route exact path="/SBMapScene">
+          <SBMapScene name={"3D Map Management"} />
+        </Route>
+
+        <Route exact path="/create3DModel">
+          <Create3DModel name={"Create 3d Model"} />
+        </Route>
+
+        <Route path="/Settings">
           <AdminSettings name={"Settings"} />
         </Route>
 
-        <Route exact path="/Events">
+        <Route path="/Events">
           <EventManagement name={"Event Management"} />
         </Route>
 
-        <Route exact path="/createEvent">
+        <Route path="/createEvent">
           <CreateEvent name={"Create Events"} />
         </Route>
 
-        <Route exact path="/updateEvent/:eventId">
+        <Route path="/updateEvent/:eventId">
           <UpdateEvent name={"Update Events"} />
         </Route>
 
-        <Route exact path="/createAnnouncement">
+        <Route path="/createAnnouncement">
           <CreateAnnouncement name={"Create Announcements"} />
         </Route>
 
-        <Route exact path="/updateAnnouncement/:announcementId">
+        <Route path="/updateAnnouncement/:announcementId">
           <UpdateAnnouncement name={"Update Announcements"} />
         </Route>
 
-        <Route exact path="/Archive">
+        <Route path="/Archive">
           <Archive name={"Archive"} />
         </Route>
 
-        <Route exact path="/Mike">
+        <Route path="/Mike">
           <ManageManual name={"Mike"} />
         </Route>
 
-        <Route exact path="/createManual">
+        <Route path="/createManual">
           <CreateManual name={"Create Manual"} />
         </Route>
 
-        <Route exact path="/updateManual/:manualId">
+        <Route path="/updateManual/:manualId">
           <UpdateManual name={"Update Manual"} />
+        </Route>
+
+        <Route path="/updateRoom/:roomName">
+          <UpdateRoom />
         </Route>
 
         {/* sheeesh */}

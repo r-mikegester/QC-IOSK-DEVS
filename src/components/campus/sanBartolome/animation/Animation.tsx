@@ -14,7 +14,7 @@ import animation from "../../../../assets/animation/yellow/animation.glb";
 import * as THREE from "three";
 import { useHistory } from "react-router";
 import ModelViewer from "../ModelViewer";
-import openGrounds from "../../../../assets/models/others/sb_floor_final2.glb";
+import openGrounds from "../../../../assets/models/others/cAnimationMap.glb";
 import techvoc from "../../../../assets/models/sb_buildings/techvoc_final.glb";
 import multipurpose from "../../../../assets/models/sb_buildings/multipurpose_final.glb";
 import chineseB from "../../../../assets/models/sb_buildings/chineseb_final.glb";
@@ -197,21 +197,7 @@ const Animation: React.FC<ContainerProps> = ({
             <Icon icon="icon-park-outline:flip-camera" className="w-10 h-10 text-base-content" />
 
           </button>
-          <div className="chat chat-end">
-  <div className="chat-image avatar">
-    <div className="w-10 rounded-full">
-      <img alt="Tailwind CSS chat bubble component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-    </div>
-  </div>
-  <div className="chat-header">
-    Anakin
-    <time className="text-xs opacity-50">12:46</time>
-  </div>
-  <div className="chat-bubble">I hate you!</div>
-  <div className="opacity-50 chat-footer">
-    Seen at 12:46
-  </div>
-</div>
+        
         </div>
       </div>
       <Canvas
@@ -227,7 +213,7 @@ const Animation: React.FC<ContainerProps> = ({
           camera={cameras[1]}
         />
         <ambientLight intensity={2} />
-        <Clouds />
+        {/* <Clouds /> */}
         <AnimatedModelViewer
           modelPath={modelPath}
           mixer={mixerRef.current}

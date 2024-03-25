@@ -77,7 +77,12 @@ const KioskManual: React.FC<ContainerProps> = ({ name }) => {
             <div className="h-screen py-10 mb-20 space-y-2 bg-base-100">
                 <div className="sticky top-0 z-50 px-3 py-1 pb-5 transition-all duration-150 ease-in-out bg-base-100">
                     <h1 className="text-4xl font-bold text-left ">{t("KioskManual")}</h1>
-                    <p className="text-sm 0">Guides for using Gestures on QCIOSK</p>
+                    <p className="text-sm 0">Welcome to QC-IOSK! This manual will
+                     guide you through the process of using the QC-IOSK for navigation purposes. 
+                     Whether you're a first-time user or someone looking for a refresher, this guide will assist
+                      you in efficiently utilizing our QC-IOSK.</p>
+
+                      
                 </div>
                 {loading ? (
                     <>
@@ -101,7 +106,7 @@ const KioskManual: React.FC<ContainerProps> = ({ name }) => {
                         {manuals.length === 0 ? (
                             <div className="px-3 space-y-2">
                                 <div role="alert" className="flex justify-center h-16 shadow-inner alert rounded-2xl" >
-                                <Icon icon="uil:comment-info-alt" className="w-8 h-8" />
+                                    <Icon icon="uil:comment-info-alt" className="w-8 h-8" />
                                     <span className="text-xl">No manual found.</span>
                                 </div>
                             </div>
@@ -142,12 +147,12 @@ const KioskManual: React.FC<ContainerProps> = ({ name }) => {
                         <div className="items-center justify-center w-auto p-6 duration-150 ease-in-out shadow-inner  bg-base-100 rounded-3xl h-8/12">
                             <div className="flex space-x-4">
                                 <div>
-                                     <img
-                                            src={selectedManual.imageUrl}
-                                            alt="Manual Alt"
-                                            className="w-auto h-96 rounded-2xl"
-                                        // style={{ maxWidth: "100px" }}
-                                        />
+                                    <img
+                                        src={selectedManual.imageUrl}
+                                        alt="Manual Alt"
+                                        className="w-auto h-96 rounded-2xl"
+                                    // style={{ maxWidth: "100px" }}
+                                    />
 
                                 </div>
                                 <div className="relative p-6 shadow-inner bg-base-200 rounded-2xl w-96">
@@ -156,7 +161,7 @@ const KioskManual: React.FC<ContainerProps> = ({ name }) => {
                                     </h1>
                                     <p>{selectedManual.manualDesc}</p>
                                     <figure className="rounded-3xl">
-                                       
+
                                     </figure>
                                 </div>
                                 <button

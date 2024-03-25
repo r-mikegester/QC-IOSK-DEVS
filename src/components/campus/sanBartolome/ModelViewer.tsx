@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js"; // Import DRACOLoader
 import { Billboard, Text } from "@react-three/drei";
 import {
     BufferGeometry,
@@ -33,7 +34,15 @@ const ModelViewer: React.FC<ModelViewerProps> = ({
     onClick,
 }) => {
     const group = useRef<THREE.Group>();
-    const gltf: GLTF = useLoader(GLTFLoader, modelPath);
+    // Create a DRACOLoader instance
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.7/");
+    dracoLoader.setDecoderConfig({ type: "js" });
+
+    // Pass the DRACOLoader instance to the GLTFLoader
+    const gltf: GLTF = useLoader(GLTFLoader, modelPath, loader => {
+        loader.setDRACOLoader(dracoLoader);
+    });
 
     return (
         <group>

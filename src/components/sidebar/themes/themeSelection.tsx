@@ -98,7 +98,7 @@ const ThemeSelection = () => {
 
     // Display a toast message when the theme is changed
     toast.success(`Selected theme: ${themes[theme]}`, {
-      position: toast.POSITION.BOTTOM_RIGHT,
+      position: "bottom-right",
       className: " bg-base-100 font-bold rounded-2xl text-base-content ",
       theme: "dark",
       icon: <Icon icon="line-md:clipboard-check" className="w-10 h-10 text-xl" />,

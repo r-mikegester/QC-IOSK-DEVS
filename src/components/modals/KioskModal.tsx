@@ -1,6 +1,6 @@
 // Modal.tsx
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Swiper, SwiperSlide } from 'swiper/react';
 
 
 // Import Swiper styles
@@ -10,7 +10,7 @@ import '../../assets/css/modal.css';
 
 
 // import required modules
-import { Pagination } from 'swiper/modules';
+// import { Pagination } from 'swiper/modules';
 import { Icon } from '@iconify/react';
 const KioskModal: React.FC = () => {
 
@@ -20,7 +20,7 @@ const KioskModal: React.FC = () => {
                 <h3 className="text-4xl font-bold ">HOW TO USE QC-IOSK</h3>
                 <p className="mb-10 text-center dark:text-gray-200">Use your finger to swipe thru slides </p>
                 <div className="w-full bg-transparent rounded-2xl h-96 backdrop-lg ">
-                    <Swiper
+                    {/* <Swiper
                         pagination={{
                             dynamicBullets: true,
                         }}
@@ -90,7 +90,7 @@ const KioskModal: React.FC = () => {
                                </div>
                            </SwiperSlide>
                         ...
-                    </Swiper>
+                    </Swiper> */}
                 </div>
 
                 <div className="modal-action">
