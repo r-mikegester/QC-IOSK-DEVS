@@ -3,7 +3,7 @@ import AdminSideBar from "../../constant/adminSidebar";
 import AdminHeader from "../../constant/adminHeader";
 import { useState } from "react";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db, storage } from "../../../utils/firebase"; // Assuming you have initialized Firebase storage
+import { db, storage } from "../../../utils/firebase";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Icon } from "@iconify/react";
@@ -15,8 +15,10 @@ interface ContainerProps {
 
 const Create3DModel: React.FC<ContainerProps> = ({ name }) => {
   const history = useHistory();
-  const [modelName, setModelName] = useState("");
-  const [glbFile, setGlbFile] = useState<File | null>(null);
+  const [modelName, setModelName] = useState<string>("");
+  const [modelPath, setModelPath] = useState<File | null>(null);
+  const [position, setPosition] = useState<string[]>(["0", "0", "0"]);
+  const [textPosition, setTextPosition] = useState<string[]>(["0", "3", "0"]);
 
   const SBMapSceneManagement = () => {
     history.push("/SBMapScene");
@@ -26,27 +28,25 @@ const Create3DModel: React.FC<ContainerProps> = ({ name }) => {
     try {
       const now = serverTimestamp();
 
-      // Check if GLB file exists
-      if (!glbFile) {
+      if (!modelPath) {
         toast.error("Please select a GLB file.");
         return;
       }
 
-      // Upload GLB file to Firebase Storage
-      const glbRef = storage.ref().child(`glbFiles/${glbFile.name}`);
-      await glbRef.put(glbFile);
+      const glbRef = storage.ref().child(`glbFiles/${modelPath.name}`);
+      await glbRef.put(modelPath);
       const glbUrl = await glbRef.getDownloadURL();
 
-      // Add document to Firestore
       await addDoc(collection(db, "3D Objects"), {
-        name: modelName,
-        glbUrl: glbUrl,
+        modelName: modelName,
+        modelPath: glbUrl,
+        position: position,
+        textPosition: textPosition,
         createdAt: now,
-        updatedAt: now,
       });
 
       setModelName("");
-      setGlbFile(null);
+      setModelPath(null);
 
       console.log("3D Model added successfully!");
       toast.success("3D Model added successfully!");
@@ -96,7 +96,7 @@ const Create3DModel: React.FC<ContainerProps> = ({ name }) => {
                           type="file"
                           accept=".glb"
                           onChange={(e) =>
-                            setGlbFile(
+                            setModelPath(
                               e.target.files ? e.target.files[0] : null
                             )
                           }
@@ -105,7 +105,48 @@ const Create3DModel: React.FC<ContainerProps> = ({ name }) => {
                       </td>
                     </tr>
                     <tr>
-                      <td colSpan={2}></td>
+                      <th>Position:</th>
+                      <td>
+                        <div className="flex">
+                          {["X", "Y", "Z"].map((axis, index) => (
+                            <div key={axis} className="flex flex-col mr-4">
+                              <label>{axis}:</label>
+                              <input
+                                type="text"
+                                value={position[index]}
+                                onChange={(e) => {
+                                  const updatedPosition = [...position];
+                                  updatedPosition[index] = e.target.value;
+                                  setPosition(updatedPosition);
+                                }}
+                                className="w-full max-w-xs input input-bordered"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Text Position:</th>
+                      <td>
+                        <div className="flex">
+                          {["X", "Y", "Z"].map((axis, index) => (
+                            <div key={axis} className="flex flex-col mr-4">
+                              <label>{axis}:</label>
+                              <input
+                                type="text"
+                                value={textPosition[index]}
+                                onChange={(e) => {
+                                  const updatedTextPosition = [...textPosition];
+                                  updatedTextPosition[index] = e.target.value;
+                                  setTextPosition(updatedTextPosition);
+                                }}
+                                className="w-full max-w-xs input input-bordered"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
