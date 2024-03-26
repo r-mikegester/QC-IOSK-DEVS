@@ -22,6 +22,7 @@ import {
 import { db } from "../../utils/firebase";
 import { ToastContainer, toast } from "react-toastify";
 import Modal from "react-modal";
+import { Icon } from "@iconify/react";
 
 interface ContainerProps {
   name: string;
@@ -71,6 +72,21 @@ const SBMapSceneManagement: React.FC<ContainerProps> = ({ name }) => {
       {
         accessorKey: "position",
         header: "Model Position",
+        Cell: ({ row }) => {
+          const position = row.original.position;
+          return (
+            <div>
+              <p>X: {position[0]}</p>
+              <p>Y: {position[1]}</p>
+              <p>Z: {position[2]}</p>
+            </div>
+          );
+        },
+        size: 150,
+      },
+      {
+        accessorKey: "textPosition",
+        header: "Text Position",
         Cell: ({ row }) => {
           const position = row.original.position;
           return (
@@ -190,12 +206,17 @@ const SBMapSceneManagement: React.FC<ContainerProps> = ({ name }) => {
             <div className="w-full h-full p-10 bg-base-100 rounded-tl-3xl">
               <div className="flex items-center justify-between">
                 <h1 className="text-4xl font-bold">3D Map Management</h1>
-                <button
-                  onClick={create3DModel}
-                  className="btn btn-square hover:bg-emerald-500 hover:text-white"
-                >
-                  Create 3D Model
-                </button>
+                <div className="flex items-center mr-5 space-x-3">
+                  <button
+                    onClick={create3DModel}
+                    className="btn btn-square hover:bg-emerald-500 hover:text-white"
+                  >
+                    <Icon
+                      icon="icon-park-outline:add-three"
+                      className="w-10 h-10"
+                    />
+                  </button>
+                </div>
               </div>
 
               <br />

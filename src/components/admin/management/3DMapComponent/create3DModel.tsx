@@ -2,7 +2,13 @@ import { IonContent, IonPage } from "@ionic/react";
 import AdminSideBar from "../../constant/adminSidebar";
 import AdminHeader from "../../constant/adminHeader";
 import { useState } from "react";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
 import { db, storage } from "../../../utils/firebase";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -37,7 +43,10 @@ const Create3DModel: React.FC<ContainerProps> = ({ name }) => {
       await glbRef.put(modelPath);
       const glbUrl = await glbRef.getDownloadURL();
 
-      await addDoc(collection(db, "3D Objects"), {
+      // Use modelName as the document ID
+      const docRef = doc(db, "3D Objects", modelName);
+
+      await setDoc(docRef, {
         modelName: modelName,
         modelPath: glbUrl,
         position: position,
