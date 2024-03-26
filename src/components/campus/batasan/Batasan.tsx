@@ -10,7 +10,7 @@ import {
   OrbitControls,
 } from "@react-three/drei";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
-
+import FpsViewer, { FpsView } from 'react-fps';
 interface ContainerProps {
   name: string;
 }
@@ -53,6 +53,7 @@ const Batasan: React.FC<ContainerProps> = ({ name }) => {
       <IonContent fullscreen>
         <div className="flex items-center justify-between">
           <h1 className="text-4xl font-bold text-black">3D Map Management</h1>
+          <FpsView/>
         </div>
         <Canvas
           camera={{
