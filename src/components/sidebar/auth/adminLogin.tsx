@@ -8,6 +8,7 @@ import { auth } from "../../utils/firebase";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 const AdminLogin: React.FC = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");
@@ -20,10 +21,18 @@ const AdminLogin: React.FC = () => {
 
   const onLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Log email and password
+    console.log("Email:", email);
+    console.log("Password:", password);
+
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         if (user.emailVerified) {
+          // Store user's email in local storage
+          localStorage.setItem("userEmail", email);
+          
           toast.success("Sign in successfully!", {
             position: toast.POSITION.BOTTOM_RIGHT,
             className: " bg-base-100 font-bold rounded-2xl text-base-content ",
@@ -32,7 +41,8 @@ const AdminLogin: React.FC = () => {
             progressClassName: "bg-accent rounded-full mx-3 mb-1 w-72",
             autoClose: 1000,
           });
-          console.log(user);
+          
+          console.log(user); // Log user details
           setTimeout(() => {
             history.push("/Dashboard");
           }, 2500);

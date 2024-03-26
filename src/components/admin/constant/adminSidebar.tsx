@@ -14,6 +14,10 @@ const AdminSideBar: React.FC<ContainerProps> = ({ name }) => {
   const history = useHistory();
 
   const handleLogout = () => {
+    // Clear email from local storage
+    localStorage.removeItem('userEmail');
+
+    // Sign out the user
     signOut(auth)
       .then(() => {
         // Sign-out successful.
