@@ -3,7 +3,10 @@ import { Icon } from "@iconify/react";
 import { themeChange } from "theme-change";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-import { signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,6 +23,11 @@ const AdminLogin: React.FC = () => {
 
   const onLogin = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Log email and password
+    console.log("Email:", email);
+    console.log("Password:", password);
+
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -28,7 +36,12 @@ const AdminLogin: React.FC = () => {
             position: toast.POSITION.BOTTOM_RIGHT,
             className: " bg-base-100 font-bold rounded-2xl text-base-content ",
             theme: "dark",
-            icon: <Icon icon="line-md:clipboard-check" className="w-10 h-10 text-xl" />,
+            icon: (
+              <Icon
+                icon="line-md:clipboard-check"
+                className="w-10 h-10 text-xl"
+              />
+            ),
             progressClassName: "bg-accent rounded-full mx-3 mb-1 w-72",
             autoClose: 1000,
           });
@@ -88,7 +101,9 @@ const AdminLogin: React.FC = () => {
               <form>
                 <div className="grid gap-y-4">
                   <div>
-                    <label htmlFor="email" className="block mb-2 text-md">Email address</label>
+                    <label htmlFor="email" className="block mb-2 text-md">
+                      Email address
+                    </label>
                     <div className="relative">
                       <input
                         autoComplete="off"
@@ -105,7 +120,9 @@ const AdminLogin: React.FC = () => {
                   </div>
                   <div>
                     <div className="flex items-center justify-between">
-                      <label htmlFor="password" className="block mb-2 text-md">Password</label>
+                      <label htmlFor="password" className="block mb-2 text-md">
+                        Password
+                      </label>
                     </div>
                     <div className="relative">
                       <input
