@@ -371,7 +371,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
             onRequestClose={closeModal}
             contentLabel="Building Information"
           >
-            <div className="max-w-full py-0 pl-0 transition-all duration-150 ease-in-out shadow-xl m-80 bg-base-100 rounded-3xl h-fit">
+            <div className="w-6/12 py-0 pl-0 transition-all duration-150 ease-in-out shadow-xl m-80 bg-base-100 rounded-3xl h-fit">
               <div className="relative flex justify-center space-x-3">
                 <div className="w-20 h-full px-3 mr-2 shadow-lg rounded-3xl">
                   <div className="flex flex-col justify-center py-3 space-y-3 border-b-2 border-base-100">
@@ -442,7 +442,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     )}
                   </div>
                   {showOverview ? (
-                    <div className=" overflow-y-auto">
+                    <div className="overflow-y-auto ">
 
                     </div>
                   ) : (
@@ -491,7 +491,7 @@ const SanBartolome: React.FC<ContainerProps> = ({ name }) => {
                     {!showOverview && (
                       <div className="flex flex-col justify-between h-auto bg-base-200 space-y- rounded-3xl">
                         <h1 className="text-2xl font-semibold text-center">Rooms</h1>
-                        <div className=" w-64 p-3 pb-4 space-y-2 overflow-y-auto h-96 overflow-cli bg-base-300 rounded-2xl">
+                        <div className="w-64 p-3 pb-4 space-y-2 overflow-y-auto h-96 overflow-cli bg-base-300 rounded-2xl">
                           {!selectedFloor && (
                             <div className="flex flex-col items-center justify-center w-full p-6 text-lg text-center text-base-content">
                               <Icon icon="typcn:warning-outline" className="w-10 h-10" />
